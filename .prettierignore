@@ -1,0 +1,5 @@
+vercel.json
+.next
+out
+node_modules
+.env*.local
