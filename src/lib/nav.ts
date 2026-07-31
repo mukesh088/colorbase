@@ -67,6 +67,7 @@ import {
   Sparkles,
   Square,
   SwatchBook,
+  Table2,
   Tags,
   Terminal,
   Timer,
@@ -162,4 +163,5 @@ export const TOOL_ICONS: Record<string, LucideIcon> = {
   ShieldCheck,
   UserRound,
   Clock,
+  Table2,
 };

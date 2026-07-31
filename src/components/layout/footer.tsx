@@ -3,7 +3,7 @@ import { SITE_NAME } from "@/lib/site-config";
 
 export function Footer() {
   return (
-    <footer className="mt-auto border-t border-border/50 bg-background/40 py-8 pb-[max(2rem,env(safe-area-inset-bottom))] backdrop-blur-sm">
+    <footer className="relative z-10 mt-auto border-t border-border/50 bg-background py-8 pb-[max(2rem,env(safe-area-inset-bottom))]">
       <div className="mx-auto grid max-w-7xl gap-6 px-3 sm:grid-cols-2 sm:px-4 lg:grid-cols-4 lg:px-6">
         <div>
           <p className="font-display text-lg font-semibold">

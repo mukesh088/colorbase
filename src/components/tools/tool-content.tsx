@@ -35,8 +35,14 @@ const ImageColorTools = dynamic(() =>
 const CssGeneratorTool = dynamic(() =>
   import("@/components/tools/css-generator").then((m) => m.CssGeneratorTool)
 );
+const CssClipPathGenerator = dynamic(() =>
+  import("@/components/tools/css-clip-path-generator").then((m) => m.CssClipPathGenerator)
+);
 const ColorLibrary = dynamic(() =>
   import("@/components/tools/color-library").then((m) => m.ColorLibrary)
+);
+const PopularUiColorsTool = dynamic(() =>
+  import("@/components/tools/popular-ui-colors").then((m) => m.PopularUiColorsTool)
 );
 const ColorWheelTool = dynamic(() =>
   import("@/components/tools/color-wheel").then((m) => m.ColorWheelTool)
@@ -66,13 +72,17 @@ const ImageSuiteTool = dynamic(() =>
   import("@/components/tools/suite/image-suite").then((m) => m.ImageSuiteTool)
 );
 const WebSuiteTool = dynamic(() =>
-  import("@/components/tools/suite/web-social-utility").then((m) => m.WebSuiteTool)
+  import("@/components/tools/suite/web-suite").then((m) => m.WebSuiteTool)
 );
 const SocialSuiteTool = dynamic(() =>
   import("@/components/tools/suite/web-social-utility").then((m) => m.SocialSuiteTool)
 );
 const UtilitySuiteTool = dynamic(() =>
   import("@/components/tools/suite/web-social-utility").then((m) => m.UtilitySuiteTool)
+);
+const TableGeneratorApp = dynamic(() =>
+  import("@/components/tools/table-generator").then((m) => m.TableGeneratorApp),
+  { ssr: false }
 );
 
 export function ToolContent({ slug }: { slug: string }) {
@@ -152,7 +162,7 @@ export function ToolContent({ slug }: { slug: string }) {
     case "css-border-radius-generator":
       return <CssGeneratorTool tool="radius" />;
     case "css-clip-path-generator":
-      return <CssGeneratorTool tool="clip" />;
+      return <CssClipPathGenerator />;
     case "css-transform-generator":
       return <CssGeneratorTool tool="transform" />;
     case "css-animation-generator":
@@ -166,7 +176,9 @@ export function ToolContent({ slug }: { slug: string }) {
     case "brand-colors":
       return <ColorLibrary library="brands" />;
     case "popular-ui-colors":
-      return <ColorLibrary library="ui" />;
+      return <PopularUiColorsTool />;
+    case "table-generator":
+      return <TableGeneratorApp />;
     default:
       return <AdvancedColorPicker />;
   }

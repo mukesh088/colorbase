@@ -78,7 +78,7 @@ export const SUITE_TOOLS: ToolDefinition[] = [
   t("webp-converter", "WEBP Converter", "WEBP", "Convert images to WEBP for faster web delivery.", "image", ["webp converter", "to webp"], "FileImage"),
   t("svg-optimizer", "SVG Optimizer", "SVG Opt", "Minify SVG markup by stripping comments and extra whitespace.", "image", ["svg optimizer", "minify svg"], "FileCode2"),
   t("blur-image", "Blur Image", "Blur", "Apply adjustable Gaussian-style blur to any image.", "image", ["blur image", "image blur"], "Droplets"),
-  t("image-crop", "Image Crop", "Crop", "Crop images to a custom rectangle and download the result.", "image", ["image crop", "crop tool"], "Crop"),
+  t("image-crop", "Image Crop", "Crop", "Visually crop images with drag handles, aspect ratios, and download.", "image", ["image crop", "crop tool"], "Crop"),
   t("rotate-image", "Rotate Image", "Rotate", "Rotate images 90°, 180°, or 270° and download.", "image", ["rotate image"], "RotateCw"),
   t("flip-image", "Flip Image", "Flip", "Flip images horizontally or vertically.", "image", ["flip image", "mirror image"], "FlipHorizontal"),
   t("dominant-color-extractor", "Dominant Color Extractor", "Dominant", "Extract the most dominant colors from an uploaded image.", "image", ["dominant color", "extract colors"], "Pipette", ["color-palette-from-image"]),
@@ -96,7 +96,7 @@ export const SUITE_TOOLS: ToolDefinition[] = [
   t("css-minifier", "CSS Minifier", "Minify CSS", "Minify CSS by removing comments and whitespace.", "web-tools", ["css minifier", "minify css"], "Minimize2", ["css-beautifier"]),
   t("js-minifier", "JS Minifier", "Minify JS", "Minify JavaScript by stripping comments and extra spaces.", "web-tools", ["js minifier", "minify javascript"], "Minimize2", ["js-beautifier"]),
   t("html-minifier", "HTML Minifier", "Minify HTML", "Minify HTML markup for smaller page payloads.", "web-tools", ["html minifier", "minify html"], "Minimize2", ["html-beautifier"]),
-  t("css-beautifier", "CSS Beautifier", "Beautify CSS", "Beautify messy CSS into readable indented rules.", "web-tools", ["css beautifier", "pretty css"], "Sparkles", ["css-minifier"]),
+  t("css-beautifier", "CSS Beautifier", "Beautify CSS", "Beautify CSS with live template previews and formatted output.", "web-tools", ["css beautifier", "pretty css"], "Sparkles", ["css-minifier"]),
   t("js-beautifier", "JS Beautifier", "Beautify JS", "Beautify JavaScript for easier debugging and review.", "web-tools", ["js beautifier", "pretty js"], "Sparkles", ["js-minifier"]),
   t("html-beautifier", "HTML Beautifier", "Beautify HTML", "Beautify HTML with consistent indentation.", "web-tools", ["html beautifier", "pretty html"], "Sparkles", ["html-minifier"]),
 

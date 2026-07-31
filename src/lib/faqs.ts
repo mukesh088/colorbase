@@ -60,4 +60,16 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         "Generate complementary, analogous, triadic, tetradic, split-complementary, and monochromatic palettes from any base color.",
     },
   ],
+  "table-generator": [
+    {
+      question: "What export formats does the Table Generator support?",
+      answer:
+        "Export HTML, CSS, Markdown, LaTeX, CSV, TSV, JSON, SQL INSERT, Excel XML, MediaWiki, ASCII, BBCode, reStructuredText, Org Mode, AsciiDoc, Tailwind, Bootstrap, shadcn/ui, and React components.",
+    },
+    {
+      question: "Can I import CSV or Excel files?",
+      answer:
+        "Yes. Import CSV, TSV, JSON, Markdown tables, or HTML tables via paste, file upload, or drag and drop. For Excel, save as CSV first. Delimiters are detected automatically.",
+    },
+  ],
 };

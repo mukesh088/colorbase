@@ -392,9 +392,84 @@ export const TRENDING_PALETTES: { name: string; colors: string[] }[] = [
   { name: "Berry Crush", colors: ["#4A1942", "#812E58", "#B83B5E", "#F08A5D", "#F9ED69"] },
 ];
 
-export const POPULAR_UI_COLORS = {
-  backgrounds: ["#FFFFFF", "#F8FAFC", "#0F172A", "#111827", "#FAFAF9"],
-  accents: ["#2563EB", "#0EA5E9", "#10B981", "#F59E0B", "#EF4444"],
-  borders: ["#E2E8F0", "#CBD5E1", "#334155", "#374151"],
-  text: ["#0F172A", "#334155", "#64748B", "#F8FAFC", "#94A3B8"],
+export type PopularUiGroup =
+  | "backgrounds"
+  | "accents"
+  | "borders"
+  | "text"
+  | "states"
+  | "neutrals";
+
+export type PopularUiColor = {
+  name: string;
+  hex: string;
+  use: string;
+  group: PopularUiGroup;
 };
+
+export const POPULAR_UI_COLOR_GROUPS: Record<PopularUiGroup, PopularUiColor[]> = {
+  backgrounds: [
+    { name: "Pure White", hex: "#FFFFFF", use: "Default page canvas", group: "backgrounds" },
+    { name: "Soft Slate", hex: "#F8FAFC", use: "App shell & panels", group: "backgrounds" },
+    { name: "Warm Paper", hex: "#FAFAF9", use: "Content surfaces", group: "backgrounds" },
+    { name: "Mist Gray", hex: "#F1F5F9", use: "Subtle section fill", group: "backgrounds" },
+    { name: "Night Navy", hex: "#0F172A", use: "Dark mode canvas", group: "backgrounds" },
+    { name: "Ink Black", hex: "#111827", use: "High-contrast dark UI", group: "backgrounds" },
+    { name: "Charcoal", hex: "#18181B", use: "Modern dark product UI", group: "backgrounds" },
+    { name: "Deep Zinc", hex: "#09090B", use: "OLED-friendly background", group: "backgrounds" },
+  ],
+  accents: [
+    { name: "Royal Blue", hex: "#2563EB", use: "Primary actions", group: "accents" },
+    { name: "Sky Pulse", hex: "#0EA5E9", use: "Links & highlights", group: "accents" },
+    { name: "Emerald", hex: "#10B981", use: "Growth & positive CTAs", group: "accents" },
+    { name: "Amber Glow", hex: "#F59E0B", use: "Attention accents", group: "accents" },
+    { name: "Rose Punch", hex: "#E11D48", use: "Brand-forward buttons", group: "accents" },
+    { name: "Violet Spark", hex: "#7C3AED", use: "Creative product accents", group: "accents" },
+    { name: "Indigo", hex: "#4F46E5", use: "SaaS primary brand", group: "accents" },
+    { name: "Teal Wave", hex: "#14B8A6", use: "Fresh secondary accent", group: "accents" },
+  ],
+  borders: [
+    { name: "Hairline", hex: "#E2E8F0", use: "Light card edges", group: "borders" },
+    { name: "Soft Line", hex: "#CBD5E1", use: "Inputs & dividers", group: "borders" },
+    { name: "Cool Gray", hex: "#94A3B8", use: "Stronger separators", group: "borders" },
+    { name: "Slate Edge", hex: "#334155", use: "Dark mode borders", group: "borders" },
+    { name: "Zinc Line", hex: "#374151", use: "Dark form outlines", group: "borders" },
+    { name: "Fog Ring", hex: "#E5E7EB", use: "Neutral UI rings", group: "borders" },
+  ],
+  text: [
+    { name: "Ink Heading", hex: "#0F172A", use: "Primary headings", group: "text" },
+    { name: "Body Slate", hex: "#334155", use: "Readable body copy", group: "text" },
+    { name: "Muted Mist", hex: "#64748B", use: "Secondary labels", group: "text" },
+    { name: "Soft Hint", hex: "#94A3B8", use: "Placeholders & hints", group: "text" },
+    { name: "Snow Text", hex: "#F8FAFC", use: "Text on dark surfaces", group: "text" },
+    { name: "Cloud Body", hex: "#E2E8F0", use: "Dark mode body text", group: "text" },
+  ],
+  states: [
+    { name: "Success", hex: "#22C55E", use: "Confirmations & success", group: "states" },
+    { name: "Success Soft", hex: "#DCFCE7", use: "Success banners", group: "states" },
+    { name: "Warning", hex: "#F59E0B", use: "Caution alerts", group: "states" },
+    { name: "Warning Soft", hex: "#FEF3C7", use: "Warning surfaces", group: "states" },
+    { name: "Danger", hex: "#EF4444", use: "Destructive actions", group: "states" },
+    { name: "Danger Soft", hex: "#FEE2E2", use: "Error banners", group: "states" },
+    { name: "Info", hex: "#3B82F6", use: "Info callouts", group: "states" },
+    { name: "Info Soft", hex: "#DBEAFE", use: "Info surfaces", group: "states" },
+  ],
+  neutrals: [
+    { name: "Neutral 50", hex: "#FAFAFA", use: "Lightest neutral", group: "neutrals" },
+    { name: "Neutral 100", hex: "#F4F4F5", use: "Subtle fills", group: "neutrals" },
+    { name: "Neutral 200", hex: "#E4E4E7", use: "Quiet borders", group: "neutrals" },
+    { name: "Neutral 400", hex: "#A1A1AA", use: "Disabled text", group: "neutrals" },
+    { name: "Neutral 600", hex: "#52525B", use: "Secondary dark text", group: "neutrals" },
+    { name: "Neutral 800", hex: "#27272A", use: "Strong dark text", group: "neutrals" },
+    { name: "Neutral 950", hex: "#09090B", use: "Deepest neutral", group: "neutrals" },
+  ],
+};
+
+/** Hex-only map kept for simple consumers */
+export const POPULAR_UI_COLORS = Object.fromEntries(
+  (Object.keys(POPULAR_UI_COLOR_GROUPS) as PopularUiGroup[]).map((group) => [
+    group,
+    POPULAR_UI_COLOR_GROUPS[group].map((c) => c.hex),
+  ])
+) as Record<PopularUiGroup, string[]>;
+
