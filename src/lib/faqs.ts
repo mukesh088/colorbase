@@ -34,6 +34,23 @@ export const GLOBAL_FAQS: FAQItem[] = [
 ];
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
+  "backdrop-filter-generator": [
+    {
+      question: "What is CSS backdrop-filter?",
+      answer:
+        "backdrop-filter applies graphic effects (blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, saturate, sepia, drop-shadow) to content behind an element. Example: backdrop-filter: blur(12px) saturate(120%); The default is none.",
+    },
+    {
+      question: "How is backdrop-filter different from filter?",
+      answer:
+        "filter affects the element itself. backdrop-filter affects only what’s behind the element (through transparent or semi-transparent areas). Use a translucent background so the effect is visible.",
+    },
+    {
+      question: "Do I need -webkit-backdrop-filter?",
+      answer:
+        "Yes for broader Safari support. This generator includes both backdrop-filter and -webkit-backdrop-filter in the copied CSS.",
+    },
+  ],
   "contrast-checker": [
     {
       question: "How is contrast ratio calculated?",

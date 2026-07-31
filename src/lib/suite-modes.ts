@@ -6,7 +6,6 @@ export const CSS_SUITE_MODES = [
   "css-grid-generator",
   "css-transition-generator",
   "css-filter-generator",
-  "backdrop-filter-generator",
   "border-generator",
   "outline-generator",
   "cursor-generator",

@@ -18,7 +18,6 @@ const HINTS: Partial<Record<CssSuiteMode, string>> = {
   "css-grid-generator": "Build a responsive grid template visually.",
   "css-transition-generator": "Hover the preview to feel duration, easing, and delay.",
   "css-filter-generator": "Stack blur, brightness, contrast, saturate, and hue.",
-  "backdrop-filter-generator": "Frosted glass over a busy background.",
   "border-generator": "Width, style, color, and radius in one snippet.",
   "outline-generator": "Outlines that don’t affect layout size.",
   "cursor-generator": "Pick a cursor and hover the preview area.",
@@ -112,8 +111,6 @@ export function CssSuiteTool({ mode }: { mode: CssSuiteMode }) {
         return `transition: ${transitionProp} ${duration}ms ${easing} ${delay}ms;`;
       case "css-filter-generator":
         return `filter: blur(${blur}px) brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) hue-rotate(${hue}deg);`;
-      case "backdrop-filter-generator":
-        return `backdrop-filter: blur(${blur}px) saturate(${saturate}%);\n-webkit-backdrop-filter: blur(${blur}px) saturate(${saturate}%);\nbackground: rgba(255, 255, 255, ${opacity / 100});`;
       case "border-generator":
         return `border: ${width}px ${borderStyle} ${color};\nborder-radius: ${radius}px;`;
       case "outline-generator":
@@ -247,20 +244,13 @@ export function CssSuiteTool({ mode }: { mode: CssSuiteMode }) {
             </>
           )}
 
-          {(mode === "css-filter-generator" || mode === "backdrop-filter-generator") && (
+          {mode === "css-filter-generator" && (
             <>
               <div className="space-y-1.5"><Label>Blur · {blur}px</Label><Slider min={0} max={40} value={[blur]} onValueChange={([n]) => setBlur(n)} /></div>
               <div className="space-y-1.5"><Label>Saturate · {saturate}%</Label><Slider min={0} max={200} value={[saturate]} onValueChange={([n]) => setSaturate(n)} /></div>
-              {mode === "css-filter-generator" && (
-                <>
-                  <div className="space-y-1.5"><Label>Brightness · {brightness}%</Label><Slider min={0} max={200} value={[brightness]} onValueChange={([n]) => setBrightness(n)} /></div>
-                  <div className="space-y-1.5"><Label>Contrast · {contrast}%</Label><Slider min={0} max={200} value={[contrast]} onValueChange={([n]) => setContrast(n)} /></div>
-                  <div className="space-y-1.5"><Label>Hue · {hue}°</Label><Slider min={0} max={360} value={[hue]} onValueChange={([n]) => setHue(n)} /></div>
-                </>
-              )}
-              {mode === "backdrop-filter-generator" && (
-                <div className="space-y-1.5"><Label>Panel opacity · {opacity}%</Label><Slider min={0} max={100} value={[opacity]} onValueChange={([n]) => setOpacity(n)} /></div>
-              )}
+              <div className="space-y-1.5"><Label>Brightness · {brightness}%</Label><Slider min={0} max={200} value={[brightness]} onValueChange={([n]) => setBrightness(n)} /></div>
+              <div className="space-y-1.5"><Label>Contrast · {contrast}%</Label><Slider min={0} max={200} value={[contrast]} onValueChange={([n]) => setContrast(n)} /></div>
+              <div className="space-y-1.5"><Label>Hue · {hue}°</Label><Slider min={0} max={360} value={[hue]} onValueChange={([n]) => setHue(n)} /></div>
             </>
           )}
 
@@ -462,26 +452,6 @@ export function CssSuiteTool({ mode }: { mode: CssSuiteMode }) {
                     <div className="h-3 w-20 rounded-full bg-white/70" />
                     <div className="h-3 w-24 rounded-full bg-white/50" />
                   </div>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {mode === "backdrop-filter-generator" && (
-            <div className="relative h-44 overflow-hidden rounded-2xl">
-              <div className="absolute inset-0 bg-[linear-gradient(120deg,#fb7185,#f59e0b,#34d399,#60a5fa)] opacity-90" />
-              <div className="absolute -left-6 top-6 h-24 w-24 rounded-full bg-white/40 blur-sm" />
-              <div className="absolute bottom-4 right-8 h-20 w-32 rotate-12 rounded-2xl bg-fuchsia-700/50" />
-              <div className="absolute inset-0 flex items-center justify-center p-6">
-                <div
-                  className="rounded-2xl border border-white/40 px-6 py-5 text-center text-sm font-semibold shadow-lg"
-                  style={{
-                    backdropFilter: `blur(${blur}px) saturate(${saturate}%)`,
-                    WebkitBackdropFilter: `blur(${blur}px) saturate(${saturate}%)`,
-                    background: `rgba(255,255,255,${opacity / 100})`,
-                  }}
-                >
-                  Frosted panel
                 </div>
               </div>
             </div>

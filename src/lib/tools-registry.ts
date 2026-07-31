@@ -385,7 +385,7 @@ export const TOOLS: ToolDefinition[] = [
     category: "css-generators",
     icon: "Sparkles",
     featured: true,
-    related: ["neumorphism-generator", "box-shadow-generator", "css-button-generator"],
+    related: ["backdrop-filter-generator", "neumorphism-generator", "box-shadow-generator"],
   },
   {
     slug: "neumorphism-generator",

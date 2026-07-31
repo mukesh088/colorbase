@@ -62,6 +62,9 @@ const PaletteFromUrlTool = dynamic(() =>
 const CssSuiteTool = dynamic(() =>
   import("@/components/tools/suite/css-suite").then((m) => m.CssSuiteTool)
 );
+const BackdropFilterGenerator = dynamic(() =>
+  import("@/components/tools/backdrop-filter-generator").then((m) => m.BackdropFilterGenerator)
+);
 const TextSuiteTool = dynamic(() =>
   import("@/components/tools/suite/text-suite").then((m) => m.TextSuiteTool)
 );
@@ -153,6 +156,8 @@ export function ToolContent({ slug }: { slug: string }) {
       return <CssGeneratorTool tool="css-color" />;
     case "box-shadow-generator":
       return <CssGeneratorTool tool="box-shadow" />;
+    case "backdrop-filter-generator":
+      return <BackdropFilterGenerator />;
     case "glassmorphism-generator":
       return <CssGeneratorTool tool="glass" />;
     case "neumorphism-generator":
