@@ -6,8 +6,6 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { getColorBySlug, getAllLibraryColors } from "@/lib/data/color-library";
 import { ColorDetailView } from "@/components/library/color-detail-view";
 import { findSimilarColors } from "@/lib/colors/spaces";
-import { ColorSwatch } from "@/components/color/color-swatch";
-import Link from "next/link";
 
 export const dynamicParams = true;
 
@@ -38,10 +36,14 @@ export default async function ColorSlugPage({ params }: { params: Promise<{ slug
   const { slug } = await params;
   const color = getColorBySlug(slug);
   if (!color) notFound();
-  const pool = getAllLibraryColors().map((c) => c.hex);
-  const similar = findSimilarColors(color.hex, pool, 8)
-    .map((hex) => getAllLibraryColors().find((c) => c.hex.toLowerCase() === hex.toLowerCase()))
-    .filter(Boolean);
+
+  const all = getAllLibraryColors();
+  const pool = all.map((c) => c.hex);
+  const similar = findSimilarColors(color.hex, pool, 12)
+    .map((hex) => all.find((c) => c.hex.toLowerCase() === hex.toLowerCase()))
+    .filter((c): c is NonNullable<typeof c> => Boolean(c))
+    .map((c) => ({ slug: c.slug, name: c.name, hex: c.hex }));
+
   const crumbs = [
     { name: "Home", href: "/" },
     { name: "Color Library", href: "/colors" },
@@ -62,20 +64,16 @@ export default async function ColorSlugPage({ params }: { params: Promise<{ slug
     <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
       <JsonLd data={[breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
       <Breadcrumbs items={crumbs} />
-      <h1 className="mb-6 font-display text-4xl font-semibold">{color.name}</h1>
-      <ColorDetailView name={color.name} hex={color.hex} family={color.family} sources={color.sources} />
-      <section className="mt-10">
-        <h2 className="mb-3 font-display text-xl font-semibold">Similar & related colors</h2>
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
-          {similar.map((c) =>
-            c ? (
-              <Link key={c.slug} href={`/colors/${c.slug}`}>
-                <ColorSwatch hex={c.hex} name={c.name} size="sm" />
-              </Link>
-            ) : null
-          )}
-        </div>
-      </section>
+      <div className="mt-4">
+        <ColorDetailView
+          name={color.name}
+          hex={color.hex}
+          family={color.family}
+          sources={color.sources}
+          similar={similar}
+          sharePath={`/colors/${color.slug}`}
+        />
+      </div>
     </div>
   );
 }

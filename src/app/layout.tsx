@@ -3,6 +3,7 @@ import { DM_Sans, Fraunces } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { FloatingSocialDock } from "@/components/layout/floating-social-dock";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </main>
             <Footer />
+            <FloatingSocialDock />
           </div>
         </Providers>
       </body>

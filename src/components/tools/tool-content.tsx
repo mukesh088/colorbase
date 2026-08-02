@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import {
   isCssSuite,
   isDevSuite,
+  isGamesSuite,
   isSocialSuite,
   isTextSuite,
   isUtilitySuite,
@@ -65,6 +66,45 @@ const CssSuiteTool = dynamic(() =>
 const BackdropFilterGenerator = dynamic(() =>
   import("@/components/tools/backdrop-filter-generator").then((m) => m.BackdropFilterGenerator)
 );
+const BorderGeneratorTool = dynamic(() =>
+  import("@/components/tools/border-generator").then((m) => m.BorderGeneratorTool)
+);
+const FlexboxPlaygroundTool = dynamic(() =>
+  import("@/components/tools/flexbox-playground").then((m) => m.FlexboxPlaygroundTool)
+);
+const CssGridGeneratorTool = dynamic(() =>
+  import("@/components/tools/css-grid-generator").then((m) => m.CssGridGeneratorTool)
+);
+const CssFilterGeneratorTool = dynamic(() =>
+  import("@/components/tools/css-filter-generator").then((m) => m.CssFilterGeneratorTool)
+);
+const GlassmorphismGeneratorTool = dynamic(() =>
+  import("@/components/tools/glassmorphism-generator").then((m) => m.GlassmorphismGeneratorTool)
+);
+const NeumorphismGeneratorTool = dynamic(() =>
+  import("@/components/tools/neumorphism-generator").then((m) => m.NeumorphismGeneratorTool)
+);
+const CssAnimationGeneratorTool = dynamic(() =>
+  import("@/components/tools/css-animation-generator").then((m) => m.CssAnimationGeneratorTool)
+);
+const CssButtonGeneratorTool = dynamic(() =>
+  import("@/components/tools/css-button-generator").then((m) => m.CssButtonGeneratorTool)
+);
+const CssClampGeneratorTool = dynamic(() =>
+  import("@/components/tools/css-clamp-generator").then((m) => m.CssClampGeneratorTool)
+);
+const TypographyGeneratorTool = dynamic(() =>
+  import("@/components/tools/typography-generator").then((m) => m.TypographyGeneratorTool)
+);
+const CssTransitionGeneratorTool = dynamic(() =>
+  import("@/components/tools/css-transition-generator").then((m) => m.CssTransitionGeneratorTool)
+);
+const ScrollbarGeneratorTool = dynamic(() =>
+  import("@/components/tools/scrollbar-generator").then((m) => m.ScrollbarGeneratorTool)
+);
+const TextShadowGeneratorTool = dynamic(() =>
+  import("@/components/tools/text-shadow-generator").then((m) => m.TextShadowGeneratorTool)
+);
 const JwtDecoderTool = dynamic(() =>
   import("@/components/tools/jwt-decoder").then((m) => m.JwtDecoderTool)
 );
@@ -120,9 +160,15 @@ const SocialSuiteTool = dynamic(() =>
 const UtilitySuiteTool = dynamic(() =>
   import("@/components/tools/suite/web-social-utility").then((m) => m.UtilitySuiteTool)
 );
+const GamesSuiteTool = dynamic(() =>
+  import("@/components/tools/games/games-suite").then((m) => m.GamesSuiteTool)
+);
 const TableGeneratorApp = dynamic(() =>
   import("@/components/tools/table-generator").then((m) => m.TableGeneratorApp),
   { ssr: false }
+);
+const CoolNameFinderTool = dynamic(() =>
+  import("@/components/tools/cool-name-finder").then((m) => m.CoolNameFinderTool)
 );
 
 export function ToolContent({ slug }: { slug: string }) {
@@ -133,6 +179,7 @@ export function ToolContent({ slug }: { slug: string }) {
   if (isWebSuite(slug)) return <WebSuiteTool mode={slug} />;
   if (isSocialSuite(slug)) return <SocialSuiteTool mode={slug} />;
   if (isUtilitySuite(slug)) return <UtilitySuiteTool mode={slug} />;
+  if (isGamesSuite(slug)) return <GamesSuiteTool mode={slug} />;
 
   switch (slug) {
     case "color-picker":
@@ -195,6 +242,14 @@ export function ToolContent({ slug }: { slug: string }) {
       return <CssGeneratorTool tool="box-shadow" />;
     case "backdrop-filter-generator":
       return <BackdropFilterGenerator />;
+    case "border-generator":
+      return <BorderGeneratorTool />;
+    case "flexbox-playground":
+      return <FlexboxPlaygroundTool />;
+    case "css-grid-generator":
+      return <CssGridGeneratorTool />;
+    case "css-filter-generator":
+      return <CssFilterGeneratorTool />;
     case "jwt-decoder":
       return <JwtDecoderTool />;
     case "json-formatter":
@@ -228,11 +283,21 @@ export function ToolContent({ slug }: { slug: string }) {
     case "qr-code-generator":
       return <QrCodeGeneratorTool />;
     case "glassmorphism-generator":
-      return <CssGeneratorTool tool="glass" />;
+      return <GlassmorphismGeneratorTool />;
     case "neumorphism-generator":
-      return <CssGeneratorTool tool="neomorphism" />;
+      return <NeumorphismGeneratorTool />;
     case "css-button-generator":
-      return <CssGeneratorTool tool="button" />;
+      return <CssButtonGeneratorTool />;
+    case "css-clamp-generator":
+      return <CssClampGeneratorTool />;
+    case "typography-generator":
+      return <TypographyGeneratorTool />;
+    case "css-transition-generator":
+      return <CssTransitionGeneratorTool />;
+    case "scrollbar-generator":
+      return <ScrollbarGeneratorTool />;
+    case "text-shadow-generator":
+      return <TextShadowGeneratorTool />;
     case "css-border-radius-generator":
       return <CssGeneratorTool tool="radius" />;
     case "css-clip-path-generator":
@@ -240,7 +305,7 @@ export function ToolContent({ slug }: { slug: string }) {
     case "css-transform-generator":
       return <CssGeneratorTool tool="transform" />;
     case "css-animation-generator":
-      return <CssGeneratorTool tool="animation" />;
+      return <CssAnimationGeneratorTool />;
     case "typography-color-pairing":
       return <TypographyPairingTool />;
     case "website-color-inspiration":
@@ -253,6 +318,8 @@ export function ToolContent({ slug }: { slug: string }) {
       return <PopularUiColorsTool />;
     case "table-generator":
       return <TableGeneratorApp />;
+    case "cool-name-finder":
+      return <CoolNameFinderTool />;
     default:
       return <AdvancedColorPicker />;
   }

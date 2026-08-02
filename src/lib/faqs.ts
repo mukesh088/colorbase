@@ -260,6 +260,57 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         "Yes. Paste it into Validate (with or without braces). You’ll see version, variant, and whether it’s the nil GUID.",
     },
   ],
+  "border-generator": [
+    {
+      question: "Can I style each side differently?",
+      answer:
+        "Yes. Turn off Link sides to set width, style, and color per edge (top/right/bottom/left). With Link on, all sides stay in sync.",
+    },
+    {
+      question: "How do corner radii work?",
+      answer:
+        "Link corners applies one radius to all four. Unlink to set top-left, top-right, bottom-right, and bottom-left independently.",
+    },
+    {
+      question: "What’s the difference from outline?",
+      answer:
+        "Borders take up layout space and can be rounded. Outlines sit outside the box and don’t affect size — use the Outline Generator for that.",
+    },
+  ],
+  "flexbox-playground": [
+    {
+      question: "How do I reorder items?",
+      answer:
+        "Drag any item by its grip handle in the list or in the playground. Drop it on another item to reorder. Labels update automatically.",
+    },
+    {
+      question: "Can I edit a single flex item?",
+      answer:
+        "Click an item to select it, then adjust flex-grow, flex-shrink, flex-basis, align-self, order, size, and color. Custom item rules appear in the CSS output.",
+    },
+    {
+      question: "What container properties are supported?",
+      answer:
+        "flex-direction, flex-wrap, justify-content, align-items, align-content, gap (or separate row/column gap), and padding — plus ready presets like Navbar and Cards wrap.",
+    },
+  ],
+  "css-grid-generator": [
+    {
+      question: "How do I set column and row sizes?",
+      answer:
+        "Use the Columns/Rows sliders, then edit each track (1fr, 200px, auto, minmax(...), or repeat(auto-fit, minmax(140px, 1fr))).",
+    },
+    {
+      question: "How do item spans work?",
+      answer:
+        "Select an item and set column/row start and span. Start 0 means auto placement. Placement rules are included in the CSS output.",
+    },
+    {
+      question: "What presets are available?",
+      answer:
+        "Cards, Sidebar, Header · Main, Gallery, Auto-fit, and a 12-column starter — each loads tracks and sample placements.",
+    },
+  ],
   "image-compressor": [
     {
       question: "Are my images uploaded?",
@@ -317,6 +368,181 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         "Scripts, event handlers, and javascript: URLs are stripped, then comments/whitespace are minified. Always preview before shipping.",
     },
   ],
+  "css-filter-generator": [
+    {
+      question: "What does CSS filter do?",
+      answer:
+        "filter applies graphic effects to the element itself (and its contents): blur, brightness, contrast, grayscale, hue-rotate, invert, opacity, saturate, sepia, and drop-shadow. Default is none.",
+    },
+    {
+      question: "How is filter different from backdrop-filter?",
+      answer:
+        "filter changes the element. backdrop-filter blurs or tints what’s behind a translucent element. Use this tool for the element; use Backdrop Filter for frosted glass.",
+    },
+    {
+      question: "Can I stack multiple effects?",
+      answer:
+        "Yes. Non-default values are combined in order. Add one or more drop-shadow layers separately. Only active functions appear in the copied CSS.",
+    },
+    {
+      question: "Do I need -webkit-filter?",
+      answer:
+        "Modern browsers support filter. Enable -webkit-filter in the panel if you still need broader Safari / legacy WebKit coverage — both declarations are included in the output.",
+    },
+  ],
+  "glassmorphism-generator": [
+    {
+      question: "What is glassmorphism?",
+      answer:
+        "A frosted-glass look built from a translucent background, backdrop-filter blur/saturate, a light border, and optional shadow. The effect needs content behind the panel to show through.",
+    },
+    {
+      question: "How is this different from Backdrop Filter Generator?",
+      answer:
+        "This tool packages a full glass card (tint, border, radius, padding, shadow, shapes, scenes). Backdrop Filter focuses on the filter stack itself for advanced effects.",
+    },
+    {
+      question: "Why don’t I see the blur?",
+      answer:
+        "Opacity must be below 100% and there must be a vivid background behind the panel. Try the Gradient or Photo scene and the Frosted preset.",
+    },
+  ],
+  "neumorphism-generator": [
+    {
+      question: "What is neumorphism?",
+      answer:
+        "Soft UI that uses a matching surface color plus paired light and dark box-shadows to look raised or pressed. Keep contrast gentle — it’s decorative, not high-contrast UI.",
+    },
+    {
+      question: "What do Raised, Pressed, Convex, and Concave mean?",
+      answer:
+        "Raised uses outer shadows. Pressed uses inset shadows. Convex and Concave combine outer and inset shadows for embossed or recessed looks. Flat removes shadows.",
+    },
+    {
+      question: "How does light angle work?",
+      answer:
+        "Light angle sets the direction of the highlight and shadow offsets. Rotate it to match your design’s light source; both shadow layers update together.",
+    },
+  ],
+  "css-animation-generator": [
+    {
+      question: "Which shapes can I animate?",
+      answer:
+        "Heart, star, circle, square, soft, pill, diamond, triangle, ring, blob, and text. Heartbeat defaults to a heart; other presets keep your current shape unless noted.",
+    },
+    {
+      question: "How do I copy production CSS?",
+      answer:
+        "The output includes @keyframes, a class with animation shorthand and shape styles, and optional prefers-reduced-motion. Rename the animation and class fields before copying.",
+    },
+    {
+      question: "What’s the difference from transitions?",
+      answer:
+        "Animations run keyframes over time (often looping). Transitions interpolate between two states on change (hover, class toggle). Use the Transition Generator for hover effects.",
+    },
+  ],
+  "css-button-generator": [
+    {
+      question: "What button types are included?",
+      answer:
+        "Solid, Outline, Soft, Ghost, Gradient, Pill, Neon, 3D, Glass, Danger, Success, Link, With icon, Serif, Mono, and Friendly — each loads colors, radius, shadow, and typography tuned for that style.",
+    },
+    {
+      question: "Can I change the font?",
+      answer:
+        "Yes. Pick System, DM Sans, Inter, Poppins, Space Grotesk, Nunito, Playfair, Fraunces, Georgia, or Mono. Google fonts load in the preview and are included as an @import in the CSS output when needed.",
+    },
+    {
+      question: "Are hover and focus styles included?",
+      answer:
+        "Hover lift, brightness, and scale are exported. Optional :focus-visible and :disabled rules can be toggled in the panel.",
+    },
+  ],
+  "css-clamp-generator": [
+    {
+      question: "What is CSS clamp()?",
+      answer:
+        "clamp(min, preferred, max) picks preferred when it’s between min and max — otherwise it uses the nearer bound. It’s ideal for fluid type and spacing without media queries.",
+    },
+    {
+      question: "What’s Fluid mode vs Simple mode?",
+      answer:
+        "Fluid mode interpolates size between two viewport widths and builds preferred as a vw + offset expression. Simple mode lets you set min, preferred, and max units manually (px, rem, vw, %…).",
+    },
+    {
+      question: "Can I export a CSS variable?",
+      answer:
+        "Yes. Enable Export as CSS variable to emit :root { --fluid-size: clamp(...); } and use var(--fluid-size) on your class.",
+    },
+  ],
+  "typography-generator": [
+    {
+      question: "What presets are available?",
+      answer:
+        "Display, Heading 1–3, Body, Lead, Caption, UI label, Quote, Code, Serif body, and Friendly — each sets font, size, weight, leading, and tracking.",
+    },
+    {
+      question: "Can I use Google Fonts?",
+      answer:
+        "Yes. Choosing DM Sans, Inter, Poppins, Space Grotesk, Nunito, Fraunces, Playfair, or Libre Baskerville loads the font in preview and adds an @import to the CSS output.",
+    },
+    {
+      question: "What does measure (ch) control?",
+      answer:
+        "It sets the preview max-width in character units so you can judge line length. Ideal body measure is often around 45–75 characters.",
+    },
+  ],
+  "css-transition-generator": [
+    {
+      question: "What’s the difference from animations?",
+      answer:
+        "Transitions interpolate between two states when a property changes (hover, class toggle). Animations run keyframes over time and can loop. Use Animation Generator for continuous motion.",
+    },
+    {
+      question: "Can I transition multiple properties?",
+      answer:
+        "Yes. Add layers — each property can have its own duration, delay, and easing. The output combines them into one transition shorthand (or longhand if enabled).",
+    },
+    {
+      question: "What do the presets do?",
+      answer:
+        "Button hover, Fade, Lift, Scale, Color morph, Shadow grow, Expand, Material, Spring, Elegant, Snappy, and Filter load common property + timing combinations with matching previews.",
+    },
+  ],
+  "scrollbar-generator": [
+    {
+      question: "Do I need both WebKit and Firefox CSS?",
+      answer:
+        "Yes for broad support. Firefox uses scrollbar-width and scrollbar-color. Chrome, Safari, and Edge use ::-webkit-scrollbar pseudo-elements. The generator exports both.",
+    },
+    {
+      question: "Why doesn’t my scrollbar look the same everywhere?",
+      answer:
+        "Browsers render scrollbars differently. Firefox can’t match full WebKit thumb borders/radius — use Thin/Auto/None for Firefox and richer styles for WebKit.",
+    },
+    {
+      question: "What does scrollbar-gutter: stable do?",
+      answer:
+        "It reserves space for the scrollbar so layout doesn’t shift when overflow appears. Enable it in Options when you want stable page width.",
+    },
+  ],
+  "text-shadow-generator": [
+    {
+      question: "Can I stack multiple shadows?",
+      answer:
+        "Yes. Add layers — each has its own X/Y offset, blur, color, and opacity. They’re combined into one comma-separated text-shadow value.",
+    },
+    {
+      question: "What’s the difference from box-shadow?",
+      answer:
+        "text-shadow styles the glyphs themselves and has no spread radius. box-shadow applies to the element’s box. Use Box Shadow Generator for cards and buttons.",
+    },
+    {
+      question: "What presets are included?",
+      answer:
+        "Soft, Hard, Glow, Neon, Long, Retro, Emboss, Outline, Depth, Subtle, Pop, and Rainbow — from soft UI depth to neon and outline effects.",
+    },
+  ],
   "backdrop-filter-generator": [
     {
       question: "What is CSS backdrop-filter?",
@@ -331,7 +557,12 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     {
       question: "Do I need -webkit-backdrop-filter?",
       answer:
-        "Yes for broader Safari support. This generator includes both backdrop-filter and -webkit-backdrop-filter in the copied CSS.",
+        "Yes for broader Safari support. Toggle -webkit in the panel — the generator can include both backdrop-filter and -webkit-backdrop-filter in the copied CSS.",
+    },
+    {
+      question: "Why don’t I see the effect?",
+      answer:
+        "The panel background must be partly transparent, and there must be content behind it. Try the Frosted preset and a Gradient or Photo scene.",
     },
   ],
   "contrast-checker": [
@@ -370,6 +601,43 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
       question: "Can I import CSV or Excel files?",
       answer:
         "Yes. Import CSV, TSV, JSON, Markdown tables, or HTML tables via paste, file upload, or drag and drop. For Excel, save as CSV first. Delimiters are detected automatically.",
+    },
+  ],
+  "cool-name-finder": [
+    {
+      question: "What is Cool Name Finder?",
+      answer:
+        "Cool Name Finder turns any name or keyword into stylish Unicode nicknames and usernames — ornate frames, gamer tags, aesthetic fonts, bubble letters, and more — similar to popular nickname generators. Click any result to copy it.",
+    },
+    {
+      question: "Will these nicknames work on every platform?",
+      answer:
+        "Most social apps and games accept Unicode nicknames, but some limit special symbols or length. Keep a simpler “minimal” style as a backup if a platform rejects ornate frames.",
+    },
+    {
+      question: "Where are favorites and recently copied names stored?",
+      answer:
+        "They stay in your browser’s local storage only. Nothing is uploaded to a server. Clearing site data removes them.",
+    },
+  ],
+  "2048": [
+    {
+      question: "How do I play 2048?",
+      answer:
+        "Use arrow keys (or on-screen controls) to slide all tiles. Matching numbers merge into their sum. Reach the 2048 tile to win — you can keep playing for a higher score.",
+    },
+  ],
+  wordle: [
+    {
+      question: "How does Wordle work here?",
+      answer:
+        "Guess a 5-letter word in six tries. Green means correct letter and position, amber means the letter is in the word elsewhere, and gray means it is not in the word.",
+    },
+  ],
+  sudoku: [
+    {
+      question: "Are Sudoku puzzles generated in the browser?",
+      answer: "Yes. Each New game builds a fresh solvable puzzle locally — nothing is fetched from a server.",
     },
   ],
 };

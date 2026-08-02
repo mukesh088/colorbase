@@ -1,17 +1,8 @@
 /** Lightweight suite slug checks — keep free of React / heavy tool code. */
 
 export const CSS_SUITE_MODES = [
-  "text-shadow-generator",
-  "flexbox-playground",
-  "css-grid-generator",
-  "css-transition-generator",
-  "css-filter-generator",
-  "border-generator",
   "outline-generator",
   "cursor-generator",
-  "scrollbar-generator",
-  "typography-generator",
-  "css-clamp-generator",
 ] as const;
 
 export const TEXT_SUITE_MODES = [
@@ -79,6 +70,19 @@ export const UTILITY_SUITE_MODES = [
   "unix-timestamp-converter",
 ] as const;
 
+export const GAMES_SUITE_MODES = [
+  "2048",
+  "wordle",
+  "hangman",
+  "sudoku",
+  "word-search",
+  "sliding-puzzle",
+  "water-sort",
+  "maze",
+  "flags-quiz",
+  "capital-quiz",
+] as const;
+
 export type CssSuiteMode = (typeof CSS_SUITE_MODES)[number];
 export type TextSuiteMode = (typeof TEXT_SUITE_MODES)[number];
 export type DevSuiteMode = (typeof DEV_SUITE_MODES)[number];
@@ -86,6 +90,7 @@ export type ImageSuiteMode = never;
 export type WebSuiteMode = (typeof WEB_SUITE_MODES)[number];
 export type SocialSuiteMode = (typeof SOCIAL_SUITE_MODES)[number];
 export type UtilitySuiteMode = (typeof UTILITY_SUITE_MODES)[number];
+export type GamesSuiteMode = (typeof GAMES_SUITE_MODES)[number];
 
 export function isCssSuite(slug: string): slug is CssSuiteMode {
   return (CSS_SUITE_MODES as readonly string[]).includes(slug);
@@ -107,4 +112,7 @@ export function isSocialSuite(slug: string): slug is SocialSuiteMode {
 }
 export function isUtilitySuite(slug: string): slug is UtilitySuiteMode {
   return (UTILITY_SUITE_MODES as readonly string[]).includes(slug);
+}
+export function isGamesSuite(slug: string): slug is GamesSuiteMode {
+  return (GAMES_SUITE_MODES as readonly string[]).includes(slug);
 }

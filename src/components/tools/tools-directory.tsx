@@ -8,6 +8,7 @@ import {
   ArrowRight,
   Code2,
   Contrast,
+  Gamepad2,
   Hash,
   Image,
   LayoutGrid,
@@ -73,7 +74,13 @@ const CATEGORY_META: Record<
     icon: Hash,
     accent: "text-emerald-600 dark:text-emerald-400",
     bar: "bg-emerald-500",
-    blurb: "Passwords, randomizers & timestamps",
+    blurb: "Passwords, cool names, randomizers & timestamps",
+  },
+  games: {
+    icon: Gamepad2,
+    accent: "text-orange-600 dark:text-orange-400",
+    bar: "bg-orange-500",
+    blurb: "2048, Wordle, Sudoku, quizzes & more arcade fun",
   },
   converters: {
     icon: Palette,

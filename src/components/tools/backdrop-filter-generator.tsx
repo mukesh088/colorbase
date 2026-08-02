@@ -1,12 +1,26 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
-import { Plus, RotateCcw, Trash2, Upload } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  Aperture,
+  Copy,
+  Plus,
+  RotateCcw,
+  Sparkles,
+  Trash2,
+  Upload,
+} from "lucide-react";
+import { toast } from "sonner";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
-import { Button } from "@/components/ui/button";
-import { ToolWorkbench, OutputBox, PrimaryButton } from "@/components/tools/suite/workbench";
+import { Textarea } from "@/components/ui/textarea";
+import { CodeOutput } from "@/components/tools/suite/code-output";
+import { PrimaryButton } from "@/components/tools/suite/workbench";
 import { cn } from "@/lib/utils";
 
 type DropShadow = {
@@ -38,6 +52,9 @@ type PanelState = {
   offsetX: number;
   offsetY: number;
   radius: number;
+  borderWidth: number;
+  borderColor: string;
+  borderOpacity: number;
   className: string;
   extraCss: string;
 };
@@ -65,6 +82,9 @@ const DEFAULT_PANEL: PanelState = {
   offsetX: 0,
   offsetY: 0,
   radius: 20,
+  borderWidth: 1,
+  borderColor: "#ffffff",
+  borderOpacity: 35,
   className: "backdrop-panel",
   extraCss: "",
 };
@@ -103,50 +123,41 @@ function buildFilterValue(f: FilterState) {
 type Preset = { id: string; label: string; filters: Partial<FilterState>; panel?: Partial<PanelState> };
 
 const PRESETS: Preset[] = [
-  { id: "original", label: "Original", filters: { ...DEFAULT_FILTERS }, panel: { bgOpacity: 40 } },
-  { id: "blur", label: "Blur", filters: { blur: 12, saturate: 120 }, panel: { bgOpacity: 35 } },
-  { id: "brightness", label: "Brightness", filters: { brightness: 140 }, panel: { bgOpacity: 30 } },
-  { id: "contrast", label: "Contrast", filters: { contrast: 160 }, panel: { bgOpacity: 35 } },
-  { id: "grayscale", label: "Grayscale", filters: { grayscale: 100 }, panel: { bgOpacity: 45 } },
-  { id: "hue", label: "Hue rotate", filters: { hueRotate: 180, saturate: 130 }, panel: { bgOpacity: 35 } },
-  { id: "invert", label: "Invert", filters: { invert: 100 }, panel: { bgOpacity: 25, bgColor: "#000000" } },
-  { id: "opacity", label: "Opacity", filters: { opacity: 55 }, panel: { bgOpacity: 20 } },
-  { id: "saturate", label: "Saturate", filters: { saturate: 180, blur: 4 }, panel: { bgOpacity: 30 } },
-  { id: "sepia", label: "Sepia", filters: { sepia: 85, contrast: 110 }, panel: { bgOpacity: 40 } },
+  { id: "frosted", label: "Frosted", filters: { blur: 16, saturate: 140 }, panel: { bgOpacity: 28, borderWidth: 1, borderOpacity: 40 } },
+  { id: "glass", label: "Glass", filters: { blur: 12, saturate: 160, brightness: 105 }, panel: { bgOpacity: 22, bgColor: "#ffffff", borderOpacity: 45 } },
+  { id: "heavy", label: "Heavy blur", filters: { blur: 28, saturate: 120 }, panel: { bgOpacity: 35 } },
+  { id: "tint-rose", label: "Rose tint", filters: { blur: 14, saturate: 130 }, panel: { bgColor: "#e11d48", bgOpacity: 22, borderColor: "#ffffff", borderOpacity: 30 } },
+  { id: "dark", label: "Dark glass", filters: { blur: 18, brightness: 90, saturate: 120 }, panel: { bgColor: "#0f172a", bgOpacity: 45, borderOpacity: 20 } },
+  { id: "brightness", label: "Bright", filters: { blur: 10, brightness: 140 }, panel: { bgOpacity: 25 } },
+  { id: "contrast", label: "Contrast", filters: { blur: 8, contrast: 160 }, panel: { bgOpacity: 35 } },
+  { id: "grayscale", label: "Grayscale", filters: { blur: 10, grayscale: 100 }, panel: { bgOpacity: 40 } },
+  { id: "hue", label: "Hue", filters: { blur: 10, hueRotate: 180, saturate: 130 }, panel: { bgOpacity: 32 } },
+  { id: "invert", label: "Invert", filters: { blur: 8, invert: 100 }, panel: { bgOpacity: 25, bgColor: "#000000" } },
+  { id: "sepia", label: "Sepia", filters: { blur: 10, sepia: 85, contrast: 110 }, panel: { bgOpacity: 38 } },
   {
     id: "shadow",
     label: "Drop shadow",
     filters: {
-      blur: 8,
-      dropShadows: [{ id: "1", x: 4, y: 8, blur: 16, color: "rgba(0,0,0,0.45)" }],
-    },
-    panel: { bgOpacity: 35 },
-  },
-  {
-    id: "shadows",
-    label: "Multi shadow",
-    filters: {
-      blur: 10,
-      saturate: 130,
-      dropShadows: [
-        { id: "1", x: 2, y: 4, blur: 8, color: "rgba(225,29,72,0.45)" },
-        { id: "2", x: -4, y: 10, blur: 18, color: "rgba(0,0,0,0.35)" },
-      ],
+      blur: 12,
+      saturate: 125,
+      dropShadows: [{ id: "1", x: 4, y: 10, blur: 20, color: "rgba(0,0,0,0.4)" }],
     },
     panel: { bgOpacity: 30 },
   },
   {
-    id: "contrast-gray",
-    label: "Contrast + gray",
-    filters: { contrast: 140, grayscale: 60, blur: 6 },
-    panel: { bgOpacity: 40 },
+    id: "multi",
+    label: "Multi shadow",
+    filters: {
+      blur: 12,
+      saturate: 135,
+      dropShadows: [
+        { id: "1", x: 2, y: 4, blur: 10, color: "rgba(225,29,72,0.4)" },
+        { id: "2", x: -6, y: 12, blur: 22, color: "rgba(0,0,0,0.3)" },
+      ],
+    },
+    panel: { bgOpacity: 28 },
   },
-  {
-    id: "contrast-sepia",
-    label: "Contrast + sepia",
-    filters: { contrast: 130, sepia: 55, blur: 8, saturate: 110 },
-    panel: { bgOpacity: 38 },
-  },
+  { id: "original", label: "None", filters: { ...DEFAULT_FILTERS }, panel: { bgOpacity: 40, borderWidth: 0 } },
 ];
 
 const SCENES: { id: SceneId; label: string }[] = [
@@ -154,7 +165,7 @@ const SCENES: { id: SceneId; label: string }[] = [
   { id: "mesh", label: "Mesh" },
   { id: "aurora", label: "Aurora" },
   { id: "photo", label: "Photo" },
-  { id: "html", label: "HTML" },
+  { id: "html", label: "Cards" },
   { id: "upload", label: "Upload" },
 ];
 
@@ -263,7 +274,6 @@ function SceneBackdrop({
     );
   }
 
-  // gradient (default) + upload fallback
   return (
     <div
       className="absolute inset-0"
@@ -279,18 +289,30 @@ function SceneBackdrop({
 }
 
 export function BackdropFilterGenerator() {
-  const [filters, setFilters] = useState<FilterState>({ ...DEFAULT_FILTERS, blur: 12, saturate: 120 });
-  const [panel, setPanel] = useState<PanelState>(DEFAULT_PANEL);
+  const [filters, setFilters] = useState<FilterState>({ ...DEFAULT_FILTERS, blur: 16, saturate: 140 });
+  const [panel, setPanel] = useState<PanelState>({ ...DEFAULT_PANEL, bgOpacity: 28, borderOpacity: 40 });
   const [scene, setScene] = useState<SceneId>("gradient");
   const [previewBg, setPreviewBg] = useState("#120810");
-  const [activePreset, setActivePreset] = useState("blur");
+  const [activePreset, setActivePreset] = useState("frosted");
+  const [includeWebkit, setIncludeWebkit] = useState(true);
   const [uploadUrl, setUploadUrl] = useState<string | null>(null);
+  const [flashKey, setFlashKey] = useState(0);
   const fileRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    return () => {
+      if (uploadUrl) URL.revokeObjectURL(uploadUrl);
+    };
+  }, [uploadUrl]);
 
   const filterValue = useMemo(() => buildFilterValue(filters), [filters]);
   const panelBg = useMemo(
     () => hexToRgba(panel.bgColor, panel.bgOpacity / 100),
     [panel.bgColor, panel.bgOpacity]
+  );
+  const borderColor = useMemo(
+    () => hexToRgba(panel.borderColor, panel.borderOpacity / 100),
+    [panel.borderColor, panel.borderOpacity]
   );
 
   const css = useMemo(() => {
@@ -301,9 +323,14 @@ export function BackdropFilterGenerator() {
       `  height: ${panel.height}px;`,
       `  background-color: ${panelBg};`,
       `  backdrop-filter: ${filterValue};`,
-      `  -webkit-backdrop-filter: ${filterValue};`,
-      `  border-radius: ${panel.radius}px;`,
     ];
+    if (includeWebkit) {
+      lines.push(`  -webkit-backdrop-filter: ${filterValue};`);
+    }
+    lines.push(`  border-radius: ${panel.radius}px;`);
+    if (panel.borderWidth > 0) {
+      lines.push(`  border: ${panel.borderWidth}px solid ${borderColor};`);
+    }
     if (panel.offsetX || panel.offsetY) {
       lines.push(`  transform: translate(${panel.offsetX}px, ${panel.offsetY}px);`);
     }
@@ -316,11 +343,12 @@ export function BackdropFilterGenerator() {
     }
     lines.push(`}`);
     return lines.join("\n");
-  }, [filterValue, panel, panelBg]);
+  }, [borderColor, filterValue, includeWebkit, panel, panelBg]);
 
   const setFilter = <K extends keyof FilterState>(key: K, value: FilterState[K]) => {
     setActivePreset("custom");
     setFilters((prev) => ({ ...prev, [key]: value }));
+    setFlashKey((k) => k + 1);
   };
 
   const applyPreset = (preset: Preset) => {
@@ -333,21 +361,22 @@ export function BackdropFilterGenerator() {
         : [],
     });
     if (preset.panel) setPanel((p) => ({ ...p, ...preset.panel }));
+    setFlashKey((k) => k + 1);
+    toast.success(`Applied “${preset.label}”`);
   };
 
   const resetFilters = () => {
     setActivePreset("original");
     setFilters({ ...DEFAULT_FILTERS });
+    setPanel({ ...DEFAULT_PANEL });
+    setFlashKey((k) => k + 1);
   };
 
   const addShadow = () => {
     setActivePreset("custom");
     setFilters((prev) => ({
       ...prev,
-      dropShadows: [
-        ...prev.dropShadows,
-        { id: uid(), x: 4, y: 6, blur: 12, color: "#000000" },
-      ],
+      dropShadows: [...prev.dropShadows, { id: uid(), x: 4, y: 6, blur: 12, color: "#000000" }],
     }));
   };
 
@@ -375,273 +404,429 @@ export function BackdropFilterGenerator() {
       return url;
     });
     setScene("upload");
+    toast.success("Background image loaded");
+  };
+
+  const copyFilterOnly = async () => {
+    try {
+      await navigator.clipboard.writeText(filterValue);
+      toast.success("Filter value copied");
+    } catch {
+      toast.error("Copy failed");
+    }
   };
 
   return (
-    <ToolWorkbench
-      title="Style editor"
-      hint="Apply backdrop-filter effects behind a translucent panel — blur, color, and drop-shadow."
-      controls={
-        <div className="space-y-6">
-          <section className="space-y-3">
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                Samples
-              </p>
-              <Button type="button" variant="ghost" size="sm" className="h-8 rounded-full text-xs" onClick={resetFilters}>
-                <RotateCcw className="h-3.5 w-3.5" />
-                Reset filters
-              </Button>
+    <div className="space-y-4 sm:space-y-5">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] xl:items-start">
+        <div className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
+          <div className="border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-fuchsia-500/5 to-transparent px-3 py-3 sm:px-5">
+            <div className="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                  Workspace
+                </p>
+                <h2 className="font-display text-base font-semibold tracking-tight sm:text-lg">
+                  Backdrop Filter
+                </h2>
+                <p className="mt-0.5 text-xs text-muted-foreground">
+                  Frosted glass effects on content behind a translucent panel.
+                </p>
+              </div>
+              <Badge variant="secondary" className="rounded-full">
+                <Aperture className="mr-1 h-3.5 w-3.5" />
+                Live
+              </Badge>
             </div>
+          </div>
+
+          <div className="max-h-[min(70vh,52rem)] space-y-5 overflow-y-auto p-3 sm:p-5">
             <div className="flex flex-wrap gap-2">
-              {PRESETS.map((preset) => (
-                <button
-                  key={preset.id}
-                  type="button"
-                  onClick={() => applyPreset(preset)}
-                  className={cn(
-                    "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-                    activePreset === preset.id
-                      ? "border-rose-500/50 bg-rose-500 text-white shadow-sm shadow-rose-500/25"
-                      : "border-border/60 bg-muted/30 text-foreground hover:bg-muted/60"
-                  )}
-                >
-                  {preset.label}
-                </button>
-              ))}
-            </div>
-          </section>
-
-          <section className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-              backdrop-filter
-            </p>
-            <Field label={`Blur · ${filters.blur}px`}>
-              <Slider min={0} max={40} value={[filters.blur]} onValueChange={([n]) => setFilter("blur", n)} />
-            </Field>
-            <Field label={`Brightness · ${filters.brightness}%`}>
-              <Slider min={0} max={200} value={[filters.brightness]} onValueChange={([n]) => setFilter("brightness", n)} />
-            </Field>
-            <Field label={`Contrast · ${filters.contrast}%`}>
-              <Slider min={0} max={200} value={[filters.contrast]} onValueChange={([n]) => setFilter("contrast", n)} />
-            </Field>
-            <Field label={`Grayscale · ${filters.grayscale}%`}>
-              <Slider min={0} max={100} value={[filters.grayscale]} onValueChange={([n]) => setFilter("grayscale", n)} />
-            </Field>
-            <Field label={`Hue rotate · ${filters.hueRotate}deg`}>
-              <Slider min={0} max={360} value={[filters.hueRotate]} onValueChange={([n]) => setFilter("hueRotate", n)} />
-            </Field>
-            <Field label={`Invert · ${filters.invert}%`}>
-              <Slider min={0} max={100} value={[filters.invert]} onValueChange={([n]) => setFilter("invert", n)} />
-            </Field>
-            <Field label={`Opacity · ${filters.opacity}%`}>
-              <Slider min={0} max={100} value={[filters.opacity]} onValueChange={([n]) => setFilter("opacity", n)} />
-            </Field>
-            <Field label={`Saturate · ${filters.saturate}%`}>
-              <Slider min={0} max={200} value={[filters.saturate]} onValueChange={([n]) => setFilter("saturate", n)} />
-            </Field>
-            <Field label={`Sepia · ${filters.sepia}%`}>
-              <Slider min={0} max={100} value={[filters.sepia]} onValueChange={([n]) => setFilter("sepia", n)} />
-            </Field>
-          </section>
-
-          <section className="space-y-3">
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                Drop shadow
-              </p>
-              <Button type="button" variant="outline" size="sm" className="h-8 rounded-full text-xs" onClick={addShadow}>
-                <Plus className="h-3.5 w-3.5" />
-                Add
+              <Link
+                href="/glassmorphism-generator"
+                className="rounded-full border border-border/60 px-3 py-1.5 text-xs font-medium hover:bg-muted/50"
+              >
+                Glassmorphism tool
+              </Link>
+              <Link
+                href="/css-filter-generator"
+                className="rounded-full border border-border/60 px-3 py-1.5 text-xs font-medium hover:bg-muted/50"
+              >
+                Element filter
+              </Link>
+              <Button type="button" size="sm" variant="ghost" className="h-8 rounded-full" onClick={resetFilters}>
+                <RotateCcw className="h-3.5 w-3.5" />
+                Reset
               </Button>
             </div>
-            {filters.dropShadows.length === 0 && (
-              <p className="text-xs text-muted-foreground">No drop-shadows yet. Add one to cast a shadow along the panel.</p>
-            )}
-            {filters.dropShadows.map((shadow, index) => (
-              <div key={shadow.id} className="space-y-2 rounded-2xl border border-border/50 bg-muted/20 p-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-semibold">drop-shadow {index + 1}</span>
-                  <Button type="button" variant="ghost" size="icon" className="h-8 w-8" onClick={() => removeShadow(shadow.id)} aria-label="Remove shadow">
-                    <Trash2 className="h-3.5 w-3.5" />
-                  </Button>
-                </div>
-                <div className="grid grid-cols-2 gap-2">
-                  <Field label={`X · ${shadow.x}px`}>
-                    <Slider min={-40} max={40} value={[shadow.x]} onValueChange={([n]) => updateShadow(shadow.id, { x: n })} />
-                  </Field>
-                  <Field label={`Y · ${shadow.y}px`}>
-                    <Slider min={-40} max={40} value={[shadow.y]} onValueChange={([n]) => updateShadow(shadow.id, { y: n })} />
-                  </Field>
-                </div>
-                <Field label={`Blur · ${shadow.blur}px`}>
-                  <Slider min={0} max={60} value={[shadow.blur]} onValueChange={([n]) => updateShadow(shadow.id, { blur: n })} />
+
+            <section className="space-y-2">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                  Presets
+                </p>
+                {activePreset === "custom" && (
+                  <Badge variant="outline" className="rounded-full text-[10px]">
+                    Custom
+                  </Badge>
+                )}
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {PRESETS.map((preset) => (
+                  <button
+                    key={preset.id}
+                    type="button"
+                    onClick={() => applyPreset(preset)}
+                    className={cn(
+                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium transition-colors",
+                      activePreset === preset.id
+                        ? "border-rose-500/50 bg-rose-500 text-white shadow-sm shadow-rose-500/25"
+                        : "border-border/60 bg-muted/30 hover:bg-muted/60"
+                    )}
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+            </section>
+
+            <section className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                Filters
+              </p>
+              {(
+                [
+                  ["blur", "Blur", 0, 40, "px", filters.blur],
+                  ["brightness", "Brightness", 0, 200, "%", filters.brightness],
+                  ["contrast", "Contrast", 0, 200, "%", filters.contrast],
+                  ["grayscale", "Grayscale", 0, 100, "%", filters.grayscale],
+                  ["hueRotate", "Hue rotate", 0, 360, "deg", filters.hueRotate],
+                  ["invert", "Invert", 0, 100, "%", filters.invert],
+                  ["opacity", "Opacity", 0, 100, "%", filters.opacity],
+                  ["saturate", "Saturate", 0, 200, "%", filters.saturate],
+                  ["sepia", "Sepia", 0, 100, "%", filters.sepia],
+                ] as const
+              ).map(([key, label, min, max, unit, value]) => (
+                <Field key={key} label={`${label} · ${value}${unit}`}>
+                  <Slider
+                    min={min}
+                    max={max}
+                    value={[value]}
+                    onValueChange={([n]) => setFilter(key, n)}
+                  />
                 </Field>
-                <Field label="Color">
+              ))}
+            </section>
+
+            <section className="space-y-3">
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                  Drop shadow
+                </p>
+                <Button type="button" variant="outline" size="sm" className="h-8 rounded-full text-xs" onClick={addShadow}>
+                  <Plus className="h-3.5 w-3.5" />
+                  Add
+                </Button>
+              </div>
+              {filters.dropShadows.length === 0 && (
+                <p className="text-xs text-muted-foreground">Optional drop-shadow layers on the panel.</p>
+              )}
+              {filters.dropShadows.map((shadow, index) => (
+                <div key={shadow.id} className="space-y-2 rounded-2xl border border-border/50 bg-muted/20 p-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-semibold">Shadow {index + 1}</span>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="icon"
+                      className="h-8 w-8"
+                      onClick={() => removeShadow(shadow.id)}
+                      aria-label="Remove shadow"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </Button>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Field label={`X · ${shadow.x}px`}>
+                      <Slider min={-40} max={40} value={[shadow.x]} onValueChange={([n]) => updateShadow(shadow.id, { x: n })} />
+                    </Field>
+                    <Field label={`Y · ${shadow.y}px`}>
+                      <Slider min={-40} max={40} value={[shadow.y]} onValueChange={([n]) => updateShadow(shadow.id, { y: n })} />
+                    </Field>
+                  </div>
+                  <Field label={`Blur · ${shadow.blur}px`}>
+                    <Slider min={0} max={60} value={[shadow.blur]} onValueChange={([n]) => updateShadow(shadow.id, { blur: n })} />
+                  </Field>
+                  <Field label="Color">
+                    <Input
+                      type="color"
+                      value={shadow.color.startsWith("#") ? shadow.color : "#000000"}
+                      onChange={(e) => updateShadow(shadow.id, { color: e.target.value })}
+                      className="h-10 w-full max-w-[8rem] p-1"
+                    />
+                  </Field>
+                </div>
+              ))}
+            </section>
+
+            <section className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                Panel
+              </p>
+              <div className="grid grid-cols-2 gap-3">
+                <Field label="Tint">
                   <Input
                     type="color"
-                    value={shadow.color.startsWith("#") ? shadow.color : "#000000"}
-                    onChange={(e) => updateShadow(shadow.id, { color: e.target.value })}
-                    className="h-10 w-full max-w-[8rem] p-1"
+                    value={panel.bgColor}
+                    onChange={(e) => {
+                      setActivePreset("custom");
+                      setPanel((p) => ({ ...p, bgColor: e.target.value }));
+                    }}
+                    className="h-10 w-full p-1"
+                  />
+                </Field>
+                <Field label={`Tint opacity · ${panel.bgOpacity}%`}>
+                  <Slider
+                    min={0}
+                    max={100}
+                    value={[panel.bgOpacity]}
+                    onValueChange={([n]) => {
+                      setActivePreset("custom");
+                      setPanel((p) => ({ ...p, bgOpacity: n }));
+                    }}
                   />
                 </Field>
               </div>
-            ))}
-          </section>
-
-          <section className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-              Panel
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              <Field label="Background">
-                <Input
-                  type="color"
-                  value={panel.bgColor}
-                  onChange={(e) => setPanel((p) => ({ ...p, bgColor: e.target.value }))}
-                  className="h-10 w-full p-1"
+              <Field label={`Width · ${panel.width}%`}>
+                <Slider
+                  min={20}
+                  max={100}
+                  value={[panel.width]}
+                  onValueChange={([n]) => setPanel((p) => ({ ...p, width: n }))}
                 />
               </Field>
-              <Field label={`Opacity · ${panel.bgOpacity}%`}>
+              <Field label={`Height · ${panel.height}px`}>
+                <Slider
+                  min={80}
+                  max={360}
+                  value={[panel.height]}
+                  onValueChange={([n]) => setPanel((p) => ({ ...p, height: n }))}
+                />
+              </Field>
+              <div className="grid grid-cols-2 gap-3">
+                <Field label={`Offset X · ${panel.offsetX}px`}>
+                  <Slider
+                    min={-80}
+                    max={80}
+                    value={[panel.offsetX]}
+                    onValueChange={([n]) => setPanel((p) => ({ ...p, offsetX: n }))}
+                  />
+                </Field>
+                <Field label={`Offset Y · ${panel.offsetY}px`}>
+                  <Slider
+                    min={-80}
+                    max={80}
+                    value={[panel.offsetY]}
+                    onValueChange={([n]) => setPanel((p) => ({ ...p, offsetY: n }))}
+                  />
+                </Field>
+              </div>
+              <Field label={`Radius · ${panel.radius}px`}>
                 <Slider
                   min={0}
-                  max={100}
-                  value={[panel.bgOpacity]}
-                  onValueChange={([n]) => setPanel((p) => ({ ...p, bgOpacity: n }))}
+                  max={48}
+                  value={[panel.radius]}
+                  onValueChange={([n]) => setPanel((p) => ({ ...p, radius: n }))}
                 />
               </Field>
-            </div>
-            <Field label={`Width · ${panel.width}%`}>
-              <Slider min={20} max={100} value={[panel.width]} onValueChange={([n]) => setPanel((p) => ({ ...p, width: n }))} />
-            </Field>
-            <Field label={`Height · ${panel.height}px`}>
-              <Slider min={80} max={320} value={[panel.height]} onValueChange={([n]) => setPanel((p) => ({ ...p, height: n }))} />
-            </Field>
-            <div className="grid grid-cols-2 gap-3">
-              <Field label={`Offset X · ${panel.offsetX}px`}>
-                <Slider min={-80} max={80} value={[panel.offsetX]} onValueChange={([n]) => setPanel((p) => ({ ...p, offsetX: n }))} />
-              </Field>
-              <Field label={`Offset Y · ${panel.offsetY}px`}>
-                <Slider min={-80} max={80} value={[panel.offsetY]} onValueChange={([n]) => setPanel((p) => ({ ...p, offsetY: n }))} />
-              </Field>
-            </div>
-            <Field label={`Radius · ${panel.radius}px`}>
-              <Slider min={0} max={48} value={[panel.radius]} onValueChange={([n]) => setPanel((p) => ({ ...p, radius: n }))} />
-            </Field>
-            <Field label="Class name">
-              <Input
-                value={panel.className}
-                onChange={(e) => setPanel((p) => ({ ...p, className: e.target.value.replace(/[^\w-]/g, "") }))}
-                className="font-mono text-sm"
-                spellCheck={false}
-              />
-            </Field>
-            <Field label="Extra CSS (optional)">
-              <Input
-                value={panel.extraCss}
-                onChange={(e) => setPanel((p) => ({ ...p, extraCss: e.target.value }))}
-                placeholder="border: 1px solid rgba(255,255,255,0.4);"
-                className="font-mono text-xs"
-                spellCheck={false}
-              />
-            </Field>
-          </section>
-
-          <section className="space-y-3">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-              Preview scene
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {SCENES.map((s) => (
-                <button
-                  key={s.id}
-                  type="button"
-                  onClick={() => {
-                    if (s.id === "upload") fileRef.current?.click();
-                    else setScene(s.id);
+              <Field label={`Border · ${panel.borderWidth}px`}>
+                <Slider
+                  min={0}
+                  max={8}
+                  value={[panel.borderWidth]}
+                  onValueChange={([n]) => {
+                    setActivePreset("custom");
+                    setPanel((p) => ({ ...p, borderWidth: n }));
                   }}
-                  className={cn(
-                    "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-                    scene === s.id
-                      ? "border-rose-500/50 bg-rose-500/15 text-rose-700 dark:text-rose-300"
-                      : "border-border/60 bg-background hover:bg-muted/50"
-                  )}
-                >
-                  {s.id === "upload" ? (
-                    <span className="inline-flex items-center gap-1">
-                      <Upload className="h-3 w-3" />
-                      Upload
-                    </span>
-                  ) : (
-                    s.label
-                  )}
-                </button>
-              ))}
-            </div>
-            <input
-              ref={fileRef}
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={(e) => onUpload(e.target.files?.[0])}
-            />
-            <Field label="Preview background">
-              <Input
-                type="color"
-                value={previewBg}
-                onChange={(e) => setPreviewBg(e.target.value)}
-                className="h-10 w-full max-w-[8rem] p-1"
-              />
-            </Field>
-            {scene === "upload" && !uploadUrl && (
-              <PrimaryButton type="button" size="sm" className="w-full sm:w-auto" onClick={() => fileRef.current?.click()}>
-                <Upload className="h-3.5 w-3.5" />
-                Choose image
-              </PrimaryButton>
-            )}
-          </section>
-        </div>
-      }
-      preview={
-        <div className="overflow-hidden rounded-3xl border border-border/50 bg-background/70 shadow-sm">
-          <div className="border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-fuchsia-500/5 to-transparent px-4 py-3 sm:px-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-              Preview
-            </p>
-            <p className="text-sm font-semibold">Live backdrop-filter</p>
-          </div>
-          <div className="p-4 sm:p-5">
-            <div
-              className="relative flex min-h-[280px] items-center justify-center overflow-hidden rounded-2xl"
-              style={{ backgroundColor: previewBg }}
-            >
-              <SceneBackdrop scene={scene} uploadUrl={uploadUrl} previewBg={previewBg} />
-              <div className="relative z-10 flex w-full items-center justify-center p-4 sm:p-6">
-                <div
-                  className="flex flex-col items-center justify-center border border-white/35 px-5 py-6 text-center shadow-lg"
-                  style={{
-                    width: `${panel.width}%`,
-                    height: panel.height,
-                    backgroundColor: panelBg,
-                    backdropFilter: filterValue,
-                    WebkitBackdropFilter: filterValue,
-                    borderRadius: panel.radius,
-                    transform: `translate(${panel.offsetX}px, ${panel.offsetY}px)`,
-                  }}
-                >
-                  <p className="text-sm font-semibold text-foreground drop-shadow-sm sm:text-base">
-                    Frosted panel
-                  </p>
-                  <p className="mt-1 max-w-[16rem] text-[11px] text-foreground/80 sm:text-xs">
-                    Effects apply to content behind this element
-                  </p>
+                />
+              </Field>
+              {panel.borderWidth > 0 && (
+                <div className="grid grid-cols-2 gap-3">
+                  <Field label="Border color">
+                    <Input
+                      type="color"
+                      value={panel.borderColor}
+                      onChange={(e) => setPanel((p) => ({ ...p, borderColor: e.target.value }))}
+                      className="h-10 w-full p-1"
+                    />
+                  </Field>
+                  <Field label={`Border opacity · ${panel.borderOpacity}%`}>
+                    <Slider
+                      min={0}
+                      max={100}
+                      value={[panel.borderOpacity]}
+                      onValueChange={([n]) => setPanel((p) => ({ ...p, borderOpacity: n }))}
+                    />
+                  </Field>
                 </div>
+              )}
+              <Field label="Class name">
+                <Input
+                  value={panel.className}
+                  onChange={(e) => setPanel((p) => ({ ...p, className: e.target.value.replace(/[^\w-]/g, "") }))}
+                  className="font-mono text-sm"
+                  spellCheck={false}
+                />
+              </Field>
+              <Field label="Extra CSS">
+                <Textarea
+                  value={panel.extraCss}
+                  onChange={(e) => setPanel((p) => ({ ...p, extraCss: e.target.value }))}
+                  placeholder={"box-shadow: 0 8px 32px rgba(0,0,0,0.12);"}
+                  rows={2}
+                  className="rounded-xl font-mono text-xs"
+                  spellCheck={false}
+                />
+              </Field>
+              <button
+                type="button"
+                onClick={() => setIncludeWebkit((v) => !v)}
+                className={cn(
+                  "rounded-full border px-3 py-1.5 text-xs font-medium",
+                  includeWebkit
+                    ? "border-rose-500/50 bg-rose-500/15 text-rose-700 dark:text-rose-300"
+                    : "border-border/60"
+                )}
+              >
+                -webkit-backdrop-filter {includeWebkit ? "on" : "off"}
+              </button>
+            </section>
+
+            <section className="space-y-3">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                Scene
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {SCENES.map((s) => (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => {
+                      if (s.id === "upload") fileRef.current?.click();
+                      else setScene(s.id);
+                    }}
+                    className={cn(
+                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium transition-colors",
+                      scene === s.id
+                        ? "border-rose-500/50 bg-rose-500 text-white"
+                        : "border-border/60 bg-muted/30 hover:bg-muted/60"
+                    )}
+                  >
+                    {s.id === "upload" ? (
+                      <span className="inline-flex items-center gap-1">
+                        <Upload className="h-3 w-3" />
+                        Upload
+                      </span>
+                    ) : (
+                      s.label
+                    )}
+                  </button>
+                ))}
               </div>
+              <input
+                ref={fileRef}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => onUpload(e.target.files?.[0])}
+              />
+              <Field label="Scene base color">
+                <Input
+                  type="color"
+                  value={previewBg}
+                  onChange={(e) => setPreviewBg(e.target.value)}
+                  className="h-10 w-full max-w-[8rem] p-1"
+                />
+              </Field>
+            </section>
+
+            <div className="flex flex-wrap gap-2">
+              <PrimaryButton type="button" onClick={copyFilterOnly}>
+                <Copy className="h-4 w-4" />
+                Copy filter value
+              </PrimaryButton>
+              <Button
+                type="button"
+                variant="outline"
+                className="rounded-full"
+                onClick={() => applyPreset(PRESETS[0])}
+              >
+                <Sparkles className="h-3.5 w-3.5" />
+                Frosted preset
+              </Button>
             </div>
           </div>
         </div>
-      }
-      output={<OutputBox value={css} label="CSS" filename="backdrop-filter.css" language="css" rows={12} />}
-    />
+
+        <div className="space-y-4">
+          <div className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
+            <div className="border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-fuchsia-500/5 to-transparent px-3 py-3 sm:px-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                Preview
+              </p>
+              <p className="text-sm font-semibold">Live backdrop-filter</p>
+              <p className="mt-0.5 font-mono text-[11px] text-muted-foreground">{filterValue}</p>
+            </div>
+            <div className="p-3 sm:p-5">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`${scene}-${flashKey}`}
+                  initial={{ opacity: 0.85, scale: 0.995 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.25 }}
+                  className="relative flex min-h-[320px] items-center justify-center overflow-hidden rounded-2xl sm:min-h-[380px]"
+                  style={{ backgroundColor: previewBg }}
+                >
+                  <SceneBackdrop scene={scene} uploadUrl={uploadUrl} previewBg={previewBg} />
+                  <div className="relative z-10 flex w-full items-center justify-center p-4 sm:p-8">
+                    <div
+                      className="flex flex-col items-center justify-center px-5 py-6 text-center shadow-xl shadow-black/20"
+                      style={{
+                        width: `${panel.width}%`,
+                        height: panel.height,
+                        backgroundColor: panelBg,
+                        backdropFilter: filterValue,
+                        WebkitBackdropFilter: filterValue,
+                        borderRadius: panel.radius,
+                        border:
+                          panel.borderWidth > 0 ? `${panel.borderWidth}px solid ${borderColor}` : undefined,
+                        transform: `translate(${panel.offsetX}px, ${panel.offsetY}px)`,
+                      }}
+                    >
+                      <p className="text-sm font-semibold text-foreground drop-shadow-sm sm:text-base">
+                        Frosted panel
+                      </p>
+                      <p className="mt-1 max-w-[16rem] text-[11px] text-foreground/80 sm:text-xs">
+                        Effects apply to content behind this element
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+
+          <CodeOutput
+            value={css}
+            filename="backdrop-filter.css"
+            language="css"
+            title="CSS output"
+            eyebrow="Copy · Download"
+            rows={14}
+            emptyMessage="CSS will appear here"
+          />
+        </div>
+      </div>
+    </div>
   );
 }

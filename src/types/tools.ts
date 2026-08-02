@@ -13,7 +13,8 @@ export type ToolCategory =
   | "developer-tools"
   | "web-tools"
   | "social-tools"
-  | "utility-tools";
+  | "utility-tools"
+  | "games";
 
 export interface ToolDefinition {
   slug: string;

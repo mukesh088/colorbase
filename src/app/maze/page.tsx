@@ -5,7 +5,7 @@ import { ToolContent } from "@/components/tools/tool-content";
 import { getToolBySlug } from "@/lib/tools-registry";
 import { toolMetadata } from "@/lib/seo";
 
-const slug = "table-generator";
+const slug = "maze";
 
 export function generateMetadata(): Metadata {
   const tool = getToolBySlug(slug);
