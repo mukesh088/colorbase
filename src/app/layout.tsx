@@ -39,6 +39,9 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
+/** Keep HTML fresh so deploys don’t leave CDNs pointing at deleted `_next/static` hashes. */
+export const revalidate = 60;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable}`}>

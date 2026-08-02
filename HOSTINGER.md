@@ -30,6 +30,14 @@ npm start
 - **Start command:** `npm start` (runs `next start`)
 - **Node version:** 20.x or 22.x LTS recommended
 
+### After every deploy (important)
+Next.js hashes files under `/_next/static/`. HTML that still points at an old hash will 404 those JS/CSS files (often as `text/plain`), which shows up as `ChunkLoadError` and missing styles — especially after Ctrl+F5 if a CDN kept old HTML.
+
+1. Redeploy / restart the Node app so `npm run build` + `npm start` serve the new `.next` output.
+2. In hPanel, **purge CDN / LiteSpeed cache** for `colorbase.in` (and `www`) if enabled.
+3. Hard-refresh once (Ctrl+F5) or open a private window.
+
+HTML is now revalidated about every **60 seconds** (`revalidate` + middleware) so shared caches stop pinning documents for a year. Hashed `/_next/static/*` assets stay long-cached and immutable.
 ## 4. Favicon & brand assets (already in `/public`)
 | File | Purpose |
 |------|---------|
