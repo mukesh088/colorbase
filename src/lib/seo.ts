@@ -86,6 +86,8 @@ export function createPageMetadata({
     other: {
       "msapplication-TileColor": "#e11d48",
       "msapplication-config": "/browserconfig.xml",
+      // Help Google prefer the brand site name over the domain in search results
+      "og:site_name": SITE_NAME,
     },
     robots: noIndex
       ? { index: false, follow: false }
@@ -116,9 +118,14 @@ export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: ORGANIZATION.name,
+    "@id": `${SITE_URL}/#organization`,
+    name: SITE_NAME,
+    alternateName: ["ColorBase", "colorbase", "colorbase.in"],
     url: ORGANIZATION.url,
-    logo: ORGANIZATION.logo,
+    logo: {
+      "@type": "ImageObject",
+      url: ORGANIZATION.logo,
+    },
     email: ORGANIZATION.email,
     sameAs: ORGANIZATION.sameAs,
   };
@@ -128,12 +135,21 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
-    url: SITE_URL,
+    alternateName: ["ColorBase", "colorbase"],
+    url: SITE_URL.endsWith("/") ? SITE_URL : `${SITE_URL}/`,
     description: SITE_DESCRIPTION,
+    inLanguage: "en",
+    publisher: {
+      "@id": `${SITE_URL}/#organization`,
+    },
     potentialAction: {
       "@type": "SearchAction",
-      target: `${SITE_URL}/search?q={search_term_string}`,
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${SITE_URL}/search?q={search_term_string}`,
+      },
       "query-input": "required name=search_term_string",
     },
   };
