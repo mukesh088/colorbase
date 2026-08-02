@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ComponentType } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ChevronRight,
@@ -10,23 +10,16 @@ import {
   Linkedin,
   Share2,
   Youtube,
-  type LucideIcon,
 } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const STORAGE_KEY = "colorbase-social-dock-open";
 
-const ICONS: Record<(typeof SOCIAL_LINKS)[number]["id"], LucideIcon> = {
-  x: XIcon,
-  facebook: Facebook,
-  instagram: Instagram,
-  linkedin: Linkedin,
-  youtube: Youtube,
-  github: Github,
-};
+/** Accept Lucide icons and custom SVG components without LucideIcon ref constraints. */
+type SocialIcon = ComponentType<{ className?: string }>;
 
-/** Simple X logo (Lucide no longer ships a dedicated Twitter glyph in all versions). */
+/** X (Twitter) mark — kept as a local SVG for consistent branding. */
 function XIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden>
@@ -34,6 +27,15 @@ function XIcon({ className }: { className?: string }) {
     </svg>
   );
 }
+
+const ICONS: Record<(typeof SOCIAL_LINKS)[number]["id"], SocialIcon> = {
+  x: XIcon,
+  facebook: Facebook,
+  instagram: Instagram,
+  linkedin: Linkedin,
+  youtube: Youtube,
+  github: Github,
+};
 
 export function FloatingSocialDock() {
   const [open, setOpen] = useState(false);
@@ -43,7 +45,7 @@ export function FloatingSocialDock() {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === "1") setOpen(true);
-      else if (saved === null) setOpen(true); // default expanded on first visit
+      else if (saved === null) setOpen(true);
     } catch {
       setOpen(true);
     }
