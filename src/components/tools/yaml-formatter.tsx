@@ -84,13 +84,13 @@ export function YamlFormatterTool() {
               flowLevel: 0,
               lineWidth: -1,
               noRefs: true,
-              quotingType: "'",
+              quoteStyle: "single",
             }).trim()
           : dump(parsed, {
               indent,
               lineWidth: 120,
               noRefs: true,
-              quotingType: '"',
+              quoteStyle: "double",
               forceQuotes: false,
             }).replace(/\n$/, "");
 
