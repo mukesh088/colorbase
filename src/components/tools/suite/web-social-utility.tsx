@@ -10,6 +10,7 @@ import { CopyButton } from "@/components/color/copy-button";
 import { Sparkles, Wand2, X } from "lucide-react";
 import { toast } from "sonner";
 import { ToolWorkbench, OutputBox, ActionRow, PrimaryButton } from "./workbench";
+import { CodeOutput } from "./code-output";
 import { simpleBeautify } from "./helpers";
 import type { SocialSuiteMode, UtilitySuiteMode, WebSuiteMode } from "@/lib/suite-modes";
 import { cn } from "@/lib/utils";
@@ -323,19 +324,14 @@ export function CssBeautifierTool() {
                     />
                   </div>
 
-                  <div className="overflow-hidden rounded-2xl border border-border/50 bg-muted/20">
-                    <div className="flex items-center justify-between border-b border-border/40 px-3 py-2">
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-                        {hasResult ? "Formatted code" : "Template code"}
-                      </p>
-                      <span className="text-[11px] tabular-nums text-muted-foreground">
-                        {(hasResult ? output : code).length.toLocaleString()} chars
-                      </span>
-                    </div>
-                    <pre className="max-h-72 overflow-auto p-3 font-mono text-[11px] leading-relaxed">
-                      {hasResult ? output : simpleBeautify(code)}
-                    </pre>
-                  </div>
+                  <CodeOutput
+                    value={hasResult ? output : simpleBeautify(code)}
+                    language="css"
+                    filename="styles.css"
+                    title={hasResult ? "Formatted CSS" : "Template CSS"}
+                    rows={12}
+                    animate={hasResult}
+                  />
                 </div>
               </SocialResultsPanelLite>
             </div>

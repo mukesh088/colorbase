@@ -641,7 +641,7 @@ export function BackdropFilterGenerator() {
           </div>
         </div>
       }
-      output={<OutputBox value={css} label="CSS" filename="backdrop-filter.css" rows={12} />}
+      output={<OutputBox value={css} label="CSS" filename="backdrop-filter.css" language="css" rows={12} />}
     />
   );
 }

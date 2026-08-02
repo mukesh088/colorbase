@@ -3,6 +3,7 @@ import { DM_Sans, Fraunces } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { SITE_DESCRIPTION, SITE_TAGLINE } from "@/lib/site-config";
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable}`}>
       <body className="font-sans" suppressHydrationWarning>
+        <GoogleAnalytics />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Providers>
           <a

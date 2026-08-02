@@ -16,7 +16,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { CopyButton } from "@/components/color/copy-button";
 import { ToolWorkbench, ActionRow, PrimaryButton } from "./workbench";
+import { CodeOutput } from "./code-output";
 import { minifyCss, minifyHtml, minifyJs, simpleBeautify } from "./helpers";
+import type { CodeLanguage } from "@/lib/syntax-highlight";
 import type { WebSuiteMode } from "@/lib/suite-modes";
 import { cn } from "@/lib/utils";
 
@@ -764,22 +766,35 @@ function CodeWebTool({ mode }: { mode: CodeMode }) {
                 )}
               </div>
             )}
-            <div
+            <CodeOutput
               key={waveKey}
-              className={cn(
-                "overflow-hidden rounded-2xl border border-border/50 bg-muted/20",
-                busy ? "web-gen-shimmer blog-title-pulse" : hasResult ? "animate-rise blog-title-card" : ""
-              )}
-            >
-              <pre className="max-h-[24rem] overflow-auto p-4 font-mono text-[12px] leading-relaxed">
-                {hasResult || busy ? output : "Result appears here after you run the tool."}
-              </pre>
-            </div>
+              value={hasResult || busy ? output : ""}
+              language={codeLanguage(mode)}
+              filename={codeFilename(mode)}
+              title={busy ? "Processing…" : hasResult ? "Transformed code" : "Output"}
+              emptyMessage="Result appears here after you run the tool."
+              rows={14}
+              animate={hasResult && !busy}
+            />
           </div>
         </WebResultPanel>
       }
     />
   );
+}
+
+function codeLanguage(mode: CodeMode): CodeLanguage {
+  if (mode.includes("css")) return "css";
+  if (mode.includes("js")) return "js";
+  if (mode.includes("html")) return "html";
+  return "plain";
+}
+
+function codeFilename(mode: CodeMode) {
+  if (mode.includes("css")) return "output.css";
+  if (mode.includes("js")) return "output.js";
+  if (mode.includes("html")) return "output.html";
+  return "output.txt";
 }
 
 const SEO_MODES: SeoMode[] = [

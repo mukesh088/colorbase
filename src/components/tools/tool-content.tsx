@@ -65,6 +65,41 @@ const CssSuiteTool = dynamic(() =>
 const BackdropFilterGenerator = dynamic(() =>
   import("@/components/tools/backdrop-filter-generator").then((m) => m.BackdropFilterGenerator)
 );
+const JwtDecoderTool = dynamic(() =>
+  import("@/components/tools/jwt-decoder").then((m) => m.JwtDecoderTool)
+);
+const JsonFormatterTool = dynamic(() =>
+  import("@/components/tools/json-formatter").then((m) => m.JsonFormatterTool)
+);
+const YamlFormatterTool = dynamic(() =>
+  import("@/components/tools/yaml-formatter").then((m) => m.YamlFormatterTool)
+);
+const XmlFormatterTool = dynamic(() =>
+  import("@/components/tools/xml-formatter").then((m) => m.XmlFormatterTool)
+);
+const Base64Tool = dynamic(() =>
+  import("@/components/tools/base64-tool").then((m) => m.Base64Tool)
+);
+const UrlCodecTool = dynamic(() =>
+  import("@/components/tools/url-codec-tool").then((m) => m.UrlCodecTool)
+);
+const SqlFormatterTool = dynamic(() =>
+  import("@/components/tools/sql-formatter").then((m) => m.SqlFormatterTool)
+);
+const HashGeneratorTool = dynamic(() =>
+  import("@/components/tools/hash-generator").then((m) => m.HashGeneratorTool)
+);
+const UuidGuidGeneratorTool = dynamic(() =>
+  import("@/components/tools/uuid-guid-generator").then((m) => m.UuidGuidGeneratorTool)
+);
+const BarcodeGeneratorTool = dynamic(() =>
+  import("@/components/tools/barcode-generator").then((m) => m.BarcodeGeneratorTool),
+  { ssr: false }
+);
+const QrCodeGeneratorTool = dynamic(() =>
+  import("@/components/tools/qr-code-generator").then((m) => m.QrCodeGeneratorTool),
+  { ssr: false }
+);
 const TextSuiteTool = dynamic(() =>
   import("@/components/tools/suite/text-suite").then((m) => m.TextSuiteTool)
 );
@@ -158,6 +193,38 @@ export function ToolContent({ slug }: { slug: string }) {
       return <CssGeneratorTool tool="box-shadow" />;
     case "backdrop-filter-generator":
       return <BackdropFilterGenerator />;
+    case "jwt-decoder":
+      return <JwtDecoderTool />;
+    case "json-formatter":
+      return <JsonFormatterTool />;
+    case "yaml-formatter":
+      return <YamlFormatterTool />;
+    case "xml-formatter":
+      return <XmlFormatterTool />;
+    case "base64-encode":
+      return <Base64Tool mode="encode" />;
+    case "base64-decode":
+      return <Base64Tool mode="decode" />;
+    case "url-encoder":
+      return <UrlCodecTool mode="encode" />;
+    case "url-decoder":
+      return <UrlCodecTool mode="decode" />;
+    case "sql-formatter":
+      return <SqlFormatterTool />;
+    case "hash-generator":
+      return <HashGeneratorTool focus="all" />;
+    case "sha256-generator":
+      return <HashGeneratorTool focus="sha256" />;
+    case "md5-generator":
+      return <HashGeneratorTool focus="md5" />;
+    case "uuid-generator":
+      return <UuidGuidGeneratorTool focus="uuid" />;
+    case "guid-generator":
+      return <UuidGuidGeneratorTool focus="guid" />;
+    case "barcode-generator":
+      return <BarcodeGeneratorTool />;
+    case "qr-code-generator":
+      return <QrCodeGeneratorTool />;
     case "glassmorphism-generator":
       return <CssGeneratorTool tool="glass" />;
     case "neumorphism-generator":

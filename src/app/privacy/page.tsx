@@ -24,8 +24,9 @@ export default function PrivacyPage() {
           favorites are stored locally on your device via localStorage.
         </p>
         <p>
-          We may use privacy-friendly analytics (Vercel Analytics) to understand aggregate usage.
-          We do not sell personal data.
+          We use Google Analytics (gtag.js) to understand aggregate site usage such as page views.
+          This may set cookies or collect anonymized usage data as described in Google&apos;s
+          privacy policy. We do not sell personal data.
         </p>
         <p>Contact us at hello@colorbase.in for privacy questions.</p>
       </div>

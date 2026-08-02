@@ -513,7 +513,7 @@ export function CssSuiteTool({ mode }: { mode: CssSuiteMode }) {
           )}
         </PreviewShell>
       }
-      output={<OutputBox value={css} label="CSS" filename={`${mode}.css`} rows={10} />}
+      output={<OutputBox value={css} label="CSS" filename={`${mode}.css`} language="css" rows={10} />}
     />
   );
 }

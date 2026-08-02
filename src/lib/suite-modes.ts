@@ -33,28 +33,12 @@ export const TEXT_SUITE_MODES = [
 ] as const;
 
 export const DEV_SUITE_MODES = [
-  "json-formatter",
   "json-validator",
   "json-viewer",
   "json-compare",
-  "xml-formatter",
   "html-formatter",
   "css-formatter",
   "js-formatter",
-  "sql-formatter",
-  "yaml-formatter",
-  "base64-encode",
-  "base64-decode",
-  "url-encoder",
-  "url-decoder",
-  "jwt-decoder",
-  "uuid-generator",
-  "guid-generator",
-  "hash-generator",
-  "sha256-generator",
-  "md5-generator",
-  "qr-code-generator",
-  "barcode-generator",
 ] as const;
 
 export const IMAGE_SUITE_MODES = [

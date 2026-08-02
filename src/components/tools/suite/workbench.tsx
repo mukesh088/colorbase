@@ -1,11 +1,9 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { Download, Eraser } from "lucide-react";
-import { toast } from "sonner";
-import { CopyButton } from "@/components/color/copy-button";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
+import { CodeOutput } from "@/components/tools/suite/code-output";
+import type { CodeLanguage } from "@/lib/syntax-highlight";
 import { cn } from "@/lib/utils";
 
 export function ToolWorkbench({
@@ -50,68 +48,34 @@ export function OutputBox({
   rows = 12,
   filename = "output.txt",
   onClear,
+  language = "auto",
+  title = "Output",
+  emptyMessage,
 }: {
   value: string;
   label?: string;
+  /** @deprecated Kept for API compatibility; IDE view is always monospace. */
   mono?: boolean;
   rows?: number;
   filename?: string;
   onClear?: () => void;
+  language?: CodeLanguage | "auto";
+  title?: string;
+  emptyMessage?: string;
 }) {
-  const download = () => {
-    if (!value) {
-      toast.error("Nothing to download");
-      return;
-    }
-    const blob = new Blob([value], { type: "text/plain;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(url);
-    toast.success("Downloaded");
-  };
-
+  void mono;
   return (
-    <div className="overflow-hidden rounded-3xl border border-border/50 bg-background/70 shadow-sm backdrop-blur-sm">
-      <div className="flex flex-col gap-2 border-b border-border/40 px-3 py-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:px-5">
-        <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-            Result
-          </p>
-          <p className="text-sm font-semibold">Output</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {onClear && (
-            <Button type="button" variant="ghost" size="sm" className="h-9 rounded-full" onClick={onClear}>
-              <Eraser className="h-3.5 w-3.5" />
-              Clear
-            </Button>
-          )}
-          <Button type="button" variant="outline" size="sm" className="h-9 rounded-full" onClick={download}>
-            <Download className="h-3.5 w-3.5" />
-            Download
-          </Button>
-          <CopyButton value={value} label={label} className="h-9 rounded-full" />
-        </div>
-      </div>
-      <div className="p-3 sm:p-5">
-        <Textarea
-          readOnly
-          value={value}
-          rows={rows}
-          className={cn(
-            "min-h-[8rem] resize-y rounded-2xl border-border/50 bg-muted/30 text-[13px] sm:text-xs",
-            mono && "font-mono leading-relaxed"
-          )}
-          aria-label="Tool output"
-        />
-        <p className="mt-2 text-[11px] text-muted-foreground">
-          {value.length.toLocaleString()} characters · ready to copy or download
-        </p>
-      </div>
-    </div>
+    <CodeOutput
+      value={value}
+      label={label}
+      filename={filename}
+      language={language}
+      title={title}
+      rows={rows}
+      onClear={onClear}
+      emptyMessage={emptyMessage}
+      animate
+    />
   );
 }
 

@@ -1,5 +1,5 @@
 /** Tiny pure MD5 for client-side hashing (legacy tools). */
-export function md5(str: string): string {
+function md5Core(msg: string): string {
   function cmn(q: number, a: number, b: number, x: number, s: number, t: number) {
     a = (a + q + x + t) | 0;
     return (((a << s) | (a >>> (32 - s))) + b) | 0;
@@ -17,11 +17,6 @@ export function md5(str: string): string {
     return cmn(c ^ (b | ~d), a, b, x, s, t);
   }
 
-  function toUtf8(input: string) {
-    return unescape(encodeURIComponent(input));
-  }
-
-  const msg = toUtf8(str);
   const n = msg.length;
   const words: number[] = [];
   for (let i = 0; i < n; i++) {
@@ -124,6 +119,21 @@ export function md5(str: string): string {
     return s;
   }
   return hex(a) + hex(b) + hex(c) + hex(d);
+}
+
+/** MD5 of a UTF-8 string (encodeURIComponent path). */
+export function md5(str: string): string {
+  return md5Core(unescape(encodeURIComponent(str)));
+}
+
+/** MD5 of raw bytes (file checksums). */
+export function md5Bytes(bytes: Uint8Array): string {
+  const chunk = 0x8000;
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunk));
+  }
+  return md5Core(binary);
 }
 
 export async function sha256(text: string) {
