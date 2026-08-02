@@ -74,8 +74,9 @@ const JsonFormatterTool = dynamic(() =>
 const YamlFormatterTool = dynamic(() =>
   import("@/components/tools/yaml-formatter").then((m) => m.YamlFormatterTool)
 );
-const XmlFormatterTool = dynamic(() =>
-  import("@/components/tools/xml-formatter").then((m) => m.XmlFormatterTool)
+const XmlFormatterTool = dynamic(
+  () => import("@/components/tools/xml-formatter").then((m) => m.XmlFormatterTool),
+  { ssr: false }
 );
 const Base64Tool = dynamic(() =>
   import("@/components/tools/base64-tool").then((m) => m.Base64Tool)

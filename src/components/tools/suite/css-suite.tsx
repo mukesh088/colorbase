@@ -127,7 +127,7 @@ export function CssSuiteTool({ mode }: { mode: CssSuiteMode }) {
         return "";
     }
   }, [
-    mode, color, shadowRgba, offsetX, offsetY, blur, opacity, width, radius, gap, cols, rows,
+    mode, color, shadowRgba, offsetX, offsetY, blur, width, radius, gap, cols, rows,
     duration, delay, easing, transitionProp, min, pref, max, justify, align, wrap, direction,
     cursor, borderStyle, fontSize, weight, lineHeight, letter, brightness, contrast, saturate,
     hue, track, thumb, scrollWidth,

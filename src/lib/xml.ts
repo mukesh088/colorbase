@@ -26,6 +26,12 @@ function countNodes(node: Node): { elements: number; attributes: number } {
 }
 
 export function parseXml(input: string): { doc: Document; error: string | null } {
+  if (typeof DOMParser === "undefined") {
+    return {
+      doc: null as unknown as Document,
+      error: "XML formatting requires a browser environment.",
+    };
+  }
   const parser = new DOMParser();
   const doc = parser.parseFromString(input, "application/xml");
   const errNode = doc.querySelector("parsererror");
@@ -128,6 +134,9 @@ export function formatXml(input: string, indentSize: number, mode: "formatted" |
 
   let body: string;
   if (mode === "minified") {
+    if (typeof XMLSerializer === "undefined") {
+      return { output: "", error: "XML formatting requires a browser environment.", meta: null };
+    }
     const xml = new XMLSerializer().serializeToString(root);
     body = minifyXml(xml);
   } else {
@@ -136,6 +145,10 @@ export function formatXml(input: string, indentSize: number, mode: "formatted" |
 
   const output = declaration ? `${declaration}\n${body}` : body;
   const counts = countNodes(root);
+  const size =
+    typeof TextEncoder !== "undefined"
+      ? new TextEncoder().encode(output).length
+      : output.length;
 
   return {
     output,
@@ -143,7 +156,7 @@ export function formatXml(input: string, indentSize: number, mode: "formatted" |
     meta: {
       elements: counts.elements,
       attributes: counts.attributes,
-      size: new Blob([output]).size,
+      size,
       root: root.tagName,
     },
   };
