@@ -664,20 +664,8 @@ export function FlexboxPlaygroundTool() {
                       initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.9 }}
-                      draggable
-                      onDragStart={onDragStart(it.id)}
-                      onDragOver={onDragOver(it.id)}
-                      onDrop={onDrop(it.id)}
-                      onDragEnd={onDragEnd}
-                      onClick={() => setSelectedId(it.id)}
-                      className={cn(
-                        "relative flex cursor-grab items-center justify-center rounded-xl text-sm font-bold text-white shadow-md active:cursor-grabbing",
-                        selectedId === it.id && "ring-2 ring-white ring-offset-2 ring-offset-background",
-                        dragId === it.id && "opacity-60",
-                        overId === it.id && dragId !== it.id && "ring-2 ring-rose-300"
-                      )}
+                      className="relative"
                       style={{
-                        background: `linear-gradient(135deg, ${it.color}, ${it.color}cc)`,
                         width: it.width,
                         height: it.height,
                         flexGrow: it.grow,
@@ -686,15 +674,34 @@ export function FlexboxPlaygroundTool() {
                         alignSelf: it.alignSelf === "auto" ? undefined : it.alignSelf,
                         order: it.order,
                       }}
-                      title={`Item ${it.label} — drag to reorder`}
                     >
-                      <span className="pointer-events-none absolute left-1 top-1 opacity-70">
-                        <GripVertical className="h-3.5 w-3.5" />
-                      </span>
-                      {it.label}
-                      <span className="pointer-events-none absolute bottom-1 right-1 text-[9px] opacity-70">
-                        {index + 1}
-                      </span>
+                      {/* Native HTML5 DnD on a plain div — Framer Motion's onDrag* is a different API */}
+                      <div
+                        draggable
+                        onDragStart={onDragStart(it.id)}
+                        onDragOver={onDragOver(it.id)}
+                        onDrop={onDrop(it.id)}
+                        onDragEnd={onDragEnd}
+                        onClick={() => setSelectedId(it.id)}
+                        title={`Item ${it.label} — drag to reorder`}
+                        className={cn(
+                          "absolute inset-0 flex cursor-grab items-center justify-center rounded-xl text-sm font-bold text-white shadow-md active:cursor-grabbing",
+                          selectedId === it.id && "ring-2 ring-white ring-offset-2 ring-offset-background",
+                          dragId === it.id && "opacity-60",
+                          overId === it.id && dragId !== it.id && "ring-2 ring-rose-300"
+                        )}
+                        style={{
+                          background: `linear-gradient(135deg, ${it.color}, ${it.color}cc)`,
+                        }}
+                      >
+                        <span className="pointer-events-none absolute left-1 top-1 opacity-70">
+                          <GripVertical className="h-3.5 w-3.5" />
+                        </span>
+                        {it.label}
+                        <span className="pointer-events-none absolute bottom-1 right-1 text-[9px] opacity-70">
+                          {index + 1}
+                        </span>
+                      </div>
                     </motion.div>
                   ))}
                 </AnimatePresence>

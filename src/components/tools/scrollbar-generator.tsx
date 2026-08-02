@@ -625,8 +625,8 @@ export function ScrollbarGeneratorTool() {
                         ))}
                       </div>
                     )}
-                    {(demo === "both" || demo === "vertical") &&
-                      Array.from({ length: demo === "both" ? 28 : 24 }).map((_, i) => (
+                    {demo === "both" &&
+                      Array.from({ length: 28 }).map((_, i) => (
                         <p key={i} className="mb-2 text-muted-foreground">
                           Scrollbar preview line {i + 1} — customize track, thumb, hover, and radius. Works in WebKit
                           and Firefox.
