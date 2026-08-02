@@ -260,6 +260,63 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         "Yes. Paste it into Validate (with or without braces). You’ll see version, variant, and whether it’s the nil GUID.",
     },
   ],
+  "image-compressor": [
+    {
+      question: "Are my images uploaded?",
+      answer: "No. Compression runs entirely in your browser with the Canvas API. Nothing is sent to a server.",
+    },
+    {
+      question: "Which formats can I export?",
+      answer: "JPEG, PNG, and WebP. Use quality for JPEG/WebP and optional max-edge to downscale large photos before encoding.",
+    },
+    {
+      question: "Can I compress multiple images?",
+      answer: "Yes. Multi-select or drop several files, then Process batch and Download all.",
+    },
+  ],
+  "image-resizer": [
+    {
+      question: "What do Contain, Cover, and Stretch mean?",
+      answer:
+        "Contain fits inside the box with letterboxing, Cover fills the box and may crop, Stretch forces exact width×height.",
+    },
+    {
+      question: "Can I lock aspect ratio?",
+      answer: "Yes. Lock aspect keeps height in sync when you change width (and vice versa). Use presets for common social sizes.",
+    },
+  ],
+  "image-crop": [
+    {
+      question: "How do I crop to a circle?",
+      answer: "Choose the Circle ratio, adjust the frame, then Apply crop. The download is a transparent PNG with a circular mask.",
+    },
+  ],
+  "blur-image": [
+    {
+      question: "What adjustments are available?",
+      answer: "Blur, brightness, contrast, saturate, and grayscale. Use before/after or split compare, then download.",
+    },
+  ],
+  "webp-converter": [
+    {
+      question: "Will WebP work everywhere?",
+      answer:
+        "Modern browsers support WebP. You can also export JPEG or PNG from the same tool if you need broader compatibility.",
+    },
+  ],
+  "image-to-base64": [
+    {
+      question: "What snippets can I copy?",
+      answer: "The full data URL plus ready-to-paste CSS background-image and HTML <img> snippets.",
+    },
+  ],
+  "svg-optimizer": [
+    {
+      question: "Is optimization safe?",
+      answer:
+        "Scripts, event handlers, and javascript: URLs are stripped, then comments/whitespace are minified. Always preview before shipping.",
+    },
+  ],
   "backdrop-filter-generator": [
     {
       question: "What is CSS backdrop-filter?",

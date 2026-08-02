@@ -41,21 +41,7 @@ export const DEV_SUITE_MODES = [
   "js-formatter",
 ] as const;
 
-export const IMAGE_SUITE_MODES = [
-  "image-compressor",
-  "image-resizer",
-  "png-to-jpg",
-  "jpg-to-png",
-  "webp-converter",
-  "svg-optimizer",
-  "blur-image",
-  "image-crop",
-  "rotate-image",
-  "flip-image",
-  "dominant-color-extractor",
-  "color-palette-from-image",
-  "image-to-base64",
-] as const;
+export const IMAGE_SUITE_MODES = [] as const;
 
 export const WEB_SUITE_MODES = [
   "robots-txt-generator",
@@ -96,7 +82,7 @@ export const UTILITY_SUITE_MODES = [
 export type CssSuiteMode = (typeof CSS_SUITE_MODES)[number];
 export type TextSuiteMode = (typeof TEXT_SUITE_MODES)[number];
 export type DevSuiteMode = (typeof DEV_SUITE_MODES)[number];
-export type ImageSuiteMode = (typeof IMAGE_SUITE_MODES)[number];
+export type ImageSuiteMode = never;
 export type WebSuiteMode = (typeof WEB_SUITE_MODES)[number];
 export type SocialSuiteMode = (typeof SOCIAL_SUITE_MODES)[number];
 export type UtilitySuiteMode = (typeof UTILITY_SUITE_MODES)[number];
@@ -110,8 +96,8 @@ export function isTextSuite(slug: string): slug is TextSuiteMode {
 export function isDevSuite(slug: string): slug is DevSuiteMode {
   return (DEV_SUITE_MODES as readonly string[]).includes(slug);
 }
-export function isImageSuite(slug: string): slug is ImageSuiteMode {
-  return (IMAGE_SUITE_MODES as readonly string[]).includes(slug);
+export function isImageSuite(_slug: string): _slug is ImageSuiteMode {
+  return false;
 }
 export function isWebSuite(slug: string): slug is WebSuiteMode {
   return (WEB_SUITE_MODES as readonly string[]).includes(slug);

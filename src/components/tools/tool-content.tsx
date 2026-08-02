@@ -4,12 +4,12 @@ import dynamic from "next/dynamic";
 import {
   isCssSuite,
   isDevSuite,
-  isImageSuite,
   isSocialSuite,
   isTextSuite,
   isUtilitySuite,
   isWebSuite,
 } from "@/lib/suite-modes";
+import { isImageStudio } from "@/lib/image-studio";
 
 const AdvancedColorPicker = dynamic(() =>
   import("@/components/color/advanced-color-picker").then((m) => m.AdvancedColorPicker)
@@ -107,8 +107,9 @@ const TextSuiteTool = dynamic(() =>
 const DevSuiteTool = dynamic(() =>
   import("@/components/tools/suite/dev-suite").then((m) => m.DevSuiteTool)
 );
-const ImageSuiteTool = dynamic(() =>
-  import("@/components/tools/suite/image-suite").then((m) => m.ImageSuiteTool)
+const ImageStudioTool = dynamic(
+  () => import("@/components/tools/image-studio").then((m) => m.ImageStudioTool),
+  { ssr: false }
 );
 const WebSuiteTool = dynamic(() =>
   import("@/components/tools/suite/web-suite").then((m) => m.WebSuiteTool)
@@ -128,7 +129,7 @@ export function ToolContent({ slug }: { slug: string }) {
   if (isCssSuite(slug)) return <CssSuiteTool mode={slug} />;
   if (isTextSuite(slug)) return <TextSuiteTool mode={slug} />;
   if (isDevSuite(slug)) return <DevSuiteTool mode={slug} />;
-  if (isImageSuite(slug)) return <ImageSuiteTool mode={slug} />;
+  if (isImageStudio(slug)) return <ImageStudioTool mode={slug} />;
   if (isWebSuite(slug)) return <WebSuiteTool mode={slug} />;
   if (isSocialSuite(slug)) return <SocialSuiteTool mode={slug} />;
   if (isUtilitySuite(slug)) return <UtilitySuiteTool mode={slug} />;
