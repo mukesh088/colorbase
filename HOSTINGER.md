@@ -37,7 +37,7 @@ Next.js hashes files under `/_next/static/`. HTML that still points at an old ha
 2. In hPanel, **purge CDN / LiteSpeed cache** for `colorbase.in` (and `www`) if enabled.
 3. Hard-refresh once (Ctrl+F5) or open a private window.
 
-HTML is now revalidated about every **60 seconds** (`revalidate` + middleware) so shared caches stop pinning documents for a year. Hashed `/_next/static/*` assets stay long-cached and immutable.
+HTML documents are served with **no-store** caching (`force-dynamic` + middleware) so shared CDNs cannot pin HTML that points at deleted `/_next/static` hashes. Hashed `/_next/static/*` assets stay long-cached and immutable.
 ## 4. Favicon & brand assets (already in `/public`)
 | File | Purpose |
 |------|---------|

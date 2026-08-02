@@ -13,6 +13,10 @@ function shouldReloadForChunkError(message: string) {
   );
 }
 
+function isNextStaticAsset(url: string) {
+  return /\/_next\/static\/(?:chunks|css)\//.test(url);
+}
+
 function reloadOnce() {
   try {
     if (sessionStorage.getItem(RELOAD_KEY) === "1") return;
@@ -24,17 +28,29 @@ function reloadOnce() {
     window.location.replace(url.toString());
     return;
   }
-  window.location.reload();
+  // Bust bfcache / intermediary caches when recovering from a bad deploy pair
+  const url = new URL(window.location.href);
+  url.searchParams.set("_cb", String(Date.now()));
+  window.location.replace(url.toString());
 }
 
 /** Recover from stale HTML/CDN pointing at deleted Next.js chunks after a deploy. */
 export function ChunkLoadRecovery() {
   useEffect(() => {
-    // Clear the guard only after the page has stayed healthy for a bit
-    // (avoids an infinite reload loop if assets are still missing).
     const clearGuard = window.setTimeout(() => {
       try {
         sessionStorage.removeItem(RELOAD_KEY);
+      } catch {
+        /* ignore */
+      }
+      // Drop one-time bust param after a healthy load
+      try {
+        const url = new URL(window.location.href);
+        if (url.searchParams.has("_cb") || url.searchParams.has("cb_reload")) {
+          url.searchParams.delete("_cb");
+          url.searchParams.delete("cb_reload");
+          window.history.replaceState({}, "", url.pathname + url.search + url.hash);
+        }
       } catch {
         /* ignore */
       }
@@ -56,11 +72,26 @@ export function ChunkLoadRecovery() {
       if (shouldReloadForChunkError(message)) reloadOnce();
     };
 
+    // Resource errors (script/link 404) do not bubble — must use capture
+    const onResourceError = (event: Event) => {
+      const el = event.target;
+      if (!(el instanceof HTMLElement)) return;
+      if (el instanceof HTMLScriptElement && el.src && isNextStaticAsset(el.src)) {
+        reloadOnce();
+        return;
+      }
+      if (el instanceof HTMLLinkElement && el.href && isNextStaticAsset(el.href)) {
+        reloadOnce();
+      }
+    };
+
     window.addEventListener("error", onError);
+    window.addEventListener("error", onResourceError, true);
     window.addEventListener("unhandledrejection", onRejection);
     return () => {
       window.clearTimeout(clearGuard);
       window.removeEventListener("error", onError);
+      window.removeEventListener("error", onResourceError, true);
       window.removeEventListener("unhandledrejection", onRejection);
     };
   }, []);

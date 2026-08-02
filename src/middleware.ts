@@ -23,7 +23,7 @@ export function middleware(request: NextRequest) {
   const response = NextResponse.next();
   response.headers.set(
     "Cache-Control",
-    "public, max-age=0, s-maxage=60, stale-while-revalidate=300"
+    "private, no-cache, no-store, max-age=0, must-revalidate"
   );
   return response;
 }

@@ -39,8 +39,8 @@ export const viewport: Viewport = {
   colorScheme: "light dark",
 };
 
-/** Keep HTML fresh so deploys don’t leave CDNs pointing at deleted `_next/static` hashes. */
-export const revalidate = 60;
+/** Avoid year-long HTML CDN cache on Hostinger (stale docs → missing /_next/static chunks). */
+export const dynamic = "force-dynamic";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
