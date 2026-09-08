@@ -34,6 +34,45 @@ export const GLOBAL_FAQS: FAQItem[] = [
 ];
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
+  "color-wheel": [
+    {
+      question: "How do I pick a color on the wheel?",
+      answer:
+        "The inner disc is hue (around) and saturation (toward the center). The outer ring is lightness — drag the handle there to lighten or darken the whole chord. White circles are harmony handles; dragging any of them rotates the palette together. Arrow keys nudge hue and saturation; Ctrl/Cmd+Z undoes.",
+    },
+    {
+      question: "What do the harmony modes do?",
+      answer:
+        "Complementary, Split, Analogous, Triadic, Tetradic, Square, and Mono place related hues on the wheel as a locked chord. Tall swatches on the right are the palette — click one to make it the base, or copy its HEX. Tetradic is two complementary pairs; Square is four hues 90° apart.",
+    },
+    {
+      question: "What are tints, shades, and tones?",
+      answer:
+        "Tints mix the base with white, shades mix with black, and tones mix with gray. Use them for backgrounds, type, hover states, and depth, the same way a classic color wheel workflow does.",
+    },
+    {
+      question: "Is my palette saved?",
+      answer:
+        "Your last color and harmony restore automatically in this browser. Favorites and recent colors also stay on this device. Nothing is uploaded.",
+    },
+  ],
+  "unix-timestamp-converter": [
+    {
+      question: "How does seconds vs milliseconds detection work?",
+      answer:
+        "10-digit values such as 1757318400 are treated as seconds. 13-digit values such as 1757318400000 are milliseconds. Longer values are read as microseconds or nanoseconds. A badge under the input shows the detected unit.",
+    },
+    {
+      question: "Are converted timestamps uploaded anywhere?",
+      answer:
+        "No. Conversion, timezone formatting, JSON mode, and history all run in your browser. History is stored in localStorage on this device only.",
+    },
+    {
+      question: "What can JSON mode accept?",
+      answer:
+        "Paste a JSON array of timestamps, an object with a timestamps array, comma-separated values, or one timestamp per line. The tool returns Unix, ISO 8601, UTC, local, and RFC 2822 fields for each value.",
+    },
+  ],
   "jwt-decoder": [
     {
       question: "Does this JWT decoder verify signatures?",

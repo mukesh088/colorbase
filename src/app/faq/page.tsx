@@ -23,7 +23,7 @@ export default function FaqPage() {
       <Breadcrumbs items={crumbs} />
       <h1 className="font-display text-4xl font-semibold">FAQ</h1>
       <p className="mt-2 text-muted-foreground">Answers to common color and accessibility questions.</p>
-      <ToolFaqs faqs={GLOBAL_FAQS} />
+      <ToolFaqs faqs={GLOBAL_FAQS} heading={false} className="mt-8" />
     </div>
   );
 }

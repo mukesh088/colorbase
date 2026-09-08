@@ -12,6 +12,8 @@ import { UI_KITS, getColorsBySource, getLibraryStats } from "@/lib/data/color-li
 import { KitCard, FamilyCard } from "@/components/library/kit-card";
 import { mixColors } from "@/lib/colors/convert";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = createPageMetadata({
   title: "Complete Color Library",
   description:

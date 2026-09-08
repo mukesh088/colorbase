@@ -10,6 +10,8 @@ export function generateStaticParams() {
   return CODE_FORMATS.map((f) => ({ format: f.slug }));
 }
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params,
 }: {

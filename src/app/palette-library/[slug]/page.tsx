@@ -16,7 +16,7 @@ import { PaletteCard } from "@/components/library/palette-card";
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getAllPalettes().slice(0, 240).map((p) => ({ slug: p.slug }));
+  return getAllPalettes().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({

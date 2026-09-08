@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# accidental next-sitemap output (App Router sitemap.ts is canonical)
+/sitemap-out
+
 # production
 /build
 

@@ -11,6 +11,8 @@ export function generateStaticParams() {
   return UI_KITS.map((kit) => ({ kit: kit.slug }));
 }
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params,
 }: {

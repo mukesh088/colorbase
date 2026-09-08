@@ -302,6 +302,8 @@ export function generateHarmony(hex: string, type: string): string[] {
     case "triadic":
       return [hex, rotate(120), rotate(240)];
     case "tetradic":
+      return [hex, rotate(60), rotate(180), rotate(240)];
+    case "square":
       return [hex, rotate(90), rotate(180), rotate(270)];
     case "split-complementary":
       return [hex, rotate(150), rotate(210)];

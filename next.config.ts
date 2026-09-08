@@ -1,3 +1,4 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const securityHeaders = [
@@ -18,6 +19,9 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  turbopack: {
+    root: path.resolve(__dirname),
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
@@ -48,6 +52,26 @@ const nextConfig: NextConfig = {
           {
             key: "Cache-Control",
             value: "private, no-cache, no-store, max-age=0, must-revalidate",
+          },
+          ...securityHeaders,
+        ],
+      },
+      {
+        source: "/sitemap.xml",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600",
+          },
+          ...securityHeaders,
+        ],
+      },
+      {
+        source: "/robots.txt",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, s-maxage=3600",
           },
           ...securityHeaders,
         ],

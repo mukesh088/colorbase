@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "icons": "node scripts/generate-favicons.js",
-    "postbuild": "next-sitemap"
+    "icons": "node scripts/generate-favicons.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

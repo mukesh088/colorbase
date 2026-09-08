@@ -14,6 +14,8 @@ export function generateStaticParams() {
   return GRADIENT_CATEGORIES.map((category) => ({ category }));
 }
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params,
 }: {

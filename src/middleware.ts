@@ -20,6 +20,12 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  if (pathname === "/sitemap.xml" || pathname.startsWith("/sitemap/")) {
+    const response = NextResponse.next();
+    response.headers.set("Cache-Control", "public, max-age=3600, s-maxage=3600");
+    return response;
+  }
+
   const response = NextResponse.next();
   response.headers.set(
     "Cache-Control",

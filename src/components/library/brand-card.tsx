@@ -10,6 +10,7 @@ export function BrandCard({
   category,
   colors,
   className,
+  hexHref,
 }: {
   slug: string;
   name: string;
@@ -17,10 +18,11 @@ export function BrandCard({
   category: string;
   colors: string[];
   className?: string;
+  hexHref?: string;
 }) {
   return (
     <Link
-      href={`/brands/${slug}`}
+      href={hexHref ?? `/brands/${slug}`}
       className={cn(
         "group card-lift glass relative block overflow-hidden rounded-3xl border border-border/50",
         className
@@ -43,6 +45,9 @@ export function BrandCard({
         </div>
         <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">
           {overview}
+        </p>
+        <p className="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
+          {colors.slice(0, 6).join(" ")}
         </p>
         <div className="mt-4 flex items-center gap-1.5">
           {colors.slice(0, 5).map((c, i) => (

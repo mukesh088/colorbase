@@ -20,24 +20,37 @@ const NOUNS = [
 export interface NamedColorEntry {
   slug: string;
   name: string;
+  displayName: string;
   hex: string;
   meaning: string;
   history: string;
   usage: string;
   family: string;
+  source: "css" | "catalog";
+}
+
+export function displayColorName(name: string) {
+  return name
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/([A-Z]+)([A-Z][a-z])/g, "$1 $2")
+    .trim();
 }
 
 function buildNamedColors(): NamedColorEntry[] {
   const base: NamedColorEntry[] = CSS_NAMED_COLORS.map((c) => {
     const family = familyFromHex(c.hex);
+    const hex = normalizeHex(c.hex);
+    const displayName = displayColorName(c.name);
     return {
       slug: slugify(c.name),
       name: c.name,
-      hex: normalizeHex(c.hex),
+      displayName,
+      hex,
       meaning: psychologyForFamily(family),
-      history: `${c.name} is a standard CSS/SVG named color used across browsers since early web standards.`,
-      usage: `Use ${c.name} (${normalizeHex(c.hex)}) in CSS as color: ${c.name.toLowerCase()}; or as ${normalizeHex(c.hex)}.`,
+      history: `${displayName} is a standard CSS/SVG named color used across browsers since early web standards.`,
+      usage: `Use ${displayName} color in CSS as color: ${c.name.toLowerCase()}; or as ${hex}.`,
       family,
+      source: "css",
     };
   });
 
@@ -53,11 +66,13 @@ function buildNamedColors(): NamedColorEntry[] {
     generated.push({
       slug,
       name,
+      displayName: name,
       hex,
       meaning: psychologyForFamily(family),
       history: `${name} is a curated catalog name mapped to ${hex} for design inspiration and searchable color discovery.`,
       usage: `Ideal for UI accents, brand explorations, and palette building in the ${family} family.`,
       family,
+      source: "catalog",
     });
   }
 
@@ -75,13 +90,25 @@ export function getNamedColor(slug: string) {
   return getAllNamedColors().find((c) => c.slug === slug);
 }
 
+export function getCssNamedColors() {
+  return getAllNamedColors().filter((c) => c.source === "css");
+}
+
 export function searchNamedColors(query: string) {
-  const q = query.toLowerCase().trim();
+  const q = query
+    .toLowerCase()
+    .trim()
+    .replace(/\b(colors?|colours?|hex|code|css|named)\b/g, " ")
+    .replace(/[#]+/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
   if (!q) return getAllNamedColors().slice(0, 60);
   return getAllNamedColors()
     .filter(
       (c) =>
         c.name.toLowerCase().includes(q) ||
+        c.displayName.toLowerCase().includes(q) ||
+        c.slug.includes(q.replace(/\s+/g, "")) ||
         c.hex.toLowerCase().includes(q) ||
         c.family.includes(q)
     )

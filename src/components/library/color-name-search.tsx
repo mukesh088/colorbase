@@ -125,7 +125,7 @@ function ResultRow({ color }: { color: NamedColorEntry }) {
           style={{ backgroundColor: color.hex }}
         />
         <span className="min-w-0 flex-1">
-          <span className="block truncate text-sm font-medium">{color.name}</span>
+          <span className="block truncate text-sm font-medium">{color.displayName}</span>
           <span className="block text-[11px] capitalize text-muted-foreground">{color.family}</span>
         </span>
         <span className="font-mono text-xs text-muted-foreground">{color.hex}</span>

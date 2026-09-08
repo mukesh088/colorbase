@@ -12,7 +12,6 @@ export const dynamicParams = true;
 export function generateStaticParams() {
   return getAllLibraryColors()
     .filter((c) => !c.sources.includes("generated"))
-    .slice(0, 400)
     .map((c) => ({ slug: c.slug }));
 }
 

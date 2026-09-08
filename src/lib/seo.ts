@@ -199,3 +199,90 @@ export function softwareAppJsonLd(tool: ToolDefinition) {
     },
   };
 }
+
+export function brandPaletteJsonLd(input: {
+  name: string;
+  slug: string;
+  description: string;
+  colors: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${input.name} brand hex color codes`,
+    description: input.description,
+    url: absoluteUrl(`/brands/${input.slug}`),
+    numberOfItems: input.colors.length,
+    itemListElement: input.colors.map((hex, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${input.name} hex color ${hex}`,
+      url: absoluteUrl(`/brands/${input.slug}/${hex.slice(1).toLowerCase()}`),
+    })),
+  };
+}
+
+export function brandHexJsonLd(input: {
+  brandName: string;
+  slug: string;
+  hex: string;
+  rgb: string;
+  hsl: string;
+  role: string;
+  description: string;
+}) {
+  const url = absoluteUrl(`/brands/${input.slug}/${input.hex.slice(1).toLowerCase()}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${input.brandName} hex color ${input.hex}`,
+    url,
+    description: input.description,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: {
+      "@type": "DefinedTerm",
+      name: `${input.brandName} ${input.role} brand color`,
+      termCode: input.hex,
+      description: `${input.brandName} uses ${input.hex} (${input.rgb}, ${input.hsl}) as a ${input.role} brand color.`,
+    },
+    mainEntity: {
+      "@type": "Thing",
+      name: input.hex,
+      alternateName: [`${input.brandName} hex`, `${input.brandName} color code`, `${input.brandName} logo color`],
+    },
+  };
+}
+
+export function namedColorJsonLd(input: {
+  name: string;
+  slug: string;
+  hex: string;
+  rgb: string;
+  description: string;
+}) {
+  const url = absoluteUrl(`/color-names/${input.slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: `${input.name} color`,
+    url,
+    description: input.description,
+    isPartOf: { "@id": `${SITE_URL}/#website` },
+    about: {
+      "@type": "DefinedTerm",
+      name: `${input.name} color`,
+      termCode: input.hex,
+      description: `${input.name} color hex code is ${input.hex} (${input.rgb}).`,
+    },
+    mainEntity: {
+      "@type": "Thing",
+      name: `${input.name} color`,
+      alternateName: [
+        `${input.name} hex`,
+        `${input.name} color code`,
+        `${input.name} colour`,
+        input.hex,
+      ],
+    },
+  };
+}

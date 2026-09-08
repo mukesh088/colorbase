@@ -117,7 +117,7 @@ export const SUITE_TOOLS: ToolDefinition[] = [
   t("dice-roller", "Dice Roller", "Dice", "Roll virtual dice with custom sides and count.", "utility-tools", ["dice roller", "roll dice"], "Dice5"),
   t("coin-flip", "Coin Flip", "Coin Flip", "Flip a virtual coin for heads or tails decisions.", "utility-tools", ["coin flip", "heads or tails"], "Circle"),
   t("timestamp-converter", "Timestamp Converter", "Timestamp", "Convert between human dates and Unix timestamps.", "utility-tools", ["timestamp converter", "epoch"], "Clock", ["unix-timestamp-converter"]),
-  t("unix-timestamp-converter", "Unix Timestamp Converter", "Unix Time", "Convert Unix epoch seconds/milliseconds to local dates.", "utility-tools", ["unix timestamp", "epoch converter"], "Clock", ["timestamp-converter"]),
+  t("unix-timestamp-converter", "Unix Timestamp Converter", "Unix Time", "Convert Unix timestamps with timezone conversion, date picker, one-click copy, calculator, history, and JSON batch mode.", "utility-tools", ["unix timestamp", "epoch converter", "timezone converter", "timestamp calculator"], "Clock", ["timestamp-converter"]),
 
   // —— Games ——
   t("2048", "2048", "2048", "Slide and merge tiles to reach 2048 in this classic animated puzzle.", "games", ["2048", "2048 game", "tile puzzle"], "Gamepad2", ["sliding-puzzle", "sudoku"]),

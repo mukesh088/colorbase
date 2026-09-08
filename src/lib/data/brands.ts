@@ -87,6 +87,26 @@ export const BRANDS: BrandPalette[] = [
   { slug: "ferrari", name: "Ferrari", overview: "Ferrari rosso corsa is the definitive racing red.", category: "Auto", primary: ["#FF2800", "#000000"], secondary: ["#FFFFFF", "#FFF200"], related: ["audi", "bmw", "lamborghini"] },
   { slug: "toyota", name: "Toyota", overview: "Toyota red supports reliable, global automotive branding.", category: "Auto", primary: ["#EB0A1E", "#FFFFFF"], secondary: ["#000000"], related: ["honda", "tesla", "bmw"] },
   { slug: "honda", name: "Honda", overview: "Honda red is friendly and engineering-driven.", category: "Auto", primary: ["#E40521", "#000000"], secondary: ["#FFFFFF"], related: ["toyota", "nissan", "bmw"] },
+  { slug: "coca-cola", name: "Coca-Cola", overview: "Coca-Cola red is among the most recognized beverage colors in the world.", category: "Food", primary: ["#F40009", "#FFFFFF"], secondary: ["#1E1E1E", "#F8F8F8"], related: ["pepsi", "starbucks", "mcdonalds"] },
+  { slug: "pepsi", name: "Pepsi", overview: "Pepsi's red, white, and blue globe is a classic global refreshment identity.", category: "Food", primary: ["#004B93", "#C8102E", "#FFFFFF"], secondary: ["#005CB4", "#000000"], related: ["coca-cola", "starbucks", "mcdonalds"] },
+  { slug: "starbucks", name: "Starbucks", overview: "Starbucks siren green signals coffee, community, and the café experience.", category: "Food", primary: ["#006241", "#FFFFFF"], secondary: ["#1E3932", "#D4E9E2"], related: ["coca-cola", "mcdonalds", "pepsi"] },
+  { slug: "mcdonalds", name: "McDonald's", overview: "McDonald's golden arches yellow and restaurant red are iconic fast-food colors.", category: "Food", primary: ["#FFC72C", "#DA291C"], secondary: ["#27251F", "#FFFFFF"], related: ["starbucks", "coca-cola", "pepsi"] },
+  { slug: "ikea", name: "IKEA", overview: "IKEA blue and yellow make home furnishings instantly recognizable worldwide.", category: "Retail", primary: ["#0058A3", "#FFCC00"], secondary: ["#FFFFFF", "#111111"], related: ["target", "walmart", "amazon"] },
+  { slug: "target", name: "Target", overview: "Target red is a bullseye of American retail branding.", category: "Retail", primary: ["#CC0000", "#FFFFFF"], secondary: ["#000000", "#F7F7F7"], related: ["walmart", "ikea", "amazon"] },
+  { slug: "walmart", name: "Walmart", overview: "Walmart spark blue and yellow communicate everyday low prices and scale.", category: "Retail", primary: ["#0071CE", "#FFC220"], secondary: ["#FFFFFF", "#041E42"], related: ["target", "amazon", "ikea"] },
+  { slug: "snapchat", name: "Snapchat", overview: "Snapchat yellow is playful, ephemeral, and built for camera-first social.", category: "Social", primary: ["#FFFC00", "#000000"], secondary: ["#FFFFFF", "#F23C57"], related: ["tiktok", "instagram", "discord"] },
+  { slug: "twitch", name: "Twitch", overview: "Twitch purple owns live streaming and creator culture.", category: "Media", primary: ["#9146FF", "#0E0E10"], secondary: ["#FFFFFF", "#00F5D4"], related: ["discord", "youtube", "steam"] },
+  { slug: "shopify", name: "Shopify", overview: "Shopify green represents independent commerce and online storefronts.", category: "Commerce", primary: ["#008060", "#002E25"], secondary: ["#FFFFFF", "#95BF47"], related: ["stripe", "amazon", "etsy"] },
+  { slug: "ibm", name: "IBM", overview: "IBM blue is a landmark of enterprise computing and 8-bar heritage.", category: "Tech", primary: ["#0F62FE", "#161616"], secondary: ["#FFFFFF", "#0043CE"], related: ["microsoft", "oracle", "salesforce"] },
+  { slug: "oracle", name: "Oracle", overview: "Oracle red anchors databases, cloud, and enterprise software branding.", category: "Cloud", primary: ["#C74634", "#312D2A"], secondary: ["#FFFFFF", "#F80000"], related: ["ibm", "salesforce", "aws"] },
+  { slug: "salesforce", name: "Salesforce", overview: "Salesforce cloud blue is the color of CRM and customer companies.", category: "Cloud", primary: ["#00A1E0", "#032D60"], secondary: ["#FFFFFF", "#0B5CAB"], related: ["oracle", "ibm", "slack"] },
+  { slug: "amex", name: "American Express", overview: "American Express blue signals premium cards and global payments.", category: "Finance", primary: ["#006FCF", "#00175A"], secondary: ["#FFFFFF", "#99C6EB"], related: ["visa", "mastercard", "paypal"] },
+  { slug: "booking", name: "Booking.com", overview: "Booking.com blue is a staple of online travel and accommodation search.", category: "Travel", primary: ["#003580", "#009FE3"], secondary: ["#FFFFFF", "#00224F"], related: ["airbnb", "tripadvisor", "uber"] },
+  { slug: "lyft", name: "Lyft", overview: "Lyft pink is friendly, urban, and built for rideshare.", category: "Transport", primary: ["#FF00BF", "#000000"], secondary: ["#FFFFFF", "#352384"], related: ["uber", "airbnb", "google-maps"] },
+  { slug: "telegram", name: "Telegram", overview: "Telegram sky blue stands for fast, cloud-based messaging.", category: "Social", primary: ["#26A5E4", "#FFFFFF"], secondary: ["#0088CC", "#182533"], related: ["whatsapp", "messenger", "discord"] },
+  { slug: "atlassian", name: "Atlassian", overview: "Atlassian's multi-blue system powers Jira, Confluence, and team software.", category: "Developer", primary: ["#0052CC", "#2684FF"], secondary: ["#36B37E", "#FF5630", "#FFFFFF"], related: ["bitbucket", "github", "slack"] },
+  { slug: "nissan", name: "Nissan", overview: "Nissan red supports global automotive and EV branding.", category: "Auto", primary: ["#C3002F", "#000000"], secondary: ["#FFFFFF", "#1A1A1A"], related: ["honda", "toyota", "bmw"] },
+  { slug: "lg", name: "LG", overview: "LG wine-red branding spans TVs, appliances, and consumer electronics.", category: "Tech", primary: ["#A50034", "#000000"], secondary: ["#FFFFFF", "#ED1C24"], related: ["samsung", "sony", "dell"] },
 ];
 
 export function getBrandBySlug(slug: string) {
@@ -106,7 +126,8 @@ export function searchBrands(query: string) {
     (b) =>
       b.name.toLowerCase().includes(q) ||
       b.category.toLowerCase().includes(q) ||
-      b.overview.toLowerCase().includes(q)
+      b.overview.toLowerCase().includes(q) ||
+      brandAllColors(b).some((c) => c.toLowerCase().includes(q.replace(/^#/, "")))
   );
 }
 
@@ -116,4 +137,58 @@ export function brandAllColors(brand: BrandPalette) {
 
 export function getBrandCategories() {
   return [...new Set(BRANDS.map((b) => b.category))].sort();
+}
+
+export type BrandHexRole = "primary" | "secondary";
+
+export interface BrandHexEntry {
+  brand: BrandPalette;
+  hex: string;
+  hexSlug: string;
+  role: BrandHexRole;
+}
+
+function uniqueNormalized(hexes: string[]) {
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const hex of hexes) {
+    const n = normalizeHex(hex);
+    const key = n.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    out.push(n);
+  }
+  return out;
+}
+
+export function getAllBrandHexEntries(): BrandHexEntry[] {
+  return BRANDS.flatMap((brand) => {
+    const primary = uniqueNormalized(brand.primary);
+    const primaryKeys = new Set(primary.map((h) => h.toLowerCase()));
+    const secondary = uniqueNormalized(brand.secondary).filter((h) => !primaryKeys.has(h.toLowerCase()));
+    return [
+      ...primary.map((hex) => ({
+        brand,
+        hex,
+        hexSlug: hex.slice(1).toLowerCase(),
+        role: "primary" as const,
+      })),
+      ...secondary.map((hex) => ({
+        brand,
+        hex,
+        hexSlug: hex.slice(1).toLowerCase(),
+        role: "secondary" as const,
+      })),
+    ];
+  });
+}
+
+export function getBrandHexEntry(slug: string, hexParam: string): BrandHexEntry | undefined {
+  const wanted = hexParam.replace(/^#/, "").toLowerCase();
+  return getAllBrandHexEntries().find((e) => e.brand.slug === slug && e.hexSlug === wanted);
+}
+
+export function getBrandsUsingHex(hex: string) {
+  const key = normalizeHex(hex).toLowerCase();
+  return BRANDS.filter((b) => brandAllColors(b).some((c) => c.toLowerCase() === key));
 }

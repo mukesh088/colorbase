@@ -107,7 +107,7 @@ export function ColorNamesExplorer() {
                     style={{ backgroundColor: c.hex }}
                   />
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-medium">{c.name}</span>
+                    <span className="block truncate text-sm font-medium">{c.displayName}</span>
                     <span className="block text-[11px] capitalize text-muted-foreground">
                       {c.family}
                     </span>
@@ -154,7 +154,7 @@ export function ColorNamesExplorer() {
                 <LibraryColorCard
                   href={`/color-names/${c.slug}`}
                   hex={c.hex}
-                  name={c.name}
+                  name={c.displayName}
                   meta={FAMILY_LABELS[c.family as ColorFamily] ?? c.family}
                 />
               </div>

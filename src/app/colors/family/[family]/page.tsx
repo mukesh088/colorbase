@@ -19,6 +19,8 @@ export function generateStaticParams() {
   return COLOR_FAMILIES.map((family) => ({ family }));
 }
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params,
 }: {

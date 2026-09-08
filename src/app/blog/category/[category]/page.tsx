@@ -11,6 +11,8 @@ export function generateStaticParams() {
   return BLOG_CATEGORIES.map((category) => ({ category }));
 }
 
+export const dynamic = "force-static";
+
 export async function generateMetadata({
   params,
 }: {

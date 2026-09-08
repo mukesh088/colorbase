@@ -11,7 +11,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getAllGradients().slice(0, 280).map((g) => ({ slug: g.slug }));
+  return getAllGradients().map((g) => ({ slug: g.slug }));
 }
 
 export async function generateMetadata({

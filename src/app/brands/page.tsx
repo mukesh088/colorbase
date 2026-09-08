@@ -1,17 +1,28 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { SITE_URL } from "@/lib/site-config";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
-import { BRANDS, getBrandCategories, brandAllColors } from "@/lib/data/brands";
+import { BRANDS, getBrandCategories, brandAllColors, getAllBrandHexEntries } from "@/lib/data/brands";
 import { BrandSearch } from "@/components/library/brand-search";
 import { BrandCard } from "@/components/library/brand-card";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = createPageMetadata({
-  title: "Brand Color Library",
+  title: "Brand Hex Color Codes",
   description:
-    "Search publicly recognized brand color palettes for Meta, Google, Apple, Netflix, Spotify, Nike, and 70+ more companies.",
+    "Official brand hex color codes for Google, Apple, Spotify, Netflix, Nike, Facebook, and 70+ companies. Copy logo HEX, RGB, and CSS values.",
   path: "/brands",
-  keywords: ["brand colors", "logo colors", "company color palette"],
+  keywords: [
+    "brand hex colors",
+    "brand color codes",
+    "logo hex color",
+    "company hex colors",
+    "spotify hex",
+    "facebook hex color",
+  ],
 });
 
 export default function BrandsPage() {
@@ -21,20 +32,35 @@ export default function BrandsPage() {
   ];
   const categories = getBrandCategories();
 
+  const brandListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Brand hex color codes",
+    description: "Index of company brand palettes with official hex color codes.",
+    url: `${SITE_URL}/brands`,
+    numberOfItems: BRANDS.length,
+    itemListElement: BRANDS.map((brand, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${brand.name} hex colors ${brandAllColors(brand).join(", ")}`,
+      url: `${SITE_URL}/brands/${brand.slug}`,
+    })),
+  };
+
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
-      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      <JsonLd data={[breadcrumbJsonLd(crumbs), brandListLd]} />
       <Breadcrumbs items={crumbs} />
       <header className="max-w-3xl">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
           Brand systems
         </p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Brand Color Library
+          Brand Hex Color Codes
         </h1>
         <p className="mt-3 text-muted-foreground">
-          {BRANDS.length} searchable brand palettes with primary/secondary colors, HEX/RGB/CMYK, CSS
-          variables, Tailwind classes, and downloads.
+          {BRANDS.length} company palettes with official logo hex colors, RGB, CMYK, CSS variables, and
+          Tailwind classes. Search a brand name or hex code.
         </p>
       </header>
 
@@ -70,6 +96,25 @@ export default function BrandsPage() {
           </div>
         ))}
       </div>
+
+      <nav aria-label="All brand hex color pages" className="mt-16 border-t border-border/40 pt-10">
+        <h2 className="font-display text-xl font-semibold tracking-tight">All brand hex color pages</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Index of every brand name paired with its hex color code for search engines and quick lookup.
+        </p>
+        <ul className="mt-6 columns-1 gap-x-8 text-sm sm:columns-2 lg:columns-3">
+          {getAllBrandHexEntries().map((entry) => (
+            <li key={`${entry.brand.slug}-${entry.hexSlug}`} className="mb-1.5 break-inside-avoid">
+              <Link
+                href={`/brands/${entry.brand.slug}/${entry.hexSlug}`}
+                className="text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                {entry.brand.name} {entry.hex}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 }

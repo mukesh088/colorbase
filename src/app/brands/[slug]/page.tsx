@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, brandPaletteJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -19,6 +19,8 @@ import { PaletteStrip } from "@/components/library/palette-strip";
 import { BrandCard } from "@/components/library/brand-card";
 import { Card, CardContent } from "@/components/ui/card";
 
+export const dynamic = "force-static";
+
 export function generateStaticParams() {
   return BRANDS.map((b) => ({ slug: b.slug }));
 }
@@ -32,10 +34,18 @@ export async function generateMetadata({
   const brand = getBrandBySlug(slug);
   if (!brand) return {};
   return createPageMetadata({
-    title: `${brand.name} Brand Colors`,
-    description: `${brand.name} color palette with HEX, RGB, CMYK, CSS variables, Tailwind classes, and downloads. ${brand.overview}`,
+    title: `${brand.name} Hex Colors & Brand Color Codes`,
+    description: `${brand.name} brand hex colors: ${brandAllColors(brand).join(", ")}. Copy HEX, RGB, CMYK, CSS variables, and Tailwind classes for the ${brand.name} logo and UI.`,
     path: `/brands/${brand.slug}`,
-    keywords: [`${brand.name} colors`, `${brand.name} hex`, `${brand.name} brand palette`],
+    keywords: [
+      `${brand.name} colors`,
+      `${brand.name} hex`,
+      `${brand.name} hex color`,
+      `${brand.name} color code`,
+      `${brand.name} logo color`,
+      `${brand.name} brand palette`,
+      ...brandAllColors(brand),
+    ],
   });
 }
 
@@ -52,14 +62,29 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   ];
   const faqs = [
     {
-      question: `What are ${brand.name}'s primary brand colors?`,
-      answer: `${brand.name} primary colors include ${brand.primary.join(", ")}.`,
+      question: `What are ${brand.name}'s brand hex colors?`,
+      answer: `${brand.name} brand hex colors are ${colors.join(", ")}. Primary colors: ${brand.primary.join(", ")}.`,
+    },
+    {
+      question: `What is the ${brand.name} logo color code?`,
+      answer: `The main ${brand.name} logo / primary hex color${brand.primary.length === 1 ? " is" : "s are"} ${brand.primary.join(", ")}.`,
     },
   ];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
-      <JsonLd data={[breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(crumbs),
+          faqJsonLd(faqs),
+          brandPaletteJsonLd({
+            name: brand.name,
+            slug: brand.slug,
+            description: `${brand.name} brand hex color codes: ${colors.join(", ")}.`,
+            colors,
+          }),
+        ]}
+      />
       <Breadcrumbs items={crumbs} />
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div>
@@ -67,9 +92,11 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
             {brand.category}
           </p>
           <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-            {brand.name} Brand Colors
+            {brand.name} Hex Colors
           </h1>
-          <p className="mt-3 max-w-3xl text-muted-foreground">{brand.overview}</p>
+          <p className="mt-3 max-w-3xl text-muted-foreground">
+            {brand.overview} Official {brand.name} hex color codes: {colors.join(", ")}.
+          </p>
         </div>
         <ShareButtons title={`${brand.name} colors`} path={`/brands/${brand.slug}`} />
       </div>
@@ -100,6 +127,12 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                 <p className="font-mono text-xs text-muted-foreground">{a.cssVar}</p>
                 <p className="font-mono text-xs text-muted-foreground">bg-{a.tailwind}</p>
                 <CopyButton value={a.hex} label="Copy HEX" className="w-full" />
+                <Link
+                  href={`/brands/${brand.slug}/${a.hex.slice(1).toLowerCase()}`}
+                  className="block text-center text-xs font-medium text-primary underline-offset-4 hover:underline"
+                >
+                  {brand.name} hex {a.hex} page
+                </Link>
               </CardContent>
             </Card>
           );
@@ -111,7 +144,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         {brand.secondary.map((hex, index) => (
           <Link
             key={`${brand.slug}-secondary-${hex}-${index}`}
-            href={`/color/${hex.slice(1)}`}
+            href={`/brands/${brand.slug}/${hex.slice(1).toLowerCase()}`}
             className="card-lift block overflow-hidden rounded-3xl"
           >
             <ColorSwatch hex={hex} size="lg" />
