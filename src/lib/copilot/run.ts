@@ -6,7 +6,7 @@ import {
   systemFromTokens,
 } from "@/lib/copilot/engine";
 import { heuristicIntent } from "@/lib/copilot/heuristic";
-import { completeCopilotJson } from "@/lib/copilot/provider";
+import { completeCopilotJson, parseModelJson } from "@/lib/copilot/provider";
 import { parseIntentJson, type CopilotRequest } from "@/lib/copilot/schema";
 import {
   tokenMap,
@@ -56,8 +56,26 @@ ${tokens || "(none)"}
 Recent refinements: ${req.history?.slice(-6).join(" | ") || "(none)"}`;
 }
 
+function fallbackNotice(reason: string) {
+  if (!process.env.OPENAI_API_KEY?.trim()) return undefined;
+  if (reason.includes("OPENAI_401") || /incorrect api key|invalid api key/i.test(reason)) {
+    return "OpenAI rejected the API key. Check OPENAI_API_KEY in .env.local, then restart the dev server. A local engine result is shown instead.";
+  }
+  if (reason.includes("OPENAI_429") || /quota|rate limit/i.test(reason)) {
+    return "OpenAI quota or rate limit was hit. A local engine result is shown instead. Your existing palette is safe.";
+  }
+  if (reason.includes("OPENAI_403") || /model/i.test(reason) && /does not exist|not found|access/i.test(reason)) {
+    return "This OpenAI account cannot use the configured model. Set OPENAI_MODEL in .env.local or check model access. A local engine result is shown instead.";
+  }
+  if (reason.includes("OPENAI_NETWORK")) {
+    return "Could not reach OpenAI from this machine. A local engine result is shown instead. Your existing palette is safe.";
+  }
+  return "We couldn't generate your color system right now. A local engine result is shown instead. Your existing palette is safe.";
+}
+
 export async function runCopilot(req: CopilotRequest): Promise<CopilotResponse> {
   let usedFallback = false;
+  let fallbackReason = "";
   let explanation = "";
   let intent: CopilotIntent;
   const previous = req.currentTokens?.length
@@ -66,11 +84,14 @@ export async function runCopilot(req: CopilotRequest): Promise<CopilotResponse> 
 
   try {
     const raw = await completeCopilotJson(req.action, req.prompt, extraContext(req));
-    const parsed = parseIntentJson(JSON.parse(raw) as unknown);
+    const parsed = parseIntentJson(parseModelJson(raw));
     explanation = parsed.explanation ?? "";
     intent = withRequestLocks(parsed, req);
-  } catch {
+  } catch (err) {
+    const reason = err instanceof Error ? err.message : "unknown";
+    console.error("[copilot] OpenAI fallback:", reason.slice(0, 300));
     usedFallback = true;
+    fallbackReason = reason;
     intent = withRequestLocks(
       heuristicIntent(
         req.prompt,
@@ -149,9 +170,6 @@ export async function runCopilot(req: CopilotRequest): Promise<CopilotResponse> 
     recommendations: reviewSystem(system),
     suggestions: suggestionsFor(intent, Boolean(darkSystem)),
     usedFallback,
-    error:
-      usedFallback && process.env.OPENAI_API_KEY
-        ? "We couldn't generate your color system right now. A local engine result is shown instead. Your existing palette is safe."
-        : undefined,
+    error: usedFallback ? fallbackNotice(fallbackReason) : undefined,
   };
 }

@@ -58,6 +58,7 @@ type Snapshot = {
   explanation: string;
   recommendations: CopilotResponse["recommendations"];
   searchHits?: CopilotResponse["searchHits"];
+  notice?: string;
 };
 
 const STORAGE_KEY = "colorbase-ai-copilot";
@@ -129,7 +130,7 @@ function AiColorCopilotInner() {
             prompt: text,
             lockedRoles: previous?.system.tokens.filter((t) => t.locked).map((t) => t.role) ?? [],
             currentTheme: previous?.system.theme,
-            history: messages.map((m) => m.text),
+            history: messages.map((m) => m.text).slice(-12),
             currentTokens: previous?.system.tokens.map((t) => ({
               role: t.role,
               hex: t.hex,
@@ -149,6 +150,7 @@ function AiColorCopilotInner() {
           explanation: data.explanation,
           recommendations: data.recommendations ?? [],
           searchHits: data.searchHits,
+          notice: data.usedFallback ? data.error : undefined,
         });
         setMessages((m) => [
           ...m,
@@ -157,8 +159,7 @@ function AiColorCopilotInner() {
         ]);
         if (data.searchHits?.length) setTab("search");
         else if (action === "review") setTab("review");
-        if (data.error) toast.message(data.error);
-        else toast.success(action === "generate" ? "Color system ready" : "Updated");
+        toast.success(action === "generate" ? "Color system ready" : "Updated");
       } catch {
         toast.error("We couldn't generate your color system right now. Your existing palette is safe.");
       } finally {
@@ -232,6 +233,12 @@ function AiColorCopilotInner() {
           </div>
         </div>
       </div>
+
+      {snapshot?.notice && (
+        <p className="rounded-2xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-900 dark:text-amber-200">
+          {snapshot.notice}
+        </p>
+      )}
 
       {system && snapshot && (
         <>
