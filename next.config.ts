@@ -19,6 +19,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  // Hostinger Node.js apps run Next in server mode and look for standalone output under .next
+  output: "standalone",
   turbopack: {
     root: path.resolve(__dirname),
   },

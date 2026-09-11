@@ -18,17 +18,34 @@ Optional (if you use analytics elsewhere later):
 ```
 
 ## 3. Build & start (Node.js hosting)
-Hostinger Node.js app typical commands:
+
+This is a **Next.js server app** (SSR + API routes). Do **not** deploy it as a static site and do **not** use `out/` as the output folder.
+
+In hPanel → Node.js / Deploy settings, use:
+
+| Field | Value |
+| --- | --- |
+| Application type / framework | **Next.js** (`next`) |
+| Root directory | `/` (repo root, where `package.json` lives) |
+| Node.js version | **20** or **22** |
+| Package manager | **npm** |
+| Build script | **build** (`npm run build`) |
+| Output directory | **`.next`** |
+| Entry file | **leave empty** (Hostinger ignores it for Next.js and starts the standalone server) |
+
+`Entry file` and `Output directory` both being `null` is a panel misconfiguration, not a Next.js compile error. If those stay empty, Hostinger cannot find the standalone server after `next build`.
+
+Typical commands Hostinger runs:
 
 ```bash
 npm install
 npm run build
-npm start
 ```
 
-- **Application root:** project folder
-- **Start command:** `npm start` (runs `next start`)
+- **Application root:** project folder (GitHub repo root)
 - **Node version:** 20.x or 22.x LTS recommended
+
+Also set `OPENAI_API_KEY` (and optional `OPENAI_MODEL`) if AI Color Copilot should call OpenAI in production.
 
 ### After every deploy (important)
 Next.js hashes files under `/_next/static/`. HTML that still points at an old hash will 404 those JS/CSS files (often as `text/plain`), which shows up as `ChunkLoadError` and missing styles — especially after Ctrl+F5 if a CDN kept old HTML.
