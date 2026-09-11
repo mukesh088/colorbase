@@ -18,6 +18,11 @@ export function Footer() {
         <div>
           <p className="mb-2 text-sm font-semibold">Our Tools</p>
           <ul className="space-y-1 text-sm text-muted-foreground">
+            <li>
+              <Link href="/ai-color-copilot" className="font-semibold text-rose-600 hover:text-rose-500 dark:text-rose-400">
+                Copilot
+              </Link>
+            </li>
             <li><Link href="/tools" className="hover:text-foreground">All tools</Link></li>
             <li><Link href="/tools?category=css-generators" className="hover:text-foreground">CSS Tools</Link></li>
             <li><Link href="/tools?category=developer-tools" className="hover:text-foreground">Developer Tools</Link></li>

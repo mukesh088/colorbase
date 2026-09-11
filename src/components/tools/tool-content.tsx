@@ -24,6 +24,9 @@ const GradientGenerator = dynamic(() =>
 const PaletteGeneratorTool = dynamic(() =>
   import("@/components/tools/palette-generator").then((m) => m.PaletteGeneratorTool)
 );
+const AiColorCopilotTool = dynamic(() =>
+  import("@/components/tools/ai-color-copilot").then((m) => m.AiColorCopilotTool)
+);
 const ContrastCheckerTool = dynamic(() =>
   import("@/components/tools/contrast-checker").then((m) => m.ContrastCheckerTool)
 );
@@ -205,6 +208,8 @@ export function ToolContent({ slug }: { slug: string }) {
       return <GradientGenerator defaultType="radial" />;
     case "conic-gradient-generator":
       return <GradientGenerator defaultType="conic" />;
+    case "ai-color-copilot":
+      return <AiColorCopilotTool />;
     case "palette-generator":
       return <PaletteGeneratorTool />;
     case "random-color-generator":

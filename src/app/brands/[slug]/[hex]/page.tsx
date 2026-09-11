@@ -10,12 +10,15 @@ import {
   getBrandsUsingHex,
   brandAllColors,
 } from "@/lib/data/brands";
-import { analyzeColor } from "@/lib/colors/spaces";
+import { analyzeColor, getShades, getTints } from "@/lib/colors/spaces";
 import { formatRgb, formatHsl, rgbToHsl, hexToRgb } from "@/lib/colors/convert";
 import { CopyButton } from "@/components/color/copy-button";
 import { CodeExportPanel } from "@/components/library/code-export-panel";
 import { ShareButtons } from "@/components/library/share-buttons";
 import { BrandCard } from "@/components/library/brand-card";
+import { BrandLogo } from "@/components/library/brand-logo";
+import { BrandPaletteDownload } from "@/components/library/brand-palette-download";
+import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { Card, CardContent } from "@/components/ui/card";
 
 export const dynamic = "force-static";
@@ -110,16 +113,28 @@ export default async function BrandHexPage({
       <Breadcrumbs items={crumbs} />
 
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
-        <div className="max-w-3xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
-            {brand.name} · {role} brand color
-          </p>
-          <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-            {brand.name} Hex Color {entry.hex.toUpperCase()}
-          </h1>
-          <p className="mt-3 text-muted-foreground">{description}</p>
+        <div className="flex max-w-3xl gap-4">
+          <Link
+            href={`/brands/${brand.slug}`}
+            className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-border/50 bg-white sm:flex dark:bg-card"
+            aria-label={`${brand.name} palette`}
+          >
+            <BrandLogo slug={brand.slug} name={brand.name} colors={palette} size="sm" />
+          </Link>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
+              {brand.name} · {role} brand color
+            </p>
+            <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+              {brand.name} Hex Color {entry.hex.toUpperCase()}
+            </h1>
+            <p className="mt-3 text-muted-foreground">{description}</p>
+          </div>
         </div>
-        <ShareButtons title={`${brand.name} hex ${entry.hex}`} path={path} />
+        <div className="flex flex-col items-start gap-3 sm:items-end">
+          <BrandPaletteDownload name={brand.name} colors={palette} />
+          <ShareButtons title={`${brand.name} hex ${entry.hex}`} path={path} />
+        </div>
       </div>
 
       <div
@@ -150,6 +165,14 @@ export default async function BrandHexPage({
           </Card>
         ))}
       </div>
+
+      <section className="mt-10 space-y-5 rounded-[1.5rem] border border-border/50 bg-white p-5 dark:bg-card sm:p-6">
+        <h2 className="font-display text-xl font-semibold tracking-tight">
+          Tints and shades of {entry.hex.toUpperCase()}
+        </h2>
+        <BrandScaleRow label="Tints" colors={getTints(entry.hex, 8)} />
+        <BrandScaleRow label="Shades" colors={[...getShades(entry.hex, 8)].reverse()} />
+      </section>
 
       <div className="mt-8 grid gap-3 font-mono text-sm text-muted-foreground sm:grid-cols-2">
         <p>CSS {a.cssVar}</p>

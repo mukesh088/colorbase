@@ -34,6 +34,28 @@ export const GLOBAL_FAQS: FAQItem[] = [
 ];
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
+  "ai-color-copilot": [
+    {
+      question: "Does ColorBase AI invent hex math?",
+      answer:
+        "No. The Copilot extracts design intent (industry, mood, theme, constraints). A deterministic color engine calculates HEX, RGB, HSL, OKLCH, contrast, shades, and dark mode. Contrast ratios are never taken from the language model.",
+    },
+    {
+      question: "Are my prompts or palettes stored on a server?",
+      answer:
+        "The current system stays in your browser (session). If an OpenAI key is configured on the server, only intent text is sent to generate structured JSON — not screenshots or files. Deterministic operations never call the API.",
+    },
+    {
+      question: "What happens if AI is unavailable?",
+      answer:
+        "Your existing palette is kept. ColorBase falls back to a local intent parser and the same color engine so you can still generate a professional system.",
+    },
+    {
+      question: "How do locked colors work?",
+      answer:
+        "Lock any role (for example Primary #2563EB). Refinements such as “make the rest more professional” will not change locked tokens.",
+    },
+  ],
   "color-wheel": [
     {
       question: "How do I pick a color on the wheel?",
@@ -402,9 +424,24 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
   ],
   "svg-optimizer": [
     {
+      question: "Is this like SVGOMG?",
+      answer:
+        "Yes — open or paste an SVG, toggle cleanup plugins, compare original vs optimized (including gzip size), then copy or download. Processing stays in your browser.",
+    },
+    {
+      question: "Are my files uploaded?",
+      answer:
+        "No. Optimization runs locally with the DOM parser. Nothing is sent to a server.",
+    },
+    {
       question: "Is optimization safe?",
       answer:
-        "Scripts, event handlers, and javascript: URLs are stripped, then comments/whitespace are minified. Always preview before shipping.",
+        "Scripts, event handlers, javascript: URLs, and foreignObject are stripped by default. Always preview before shipping production assets.",
+    },
+    {
+      question: "What does Compare gzipped mean?",
+      answer:
+        "SVGs are usually served gzipped. This estimates compressed size so savings match what users actually download.",
     },
   ],
   "css-filter-generator": [

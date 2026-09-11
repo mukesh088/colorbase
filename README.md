@@ -36,7 +36,11 @@ Copy `.env.example` to `.env.local`:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://colorbase.in
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-4o-mini
 ```
+
+`OPENAI_API_KEY` is server-only (never `NEXT_PUBLIC_`). The AI Color Copilot uses it at `/api/ai/color-copilot`. Without a key, a local intent parser still builds palettes.
 
 ## Deploy on Hostinger
 

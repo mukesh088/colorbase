@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { getAllGradients, getGradient } from "@/lib/data/gradient-library";
 import { CopyButton } from "@/components/color/copy-button";
 import { ShareButtons } from "@/components/library/share-buttons";
+import { GradientJpgButton } from "@/components/library/gradient-jpg-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const dynamicParams = true;
@@ -54,11 +55,21 @@ export default async function GradientDetailPage({ params }: { params: Promise<{
         <ShareButtons title={g.name} path={`/gradient-library/${g.slug}`} />
       </div>
       <div
-        className="h-56 rounded-3xl border border-border/50"
+        className="h-40 w-full rounded-none border border-border/50 sm:h-48 sm:rounded-3xl"
         style={{ background: g.css }}
         role="img"
         aria-label={`${g.name} preview`}
       />
+      <div className="mt-6 flex flex-wrap gap-2">
+        <GradientJpgButton gradient={g} />
+        <a
+          className="inline-flex h-10 items-center rounded-lg border border-input px-4 text-sm hover:bg-accent"
+          href={`data:text/css;charset=utf-8,${encodeURIComponent(file)}`}
+          download={`${g.slug}.css`}
+        >
+          Download CSS
+        </a>
+      </div>
       <div className="mt-6 grid gap-4">
         {[
           ["CSS", cssBlock],
@@ -76,13 +87,6 @@ export default async function GradientDetailPage({ params }: { params: Promise<{
           </Card>
         ))}
       </div>
-      <a
-        className="mt-4 inline-flex h-10 items-center rounded-lg border border-input px-4 text-sm hover:bg-accent"
-        href={`data:text/css;charset=utf-8,${encodeURIComponent(file)}`}
-        download={`${g.slug}.css`}
-      >
-        Download CSS
-      </a>
     </div>
   );
 }

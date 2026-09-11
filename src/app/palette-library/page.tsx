@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { PALETTE_CATEGORIES, getAllPalettes, getPalettesByCategory } from "@/lib/data/palette-library";
 import { PaletteCard } from "@/components/library/palette-card";
+import { GeneratedPaletteShelf } from "@/components/library/generated-palette-shelf";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Palette Library",
@@ -33,11 +34,12 @@ export default function PaletteLibraryPage() {
         </h1>
         <p className="mt-3 text-muted-foreground">
           {getAllPalettes().length.toLocaleString()} curated palettes with accessibility scores, export, and
-          sharing.
+          sharing. Heart a palette to add your star — counts start between 30 and 2,000.
         </p>
       </header>
 
       <div className="mt-10 space-y-12">
+        <GeneratedPaletteShelf />
         {PALETTE_CATEGORIES.map((category) => {
           const items = getPalettesByCategory(category).slice(0, 6);
           return (
@@ -62,6 +64,7 @@ export default function PaletteLibraryPage() {
                   >
                     <PaletteCard
                       href={`/palette-library/${p.slug}`}
+                      id={p.slug}
                       name={p.name}
                       colors={p.colors}
                       meta={`A11y ${p.accessibilityScore}`}

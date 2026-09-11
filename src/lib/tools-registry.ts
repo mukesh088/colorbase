@@ -168,11 +168,32 @@ export const TOOLS: ToolDefinition[] = [
     related: ["radial-gradient-generator", "color-wheel", "gradient-generator"],
   },
   {
+    slug: "ai-color-copilot",
+    title: "AI Color Copilot",
+    shortTitle: "AI Copilot",
+    description:
+      "Create accessible color palettes, design systems, dark modes and production-ready CSS, Tailwind and design tokens with AI.",
+    keywords: [
+      "ai color copilot",
+      "ai color generator",
+      "ai color system",
+      "ai palette generator",
+      "accessible color palette",
+      "tailwind color generator",
+      "dark mode generator",
+    ],
+    category: "palettes",
+    icon: "Wand2",
+    featured: true,
+    popular: true,
+    related: ["palette-generator", "contrast-checker", "palette-export", "popular-ui-colors"],
+  },
+  {
     slug: "palette-generator",
     title: "Palette Generator",
     shortTitle: "Palettes",
     description:
-      "Generate harmonious color palettes from any base color. Complementary, triadic, analogous, and more.",
+      "Generate palettes like Coolors: full-screen colors, add or delete swatches, lock, download, and share a hex URL.",
     keywords: ["palette generator", "color palette", "color scheme"],
     category: "palettes",
     icon: "SwatchBook",
@@ -633,6 +654,21 @@ export const STATIC_PAGES = [
   { slug: "developers", title: "Developer Resources", description: "Export colors to CSS, Tailwind, Flutter, and more." },
   { slug: "blog", title: "Blog", description: "Articles on color, design, and accessibility." },
   { slug: "image-tools", title: "Image Color Tools", description: "Extract palettes and histograms from images." },
+  {
+    slug: "ai-color-palette-generator",
+    title: "AI Color Palette Generator",
+    description: "Natural-language AI color palette generator that outputs a semantic, accessible UI system.",
+  },
+  {
+    slug: "ai-accessible-color-palette",
+    title: "AI Accessible Color Palette",
+    description: "Generate WCAG AA and AAA color systems with automatic contrast repair.",
+  },
+  {
+    slug: "ai-tailwind-color-generator",
+    title: "AI Tailwind Color Generator",
+    description: "Generate Tailwind-ready semantic colors and 50–950 shade scales from a product description.",
+  },
   {
     slug: "tools",
     title: "Our Tools",

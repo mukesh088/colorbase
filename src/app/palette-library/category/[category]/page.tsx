@@ -60,6 +60,7 @@ export default async function PaletteCategoryPage({
           >
             <PaletteCard
               href={`/palette-library/${p.slug}`}
+              id={p.slug}
               name={p.name}
               colors={p.colors}
               meta={`A11y ${p.accessibilityScore}`}

@@ -92,7 +92,7 @@ export function modeHint(mode: ImageStudioMode) {
     "png-to-jpg": "Convert PNG to JPEG with background fill and quality control.",
     "jpg-to-png": "Convert JPEG to lossless PNG for sharper edges and transparency workflows.",
     "webp-converter": "Export modern WebP for faster pages with tunable quality.",
-    "svg-optimizer": "Minify SVG markup, preview safely, and download the optimized file.",
+    "svg-optimizer": "SVGO-style minify with live preview, plugin toggles, and gzip size compare — entirely in your browser.",
     "blur-image": "Blur, brightness, contrast, saturate, and grayscale — preview then apply.",
     "image-crop": "Drag the frame, lock ratios or circle mask, then download the crop.",
     "rotate-image": "Rotate by free angle or snap to 90° / 180° / 270°.",

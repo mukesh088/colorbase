@@ -1,3 +1,5 @@
+import { FOOTBALL_BRANDS } from "@/lib/data/football-brands";
+import { FOOD_BRANDS } from "@/lib/data/food-brands";
 import { normalizeHex } from "@/lib/colors/convert";
 
 export interface BrandPalette {
@@ -60,7 +62,7 @@ export const BRANDS: BrandPalette[] = [
   { slug: "notion", name: "Notion", overview: "Notion's monochrome brand supports flexible docs and wikis.", category: "Productivity", primary: ["#000000", "#FFFFFF"], secondary: ["#EB5757", "#2F80ED", "#27AE60"], related: ["slack", "figma", "dropbox"] },
   { slug: "dropbox", name: "Dropbox", overview: "Dropbox blue stands for cloud storage and file collaboration.", category: "Cloud", primary: ["#0061FF", "#FFFFFF"], secondary: ["#F7F9FC", "#1E1919"], related: ["google", "microsoft", "box"] },
   { slug: "zoom", name: "Zoom", overview: "Zoom blue became the color of remote meetings worldwide.", category: "Productivity", primary: ["#0B5CFF", "#2D8CFF"], secondary: ["#FFFFFF", "#0E72ED"], related: ["microsoft", "slack", "google"] },
-  { slug: "uber", name: "Uber", overview: "Uber black is bold, urban, and mobility-focused.", category: "Transport", primary: ["#000000", "#FFFFFF"], secondary: ["#276EF1", "#06C167"], related: ["lyft", "google-maps", "tesla"] },
+  { slug: "uber", name: "Uber", overview: "Uber black is bold, urban, and mobility-focused.", category: "Transport", primary: ["#000000", "#FFFFFF"], secondary: ["#276EF1", "#06C167"], related: ["lyft", "uber-eats", "google-maps"] },
   { slug: "airbnb", name: "Airbnb", overview: "Airbnb Rausch is a warm coral built for belonging and travel.", category: "Travel", primary: ["#FF5A5F", "#00A699"], secondary: ["#FC642D", "#484848", "#FFFFFF"], related: ["booking", "uber", "tripadvisor"] },
   { slug: "tesla", name: "Tesla", overview: "Tesla's stark monochrome identity emphasizes premium EVs.", category: "Auto", primary: ["#CC0000", "#000000", "#FFFFFF"], secondary: ["#393C41"], related: ["bmw", "mercedes-benz", "apple"] },
   { slug: "samsung", name: "Samsung", overview: "Samsung blue anchors consumer electronics and Galaxy products.", category: "Tech", primary: ["#1428A0", "#000000"], secondary: ["#FFFFFF", "#0689D8"], related: ["android", "sony", "lg"] },
@@ -89,8 +91,8 @@ export const BRANDS: BrandPalette[] = [
   { slug: "honda", name: "Honda", overview: "Honda red is friendly and engineering-driven.", category: "Auto", primary: ["#E40521", "#000000"], secondary: ["#FFFFFF"], related: ["toyota", "nissan", "bmw"] },
   { slug: "coca-cola", name: "Coca-Cola", overview: "Coca-Cola red is among the most recognized beverage colors in the world.", category: "Food", primary: ["#F40009", "#FFFFFF"], secondary: ["#1E1E1E", "#F8F8F8"], related: ["pepsi", "starbucks", "mcdonalds"] },
   { slug: "pepsi", name: "Pepsi", overview: "Pepsi's red, white, and blue globe is a classic global refreshment identity.", category: "Food", primary: ["#004B93", "#C8102E", "#FFFFFF"], secondary: ["#005CB4", "#000000"], related: ["coca-cola", "starbucks", "mcdonalds"] },
-  { slug: "starbucks", name: "Starbucks", overview: "Starbucks siren green signals coffee, community, and the café experience.", category: "Food", primary: ["#006241", "#FFFFFF"], secondary: ["#1E3932", "#D4E9E2"], related: ["coca-cola", "mcdonalds", "pepsi"] },
-  { slug: "mcdonalds", name: "McDonald's", overview: "McDonald's golden arches yellow and restaurant red are iconic fast-food colors.", category: "Food", primary: ["#FFC72C", "#DA291C"], secondary: ["#27251F", "#FFFFFF"], related: ["starbucks", "coca-cola", "pepsi"] },
+  { slug: "starbucks", name: "Starbucks", overview: "Starbucks siren green signals coffee, community, and the café experience.", category: "Food", primary: ["#006241", "#FFFFFF"], secondary: ["#1E3932", "#D4E9E2"], related: ["mcdonalds", "hellofresh", "swiggy"] },
+  { slug: "mcdonalds", name: "McDonald's", overview: "McDonald's golden arches yellow and restaurant red are iconic fast-food colors.", category: "Food", primary: ["#FFC72C", "#DA291C"], secondary: ["#27251F", "#FFFFFF"], related: ["burger-king", "kfc", "swiggy"] },
   { slug: "ikea", name: "IKEA", overview: "IKEA blue and yellow make home furnishings instantly recognizable worldwide.", category: "Retail", primary: ["#0058A3", "#FFCC00"], secondary: ["#FFFFFF", "#111111"], related: ["target", "walmart", "amazon"] },
   { slug: "target", name: "Target", overview: "Target red is a bullseye of American retail branding.", category: "Retail", primary: ["#CC0000", "#FFFFFF"], secondary: ["#000000", "#F7F7F7"], related: ["walmart", "ikea", "amazon"] },
   { slug: "walmart", name: "Walmart", overview: "Walmart spark blue and yellow communicate everyday low prices and scale.", category: "Retail", primary: ["#0071CE", "#FFC220"], secondary: ["#FFFFFF", "#041E42"], related: ["target", "amazon", "ikea"] },
@@ -107,6 +109,8 @@ export const BRANDS: BrandPalette[] = [
   { slug: "atlassian", name: "Atlassian", overview: "Atlassian's multi-blue system powers Jira, Confluence, and team software.", category: "Developer", primary: ["#0052CC", "#2684FF"], secondary: ["#36B37E", "#FF5630", "#FFFFFF"], related: ["bitbucket", "github", "slack"] },
   { slug: "nissan", name: "Nissan", overview: "Nissan red supports global automotive and EV branding.", category: "Auto", primary: ["#C3002F", "#000000"], secondary: ["#FFFFFF", "#1A1A1A"], related: ["honda", "toyota", "bmw"] },
   { slug: "lg", name: "LG", overview: "LG wine-red branding spans TVs, appliances, and consumer electronics.", category: "Tech", primary: ["#A50034", "#000000"], secondary: ["#FFFFFF", "#ED1C24"], related: ["samsung", "sony", "dell"] },
+  ...FOOTBALL_BRANDS,
+  ...FOOD_BRANDS,
 ];
 
 export function getBrandBySlug(slug: string) {

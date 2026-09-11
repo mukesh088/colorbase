@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { ColorSwatch } from "@/components/color/color-swatch";
 import { PaletteStrip } from "@/components/library/palette-strip";
 import { PaletteCard } from "@/components/library/palette-card";
+import { PaletteHeart } from "@/components/library/palette-heart";
 
 export const dynamicParams = true;
 
@@ -56,8 +57,9 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
             {p.category}
           </p>
           <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight">{p.name}</h1>
-          <div className="mt-3">
+          <div className="mt-3 flex items-center gap-3">
             <Badge>Accessibility score {p.accessibilityScore}</Badge>
+            <PaletteHeart id={p.slug} />
           </div>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -92,6 +94,7 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
           {related.map((r) => (
             <PaletteCard
               key={r.slug}
+              id={r.slug}
               href={`/palette-library/${r.slug}`}
               name={r.name}
               colors={r.colors}

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -9,6 +8,7 @@ import {
   getGradientsByCategory,
   type GradientCategory,
 } from "@/lib/data/gradient-library";
+import { GradientGallery } from "@/components/library/gradient-gallery";
 
 export function generateStaticParams() {
   return GRADIENT_CATEGORIES.map((category) => ({ category }));
@@ -49,13 +49,19 @@ export default async function GradientCategoryPage({
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
       <h1 className="font-display text-4xl font-semibold capitalize">{category} Gradients</h1>
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {items.map((g) => (
-          <Link key={g.slug} href={`/gradient-library/${g.slug}`} className="overflow-hidden rounded-2xl border border-border/50">
-            <div className="h-32" style={{ background: g.css }} />
-            <p className="px-3 py-2 text-sm font-medium">{g.name}</p>
-          </Link>
-        ))}
+      <p className="mt-2 text-sm text-muted-foreground">
+        {items.length} named {category} gradients. Click a strip for CSS and JPG download.
+      </p>
+      <div className="mt-8">
+        <GradientGallery
+          popular={[]}
+          library={items}
+          categories={GRADIENT_CATEGORIES}
+          showPopularSection={false}
+          showFilters={false}
+          initialCategory={category}
+          pageSize={200}
+        />
       </div>
     </div>
   );

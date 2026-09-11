@@ -29,6 +29,10 @@ for (const slug of tools) {
   const pagePath = path.join(dir, "page.tsx");
   if (fs.existsSync(pagePath)) {
     const existing = fs.readFileSync(pagePath, "utf8");
+    if (existing.includes("generate-pages: skip")) {
+      console.log(`skip marked page: ${slug}`);
+      continue;
+    }
     if (!existing.includes("ToolContent") && !existing.includes("getToolBySlug")) {
       console.log(`skip non-tool page: ${slug}`);
       continue;

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
-import { PaletteStrip } from "@/components/library/palette-strip";
+import { BrandLogo } from "@/components/library/brand-logo";
+import { BrandHexChip } from "@/components/library/brand-hex-chip";
 import { cn } from "@/lib/utils";
 
 export function BrandCard({
@@ -20,48 +20,39 @@ export function BrandCard({
   className?: string;
   hexHref?: string;
 }) {
+  const href = hexHref ?? `/brands/${slug}`;
+  const palette = [...new Map(colors.map((c) => [c.toLowerCase(), c])).values()];
+
   return (
-    <Link
-      href={hexHref ?? `/brands/${slug}`}
+    <article
       className={cn(
-        "group card-lift glass relative block overflow-hidden rounded-3xl border border-border/50",
+        "group flex h-full flex-col overflow-hidden rounded-2xl border border-border/70 bg-white shadow-[0_8px_30px_-18px_rgba(15,10,20,0.35)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_18px_40px_-20px_rgba(15,10,20,0.45)] dark:bg-card",
         className
       )}
     >
-      <PaletteStrip colors={colors.slice(0, 6)} height="md" />
-      <div className="relative p-5">
+      <Link
+        href={href}
+        className="flex flex-1 flex-col px-5 pb-4 pt-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        aria-label={`${name} brand colors`}
+      >
         <div className="flex items-start justify-between gap-3">
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-600/90 dark:text-rose-400">
-              {category}
-            </p>
-            <h2 className="mt-1 font-display text-xl font-semibold tracking-tight transition-colors duration-300 group-hover:text-rose-700 dark:group-hover:text-rose-300">
-              {name}
-            </h2>
-          </div>
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border/60 bg-background/60 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-foreground">
-            <ArrowUpRight className="h-4 w-4" />
+          <h2 className="font-display text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+            {name}
+          </h2>
+          <span className="rounded-full bg-muted px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+            {category}
           </span>
         </div>
-        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground transition-colors duration-300 group-hover:text-foreground/80">
-          {overview}
-        </p>
-        <p className="mt-3 font-mono text-[11px] leading-relaxed text-muted-foreground">
-          {colors.slice(0, 6).join(" ")}
-        </p>
-        <div className="mt-4 flex items-center gap-1.5">
-          {colors.slice(0, 5).map((c, i) => (
-            <span
-              key={`${slug}-dot-${c}-${i}`}
-              className="h-2.5 w-2.5 rounded-full ring-2 ring-background transition-transform duration-300 group-hover:scale-110"
-              style={{ backgroundColor: c, transitionDelay: `${i * 40}ms` }}
-            />
-          ))}
-          <span className="ml-auto text-[11px] font-medium text-muted-foreground transition-colors group-hover:text-primary">
-            View palette
-          </span>
+        <p className="sr-only">{overview}</p>
+        <div className="flex flex-1 items-center justify-center py-8 sm:py-10">
+          <BrandLogo slug={slug} name={name} colors={palette} size="lg" />
         </div>
+      </Link>
+      <div className="flex min-h-[4.25rem] overflow-hidden">
+        {palette.map((hex, i) => (
+          <BrandHexChip key={`${slug}-${hex}-${i}`} hex={hex} />
+        ))}
       </div>
-    </Link>
+    </article>
   );
 }

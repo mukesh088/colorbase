@@ -78,6 +78,7 @@ import {
   Type,
   Upload,
   UserRound,
+  Wand2,
   Wind,
   type LucideIcon,
 } from "lucide-react";
@@ -92,6 +93,8 @@ export const LIBRARY_LINKS = [
   { href: "/developers", title: "Dev", fullTitle: "Developers", icon: Terminal },
   { href: "/blog", title: "Blog", fullTitle: "Blog", icon: BookOpen },
 ] as const;
+
+export const HEADER_LIBRARY_LINKS = LIBRARY_LINKS.filter((item) => item.href !== "/blog");
 
 export const TOOL_ICONS: Record<string, LucideIcon> = {
   Pipette,
@@ -170,4 +173,5 @@ export const TOOL_ICONS: Record<string, LucideIcon> = {
   Table2,
   Gamepad2,
   Search,
+  Wand2,
 };

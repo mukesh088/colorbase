@@ -5,6 +5,7 @@ import { CATEGORY_LABELS, getFeaturedTools, getPopularTools, getToolsByCategory 
 import { LIBRARY_LINKS, TOOL_ICONS } from "@/lib/nav";
 import { SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
 import { POPULAR_UI_COLOR_GROUPS } from "@/lib/colors/palettes";
+import { cn } from "@/lib/utils";
 
 const CONVERTER_STRIPS: Record<string, string[]> = {
   "hex-to-rgb": ["#E11D48", "#F43F5E", "#FB7185", "#3B82F6", "#60A5FA", "#93C5FD"],
@@ -24,6 +25,7 @@ const FEATURED_STRIPS: Record<string, string> = {
   "contrast-checker": "from-zinc-900 via-rose-600 to-rose-100",
   "image-color-picker": "from-pink-900 via-rose-400 to-rose-100",
   "glassmorphism-generator": "from-rose-50 via-pink-300 to-rose-700",
+  "ai-color-copilot": "from-violet-700 via-rose-500 to-amber-300",
 };
 
 const FEATURED_GLOW: Record<string, string> = {
@@ -35,17 +37,22 @@ const FEATURED_GLOW: Record<string, string> = {
   "contrast-checker": "bg-rose-700/40",
   "image-color-picker": "bg-pink-600/40",
   "glassmorphism-generator": "bg-pink-400/35",
+  "ai-color-copilot": "bg-violet-500/40",
 };
 
 const QUICK_LINKS = [
+  { icon: Sparkles, title: "AI Copilot", href: "/ai-color-copilot", tone: "bg-rose-600" },
   { icon: Pipette, title: "Pick", href: "/color-picker", tone: "bg-rose-600" },
   { icon: Palette, title: "Palettes", href: "/palette-generator", tone: "bg-pink-600" },
   { icon: Contrast, title: "Contrast", href: "/contrast-checker", tone: "bg-fuchsia-600" },
-  { icon: Sparkles, title: "Glass CSS", href: "/glassmorphism-generator", tone: "bg-rose-500" },
 ] as const;
 
 export function HomeHero() {
-  const featured = getFeaturedTools();
+  const featured = getFeaturedTools().slice().sort((a, b) => {
+    if (a.slug === "ai-color-copilot") return -1;
+    if (b.slug === "ai-color-copilot") return 1;
+    return 0;
+  });
   const popular = getPopularTools();
   const converters = getToolsByCategory("converters");
 
@@ -60,28 +67,43 @@ export function HomeHero() {
             </p>
             <h1 className="mt-3 max-w-xl text-lg text-muted-foreground sm:mt-4 sm:text-2xl">{SITE_TAGLINE}</h1>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
-              Convert HEX, RGB, HSL & CMYK. Build palettes, gradients, and CSS effects. Check WCAG
-              contrast — all free, fast, and accessible.
+              Describe what you're building. Copilot turns it into an accessible color system you can copy into CSS or Tailwind.
             </p>
             <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-3">
-              <Button asChild size="lg" className="w-full sm:w-auto">
-                <Link href="/color-picker">
-                  Open Color Picker <ArrowRight />
-                </Link>
+              <Button
+                asChild
+                size="lg"
+              className="w-full bg-rose-600 text-white shadow-none hover:bg-rose-700 sm:w-auto"
+            >
+              <Link href="/ai-color-copilot">
+                <Sparkles className="h-4 w-4" />
+                Copilot
+                <ArrowRight />
+              </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="w-full sm:w-auto">
-                <Link href="/palette-generator">Generate Palette</Link>
+                <Link href="/color-picker">Color Picker</Link>
               </Button>
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-2 self-center sm:gap-4">
-            {QUICK_LINKS.map((item) => (
+            {QUICK_LINKS.map((item, index) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="glass group block rounded-2xl border border-border/50 p-3 transition-transform hover:-translate-y-1 sm:rounded-3xl sm:p-5"
+                className={cn(
+                  "glass group block rounded-2xl border p-3 transition-transform hover:-translate-y-1 sm:rounded-3xl sm:p-5",
+                  index === 0
+                    ? "border-rose-400/50 ring-2 ring-rose-500/25"
+                    : "border-border/50"
+                )}
               >
+                {index === 0 && (
+                  <span className="mb-2 inline-block rounded-full bg-rose-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-rose-700 dark:text-rose-300">
+                    Flagship
+                  </span>
+                )}
                 <span
                   className={`mb-3 flex h-9 w-9 items-center justify-center rounded-xl text-white sm:mb-4 sm:h-11 sm:w-11 sm:rounded-2xl ${item.tone}`}
                 >
@@ -206,9 +228,9 @@ export function HomeHero() {
           Featured tools
         </h2>
         <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-          Open any tool from the pink{" "}
-          <span className="font-medium text-rose-600 dark:text-rose-400">Quick menu</span> in the
-          header.
+          Browse tools from{" "}
+          <span className="font-medium text-foreground">Our Tools</span>, or jump in with{" "}
+          <span className="font-medium text-rose-600 dark:text-rose-400">Copilot</span>.
         </p>
         <div className="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-2 sm:gap-5 xl:grid-cols-3">
           {featured.map((tool) => {
@@ -235,7 +257,7 @@ export function HomeHero() {
                       <Icon className="h-5 w-5" />
                     </span>
                     <span className="rounded-full border border-rose-500/20 bg-rose-500/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-rose-700 dark:text-rose-300">
-                      {CATEGORY_LABELS[tool.category]}
+                      {tool.slug === "ai-color-copilot" ? "Flagship" : CATEGORY_LABELS[tool.category]}
                     </span>
                   </div>
                   <h3 className="font-display text-lg font-semibold tracking-tight transition-colors group-hover:text-rose-700 dark:group-hover:text-rose-300">
