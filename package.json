@@ -12,8 +12,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "icons": "node scripts/generate-favicons.js",
-    "hostinger:verify": "node scripts/hostinger-postbuild.js"
+    "icons": "node scripts/generate-favicons.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

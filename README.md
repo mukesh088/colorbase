@@ -44,7 +44,7 @@ OPENAI_MODEL=gpt-4o-mini
 
 ## Deploy on Hostinger
 
-See [HOSTINGER.md](./HOSTINGER.md).
+See [HOSTINGER.md](./HOSTINGER.md) and [DEPLOY-INFO.md](./DEPLOY-INFO.md).
 
 **Critical:** In hPanel, set Application type to `next`, leave **Root directory empty**, Output directory `.next`, Entry file empty.  
 If diagnosis says `package.json` is null, Root directory is wrong — the file is at the GitHub repo root:  

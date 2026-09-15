@@ -1,5 +1,7 @@
 import path from "node:path";
-import type { NextConfig } from "next";
+import { fileURLToPath } from "node:url";
+
+const projectRoot = path.dirname(fileURLToPath(import.meta.url));
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -16,18 +18,14 @@ const securityHeaders = [
   },
 ];
 
-const projectRoot = path.resolve(__dirname);
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // Required for Hostinger Node.js SSR deploys
+  // Hostinger forces standalone for Next apps; keep it explicit too.
   output: "standalone",
-  // Pin tracing to this app so a parent Hostinger lockfile cannot steal the workspace root
+  // Prevent Hostinger parent lockfiles from shifting the tracing root.
   outputFileTracingRoot: projectRoot,
-  turbopack: {
-    root: projectRoot,
-  },
   images: {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
