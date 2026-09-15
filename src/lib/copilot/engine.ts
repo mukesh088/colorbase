@@ -2,10 +2,8 @@ import {
   checkContrast,
   getContrastRatio,
   hexToRgb,
-  hslToRgb,
   isValidHex,
   normalizeHex,
-  rgbToHex,
   rgbToHsl,
 } from "@/lib/colors/convert";
 import { formatOklch } from "@/lib/colors/spaces";
@@ -601,8 +599,6 @@ export function parsePaletteInput(raw: string): string[] {
 
 export function reviewSystem(input: string | ColorSystem): CopilotRecommendation[] {
   const recs: CopilotRecommendation[] = [];
-  let tokens: ColorToken[];
-  let pairs: ContrastPair[];
   if (typeof input === "string") {
     const hexes = parsePaletteInput(input);
     if (hexes.length < 2) {
@@ -633,8 +629,7 @@ export function reviewSystem(input: string | ColorSystem): CopilotRecommendation
     }
     return recs;
   }
-  tokens = input.tokens;
-  pairs = input.pairs;
+  const pairs = input.pairs;
   const fails = pairs.filter((p) => !p.contrast.normalAA && p.fgRole !== "textDisabled" && p.fgRole !== "border");
   fails.forEach((p) => {
     const fixed = ensureContrast(p.fg, p.bg, 4.5);

@@ -39,7 +39,7 @@ import {
   type SemanticExportFormat,
 } from "@/lib/copilot/exports";
 import type { CopilotResponse } from "@/lib/copilot/types";
-import { tokenMap, type ColorRole, type ColorSystem, type CopilotIntent } from "@/lib/copilot/types";
+import type { ColorRole, ColorSystem, CopilotIntent } from "@/lib/copilot/types";
 import { cn } from "@/lib/utils";
 
 const EXAMPLES = [
@@ -183,7 +183,7 @@ function AiColorCopilotInner() {
           <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
             What are you building?
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">Describe the product. We'll make the colors.</p>
+          <p className="mt-1 text-sm text-muted-foreground">Describe the product. We&apos;ll make the colors.</p>
         </div>
         <div className="space-y-3 p-4 sm:p-6">
           <Textarea

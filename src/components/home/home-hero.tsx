@@ -67,7 +67,7 @@ export function HomeHero() {
             </p>
             <h1 className="mt-3 max-w-xl text-lg text-muted-foreground sm:mt-4 sm:text-2xl">{SITE_TAGLINE}</h1>
             <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
-              Describe what you're building. Copilot turns it into an accessible color system you can copy into CSS or Tailwind.
+              Describe what you&apos;re building. Copilot turns it into an accessible color system you can copy into CSS or Tailwind.
             </p>
             <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-3">
               <Button

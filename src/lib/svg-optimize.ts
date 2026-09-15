@@ -119,7 +119,7 @@ export function optimizeSvg(raw: string, settings: SvgOptimizeSettings): SvgOpti
   if (on.removeScript) source = sanitize(source);
 
   const parser = new DOMParser();
-  let doc = parser.parseFromString(source, "image/svg+xml");
+  const doc = parser.parseFromString(source, "image/svg+xml");
   if (doc.querySelector("parsererror")) {
     return { data: raw, error: "Could not parse SVG. Check that the markup is valid." };
   }
