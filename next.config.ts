@@ -16,13 +16,17 @@ const securityHeaders = [
   },
 ];
 
+const projectRoot = path.resolve(__dirname);
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // Hostinger Node.js apps run Next in server mode and look for standalone output under .next
+  // Required for Hostinger Node.js SSR deploys
   output: "standalone",
+  // Pin tracing to this app so a parent Hostinger lockfile cannot steal the workspace root
+  outputFileTracingRoot: projectRoot,
   turbopack: {
-    root: path.resolve(__dirname),
+    root: projectRoot,
   },
   images: {
     formats: ["image/avif", "image/webp"],

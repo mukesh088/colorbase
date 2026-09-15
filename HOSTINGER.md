@@ -1,61 +1,62 @@
 # Hostinger deployment — colorBase (colorbase.in)
 
-## 1. Domain & DNS
-- Point `colorbase.in` (and `www`) to your Hostinger hosting.
-- Prefer **HTTPS** with Hostinger SSL enabled.
+GitHub repo root already contains `package.json`, `next.config.ts`, and `src/`.
+If hPanel shows **project structure / build logs = null**, the panel root or framework
+settings are wrong — not a missing GitHub project.
 
-## 2. Environment variables
-In Hostinger Node.js / app settings, set:
+## Exact hPanel settings (required)
+
+| Field | Value |
+| --- | --- |
+| Source | GitHub → `mukesh088/colorbase` |
+| Branch | `main` |
+| Framework / application type | **Next.js** (`next`) |
+| Root directory | `/` or **empty** (must be repo root — do **not** use `colorbase/` or any subfolder) |
+| Node.js version | **20** (or 22) |
+| Package manager | **npm** |
+| Install command | `npm ci` (or `npm install`) |
+| Build script / command | `build` / `npm run build` |
+| Start command | `npm run start` (uses standalone server) |
+| Output directory | `.next` |
+| Entry file | **leave empty** |
+
+If Root directory, Output directory, or Entry file stay `null`, Hostinger never sees the app.
+Set them to the values above, save, then Redeploy.
+
+## Environment variables
 
 ```
 NEXT_PUBLIC_SITE_URL=https://colorbase.in
 NODE_ENV=production
+PORT=3000
 ```
 
-Optional (if you use analytics elsewhere later):
+Optional for AI Color Copilot:
+
 ```
-# NEXT_PUBLIC_GA_ID=...
-```
-
-## 3. Build & start (Node.js hosting)
-
-This is a **Next.js server app** (SSR + API routes). Do **not** deploy it as a static site and do **not** use `out/` as the output folder.
-
-In hPanel → Node.js / Deploy settings, use:
-
-| Field | Value |
-| --- | --- |
-| Application type / framework | **Next.js** (`next`) |
-| Root directory | `/` (repo root, where `package.json` lives) |
-| Node.js version | **20** or **22** |
-| Package manager | **npm** |
-| Build script | **build** (`npm run build`) |
-| Output directory | **`.next`** |
-| Entry file | **leave empty** (Hostinger ignores it for Next.js and starts the standalone server) |
-
-`Entry file` and `Output directory` both being `null` is a panel misconfiguration, not a Next.js compile error. If those stay empty, Hostinger cannot find the standalone server after `next build`.
-
-Typical commands Hostinger runs:
-
-```bash
-npm install
-npm run build
+OPENAI_API_KEY=...
+OPENAI_MODEL=gpt-4o-mini
 ```
 
-- **Application root:** project folder (GitHub repo root)
-- **Node version:** 20.x or 22.x LTS recommended
+## What the repo does on build
 
-Also set `OPENAI_API_KEY` (and optional `OPENAI_MODEL`) if AI Color Copilot should call OpenAI in production.
+1. `next build` with `output: "standalone"`
+2. `postbuild` verifies `.next/standalone/server.js` and copies `public` + `.next/static`
+3. `npm start` runs `node .next/standalone/server.js` (respects `PORT`)
 
-### After every deploy (important)
-Next.js hashes files under `/_next/static/`. HTML that still points at an old hash will 404 those JS/CSS files (often as `text/plain`), which shows up as `ChunkLoadError` and missing styles — especially after Ctrl+F5 if a CDN kept old HTML.
+## After every deploy
 
-1. Redeploy / restart the Node app so `npm run build` + `npm start` serve the new `.next` output.
-2. In hPanel, **purge CDN / LiteSpeed cache** for `colorbase.in` (and `www`) if enabled.
-3. Hard-refresh once (Ctrl+F5) or open a private window.
+1. Restart the Node app in hPanel
+2. Purge CDN / LiteSpeed cache for `colorbase.in` and `www`
+3. Hard-refresh once (Ctrl+F5) or use a private window
 
-HTML documents are served with **no-store** caching (`force-dynamic` + middleware) so shared CDNs cannot pin HTML that points at deleted `/_next/static` hashes. Hashed `/_next/static/*` assets stay long-cached and immutable.
-## 4. Favicon & brand assets (already in `/public`)
+## Domain & DNS
+
+- Point `colorbase.in` and `www` to Hostinger
+- Enable HTTPS / SSL in hPanel
+
+## Favicon & brand assets (`/public`)
+
 | File | Purpose |
 |------|---------|
 | `favicon.ico` | Browser tab icon |
@@ -65,21 +66,14 @@ HTML documents are served with **no-store** caching (`force-dynamic` + middlewar
 | `icon-192.png` / `icon-512.png` | PWA / Android |
 | `og-image.png` | Default social share image |
 | `manifest.webmanifest` | Installable web app metadata |
-| `browserconfig.xml` | Windows tile |
-
-Regenerate icons after logo changes:
 
 ```bash
 node scripts/generate-favicons.js
 ```
 
-## 5. After go-live checklist
-1. Open https://colorbase.in — confirm favicon in the tab.
-2. Test https://colorbase.in/manifest.webmanifest
-3. Submit sitemap in Google Search Console: `https://colorbase.in/sitemap.xml`
-4. Share a page on WhatsApp/Twitter and confirm OG preview.
-5. Update social profile links in `src/lib/site-config.ts` when accounts exist.
+## Go-live checklist
 
-## 6. Contact / legal
-- Support email configured as `hello@colorbase.in` — create this mailbox in Hostinger Email.
-- Privacy / Terms pages are live at `/privacy` and `/terms`.
+1. https://colorbase.in — site + favicon
+2. https://colorbase.in/manifest.webmanifest
+3. Submit `https://colorbase.in/sitemap.xml` in Search Console
+4. Create mailbox `hello@colorbase.in` if needed
