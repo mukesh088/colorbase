@@ -44,7 +44,12 @@ OPENAI_MODEL=gpt-4o-mini
 
 ## Deploy on Hostinger
 
-See [HOSTINGER.md](./HOSTINGER.md) for Node.js build/start commands, SSL, DNS, and go-live checklist.
+See [HOSTINGER.md](./HOSTINGER.md).
+
+**Critical:** In hPanel, set Application type to `next`, leave **Root directory empty**, Output directory `.next`, Entry file empty.  
+If diagnosis says `package.json` is null, Root directory is wrong — the file is at the GitHub repo root:  
+https://github.com/mukesh088/colorbase/blob/main/package.json
+
 
 ## Stack
 

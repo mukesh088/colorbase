@@ -8,13 +8,12 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "postbuild": "node scripts/hostinger-postbuild.js",
-    "start": "node .next/standalone/server.js",
-    "start:next": "next start",
+    "start": "next start",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "icons": "node scripts/generate-favicons.js"
+    "icons": "node scripts/generate-favicons.js",
+    "hostinger:verify": "node scripts/hostinger-postbuild.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

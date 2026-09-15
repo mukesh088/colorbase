@@ -1,79 +1,74 @@
 # Hostinger deployment — colorBase (colorbase.in)
 
-GitHub repo root already contains `package.json`, `next.config.ts`, and `src/`.
-If hPanel shows **project structure / build logs = null**, the panel root or framework
-settings are wrong — not a missing GitHub project.
+## Important
 
-## Exact hPanel settings (required)
+GitHub already has a valid Next.js app at the **repo root**:
+https://github.com/mukesh088/colorbase/blob/main/package.json
 
-| Field | Value |
+If hPanel diagnosis says `package.json` / project structure is **null**, Hostinger is
+**not reading the repo root**. That is a panel setting problem, not missing source files.
+
+## Exact hPanel values (copy these)
+
+Create / edit the Node.js app → Import Git repository → `mukesh088/colorbase` → branch `main`.
+
+| Field | Exact value |
 | --- | --- |
-| Source | GitHub → `mukesh088/colorbase` |
+| Application type | `next` (Next.js) |
 | Branch | `main` |
-| Framework / application type | **Next.js** (`next`) |
-| Root directory | `/` or **empty** (must be repo root — do **not** use `colorbase/` or any subfolder) |
-| Node.js version | **20** (or 22) |
-| Package manager | **npm** |
-| Install command | `npm ci` (or `npm install`) |
-| Build script / command | `build` / `npm run build` |
-| Start command | `npm run start` (uses standalone server) |
+| Root directory | **leave blank** (empty). Do **not** type `/`, `colorbase`, `src`, or any folder |
+| Node.js version | `20` |
+| Package manager | `npm` |
+| Build script | `build` |
 | Output directory | `.next` |
-| Entry file | **leave empty** |
+| Entry file | **leave blank** (Hostinger ignores it for Next.js) |
+| Start command | leave default / `npm run start` |
 
-If Root directory, Output directory, or Entry file stay `null`, Hostinger never sees the app.
-Set them to the values above, save, then Redeploy.
-
-## Environment variables
+### Env vars
 
 ```
 NEXT_PUBLIC_SITE_URL=https://colorbase.in
 NODE_ENV=production
-PORT=3000
 ```
 
-Optional for AI Color Copilot:
+Optional:
 
 ```
 OPENAI_API_KEY=...
 OPENAI_MODEL=gpt-4o-mini
 ```
 
-## What the repo does on build
+Save settings → **Deploy** / **Redeploy**.
 
-1. `next build` with `output: "standalone"`
-2. `postbuild` verifies `.next/standalone/server.js` and copies `public` + `.next/static`
-3. `npm start` runs `node .next/standalone/server.js` (respects `PORT`)
+## If it still shows null
 
-## After every deploy
+1. Delete the Node.js app in hPanel and create a **new** one with **Import Git repository** (do not upload a ZIP from Desktop).
+2. Re-authorize the Hostinger GitHub App for `mukesh088/colorbase`.
+3. Confirm Root directory is empty and Application type is `next`.
+4. Do not deploy the local nested `Desktop/colorbase/colorbase` folder as a ZIP — use GitHub only.
 
-1. Restart the Node app in hPanel
-2. Purge CDN / LiteSpeed cache for `colorbase.in` and `www`
-3. Hard-refresh once (Ctrl+F5) or use a private window
+## How Hostinger runs Next.js
 
-## Domain & DNS
+Hostinger wraps your config and forces `output: "standalone"`, then starts the
+bundled server. Keep standard scripts:
 
-- Point `colorbase.in` and `www` to Hostinger
-- Enable HTTPS / SSL in hPanel
-
-## Favicon & brand assets (`/public`)
-
-| File | Purpose |
-|------|---------|
-| `favicon.ico` | Browser tab icon |
-| `favicon.svg` | Modern SVG favicon |
-| `favicon-16x16.png` / `favicon-32x32.png` | Fallback PNGs |
-| `apple-touch-icon.png` | iOS home screen |
-| `icon-192.png` / `icon-512.png` | PWA / Android |
-| `og-image.png` | Default social share image |
-| `manifest.webmanifest` | Installable web app metadata |
-
-```bash
-node scripts/generate-favicons.js
+```json
+{
+  "scripts": {
+    "build": "next build",
+    "start": "next start"
+  }
+}
 ```
 
-## Go-live checklist
+Output directory must stay `.next`.
 
-1. https://colorbase.in — site + favicon
-2. https://colorbase.in/manifest.webmanifest
-3. Submit `https://colorbase.in/sitemap.xml` in Search Console
-4. Create mailbox `hello@colorbase.in` if needed
+## After deploy
+
+1. Restart the Node app
+2. Purge CDN / LiteSpeed cache for `colorbase.in` + `www`
+3. Hard refresh (Ctrl+F5)
+
+## Domain
+
+Point `colorbase.in` / `www` to Hostinger and enable SSL.
