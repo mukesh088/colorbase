@@ -1,74 +1,52 @@
-# Hostinger deployment — colorBase (colorbase.in)
+# Fix Hostinger “package.json / structure / logs = null”
 
-## Important
+That diagnosis means Hostinger **never found your app root**. The GitHub repo is fine.
 
-GitHub already has a valid Next.js app at the **repo root**:
-https://github.com/mukesh088/colorbase/blob/main/package.json
+## Confirmed on GitHub (`main`)
 
-If hPanel diagnosis says `package.json` / project structure is **null**, Hostinger is
-**not reading the repo root**. That is a panel setting problem, not missing source files.
+- https://github.com/mukesh088/colorbase/blob/main/package.json
+- https://github.com/mukesh088/colorbase/blob/main/next.config.js
+- `src/app/`, `public/`, `package-lock.json` all present
 
-## Exact hPanel values (copy these)
+## Do this in hPanel (required)
 
-Create / edit the Node.js app → Import Git repository → `mukesh088/colorbase` → branch `main`.
+### A) Use the Node.js Git flow (not generic Git)
 
-| Field | Exact value |
+1. **Websites → Add Website → Node.js web app** (not “Git” static deploy)
+2. **Import Git repository** → connect GitHub App → allow `mukesh088/colorbase`
+3. Select repo **mukesh088/colorbase**, branch **main**
+
+### B) If `colorbase.in` already exists as a normal website
+
+Remove / disconnect that website first. Hostinger’s Node.js flow needs a **fresh** web-app slot for the domain.
+
+### C) Deploy settings (copy exactly)
+
+| Field | Value |
 | --- | --- |
-| Application type | `next` (Next.js) |
-| Branch | `main` |
-| Root directory | **leave blank** (empty). Do **not** type `/`, `colorbase`, `src`, or any folder |
-| Node.js version | `20` |
-| Package manager | `npm` |
+| Framework | **Next.js** (`next`) |
+| Root directory | **leave empty** |
+| Node.js | **20** |
 | Build script | `build` |
 | Output directory | `.next` |
-| Entry file | **leave blank** (Hostinger ignores it for Next.js) |
-| Start command | leave default / `npm run start` |
+| Entry file | **leave empty** |
 
-### Env vars
+Env:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://colorbase.in
 NODE_ENV=production
 ```
 
-Optional:
+4. Click **Deploy**
+5. Open **Deployments** → open the new build → you should now see real build logs (not null)
 
-```
-OPENAI_API_KEY=...
-OPENAI_MODEL=gpt-4o-mini
-```
+## Do NOT
 
-Save settings → **Deploy** / **Redeploy**.
+- Upload a ZIP of `Desktop/colorbase` (can include a nested clone)
+- Set Root directory to `/`, `src`, or `colorbase`
+- Use Hostinger Connector against a nested/wrong folder
 
-## If it still shows null
+## After a green build
 
-1. Delete the Node.js app in hPanel and create a **new** one with **Import Git repository** (do not upload a ZIP from Desktop).
-2. Re-authorize the Hostinger GitHub App for `mukesh088/colorbase`.
-3. Confirm Root directory is empty and Application type is `next`.
-4. Do not deploy the local nested `Desktop/colorbase/colorbase` folder as a ZIP — use GitHub only.
-
-## How Hostinger runs Next.js
-
-Hostinger wraps your config and forces `output: "standalone"`, then starts the
-bundled server. Keep standard scripts:
-
-```json
-{
-  "scripts": {
-    "build": "next build",
-    "start": "next start"
-  }
-}
-```
-
-Output directory must stay `.next`.
-
-## After deploy
-
-1. Restart the Node app
-2. Purge CDN / LiteSpeed cache for `colorbase.in` + `www`
-3. Hard refresh (Ctrl+F5)
-
-## Domain
-
-Point `colorbase.in` / `www` to Hostinger and enable SSL.
+Restart the Node process, purge CDN cache, hard-refresh the site.

@@ -1,7 +1,6 @@
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+const path = require("node:path");
 
-const projectRoot = path.dirname(fileURLToPath(import.meta.url));
+const projectRoot = __dirname;
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -22,9 +21,7 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  // Hostinger forces standalone for Next apps; keep it explicit too.
   output: "standalone",
-  // Prevent Hostinger parent lockfiles from shifting the tracing root.
   outputFileTracingRoot: projectRoot,
   images: {
     formats: ["image/avif", "image/webp"],
@@ -84,4 +81,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
