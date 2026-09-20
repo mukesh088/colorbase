@@ -4,6 +4,7 @@ import { Providers } from "@/components/providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { FloatingSocialDock } from "@/components/layout/floating-social-dock";
+import { GoogleAdSense } from "@/components/analytics/google-adsense";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable}`}>
       <body className="font-sans" suppressHydrationWarning>
         <GoogleAnalytics />
+        <GoogleAdSense />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Providers>
           <a
