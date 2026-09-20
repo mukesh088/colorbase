@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
-import { ORGANIZATION, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-config";
+import { ADSENSE_CLIENT_ID, ORGANIZATION, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-config";
 import type { BreadcrumbItem, FAQItem } from "@/types/tools";
 import type { ToolDefinition } from "@/types/tools";
 
@@ -88,6 +88,8 @@ export function createPageMetadata({
       "msapplication-config": "/browserconfig.xml",
       // Help Google prefer the brand site name over the domain in search results
       "og:site_name": SITE_NAME,
+      // AdSense site ownership (crawler reads this meta in HTML <head>)
+      "google-adsense-account": ADSENSE_CLIENT_ID,
     },
     robots: noIndex
       ? { index: false, follow: false }

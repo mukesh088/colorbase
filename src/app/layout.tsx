@@ -8,7 +8,7 @@ import { GoogleAdSense } from "@/components/analytics/google-adsense";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
-import { SITE_DESCRIPTION, SITE_TAGLINE } from "@/lib/site-config";
+import { ADSENSE_CLIENT_ID, SITE_DESCRIPTION, SITE_TAGLINE } from "@/lib/site-config";
 import "./globals.css";
 
 const display = Fraunces({
@@ -49,9 +49,13 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable}`}>
+      <head>
+        {/* Explicit head tags so AdSense crawler can verify without running JS */}
+        <meta name="google-adsense-account" content={ADSENSE_CLIENT_ID} />
+      </head>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        <GoogleAnalytics />
         <GoogleAdSense />
+        <GoogleAnalytics />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Providers>
           <a

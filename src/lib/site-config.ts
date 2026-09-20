@@ -5,6 +5,11 @@ export const SITE_DESCRIPTION =
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in";
 
+/** Google AdSense publisher (verification + ads). */
+export const ADSENSE_CLIENT_ID =
+  process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "ca-pub-9077025320968455";
+export const ADSENSE_PUB_ID = ADSENSE_CLIENT_ID.replace(/^ca-/, "");
+
 export const ORGANIZATION = {
   name: SITE_NAME,
   url: SITE_URL,
