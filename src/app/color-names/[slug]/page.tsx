@@ -12,11 +12,12 @@ import { LibraryColorCard } from "@/components/library/library-color-card";
 import { PaletteStrip } from "@/components/library/palette-strip";
 import { FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { maybeStaticParams } from "@/lib/static-params";
 
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getAllNamedColors().map((c) => ({ slug: c.slug }));
+  return maybeStaticParams(getAllNamedColors().map((c) => ({ slug: c.slug })));
 }
 
 export async function generateMetadata({

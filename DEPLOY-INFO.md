@@ -19,13 +19,14 @@ colorbase/
 ├── components.json
 ├── eslint.config.mjs
 ├── next-sitemap.config.js
-├── next.config.mjs
+├── next.config.js         ← Next config (NOT .mjs)
 ├── package-lock.json
 ├── package.json           ← MUST be at this root
 ├── postcss.config.mjs
 ├── prettier.config.js
 ├── public/                # favicon, icons, og images
 ├── scripts/
+│   └── hostinger-postbuild.js
 ├── src/
 │   ├── app/               # Next.js App Router pages
 │   ├── components/
@@ -51,11 +52,6 @@ colorbase/
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start"
-  },
-  "dependencies": {
-    "next": "15.5.22",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
   }
 }
 ```
@@ -88,7 +84,29 @@ Common causes:
 | Output directory | `.next` |
 | Entry file | *(empty)* |
 
-4. Env: `NEXT_PUBLIC_SITE_URL=https://colorbase.in`
+4. Env:
+
+```
+NEXT_PUBLIC_SITE_URL=https://colorbase.in
+NODE_ENV=production
+```
+
+Do **not** set `PREBUILD_LIBRARY_PAGES=1` on Hostinger (inode saver).
+
 5. Deploy
 
 Do **not** upload a ZIP from `Desktop/colorbase` (that folder can contain a nested clone and confuses detection).
+
+## After a green build
+
+Restart the Node process, purge CDN / cache, hard-refresh the site.
+
+## Inodes (files & directories limit)
+
+This app previously prebuilt ~7,500 static pages (~50k files under `.next`). That exhausts Hostinger inode quotas.
+
+Current defaults:
+- No `output: "standalone"` (avoids duplicating the build tree)
+- Large library routes use on-demand generation (sitemap still lists all URLs)
+
+In hPanel: delete unused Node app folders / old `node_modules` / failed deploy dirs, then redeploy once.

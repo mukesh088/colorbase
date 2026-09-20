@@ -13,11 +13,12 @@ import { ColorSwatch } from "@/components/color/color-swatch";
 import { PaletteStrip } from "@/components/library/palette-strip";
 import { PaletteCard } from "@/components/library/palette-card";
 import { PaletteHeart } from "@/components/library/palette-heart";
+import { maybeStaticParams } from "@/lib/static-params";
 
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getAllPalettes().map((p) => ({ slug: p.slug }));
+  return maybeStaticParams(getAllPalettes().map((p) => ({ slug: p.slug })));
 }
 
 export async function generateMetadata({

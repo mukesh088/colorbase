@@ -2,11 +2,14 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Hostinger/hCDN caches Next static HTML using Cache-Control.
- * Default static pages use s-maxage=1y, so after a deploy clients can keep
- * HTML that references deleted `/_next/static/*` hashes (ChunkLoadError + missing CSS).
- * Force short shared-cache TTL for documents; hashed assets stay immutable via Next.
+ * Hostinger/hCDN caches Next HTML via Cache-Control.
+ * Long-lived HTML after deploy can reference deleted `/_next/static/*` hashes
+ * (ChunkLoadError). Use a short shared-cache TTL instead of blanket no-store
+ * so pages stay fast on CDN while new deploys refresh within ~1 minute.
  */
+const HTML_CACHE =
+  "public, max-age=0, s-maxage=60, stale-while-revalidate=300";
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -27,10 +30,7 @@ export function middleware(request: NextRequest) {
   }
 
   const response = NextResponse.next();
-  response.headers.set(
-    "Cache-Control",
-    "private, no-cache, no-store, max-age=0, must-revalidate"
-  );
+  response.headers.set("Cache-Control", HTML_CACHE);
   return response;
 }
 

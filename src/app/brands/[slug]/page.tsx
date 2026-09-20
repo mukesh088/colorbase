@@ -20,11 +20,12 @@ import { BrandLogo } from "@/components/library/brand-logo";
 import { BrandPaletteDownload } from "@/components/library/brand-palette-download";
 import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { BrandHexChip } from "@/components/library/brand-hex-chip";
+import { maybeStaticParams } from "@/lib/static-params";
 
-export const dynamic = "force-static";
+export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return BRANDS.map((b) => ({ slug: b.slug }));
+  return maybeStaticParams(BRANDS.map((b) => ({ slug: b.slug })));
 }
 
 export async function generateMetadata({

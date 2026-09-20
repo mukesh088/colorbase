@@ -8,11 +8,12 @@ import { CopyButton } from "@/components/color/copy-button";
 import { ShareButtons } from "@/components/library/share-buttons";
 import { GradientJpgButton } from "@/components/library/gradient-jpg-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { maybeStaticParams } from "@/lib/static-params";
 
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getAllGradients().map((g) => ({ slug: g.slug }));
+  return maybeStaticParams(getAllGradients().map((g) => ({ slug: g.slug })));
 }
 
 export async function generateMetadata({

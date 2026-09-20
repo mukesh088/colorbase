@@ -9,6 +9,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
+    "postbuild:check": "node scripts/hostinger-postbuild.js",
     "lint": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",

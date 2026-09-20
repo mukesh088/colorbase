@@ -3,7 +3,7 @@ import { DM_Sans, Fraunces } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { FloatingSocialDock } from "@/components/layout/floating-social-dock";
+import { FloatingSocialDockClient } from "@/components/layout/floating-social-dock-client";
 import { GoogleAdSense } from "@/components/analytics/google-adsense";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -15,12 +15,16 @@ const display = Fraunces({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
+  adjustFontFallback: true,
+  preload: true,
 });
 
 const body = DM_Sans({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
+  adjustFontFallback: true,
+  preload: true,
 });
 
 export const metadata: Metadata = createPageMetadata({
@@ -37,6 +41,7 @@ export const viewport: Viewport = {
   ],
   width: "device-width",
   initialScale: 1,
+  maximumScale: 5,
   viewportFit: "cover",
   colorScheme: "light dark",
 };
@@ -44,7 +49,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable}`}>
-      <body className="font-sans" suppressHydrationWarning>
+      <body className="font-sans antialiased" suppressHydrationWarning>
         <GoogleAnalytics />
         <GoogleAdSense />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
@@ -61,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               {children}
             </main>
             <Footer />
-            <FloatingSocialDock />
+            <FloatingSocialDockClient />
           </div>
         </Providers>
       </body>

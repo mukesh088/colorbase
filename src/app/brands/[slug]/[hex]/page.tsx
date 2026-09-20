@@ -20,11 +20,14 @@ import { BrandLogo } from "@/components/library/brand-logo";
 import { BrandPaletteDownload } from "@/components/library/brand-palette-download";
 import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { Card, CardContent } from "@/components/ui/card";
+import { maybeStaticParams } from "@/lib/static-params";
 
-export const dynamic = "force-static";
+export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getAllBrandHexEntries().map((e) => ({ slug: e.brand.slug, hex: e.hexSlug }));
+  return maybeStaticParams(
+    getAllBrandHexEntries().map((e) => ({ slug: e.brand.slug, hex: e.hexSlug }))
+  );
 }
 
 export async function generateMetadata({

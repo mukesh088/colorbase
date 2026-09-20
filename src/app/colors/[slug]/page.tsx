@@ -6,13 +6,16 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { getColorBySlug, getAllLibraryColors } from "@/lib/data/color-library";
 import { ColorDetailView } from "@/components/library/color-detail-view";
 import { findSimilarColors } from "@/lib/colors/spaces";
+import { maybeStaticParams } from "@/lib/static-params";
 
 export const dynamicParams = true;
 
 export function generateStaticParams() {
-  return getAllLibraryColors()
-    .filter((c) => !c.sources.includes("generated"))
-    .map((c) => ({ slug: c.slug }));
+  return maybeStaticParams(
+    getAllLibraryColors()
+      .filter((c) => !c.sources.includes("generated"))
+      .map((c) => ({ slug: c.slug }))
+  );
 }
 
 export async function generateMetadata({

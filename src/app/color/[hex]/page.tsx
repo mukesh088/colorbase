@@ -10,6 +10,7 @@ import { getCssNamedColors } from "@/lib/data/color-names";
 import { BrandCard } from "@/components/library/brand-card";
 import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 import { familyFromHex, findSimilarColors } from "@/lib/colors/spaces";
+import { maybeStaticParams } from "@/lib/static-params";
 
 export const dynamicParams = true;
 
@@ -17,7 +18,7 @@ export function generateStaticParams() {
   const hexes = new Set<string>();
   for (const c of getCssNamedColors()) hexes.add(c.hex.slice(1).toLowerCase());
   for (const e of getAllBrandHexEntries()) hexes.add(e.hexSlug);
-  return [...hexes].map((hex) => ({ hex }));
+  return maybeStaticParams([...hexes].map((hex) => ({ hex })));
 }
 
 export async function generateMetadata({
