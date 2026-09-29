@@ -39,8 +39,6 @@ function icoFromPngs(pngs, dims) {
   await png(180, "apple-touch-icon.png");
   await png(192, "icon-192.png");
   await png(512, "icon-512.png");
-  // Brand mark used by JSON-LD / social fallbacks
-  await png(512, "og-default.png");
 
   const b16 = await sharp(svg).resize(16, 16).png().toBuffer();
   const b32 = await sharp(svg).resize(32, 32).png().toBuffer();

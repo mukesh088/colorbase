@@ -1,31 +1,49 @@
 /**
- * Hostinger health check after `next build`.
- * Standalone output is intentionally disabled (inode savings).
- * This script verifies the build root and warns about common inode traps.
+ * After `next build`, drop files that `next start` does not need.
+ * Webpack cache alone is often 500MB+ and burns Hostinger disk and inodes.
  */
 const fs = require("node:fs");
 const path = require("node:path");
 
 const root = process.cwd();
+const nextDir = path.join(root, ".next");
+
+function rm(target) {
+  fs.rmSync(target, { recursive: true, force: true });
+}
+
+function rmMaps(dir) {
+  if (!fs.existsSync(dir)) return 0;
+  let removed = 0;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) removed += rmMaps(full);
+    else if (entry.name.endsWith(".map")) {
+      fs.rmSync(full);
+      removed += 1;
+    }
+  }
+  return removed;
+}
 
 if (!fs.existsSync(path.join(root, "package.json"))) {
   console.error("package.json missing at project root — Hostinger root directory is wrong.");
   process.exit(1);
 }
 
-const nextDir = path.join(root, ".next");
 if (!fs.existsSync(nextDir)) {
   console.error(".next missing — run `npm run build` first.");
   process.exit(1);
 }
 
-const standalone = path.join(nextDir, "standalone");
-if (fs.existsSync(standalone)) {
-  console.warn(
-    "WARNING: `.next/standalone` exists and uses many inodes. " +
-      "Remove `output: \"standalone\"` from next.config.js on Hostinger, then delete `.next` and rebuild."
-  );
+if (fs.existsSync(path.join(nextDir, "standalone"))) {
+  console.error("Unexpected .next/standalone output. Remove output: 'standalone' from next.config.js.");
+  process.exit(1);
 }
 
-console.log("Hostinger build check OK (no standalone copy).");
-console.log("If inodes are still high in hPanel: delete old Node app folders, clear caches, redeploy once.");
+const drop = ["cache", "trace", "diagnostics", "cache/webpack"].map((name) => path.join(nextDir, name));
+for (const target of drop) rm(target);
+
+const maps = rmMaps(nextDir);
+console.log("Removed Next.js build cache, trace, and", maps, "source maps.");
+console.log("Hostinger runtime keeps .next/server and .next/static only.");

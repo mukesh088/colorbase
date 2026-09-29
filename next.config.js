@@ -44,6 +44,11 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { dev }) => {
+    // Webpack's filesystem cache is hundreds of MB and is unused by `next start`.
+    if (!dev) config.cache = false;
+    return config;
+  },
   experimental: {
     optimizePackageImports: [
       "lucide-react",
