@@ -1,7 +1,3 @@
-const path = require("node:path");
-
-const projectRoot = __dirname;
-
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
@@ -27,8 +23,6 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   serverExternalPackages: ["pg"],
-  // Avoid `output: "standalone"` on Hostinger — it duplicates thousands of files
-  // under `.next/standalone` and burns inode quota.
   images: {
     // Skip /_next/image so Hostinger does not accumulate optimizer cache files
     // (inodes) and the AVIF/libheif RCE endpoint is not exposed.

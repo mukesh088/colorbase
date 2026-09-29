@@ -36,10 +36,7 @@ if (!fs.existsSync(nextDir)) {
   process.exit(1);
 }
 
-if (fs.existsSync(path.join(nextDir, "standalone"))) {
-  console.error("Unexpected .next/standalone output. Remove output: 'standalone' from next.config.js.");
-  process.exit(1);
-}
+rm(path.join(nextDir, "standalone"));
 
 const drop = ["cache", "trace", "diagnostics", "cache/webpack"].map((name) => path.join(nextDir, name));
 for (const target of drop) rm(target);
