@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { ensureSchema } from "./migrate";
-import { isDbConfigured } from "./pool";
+import { isDbConfigured, sanitizeDbError } from "./pool";
 import { ensureUserId } from "./identity";
 import { checkRateLimit } from "./rate-limit";
 import { LIMITS } from "./limits";
@@ -27,7 +27,8 @@ export async function requireUser() {
     const userId = await ensureUserId();
     if (!userId) return { error: unavailable() };
     return { userId };
-  } catch {
+  } catch (err) {
+    console.error("[db] requireUser failed:", sanitizeDbError(err));
     return { error: unavailable() };
   }
 }

@@ -16,8 +16,8 @@ export async function ensureUserId(): Promise<string | null> {
     id = crypto.randomUUID();
     try {
       store.set(USER_COOKIE_NAME, await signUserId(id), cookieOptions());
-    } catch {
-      return null;
+    } catch (err) {
+      console.error("[db] could not set user cookie:", err instanceof Error ? err.message : "unknown");
     }
   }
   await query(

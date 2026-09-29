@@ -1,8 +1,36 @@
 import fs from "node:fs";
 import path from "node:path";
 import { getPool, isDbConfigured } from "./pool";
+import { INIT_MIGRATION_ID, INIT_SQL } from "./init-sql";
 
 let migratePromise: Promise<void> | null = null;
+
+function migrationsDir() {
+  const candidates = [
+    path.join(process.cwd(), "migrations"),
+    path.join(process.cwd(), "..", "migrations"),
+  ];
+  return candidates.find((dir) => fs.existsSync(dir)) ?? null;
+}
+
+async function applySql(id: string, sql: string) {
+  const pool = getPool();
+  if (!pool) throw new Error("DATABASE_UNAVAILABLE");
+  const applied = await pool.query("SELECT 1 FROM schema_migrations WHERE id = $1", [id]);
+  if ((applied.rowCount ?? 0) > 0) return;
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+    await client.query(sql);
+    await client.query("INSERT INTO schema_migrations (id) VALUES ($1)", [id]);
+    await client.query("COMMIT");
+  } catch (e) {
+    await client.query("ROLLBACK");
+    throw e;
+  } finally {
+    client.release();
+  }
+}
 
 export async function runMigrations() {
   if (!isDbConfigured()) {
@@ -18,8 +46,10 @@ export async function runMigrations() {
     )
   `);
 
-  const dir = path.join(process.cwd(), "migrations");
-  if (!fs.existsSync(dir)) return;
+  await applySql(INIT_MIGRATION_ID, INIT_SQL);
+
+  const dir = migrationsDir();
+  if (!dir) return;
 
   const files = fs
     .readdirSync(dir)
@@ -28,21 +58,9 @@ export async function runMigrations() {
 
   for (const file of files) {
     const id = file.replace(/\.sql$/, "");
-    const applied = await pool.query("SELECT 1 FROM schema_migrations WHERE id = $1", [id]);
-    if ((applied.rowCount ?? 0) > 0) continue;
+    if (id === INIT_MIGRATION_ID) continue;
     const sql = fs.readFileSync(path.join(dir, file), "utf8");
-    const client = await pool.connect();
-    try {
-      await client.query("BEGIN");
-      await client.query(sql);
-      await client.query("INSERT INTO schema_migrations (id) VALUES ($1)", [id]);
-      await client.query("COMMIT");
-    } catch (e) {
-      await client.query("ROLLBACK");
-      throw e;
-    } finally {
-      client.release();
-    }
+    await applySql(id, sql);
   }
 }
 
