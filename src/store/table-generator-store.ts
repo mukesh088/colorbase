@@ -500,6 +500,7 @@ export const useTableGeneratorStore = create<TableGeneratorState>()(
           ]);
           const recentIds = [doc.id, ...get().recentIds.filter((id) => id !== doc.id)].slice(0, 12);
           set({ savedDocs, recentIds, persistSkipped: false });
+          void import("@/lib/table-generator/remote").then((m) => m.pushTable(doc));
         } catch {
           set({ persistSkipped: true });
         }
@@ -510,13 +511,15 @@ export const useTableGeneratorStore = create<TableGeneratorState>()(
           set({ persistSkipped: true });
           return;
         }
-        const favorites = get().favorites.includes(id)
-          ? get().favorites.filter((f) => f !== id)
-          : [id, ...get().favorites];
+        const on = !get().favorites.includes(id);
+        const favorites = on
+          ? [id, ...get().favorites]
+          : get().favorites.filter((f) => f !== id);
         set({
           favorites,
-          doc: { ...get().doc, favorite: !get().doc.favorite },
+          doc: { ...get().doc, favorite: on },
         });
+        void import("@/lib/table-generator/remote").then((m) => m.pushTableFavorite(id, on));
       },
       setCommandOpen: (commandOpen) => set({ commandOpen }),
       setImportOpen: (importOpen) => set({ importOpen }),
@@ -534,6 +537,14 @@ export const useTableGeneratorStore = create<TableGeneratorState>()(
           recentIds: s.recentIds.slice(0, 12),
           favorites: s.favorites.slice(0, 20),
         };
+      },
+      onRehydrateStorage: () => () => {
+        void import("@/lib/table-generator/remote").then((m) =>
+          m.syncTables(
+            () => useTableGeneratorStore.getState().savedDocs,
+            (savedDocs) => useTableGeneratorStore.setState({ savedDocs })
+          )
+        );
       },
     }
   )

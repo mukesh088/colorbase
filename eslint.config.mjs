@@ -20,6 +20,27 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    files: ["src/**/*.{js,ts,tsx}"],
+    ignores: ["src/lib/db/migrate.ts"],
+    rules: {
+      "no-restricted-imports": [
+        "error",
+        {
+          paths: [
+            {
+              name: "fs",
+              message: "Do not write files on Hostinger. Persist user data in Postgres.",
+            },
+            {
+              name: "node:fs",
+              message: "Do not write files on Hostinger. Persist user data in Postgres.",
+            },
+          ],
+        },
+      ],
+    },
+  },
 ];
 
 export default eslintConfig;

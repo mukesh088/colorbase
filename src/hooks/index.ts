@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { apiFetch, mergeUnique } from "@/lib/client/user-data";
 
 export function useLocalStorage<T>(key: string, initial: T) {
   const [value, setValue] = useState<T>(initial);
@@ -137,12 +138,31 @@ export function useKeyboardShortcut(
 
 export function useRecentColors(limit = 24) {
   const [colors, setColors, hydrated] = useLocalStorage<string[]>("recent-colors", []);
+  const synced = useRef(false);
+
+  useEffect(() => {
+    if (!hydrated || synced.current) return;
+    synced.current = true;
+    let cancelled = false;
+    void (async () => {
+      const data = await apiFetch<{ items: string[] }>("/api/me/recents");
+      if (cancelled || !data?.items) return;
+      setColors((prev) => mergeUnique(prev, data.items, limit));
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [hydrated, limit, setColors]);
 
   const add = useCallback(
     (hex: string) => {
       setColors((prev) => {
         const next = [hex, ...prev.filter((c) => c.toLowerCase() !== hex.toLowerCase())];
         return next.slice(0, limit);
+      });
+      void apiFetch("/api/me/recents", {
+        method: "POST",
+        body: JSON.stringify({ hex }),
       });
     },
     [limit, setColors]
@@ -153,13 +173,51 @@ export function useRecentColors(limit = 24) {
 
 export function useFavoriteColors() {
   const [colors, setColors, hydrated] = useLocalStorage<string[]>("favorite-colors", []);
+  const synced = useRef(false);
+
+  useEffect(() => {
+    if (!hydrated || synced.current) return;
+    synced.current = true;
+    let cancelled = false;
+    const localColors = colors;
+    void (async () => {
+      const data = await apiFetch<{ items: { value: string }[] }>("/api/me/favorites?kind=color&limit=100");
+      if (cancelled || !data) return;
+      const remote = (data.items ?? []).map((i) => i.value);
+      if (remote.length === 0 && localColors.length > 0) {
+        await apiFetch("/api/me/favorites", {
+          method: "POST",
+          body: JSON.stringify({
+            items: localColors.slice(0, 200).map((value) => ({ kind: "color", value })),
+          }),
+        });
+        return;
+      }
+      if (remote.length > 0) {
+        setColors((prev) => mergeUnique(prev, remote, 200));
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, [hydrated, colors, setColors]);
 
   const toggle = useCallback(
     (hex: string) => {
       setColors((prev) => {
         const exists = prev.some((c) => c.toLowerCase() === hex.toLowerCase());
-        if (exists) return prev.filter((c) => c.toLowerCase() !== hex.toLowerCase());
-        return [hex, ...prev];
+        if (exists) {
+          void apiFetch(
+            `/api/me/favorites?kind=color&value=${encodeURIComponent(hex)}`,
+            { method: "DELETE" }
+          );
+          return prev.filter((c) => c.toLowerCase() !== hex.toLowerCase());
+        }
+        void apiFetch("/api/me/favorites", {
+          method: "POST",
+          body: JSON.stringify({ kind: "color", value: hex }),
+        });
+        return [hex, ...prev].slice(0, 200);
       });
     },
     [setColors]

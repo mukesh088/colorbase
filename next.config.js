@@ -26,17 +26,21 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  serverExternalPackages: ["pg"],
   // Avoid `output: "standalone"` on Hostinger — it duplicates thousands of files
   // under `.next/standalone` and burns inode quota.
   images: {
-    formats: ["image/avif", "image/webp"],
+    // Skip /_next/image so Hostinger does not accumulate optimizer cache files
+    // (inodes) and the AVIF/libheif RCE endpoint is not exposed.
+    unoptimized: true,
+    formats: ["image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256],
+    deviceSizes: [640, 1080, 1920],
+    imageSizes: [32, 64, 128, 256],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "flagcdn.com",
       },
     ],
   },

@@ -36,9 +36,16 @@ Env:
 ```
 NEXT_PUBLIC_SITE_URL=https://colorbase.in
 NODE_ENV=production
+DATABASE_URL=
+USER_COOKIE_SECRET=
+CRON_SECRET=
 ```
 
+`DATABASE_URL` is a Neon or Supabase **pooled** connection string. Leave it empty if you have not created a database yet — the site still runs with browser localStorage only.
+
 Do **not** set `PREBUILD_LIBRARY_PAGES=1` on Hostinger (that prebuilds 7k+ pages and burns inodes).
+
+See [docs/HOSTINGER-RESOURCES.md](docs/HOSTINGER-RESOURCES.md) for inode vs Postgres, size caps, and the cleanup cron.
 
 4. Click **Deploy**
 5. Open **Deployments** → open the new build → you should now see real build logs (not null)
@@ -57,7 +64,7 @@ If hPanel warns that **inodes are running out**:
 2. **Remove leftover folders** via File Manager / SSH under `domains/` or `nodejs/` that are not the live app (old clones, `node_modules` copies, `.next` from failed builds).
 3. **Clear Hostinger caches** for the site, then **Redeploy once** from Git (do not keep stacking deploys without cleanup).
 4. Prefer **one** Node.js app for `colorbase.in` — not ZIP + Git + Connector side by side.
-5. This repo is tuned for low inodes: no `standalone` output, and large library pages are generated on demand (still listed in the sitemap).
+5. This repo is tuned for low inodes: no `standalone` output, `images.unoptimized` (no `/_next/image` cache files), and large library pages generated on demand.
 
 ### What happens if inodes run out?
 
@@ -66,3 +73,11 @@ New files cannot be created → builds fail, app may crash, cron/tasks stop, som
 ## After a green build
 
 Restart the Node process, purge CDN cache, hard-refresh the site.
+
+## Postgres + daily cleanup
+
+After the first deploy with `DATABASE_URL` set:
+
+1. Migrations run automatically on the first persist API request (and via `npm run db:migrate` if you have SSH).
+2. Add a Hostinger cron (daily) that GETs `https://colorbase.in/api/cron/cleanup` with header `Authorization: Bearer $CRON_SECRET`.
+3. Do not store user tables, palettes, or exports as files under `public/` or `/tmp` — they belong in Postgres JSON.
