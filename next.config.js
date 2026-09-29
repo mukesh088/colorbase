@@ -1,3 +1,7 @@
+const path = require("node:path");
+
+const projectRoot = path.join(__dirname);
+
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
@@ -19,6 +23,8 @@ const htmlCacheControl =
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
+  outputFileTracingRoot: projectRoot,
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,

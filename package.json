@@ -8,7 +8,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build && node scripts/hostinger-postbuild.js",
-    "start": "next start",
+    "start": "node .next/standalone/server.js",
     "postbuild:check": "node scripts/hostinger-postbuild.js",
     "lint": "eslint .",
     "format": "prettier --write .",
