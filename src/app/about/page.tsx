@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbJsonLd } from "@/lib/seo";
-import { SITE_NAME } from "@/lib/site-config";
+import { ORGANIZATION, SITE_NAME } from "@/lib/site-config";
 
 export const metadata: Metadata = createPageMetadata({
   title: "About",
@@ -32,6 +33,13 @@ export default function AboutPage() {
         <p>
           We focus on performance, accessibility, and clean UX — with glassmorphism UI, dark mode,
           and keyboard-friendly interactions across every tool.
+        </p>
+        <p>
+          Questions or feedback? Email{" "}
+          <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a> or use our{" "}
+          <Link href="/contact">Contact</Link> page. Legal:{" "}
+          <Link href="/privacy">Privacy</Link>, <Link href="/terms">Terms</Link>,{" "}
+          <Link href="/cookies">Cookies</Link>, <Link href="/disclaimer">Disclaimer</Link>.
         </p>
       </div>
     </div>

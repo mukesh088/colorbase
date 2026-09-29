@@ -614,12 +614,22 @@ export const STATIC_PAGES = [
   {
     slug: "privacy",
     title: "Privacy Policy",
-    description: "Privacy policy for colorBase. How we handle data and cookies.",
+    description: "Privacy policy for colorBase. How we handle data, cookies, Analytics, and AdSense.",
   },
   {
     slug: "terms",
     title: "Terms of Service",
     description: "Terms of service for using colorBase tools and website.",
+  },
+  {
+    slug: "cookies",
+    title: "Cookie Policy",
+    description: "Cookie policy for colorBase essentials, analytics, and advertising cookies.",
+  },
+  {
+    slug: "disclaimer",
+    title: "Disclaimer",
+    description: "Disclaimer for colorBase tools, content, brand references, and advertising.",
   },
   {
     slug: "contact",

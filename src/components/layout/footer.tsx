@@ -44,13 +44,22 @@ export function Footer() {
             <li><Link href="/about" className="hover:text-foreground">About</Link></li>
             <li><Link href="/blog" className="hover:text-foreground">Blog</Link></li>
             <li><Link href="/contact" className="hover:text-foreground">Contact</Link></li>
-            <li><Link href="/privacy" className="hover:text-foreground">Privacy</Link></li>
+            <li><Link href="/faq" className="hover:text-foreground">FAQ</Link></li>
           </ul>
         </div>
       </div>
-      <p className="mt-8 text-center text-xs text-muted-foreground">
-        © 2026 {SITE_NAME}. All rights reserved.
-      </p>
+      <div className="mx-auto mt-8 flex max-w-7xl flex-col items-center gap-3 px-3 sm:px-4 lg:px-6">
+        <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
+          <li><Link href="/privacy" className="hover:text-foreground">Privacy Policy</Link></li>
+          <li><Link href="/terms" className="hover:text-foreground">Terms of Service</Link></li>
+          <li><Link href="/cookies" className="hover:text-foreground">Cookie Policy</Link></li>
+          <li><Link href="/disclaimer" className="hover:text-foreground">Disclaimer</Link></li>
+          <li><Link href="/contact" className="hover:text-foreground">Contact</Link></li>
+        </ul>
+        <p className="text-center text-xs text-muted-foreground">
+          © 2026 {SITE_NAME}. All rights reserved.
+        </p>
+      </div>
     </footer>
   );
 }
