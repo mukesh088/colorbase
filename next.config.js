@@ -50,6 +50,9 @@ const nextConfig = {
     return config;
   },
   experimental: {
+    // On-demand pages stay in memory. Writing each crawled URL to disk
+    // (.html, .rsc, .meta) exhausts Hostinger inodes after a few days.
+    isrFlushToDisk: false,
     optimizePackageImports: [
       "lucide-react",
       "framer-motion",
