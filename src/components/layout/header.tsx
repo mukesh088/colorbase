@@ -30,7 +30,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/50 bg-background/80 pt-[env(safe-area-inset-top)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-2 px-3 sm:h-16 sm:gap-3 sm:px-5 lg:px-8">
+      <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-1.5 px-3 sm:h-16 sm:gap-3 sm:px-5 lg:px-8">
         <Link
           href="/"
           className="group flex min-w-0 shrink-0 items-center gap-2"
@@ -39,8 +39,8 @@ export function Header() {
           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-500 text-white shadow-md shadow-rose-500/25 transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9">
             <Palette className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </span>
-          <div className="hidden min-w-0 sm:block">
-            <p className="truncate font-display text-sm font-semibold leading-none tracking-tight">
+          <div className="min-w-0 sm:block">
+            <p className="max-w-[7rem] truncate font-display text-sm font-semibold leading-none tracking-tight sm:max-w-none">
               {SITE_NAME}
             </p>
             <p className="mt-0.5 hidden text-[10px] text-muted-foreground lg:block">
@@ -58,7 +58,7 @@ export function Header() {
           variant="ghost"
           size="sm"
           className={cn(
-            "hidden rounded-full font-semibold md:inline-flex",
+            "hidden rounded-full font-semibold lg:inline-flex",
             pathname === "/tools" || pathname.startsWith("/tools")
               ? "bg-primary/12 text-primary"
               : "text-muted-foreground hover:text-foreground"
@@ -71,7 +71,7 @@ export function Header() {
           asChild
           size="sm"
           className={cn(
-            "hidden h-8 rounded-full bg-rose-600 px-3 text-[13px] font-medium leading-none tracking-tight text-white antialiased shadow-none hover:bg-rose-700 md:inline-flex",
+            "hidden h-8 rounded-full bg-rose-600 px-3 text-[13px] font-medium leading-none tracking-tight text-white antialiased shadow-none hover:bg-rose-700 lg:inline-flex",
             pathname === "/ai-color-copilot" && "bg-rose-700"
           )}
         >
@@ -87,13 +87,13 @@ export function Header() {
               <Button
                 variant="outline"
                 size="icon"
-                className="h-9 w-9 shrink-0 rounded-full md:hidden"
+                className="h-11 w-11 shrink-0 rounded-full lg:hidden sm:h-10 sm:w-10"
                 aria-label="Open navigation menu"
               >
                 <Menu className="h-4 w-4" />
               </Button>
             </DialogTrigger>
-            <DialogContent className="fixed inset-y-0 left-0 top-0 h-dvh max-h-none w-[min(100vw,20rem)] max-w-none translate-x-0 translate-y-0 gap-0 overflow-y-auto rounded-none border-r border-border/60 p-0 pt-[env(safe-area-inset-top)] sm:rounded-none">
+            <DialogContent className="fixed inset-y-0 left-0 top-0 h-dvh max-h-none w-[min(100vw,22rem)] max-w-none translate-x-0 translate-y-0 gap-0 overflow-y-auto rounded-none border-r border-border/60 p-0 pt-[env(safe-area-inset-top)] sm:rounded-none">
               <DialogHeader className="border-b border-border/50 px-4 py-4 text-left">
                 <DialogTitle className="font-display text-lg">Menu</DialogTitle>
               </DialogHeader>
@@ -120,6 +120,18 @@ export function Header() {
                     )}
                   >
                     Our Tools
+                  </Link>
+                  <Link
+                    href="/unix-timestamp-converter"
+                    onClick={() => setMobileNavOpen(false)}
+                    className={cn(
+                      "flex items-center gap-3 rounded-2xl px-3 py-3 text-sm transition-colors",
+                      pathname === "/unix-timestamp-converter"
+                        ? "bg-primary/12 font-medium text-primary"
+                        : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                    )}
+                  >
+                    Unix timestamp
                   </Link>
                 </nav>
                 <div>
@@ -159,7 +171,7 @@ export function Header() {
           <Button
             variant="outline"
             size="icon"
-            className="h-9 w-9 shrink-0 rounded-full md:hidden"
+            className="h-11 w-11 shrink-0 rounded-full lg:hidden sm:h-10 sm:w-10"
             disabled
             aria-label="Open navigation menu"
           >
@@ -175,13 +187,13 @@ export function Header() {
           }}
           role="search"
         >
-          <div className="relative hidden w-full max-w-[16rem] md:max-w-sm lg:max-w-md sm:block">
+          <div className="relative hidden w-full max-w-[16rem] md:block md:max-w-sm lg:max-w-md">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search…"
-              className="h-9 rounded-full border-border/60 bg-background/70 pl-9 sm:h-10"
+              className="h-11 rounded-full border-border/60 bg-background/70 pl-9 md:h-10"
               aria-label="Search tools"
             />
           </div>
@@ -189,7 +201,7 @@ export function Header() {
             asChild
             variant="ghost"
             size="icon"
-            className="h-9 w-9 shrink-0 rounded-full sm:hidden"
+            className="h-11 w-11 shrink-0 rounded-full md:hidden"
             aria-label="Search"
           >
             <Link href="/search">
@@ -203,7 +215,7 @@ export function Header() {
             asChild
             size="icon"
             className={cn(
-              "h-9 w-9 rounded-full bg-rose-600 text-white shadow-none hover:bg-rose-700 md:hidden",
+              "h-11 w-11 rounded-full bg-rose-600 text-white shadow-none hover:bg-rose-700 lg:hidden sm:h-10 sm:w-10",
               pathname === "/ai-color-copilot" && "bg-rose-700"
             )}
           >

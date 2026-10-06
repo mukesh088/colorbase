@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/utils";
-import { ADSENSE_CLIENT_ID, ORGANIZATION, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-config";
+import { ADSENSE_CLIENT_ID, BUSINESS_ADDRESS, ORGANIZATION, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-config";
 import type { BreadcrumbItem, FAQItem } from "@/types/tools";
 import type { ToolDefinition } from "@/types/tools";
 
@@ -129,6 +129,21 @@ export function organizationJsonLd() {
       url: ORGANIZATION.logo,
     },
     email: ORGANIZATION.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: BUSINESS_ADDRESS.street,
+      addressLocality: BUSINESS_ADDRESS.city,
+      postalCode: BUSINESS_ADDRESS.postalCode,
+      addressRegion: BUSINESS_ADDRESS.region,
+      addressCountry: "IN",
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      email: ORGANIZATION.email,
+      contactType: "customer support",
+      areaServed: "IN",
+      availableLanguage: ["en", "hi"],
+    },
     sameAs: ORGANIZATION.sameAs,
   };
 }

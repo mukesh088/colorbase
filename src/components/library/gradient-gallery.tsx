@@ -90,8 +90,9 @@ export function GradientGallery({
             <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
               Gradient Library
             </h1>
-            <p className="mt-2 text-muted-foreground">
-              Named palettes with copy-ready CSS, Tailwind, and SCSS.
+            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Named palettes with copy-ready CSS. Steal two stops from the same family, then check
+              text on the darkest stop — not on the average color of the blend.
             </p>
           </header>
         )}
@@ -143,7 +144,7 @@ export function GradientGallery({
         </div>
         {(q.trim() || category) && filtered.length > pageSize && (
           <p className="mt-3 text-center text-sm text-muted-foreground">
-            Showing {pageSize} of {filtered.length.toLocaleString()}. Refine search or{" "}
+            Showing {pageSize} of {filtered.length.toLocaleString("en-US")}. Refine search or{" "}
             {category ? (
               <Link href={`/gradient-library/category/${category}`} className="text-primary underline-offset-4 hover:underline">
                 view all {category}
@@ -209,7 +210,7 @@ function Chip({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full border px-3.5 py-1.5 text-xs font-medium capitalize transition-all",
+        "rounded-full border px-4 min-h-11 text-xs font-medium capitalize transition-all",
         active
           ? "border-primary/40 bg-primary text-primary-foreground"
           : "border-border/60 bg-background/50 text-muted-foreground hover:border-primary/40 hover:text-foreground"

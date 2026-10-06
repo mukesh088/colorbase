@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { SUPPORT_EMAIL } from "@/lib/site-config";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -34,9 +35,11 @@ export function ContactForm() {
       <CardContent>
         <form
           className="space-y-4"
-          onSubmit={handleSubmit(async () => {
-            await new Promise((r) => setTimeout(r, 500));
-            toast.success("Message sent — thanks!");
+          onSubmit={handleSubmit((values) => {
+            const subject = `colorBase query from ${values.name}`;
+            const body = `Name: ${values.name}\nReply-to: ${values.email}\n\n${values.message}`;
+            window.location.href = `mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            toast.success(`Opening your email app — this goes to ${SUPPORT_EMAIL}`);
             reset();
           })}
         >
@@ -56,7 +59,7 @@ export function ContactForm() {
             {errors.message && <p className="text-xs text-destructive">{errors.message.message}</p>}
           </div>
           <Button type="submit" disabled={isSubmitting}>
-            {isSubmitting ? "Sending…" : "Send message"}
+            {isSubmitting ? "Opening mailbox…" : "Send to mailbox"}
           </Button>
         </form>
       </CardContent>

@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { ArrowLeftRight, ArrowRight, Contrast, LayoutDashboard, Palette, Pipette, Sparkles, Table2 } from "lucide-react";
+import { ArrowLeftRight, ArrowRight, Contrast, LayoutDashboard, Palette, Pipette, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CATEGORY_LABELS, getFeaturedTools, getPopularTools, getToolsByCategory } from "@/lib/tools-registry";
 import { LIBRARY_LINKS, TOOL_ICONS } from "@/lib/nav";
 import { SITE_NAME, SITE_TAGLINE } from "@/lib/site-config";
 import { POPULAR_UI_COLOR_GROUPS } from "@/lib/colors/palettes";
+import { getFeaturedPosts } from "@/lib/data/blog";
 import { cn } from "@/lib/utils";
 
 const CONVERTER_STRIPS: Record<string, string[]> = {
@@ -66,9 +67,11 @@ export function HomeHero() {
               {SITE_NAME}
             </p>
             <h1 className="mt-3 max-w-xl text-lg text-muted-foreground sm:mt-4 sm:text-2xl">{SITE_TAGLINE}</h1>
-            <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
-              Describe what you&apos;re building. Copilot turns it into an accessible color system you can copy into CSS or Tailwind.
-            </p>
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">
+            Describe what you are building. Copilot turns it into an accessible color system you can
+            copy into CSS or Tailwind. Then read how to contrast-check it — tools here come with
+            original guides, not empty converter boxes.
+          </p>
             <div className="mt-6 flex flex-wrap gap-2 sm:mt-8 sm:gap-3">
               <Button
                 asChild
@@ -129,7 +132,7 @@ export function HomeHero() {
               Libraries
             </h2>
           </div>
-          <p className="text-sm text-muted-foreground">Also pinned in the header for quick access.</p>
+          <p className="hidden text-sm text-muted-foreground sm:block">Also pinned in the header for quick access.</p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {LIBRARY_LINKS.map((item) => {
@@ -277,61 +280,6 @@ export function HomeHero() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6" aria-labelledby="table-generator-heading">
-        <Link
-          href="/table-generator"
-          className="card-lift group relative block overflow-hidden rounded-[1.75rem] border border-border/50 bg-background/70 shadow-sm backdrop-blur-sm"
-        >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(244,63,94,0.14),transparent_40%),radial-gradient(circle_at_88%_25%,rgba(14,165,233,0.12),transparent_38%)]" />
-          <div className="relative grid gap-5 p-5 sm:grid-cols-[1.1fr_0.9fr] sm:gap-8 sm:p-7 lg:p-8">
-            <div className="flex flex-col justify-center">
-              <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-rose-500/20 bg-rose-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-700 dark:text-rose-300">
-                <Table2 className="h-3.5 w-3.5" />
-                Developer tools
-              </div>
-              <h2 id="table-generator-heading" className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-                Universal Table Generator
-              </h2>
-              <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
-                Build spreadsheet-style tables and export HTML, Markdown, LaTeX, CSV, SQL, React,
-                Tailwind, and more — with live preview and one-click import.
-              </p>
-              <span className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-rose-600 transition-all duration-300 group-hover:gap-2.5 dark:text-rose-300">
-                Open table generator
-                <ArrowRight className="h-4 w-4" />
-              </span>
-            </div>
-            <div className="overflow-hidden rounded-2xl border border-border/50 bg-background/80 shadow-sm">
-              <div className="grid grid-cols-3 bg-rose-600 text-[11px] font-semibold text-white">
-                {["Plan", "Price", "Seats"].map((h) => (
-                  <span key={h} className="px-3 py-2">
-                    {h}
-                  </span>
-                ))}
-              </div>
-              {[
-                ["Starter", "$0", "1"],
-                ["Pro", "$19", "10"],
-                ["Team", "$49", "∞"],
-              ].map((row, i) => (
-                <div
-                  key={row[0]}
-                  className={`grid grid-cols-3 text-xs transition-colors group-hover:bg-rose-500/[0.04] ${
-                    i % 2 ? "bg-muted/30" : ""
-                  }`}
-                >
-                  {row.map((cell) => (
-                    <span key={cell} className="px-3 py-2.5">
-                      {cell}
-                    </span>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </Link>
-      </section>
-
       <section className="mx-auto max-w-7xl px-3 py-8 sm:px-4 sm:py-10 lg:px-6" aria-labelledby="converters-heading">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
@@ -452,6 +400,51 @@ export function HomeHero() {
         </Link>
       </section>
 
+      <section className="mx-auto max-w-7xl px-3 py-8 sm:px-4 sm:py-10 lg:px-6" aria-labelledby="guides-heading">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
+              Studio writing
+            </p>
+            <h2 id="guides-heading" className="mt-1 font-display text-2xl font-semibold">
+              Guides worth reading
+            </h2>
+            <p className="mt-2 max-w-xl text-sm text-muted-foreground">
+              Contrast, tokens, and palette workflow — written here, not scraped. Start with the{" "}
+              <Link href="/learning" className="text-primary underline-offset-4 hover:underline">
+                learning path
+              </Link>{" "}
+              or open an article.
+            </p>
+          </div>
+          <Button asChild variant="outline" className="rounded-full">
+            <Link href="/blog">
+              All articles
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </Button>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {getFeaturedPosts(3).map((post) => (
+            <Link
+              key={post.slug}
+              href={`/blog/${post.slug}`}
+              className="glass card-lift block rounded-2xl border border-border/50 p-5"
+            >
+              <p className="text-xs font-semibold uppercase tracking-wider text-rose-600">{post.category}</p>
+              <h3 className="mt-2 font-display text-lg font-semibold tracking-tight">{post.title}</h3>
+              <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                {post.description}
+              </p>
+              <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-rose-600 dark:text-rose-300">
+                Read
+                <ArrowRight className="h-4 w-4" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section
         className="mx-auto max-w-7xl px-3 pb-12 sm:px-4 sm:pb-16 lg:px-6"
         aria-labelledby="popular-heading"
@@ -464,7 +457,7 @@ export function HomeHero() {
             <Link
               key={tool.slug}
               href={`/${tool.slug}`}
-              className="rounded-full border border-border/60 bg-background/60 px-3 py-1.5 text-xs backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary sm:px-4 sm:py-2 sm:text-sm"
+              className="inline-flex min-h-11 items-center rounded-full border border-border/60 bg-background/60 px-3 py-2 text-sm backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary sm:px-4"
             >
               {tool.shortTitle}
             </Link>

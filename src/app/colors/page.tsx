@@ -10,6 +10,8 @@ import {
 } from "@/lib/data/families";
 import { UI_KITS, getColorsBySource, getLibraryStats } from "@/lib/data/color-library";
 import { KitCard, FamilyCard } from "@/components/library/kit-card";
+import { LibraryHero } from "@/components/library/library-hero";
+import { LibraryInsight } from "@/components/library/library-insight";
 import { mixColors } from "@/lib/colors/convert";
 
 export const dynamic = "force-static";
@@ -41,23 +43,30 @@ export default function ColorsHubPage() {
   const stats = getLibraryStats();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
 
-      <header className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
-          Design systems
-        </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Complete Color Library
-        </h1>
-        <p className="mt-3 text-muted-foreground">
-          Browse {stats.total.toLocaleString()}+ colors across {stats.kits} design systems and{" "}
-          {stats.families} families. Every color includes HEX, RGB, HSL, LAB, OKLCH, CMYK, exports, and
-          harmonies.
-        </p>
-      </header>
+      <LibraryHero
+        eyebrow="Design systems"
+        title="Complete Color Library"
+        description={`Browse ${stats.total.toLocaleString("en-US")}+ colors across ${stats.kits} design systems and ${stats.families} families. Every swatch includes HEX, RGB, HSL, OKLCH, contrast, and a job for that exact hex.`}
+        stats={[
+          { label: "Colors", value: stats.total.toLocaleString("en-US") },
+          { label: "Kits", value: String(stats.kits) },
+          { label: "Families", value: String(stats.families) },
+        ]}
+        swatches={["#E11D48", "#7c3aed", "#3b82f6", "#14b8a6", "#f59e0b", "#0f172a"]}
+        actions={[
+          { href: "/color-picker", label: "Open picker", primary: true },
+          { href: "/contrast-checker", label: "Check contrast" },
+          { href: "/tailwind-colors", label: "Tailwind scales" },
+        ]}
+      />
+
+      <div className="mt-8">
+        <LibraryInsight id="colors" />
+      </div>
 
       <section className="mt-10">
         <div className="mb-5 flex items-end justify-between gap-3">

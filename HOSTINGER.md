@@ -64,7 +64,7 @@ If hPanel warns that **inodes are running out**:
 2. **Remove leftover folders** via File Manager / SSH under `domains/` or `nodejs/` that are not the live app (old clones, `node_modules` copies, `.next` from failed builds).
 3. **Clear Hostinger caches** for the site, then **Redeploy once** from Git (do not keep stacking deploys without cleanup).
 4. Prefer **one** Node.js app for `colorbase.in` — not ZIP + Git + Connector side by side.
-5. This repo is tuned for low inodes: no `standalone` output, `images.unoptimized` (no `/_next/image` cache files), and large library pages generated on demand.
+5. This repo is tuned for low inodes: `output: "standalone"`, `images.unoptimized`, catalog routes are `force-dynamic` (no per-URL HTML on disk), `isrFlushToDisk: false`, and `postbuild` deletes `.next/cache` plus source maps. Do not upload a nested `colorbase/` copy or Search Console extract folders.
 
 ### What happens if inodes run out?
 

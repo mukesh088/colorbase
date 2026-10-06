@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" path="/privacy" updated="September 22, 2026">
+    <LegalPage title="Privacy Policy" path="/privacy" updated="October 6, 2026">
       <p>
         This Privacy Policy explains how {SITE_NAME} (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;)
         collects, uses, and shares information when you visit{" "}
@@ -23,9 +23,10 @@ export default function PrivacyPage() {
 
       <h2>1. Who we are</h2>
       <p>
-        {SITE_NAME} provides free browser-based color, CSS, developer, and related tools.
-        Contact:{" "}
-        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a>.
+        {SITE_NAME} provides free browser-based color, CSS, developer, and related tools. We operate
+        from Lalpur, Ranchi 834001, Jharkhand, India. Contact:{" "}
+        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a>. Queries are received in
+        this mailbox.
       </p>
 
       <h2>2. Information we collect</h2>
@@ -185,9 +186,10 @@ export default function PrivacyPage() {
 
       <h2>16. Contact</h2>
       <p>
-        Privacy questions:{" "}
-        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a> or{" "}
-        <Link href="/contact">Contact</Link>.
+        Privacy questions go to our mailbox:{" "}
+        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a>. Postal address: Lalpur,
+        Ranchi 834001, Jharkhand, India. You can also use our <Link href="/contact">Contact</Link>{" "}
+        form.
       </p>
     </LegalPage>
   );

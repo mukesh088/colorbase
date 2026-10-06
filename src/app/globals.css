@@ -85,6 +85,13 @@
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     overflow-x: clip;
+    scroll-padding-top: calc(3.5rem + env(safe-area-inset-top) + 0.5rem);
+  }
+
+  @media (min-width: 640px) {
+    html {
+      scroll-padding-top: calc(4rem + env(safe-area-inset-top) + 0.5rem);
+    }
   }
 
   body {
@@ -119,6 +126,26 @@
   :focus-visible {
     @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
+
+  button,
+  a,
+  [role="button"] {
+    touch-action: manipulation;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    input,
+    select,
+    textarea {
+      font-size: inherit;
+    }
+  }
 }
 
 @layer utilities {
@@ -138,7 +165,12 @@
       box-shadow 420ms cubic-bezier(0.22, 1, 0.36, 1),
       border-color 320ms ease,
       background-color 320ms ease;
-    will-change: transform;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .card-lift:hover {
+      will-change: transform;
+    }
   }
 
   .card-lift:hover {

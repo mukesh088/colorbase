@@ -20,8 +20,10 @@ import { BrandLogo } from "@/components/library/brand-logo";
 import { BrandPaletteDownload } from "@/components/library/brand-palette-download";
 import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { BrandHexChip } from "@/components/library/brand-hex-chip";
+import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { maybeStaticParams } from "@/lib/static-params";
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export function generateStaticParams() {
@@ -89,7 +91,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd
         data={[
           breadcrumbJsonLd(crumbs),
@@ -131,6 +133,22 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           ))}
         </div>
       </header>
+
+      <section className="mt-8 rounded-[1.35rem] border border-border/50 bg-background/80 p-5 sm:rounded-[1.75rem] sm:p-7">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+          Using {brand.name} in UI
+        </p>
+        <h2 className="mt-1 font-display text-xl font-semibold tracking-tight">
+          Logo hex vs product ramp
+        </h2>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          Keep {brand.primary[0] ?? colors[0]} for the mark and a single CTA if it passes contrast.
+          Use the tints below for surfaces and the shades for icons on light canvases. Logo colors
+          are rarely safe as 14px body text on white — check the pair before a marketing page
+          floods every surface with the brand fill.
+        </p>
+        <ToolCtaRow hex={brand.primary[0] ?? colors[0]} className="mt-5 flex flex-wrap gap-2" />
+      </section>
 
       <section className="mt-12 space-y-10">
         <div>

@@ -6,6 +6,8 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { BRANDS, getBrandCategories, brandAllColors, getAllBrandHexEntries } from "@/lib/data/brands";
 import { BrandsExplorer } from "@/components/library/brands-explorer";
+import { LibraryHero } from "@/components/library/library-hero";
+import { LibraryInsight } from "@/components/library/library-insight";
 
 export const dynamic = "force-static";
 
@@ -44,6 +46,8 @@ export default function BrandsPage() {
     colors: brandAllColors(brand),
   }));
 
+  const hexEntries = getAllBrandHexEntries();
+
   const brandListLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
@@ -60,33 +64,43 @@ export default function BrandsPage() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={[breadcrumbJsonLd(crumbs), brandListLd]} />
       <Breadcrumbs items={crumbs} />
-      <header className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
-          Popular brands
-        </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Brand Hex Color Codes
-        </h1>
-        <p className="mt-3 text-muted-foreground">
-          {BRANDS.length} palettes with logos and official hex colors — including food apps, Premier League teams, and football clubs. Click a brand for every
-          color plus tints, shades, and a downloadable palette.
-        </p>
-      </header>
+      <LibraryHero
+        eyebrow="Popular brands"
+        title="Brand Hex Color Codes"
+        description={`${BRANDS.length} palettes with logos and official hexes — food apps, Premier League kits, and tech marks. Open a brand for primary vs secondary roles, tints, and a downloadable palette.`}
+        stats={[
+          { label: "Brands", value: String(BRANDS.length) },
+          { label: "Categories", value: String(categories.length) },
+          { label: "Hex pages", value: String(hexEntries.length) },
+        ]}
+        swatches={["#4285F4", "#FC8019", "#1DB954", "#E11D48", "#000000", "#FFC72C"]}
+        actions={[
+          { href: "/brand-colors", label: "Brand lookup tool", primary: true },
+          { href: "/contrast-checker", label: "Check contrast" },
+        ]}
+      />
+
+      <div className="mt-8">
+        <LibraryInsight id="brands" />
+      </div>
 
       <div className="mt-8">
         <BrandsExplorer brands={catalog} categories={categories} />
       </div>
 
-      <nav aria-label="All brand hex color pages" className="mt-16 border-t border-border/40 pt-10">
+      <nav
+        aria-label="All brand hex color pages"
+        className="mt-16 rounded-[1.35rem] border border-border/50 bg-background/70 p-5 sm:rounded-[1.75rem] sm:p-7"
+      >
         <h2 className="font-display text-xl font-semibold tracking-tight">All brand hex color pages</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Index of every brand name paired with its hex color code for search engines and quick lookup.
         </p>
         <ul className="mt-6 columns-1 gap-x-8 text-sm sm:columns-2 lg:columns-3">
-          {getAllBrandHexEntries().map((entry) => (
+          {hexEntries.map((entry) => (
             <li key={`${entry.brand.slug}-${entry.hexSlug}`} className="mb-1.5 break-inside-avoid">
               <Link
                 href={`/brands/${entry.brand.slug}/${entry.hexSlug}`}

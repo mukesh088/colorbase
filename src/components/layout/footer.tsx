@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { SITE_NAME } from "@/lib/site-config";
+import { SUPPORT_EMAIL, SITE_NAME, formatBusinessAddress } from "@/lib/site-config";
 
 export function Footer() {
   return (
-    <footer className="relative z-10 mt-auto border-t border-border/50 bg-background py-8 pb-[max(2rem,env(safe-area-inset-bottom))]">
+    <footer className="relative z-10 mt-auto border-t border-border/50 bg-background py-8 pb-[max(5.5rem,calc(env(safe-area-inset-bottom)+4.5rem))] sm:pb-[max(2.5rem,env(safe-area-inset-bottom))]">
       <div className="mx-auto grid max-w-7xl gap-6 px-3 sm:grid-cols-2 sm:px-4 lg:grid-cols-4 lg:px-6">
         <div>
           <p className="font-display text-lg font-semibold">
@@ -13,6 +13,13 @@ export function Footer() {
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Free modern color tools for designers and developers. Visit colorbase.in.
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="hover:text-foreground">
+              {SUPPORT_EMAIL}
+            </a>
+            <br />
+            {formatBusinessAddress()}
           </p>
         </div>
         <div>
@@ -25,8 +32,9 @@ export function Footer() {
             </li>
             <li><Link href="/tools" className="hover:text-foreground">All tools</Link></li>
             <li><Link href="/tools?category=css-generators" className="hover:text-foreground">CSS Tools</Link></li>
-            <li><Link href="/tools?category=developer-tools" className="hover:text-foreground">Developer Tools</Link></li>
-            <li><Link href="/tools?category=text-tools" className="hover:text-foreground">Text Tools</Link></li>
+            <li><Link href="/contrast-checker" className="hover:text-foreground">Contrast</Link></li>
+            <li><Link href="/palette-generator" className="hover:text-foreground">Palettes</Link></li>
+            <li><Link href="/unix-timestamp-converter" className="hover:text-foreground">Unix time</Link></li>
           </ul>
         </div>
         <div>
@@ -42,6 +50,7 @@ export function Footer() {
           <p className="mb-2 text-sm font-semibold">Company</p>
           <ul className="space-y-1 text-sm text-muted-foreground">
             <li><Link href="/about" className="hover:text-foreground">About</Link></li>
+            <li><Link href="/learning" className="hover:text-foreground">Learning</Link></li>
             <li><Link href="/blog" className="hover:text-foreground">Blog</Link></li>
             <li><Link href="/contact" className="hover:text-foreground">Contact</Link></li>
             <li><Link href="/faq" className="hover:text-foreground">FAQ</Link></li>

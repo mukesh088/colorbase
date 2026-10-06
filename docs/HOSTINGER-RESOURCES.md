@@ -20,6 +20,8 @@ PostgreSQL does **not** shrink `.next` inode counts. It keeps **user-generated d
 | Leftover deploys | Old Node apps / ZIP clones | One Git Node app; delete unused folders |
 | User files on disk | Saving tables/images locally | Persist JSON in Postgres; exports stay in-browser Blobs |
 | Image optimizer cache | `/_next/image` writes under `.next/cache` | `images.unoptimized: true` (no AVIF, no wildcard remotes) |
+| Catalog HTML cache | Crawlers hitting `/color/*` etc. | `force-dynamic` on high-cardinality routes |
+| Webpack cache in deploy | `.next/cache` after `next build` | `postbuild` deletes cache/trace |
 
 ## Resource budget
 

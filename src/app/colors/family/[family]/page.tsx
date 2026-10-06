@@ -13,6 +13,7 @@ import {
 import { getColorsByFamily } from "@/lib/data/color-library";
 import { LibraryColorCard } from "@/components/library/library-color-card";
 import { PaletteStrip } from "@/components/library/palette-strip";
+import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { mixColors } from "@/lib/colors/convert";
 
 export function generateStaticParams() {
@@ -56,17 +57,21 @@ export default async function FamilyPage({ params }: { params: Promise<{ family:
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
-      <header className="max-w-3xl">
+      <header className="overflow-hidden rounded-[1.35rem] border border-border/50 bg-background/80 p-5 shadow-sm sm:rounded-[1.85rem] sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
           Color family
         </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-5xl">
           {label} Colors
         </h1>
-        <p className="mt-3 max-w-3xl text-muted-foreground">{psychologyForFamily(family)}</p>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          {psychologyForFamily(family)} Open a swatch for HEX, RGB, HSL, OKLCH, contrast, and a job for
+          that exact hex — not a generic {label.toLowerCase()} moodboard.
+        </p>
+        <ToolCtaRow className="mt-5 flex flex-wrap gap-2" />
       </header>
 
       <div className="card-lift mt-8 overflow-hidden rounded-[1.75rem] border border-border/50">

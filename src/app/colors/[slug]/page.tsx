@@ -8,6 +8,7 @@ import { ColorDetailView } from "@/components/library/color-detail-view";
 import { findSimilarColors } from "@/lib/colors/spaces";
 import { maybeStaticParams } from "@/lib/static-params";
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export function generateStaticParams() {
@@ -54,16 +55,16 @@ export default async function ColorSlugPage({ params }: { params: Promise<{ slug
   const faqs = [
     {
       question: `What is the HEX code for ${color.name}?`,
-      answer: `${color.name} uses ${color.hex}.`,
+      answer: `${color.name} uses ${color.hex}. Copy HEX for design tools, or the CSS variable and Tailwind token from this page. Verify 14px text contrast before using it as body copy on white.`,
     },
     {
       question: `Which color family does ${color.name} belong to?`,
-      answer: `${color.name} is categorized in the ${color.family} family.`,
+      answer: `${color.name} is in the ${color.family} family. Use the tints for surfaces and the shades for icons; the family psychology note is a starting mood, not a license to skip WCAG.`,
     },
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={[breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
       <Breadcrumbs items={crumbs} />
       <div className="mt-4">

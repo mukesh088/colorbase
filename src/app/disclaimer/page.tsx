@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function DisclaimerPage() {
   return (
-    <LegalPage title="Disclaimer" path="/disclaimer" updated="September 22, 2026">
+    <LegalPage title="Disclaimer" path="/disclaimer" updated="October 6, 2026">
       <p>
         The information and tools on {SITE_NAME} ({SITE_URL.replace(/^https?:\/\//, "")}) are
         provided for general informational and utility purposes only.
@@ -56,9 +56,10 @@ export default function DisclaimerPage() {
 
       <h2>6. Contact</h2>
       <p>
-        Questions: <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a> ·{" "}
-        <Link href="/contact">Contact</Link> · <Link href="/privacy">Privacy</Link> ·{" "}
-        <Link href="/terms">Terms</Link>.
+        Questions go to our mailbox:{" "}
+        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a>. Address: Lalpur, Ranchi
+        834001, Jharkhand, India. <Link href="/contact">Contact</Link> ·{" "}
+        <Link href="/privacy">Privacy</Link> · <Link href="/terms">Terms</Link>.
       </p>
     </LegalPage>
   );

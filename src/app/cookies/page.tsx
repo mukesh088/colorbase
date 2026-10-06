@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function CookiesPage() {
   return (
-    <LegalPage title="Cookie Policy" path="/cookies" updated="September 22, 2026">
+    <LegalPage title="Cookie Policy" path="/cookies" updated="October 6, 2026">
       <p>
         This Cookie Policy explains how {SITE_NAME} ({SITE_URL.replace(/^https?:\/\//, "")}) uses
         cookies and similar technologies. It should be read with our{" "}
@@ -114,8 +114,9 @@ export default function CookiesPage() {
 
       <h2>6. More information</h2>
       <p>
-        Privacy details: <Link href="/privacy">Privacy Policy</Link>. Questions:{" "}
-        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a>.
+        Privacy details: <Link href="/privacy">Privacy Policy</Link>. Questions go to our mailbox:{" "}
+        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a>. Address: Lalpur, Ranchi
+        834001, Jharkhand, India.
       </p>
     </LegalPage>
   );

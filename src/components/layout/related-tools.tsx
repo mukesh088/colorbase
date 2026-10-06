@@ -65,7 +65,7 @@ export function RelatedTools({ tools }: { tools: ToolDefinition[] }) {
               href={`/${tool.slug}`}
               className={cn(
                 "group relative block overflow-hidden rounded-[1.35rem] border border-border/50 bg-background/70 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.45)] transition-all duration-300 animate-rise",
-                "hover:-translate-y-1 hover:border-rose-500/30 hover:shadow-[0_22px_48px_-22px_rgba(225,29,72,0.45)]"
+                "hover:border-rose-500/30 hover:shadow-[0_22px_48px_-22px_rgba(225,29,72,0.45)] sm:hover:-translate-y-1"
               )}
               style={{ animationDelay: `${Math.min(index, 8) * 45}ms` }}
             >

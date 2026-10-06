@@ -43,7 +43,9 @@ export function BrandCard({
             {category}
           </span>
         </div>
-        <p className="sr-only">{overview}</p>
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">
+          {overview}
+        </p>
         <div className="flex flex-1 items-center justify-center py-8 sm:py-10">
           <BrandLogo slug={slug} name={name} colors={palette} size="lg" />
         </div>

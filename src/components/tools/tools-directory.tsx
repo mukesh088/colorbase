@@ -56,7 +56,7 @@ const CATEGORY_META: Record<
     icon: Image,
     accent: "text-pink-600 dark:text-pink-400",
     bar: "bg-pink-500",
-    blurb: "Compress, convert, crop & extract colors",
+    blurb: "Extract palettes and colors from photos",
   },
   "web-tools": {
     icon: LayoutGrid,
@@ -74,7 +74,7 @@ const CATEGORY_META: Record<
     icon: Hash,
     accent: "text-emerald-600 dark:text-emerald-400",
     bar: "bg-emerald-500",
-    blurb: "Passwords, cool names, randomizers & timestamps",
+    blurb: "Unix epoch, timezones, and timestamp math",
   },
   games: {
     icon: Gamepad2,
@@ -254,7 +254,7 @@ export function ToolsDirectory({
                   <li key={tool.slug}>
                     <Link
                       href={`/${tool.slug}`}
-                      className="group flex items-center gap-3 px-4 py-3.5 transition-colors hover:bg-rose-500/[0.06] sm:px-6"
+                      className="group flex min-h-12 items-center gap-3 px-4 py-3.5 transition-colors hover:bg-rose-500/[0.06] sm:px-6"
                     >
                       <span className="w-7 shrink-0 text-center font-mono text-xs text-muted-foreground/70">
                         {String(index + 1).padStart(2, "0")}
@@ -270,7 +270,7 @@ export function ToolsDirectory({
                       <span className="min-w-0 flex-1 truncate text-sm font-medium tracking-tight text-foreground group-hover:text-rose-700 dark:group-hover:text-rose-300">
                         {tool.title}
                       </span>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-all group-hover:translate-x-0.5 group-hover:opacity-100" />
+                      <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground opacity-50 sm:opacity-0 sm:transition-all sm:group-hover:translate-x-0.5 sm:group-hover:opacity-100" />
                     </Link>
                   </li>
                 );
@@ -286,20 +286,20 @@ export function ToolsDirectory({
   return (
     <div className="space-y-8">
       <header className="border-b border-border/50 pb-8">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-          Directory
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-600 dark:text-rose-400">
+          Color & CSS studio
         </p>
         <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h1 className="font-display text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
+            <h1 className="font-display text-3xl font-semibold tracking-tight text-foreground sm:text-5xl">
               Our Tools
             </h1>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Choose a menu to open its tool list. {TOOLS.length} utilities across{" "}
-              {categories.length} categories.
+              Pickers, converters, palettes, CSS generators, and accessibility checks — {TOOLS.length}{" "}
+              utilities across {categories.length} menus, built to ship tokens not screenshots.
             </p>
           </div>
-          <div className="rounded-xl border border-border/60 px-4 py-3 text-right">
+          <div className="rounded-2xl border border-border/60 bg-background/70 px-4 py-3 text-right shadow-sm">
             <p className="font-display text-2xl font-semibold tabular-nums">{TOOLS.length}</p>
             <p className="text-[11px] uppercase tracking-wider text-muted-foreground">Total tools</p>
           </div>
@@ -351,7 +351,7 @@ export function ToolsDirectory({
                 key={category}
                 type="button"
                 onClick={() => selectMenu(category)}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-background text-left shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-rose-500/35 hover:shadow-lg hover:shadow-rose-500/10"
+                className="group flex min-h-[8.25rem] flex-col overflow-hidden rounded-2xl border border-border/60 bg-background text-left shadow-sm transition-all duration-300 hover:border-rose-500/35 hover:shadow-lg hover:shadow-rose-500/10 sm:hover:-translate-y-1"
               >
                 <div className={cn("h-1 w-full", meta.bar)} aria-hidden />
                 <div className="flex flex-1 flex-col p-5">

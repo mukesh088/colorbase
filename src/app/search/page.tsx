@@ -48,7 +48,9 @@ export default async function SearchPage({
       </div>
 
       <div className="mt-4 flex flex-wrap gap-2">
-        {(Object.keys(CATEGORY_LABELS) as ToolCategory[]).map((cat) => (
+        {(Object.keys(CATEGORY_LABELS) as ToolCategory[])
+          .filter((cat) => TOOLS.some((t) => t.category === cat))
+          .map((cat) => (
           <Link
             key={cat}
             href={`/search?category=${cat}`}

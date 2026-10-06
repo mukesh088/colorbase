@@ -75,7 +75,7 @@ const CALC_UNITS: Array<{ id: CalcUnit; label: string }> = [
 const ZONE_CARDS = TIME_ZONES.filter((z) => z.id !== "local");
 
 const fieldClass =
-  "h-11 w-full rounded-xl border border-border/60 bg-background/80 px-3 text-sm shadow-sm outline-none transition-colors focus:border-rose-400 focus:ring-2 focus:ring-rose-500/20";
+  "min-h-11 w-full rounded-xl border border-border/60 bg-background/80 px-3 text-base shadow-sm outline-none transition-colors focus:border-rose-400 focus:ring-2 focus:ring-rose-500/20 md:h-11 md:text-sm";
 
 const ideFieldClass =
   "w-full resize-y rounded-none border-0 bg-[#0d1117] px-4 py-3 font-mono text-[12px] leading-relaxed text-[#e6edf3] outline-none placeholder:text-[#8b949e] sm:text-[13px]";
@@ -105,7 +105,7 @@ function CopyBtn({
     <button
       type="button"
       className={cn(
-        "inline-flex h-8 shrink-0 items-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-colors",
+        "inline-flex h-11 min-h-11 shrink-0 items-center gap-1.5 rounded-full px-3 text-sm font-medium transition-colors",
         dark
           ? "border border-[#30363d] bg-[#21262d] text-[#e6edf3] hover:bg-[#30363d]"
           : "border border-border/60 bg-background/80 text-foreground hover:bg-muted"
@@ -140,7 +140,7 @@ function GhostButton({
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        "inline-flex h-10 items-center rounded-full border border-border/60 bg-background/70 px-4 text-sm font-medium hover:bg-muted disabled:opacity-50",
+        "inline-flex h-11 min-h-11 items-center rounded-full border border-border/60 bg-background/70 px-4 text-sm font-medium hover:bg-muted disabled:opacity-50",
         className
       )}
     >
@@ -392,8 +392,8 @@ export function UnixTimestampConverterTool() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-4 sm:space-y-5">
-      <Card className="overflow-hidden rounded-2xl p-1.5 sm:rounded-3xl">
-        <nav className="flex gap-1 overflow-x-auto">
+      <Card className="sticky top-[calc(3.5rem+env(safe-area-inset-top))] z-20 overflow-hidden rounded-2xl p-1.5 sm:top-[calc(4rem+env(safe-area-inset-top))] sm:rounded-3xl">
+        <nav className="-mx-0.5 flex snap-x snap-mandatory gap-1 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {TABS.map((tab) => {
             const Icon = tab.icon;
             const active = panel === tab.id;
@@ -403,7 +403,7 @@ export function UnixTimestampConverterTool() {
                 type="button"
                 onClick={() => setPanel(tab.id)}
                 className={cn(
-                  "inline-flex shrink-0 items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
+                  "inline-flex min-h-11 shrink-0 snap-start items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition-colors",
                   active
                     ? "bg-gradient-to-r from-rose-500 to-fuchsia-500 text-white shadow-md shadow-rose-500/20"
                     : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -421,13 +421,13 @@ export function UnixTimestampConverterTool() {
         <div className="space-y-4 sm:space-y-5">
           <div className="card-lift group relative overflow-hidden rounded-[1.75rem] border border-border/50 bg-background/75 shadow-[0_20px_50px_-28px_rgba(225,29,72,0.45)] backdrop-blur-sm">
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_10%_20%,rgba(244,63,94,0.2),transparent_42%),radial-gradient(circle_at_90%_0%,rgba(14,165,233,0.1),transparent_36%)]" />
-            <div className="relative flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+            <div className="relative flex flex-col gap-5 p-4 sm:flex-row sm:items-center sm:justify-between sm:p-6">
               <div>
                 <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-rose-500/20 bg-rose-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-700 dark:text-rose-300">
                   <Sparkles className="h-3.5 w-3.5" />
                   Flagship converter
                 </div>
-                <p className="font-display text-4xl font-semibold tabular-nums tracking-tight sm:text-5xl">
+                <p className="break-all font-display text-3xl font-semibold tabular-nums tracking-tight sm:text-5xl">
                   {mounted ? nowSeconds : "—"}
                 </p>
                 <p className="mt-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground">
@@ -578,8 +578,8 @@ export function UnixTimestampConverterTool() {
             >
               <div className="divide-y divide-[#30363d]">
                 {formatRows.map((row) => (
-                  <div key={row.id} className="flex flex-wrap items-center gap-3 px-4 py-2.5">
-                    <span className="w-36 shrink-0 font-mono text-[11px] uppercase tracking-wide text-[#8b949e]">
+                  <div key={row.id} className="flex flex-col gap-2 px-3 py-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:px-4 sm:py-2.5">
+                    <span className="w-auto shrink-0 font-mono text-[11px] uppercase tracking-wide text-[#8b949e] sm:w-36">
                       {row.label}
                     </span>
                     <code className="min-w-0 flex-1 break-all font-mono text-[13px] text-[#e6edf3]">
@@ -820,7 +820,7 @@ function JsonPreview({ rows, onLoad }: { rows: ConvertedStamp[]; onLoad: (ms: nu
   if (valid.length === 0) return null;
   return (
     <div className="mt-5 overflow-x-auto rounded-2xl border border-[#30363d] bg-[#0d1117]">
-      <table className="w-full text-left text-sm text-[#e6edf3]">
+      <table className="hidden w-full text-left text-sm text-[#e6edf3] md:table">
         <thead>
           <tr className="border-b border-[#30363d] bg-[#161b22] text-[#8b949e]">
             <th className="px-3 py-2 font-semibold">Input</th>
@@ -837,7 +837,7 @@ function JsonPreview({ rows, onLoad }: { rows: ConvertedStamp[]; onLoad: (ms: nu
               <td className="px-3 py-2 font-mono text-xs text-[#7ee787]">{row.iso}</td>
               <td className="px-3 py-2 text-right">
                 <GhostButton
-                  className="h-8 border-[#30363d] bg-[#21262d] px-3 text-xs text-[#e6edf3] hover:bg-[#30363d]"
+                  className="h-11 border-[#30363d] bg-[#21262d] px-3 text-xs text-[#e6edf3] hover:bg-[#30363d]"
                   onClick={() => onLoad(row.unixMilliseconds as number)}
                 >
                   Open
@@ -847,6 +847,21 @@ function JsonPreview({ rows, onLoad }: { rows: ConvertedStamp[]; onLoad: (ms: nu
           ))}
         </tbody>
       </table>
+      <ul className="divide-y divide-[#30363d] md:hidden">
+        {valid.map((row) => (
+          <li key={`${row.input}-${row.unixMilliseconds}-m`} className="space-y-2 p-3">
+            <p className="break-all font-mono text-xs">{row.input}</p>
+            <p className="text-xs capitalize text-[#8b949e]">{row.unit}</p>
+            <p className="break-all font-mono text-xs text-[#7ee787]">{row.iso}</p>
+            <GhostButton
+              className="h-11 border-[#30363d] bg-[#21262d] px-3 text-xs text-[#e6edf3] hover:bg-[#30363d]"
+              onClick={() => onLoad(row.unixMilliseconds as number)}
+            >
+              Open
+            </GhostButton>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

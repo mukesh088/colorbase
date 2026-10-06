@@ -7,16 +7,16 @@ import { CATEGORY_LABELS } from "@/lib/tools-registry";
 import type { ToolCategory } from "@/types/tools";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Our Tools — Free CSS, Text, Developer & Color Utilities",
+  title: "Our Tools — Color, CSS & Palette Utilities",
   description:
-    "Browse free tools by menu: CSS, text, developer, image, web, social, utility, and color tools. Open a category to see the full name list.",
+    "Browse colorBase tools by menu: color pickers, converters, palettes, CSS generators, image color extractors, and accessibility checkers.",
   path: "/tools",
   keywords: [
-    "free tools",
+    "free color tools",
     "css tools",
-    "developer tools",
-    "text tools",
-    "image tools",
+    "palette tools",
+    "color picker",
+    "image color tools",
     "color tools directory",
   ],
 });

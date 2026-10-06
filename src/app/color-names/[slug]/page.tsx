@@ -12,8 +12,10 @@ import { LibraryColorCard } from "@/components/library/library-color-card";
 import { PaletteStrip } from "@/components/library/palette-strip";
 import { FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { maybeStaticParams } from "@/lib/static-params";
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export function generateStaticParams() {
@@ -79,7 +81,7 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
   const description = `${label} color hex code is ${hexUpper}. ${color.history}`;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd
         data={[
           breadcrumbJsonLd(crumbs),
@@ -130,6 +132,8 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
           </Card>
         ))}
       </div>
+
+      <ToolCtaRow hex={color.hex} className="mb-8 flex flex-wrap gap-2" />
 
       <ColorDetailView name={`${label} color`} hex={color.hex} family={color.family} />
 

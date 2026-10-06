@@ -20,6 +20,11 @@
 # accidental next-sitemap output (App Router sitemap.ts is canonical)
 /sitemap-out
 
+# local Search Console parse artifacts and nested clones (inode bombs)
+/colorbase
+/_gsc_xlsx_read
+/_gsc_parse.js
+
 # production
 /build
 

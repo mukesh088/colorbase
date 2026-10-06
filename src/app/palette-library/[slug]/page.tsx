@@ -13,8 +13,10 @@ import { ColorSwatch } from "@/components/color/color-swatch";
 import { PaletteStrip } from "@/components/library/palette-strip";
 import { PaletteCard } from "@/components/library/palette-card";
 import { PaletteHeart } from "@/components/library/palette-heart";
+import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { maybeStaticParams } from "@/lib/static-params";
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export function generateStaticParams() {
@@ -49,7 +51,7 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
   ];
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-5xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
       <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
@@ -57,7 +59,7 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
           <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
             {p.category}
           </p>
-          <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight">{p.name}</h1>
+          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">{p.name}</h1>
           <div className="mt-3 flex items-center gap-3">
             <Badge>Accessibility score {p.accessibilityScore}</Badge>
             <PaletteHeart id={p.slug} />
@@ -68,6 +70,13 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
           <ShareButtons title={p.name} path={`/palette-library/${p.slug}`} />
         </div>
       </div>
+
+      <p className="mb-5 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+        Score {p.accessibilityScore} is a starting filter, not a free pass — click each swatch for
+        contrast vs white and black. Promote one hex to primary and keep the rest quieter; five loud
+        stops fight each other in a dashboard.
+      </p>
+      <ToolCtaRow hex={p.colors[0]} className="mb-8 flex flex-wrap gap-2" />
 
       <div className="card-lift mb-8 overflow-hidden rounded-[1.75rem] border border-border/50">
         <PaletteStrip colors={p.colors} height="lg" />

@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { Copy, Contrast, Sparkles } from "lucide-react";
+import { Copy, Contrast, Pipette, Palette } from "lucide-react";
 import { toast } from "sonner";
 import { analyzeColor } from "@/lib/colors/spaces";
+import { colorUsageNotes } from "@/lib/colors/usage-notes";
 import { psychologyForFamily, FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { getTextColor } from "@/lib/colors/convert";
 import { CopyButton } from "@/components/color/copy-button";
@@ -57,7 +58,7 @@ function ColorStrip({
             <Link
               key={`${title}-${hex}-${i}`}
               href={`/color/${hex.slice(1)}`}
-              className="group relative min-w-0 flex-1 transition-all duration-300 hover:flex-[1.45] focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="group relative min-w-0 flex-1 transition-all duration-300 focus-visible:z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:hover:flex-[1.45]"
               style={{ backgroundColor: hex, color: text }}
               title={hex}
             >
@@ -132,6 +133,7 @@ export function ColorDetailView({
   const a = analyzeColor(hex);
   const fam = (family ?? "blue") as ColorFamily;
   const path = sharePath ?? `/color/${a.hex.slice(1)}`;
+  const usage = colorUsageNotes(a, name, family);
 
   // Full scale: lightest tint → base → darkest shade
   const fullScale = [...[...a.tints].reverse(), a.hex, ...a.shades];
@@ -185,7 +187,7 @@ export function ColorDetailView({
               <Button
                 type="button"
                 size="sm"
-                className="rounded-full bg-white/90 text-slate-900 hover:bg-white"
+                className="min-h-11 rounded-full bg-white/90 text-slate-900 hover:bg-white"
                 onClick={async () => {
                   await navigator.clipboard.writeText(a.hex);
                   toast.success("HEX copied");
@@ -197,7 +199,7 @@ export function ColorDetailView({
               <CopyButton
                 value={a.cssVar}
                 label="CSS var"
-                className="rounded-full border-white/30 bg-black/20 text-inherit hover:bg-black/30"
+                className="min-h-11 rounded-full border-white/30 bg-black/20 text-inherit hover:bg-black/30"
               />
             </div>
           </div>
@@ -239,12 +241,29 @@ export function ColorDetailView({
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <ShareButtons title={name} path={path} />
-        <div className="flex flex-wrap gap-2 text-[11px] text-muted-foreground">
-          <span className="inline-flex items-center gap-1 rounded-full border border-border/50 px-2.5 py-1">
-            <Sparkles className="h-3 w-3 text-rose-500" />
-            Click any stop to open
-          </span>
-        </div>
+        <nav aria-label="Try this color in tools" className="flex flex-wrap gap-2">
+          <Link
+            href="/color-picker"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3.5 text-sm font-medium hover:border-rose-500/40"
+          >
+            <Pipette className="h-4 w-4 text-rose-600" />
+            Open in picker
+          </Link>
+          <Link
+            href="/contrast-checker"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3.5 text-sm font-medium hover:border-rose-500/40"
+          >
+            <Contrast className="h-4 w-4 text-rose-600" />
+            Check contrast
+          </Link>
+          <Link
+            href="/palette-generator"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3.5 text-sm font-medium hover:border-rose-500/40"
+          >
+            <Palette className="h-4 w-4 text-rose-600" />
+            Build palette
+          </Link>
+        </nav>
       </div>
 
       {/* Formats */}
@@ -328,18 +347,34 @@ export function ColorDetailView({
         colors={a.monochromatic}
       />
 
-      {/* Psychology */}
+      {/* Usage — unique to this hex */}
       <section className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 p-5 shadow-sm sm:rounded-3xl sm:p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-          Meaning
+          Using this color
         </p>
-        <h2 className="mt-1 font-display text-xl font-semibold tracking-tight">Color psychology</h2>
+        <h2 className="mt-1 font-display text-xl font-semibold tracking-tight">Where {a.hex} works</h2>
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-          {psychologyForFamily(fam)}
+          {usage.summary}
         </p>
-        <p className="mt-3 text-sm text-muted-foreground">
-          Common uses: primary buttons, chart series, status badges, marketing gradients, and brand accents in the{" "}
-          {FAMILY_LABELS[fam] ?? family} family.
+        <p className="mt-4 text-sm font-medium text-foreground">Sensible jobs for this swatch</p>
+        <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-muted-foreground sm:text-base">
+          {usage.uses.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+        <div className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+          {usage.watchouts.map((item) => (
+            <p key={item}>{item}</p>
+          ))}
+        </div>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Family context: {psychologyForFamily(fam)} Common uses still include buttons, charts, and
+          accents in the {FAMILY_LABELS[fam] ?? family} range — always verify the pair for this exact
+          hex in the{" "}
+          <Link href="/contrast-checker" className="text-primary underline-offset-4 hover:underline">
+            contrast checker
+          </Link>
+          .
         </p>
       </section>
 

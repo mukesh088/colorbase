@@ -12,7 +12,6 @@ import {
 } from "@/lib/data/color-names";
 import { FAMILY_LABELS, FAMILY_SWATCH, type ColorFamily } from "@/lib/data/families";
 import { LibraryColorCard } from "@/components/library/library-color-card";
-import { PaletteStrip } from "@/components/library/palette-strip";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -39,17 +38,8 @@ export function ColorNamesExplorer() {
     return list;
   }, [featured, family, q, instantResults]);
 
-  const heroStrip = useMemo(
-    () => featured.slice(0, 8).map((c) => c.hex),
-    [featured]
-  );
-
   return (
     <div className="space-y-10">
-      <div className="card-lift overflow-hidden rounded-[1.75rem] border border-border/50">
-        <PaletteStrip colors={heroStrip} height="lg" />
-      </div>
-
       <div className="space-y-4">
         <div className="relative max-w-2xl">
           <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
@@ -76,7 +66,7 @@ export function ColorNamesExplorer() {
           <Chip
             active={!family}
             onClick={() => setFamily(null)}
-            label={`All · ${total.toLocaleString()}`}
+            label={`All · ${total.toLocaleString("en-US")}`}
           />
           {families.map((f) => (
             <Chip
@@ -182,7 +172,7 @@ function Chip({
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium capitalize transition-all duration-300",
+        "inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-xs font-medium capitalize transition-all duration-300",
         active
           ? "border-primary/40 bg-primary/10 text-primary shadow-sm"
           : "border-border/60 bg-background/50 text-muted-foreground hover:-translate-y-0.5 hover:border-primary/30 hover:text-foreground"

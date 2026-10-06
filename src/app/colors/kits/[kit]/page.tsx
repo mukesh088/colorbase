@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { UI_KITS, getColorsBySource } from "@/lib/data/color-library";
 import { LibraryColorCard } from "@/components/library/library-color-card";
 import { PaletteStrip } from "@/components/library/palette-strip";
+import { ToolCtaRow } from "@/components/library/tool-cta-row";
 
 export function generateStaticParams() {
   return UI_KITS.map((kit) => ({ kit: kit.slug }));
@@ -41,21 +42,23 @@ export default async function KitPage({ params }: { params: Promise<{ kit: strin
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
 
-      <header className="max-w-3xl">
+      <header className="overflow-hidden rounded-[1.35rem] border border-border/50 bg-background/80 p-5 shadow-sm sm:rounded-[1.85rem] sm:p-8">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
           Design system
         </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-5xl">
           {meta.title}
         </h1>
-        <p className="mt-3 text-muted-foreground">
-          {colors.length} colors from the {meta.title} system. Click any swatch for full formats and
-          harmonies.
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+          {colors.length} colors from the {meta.title} system. Stay on the official shade numbers so
+          components match the docs — then verify body text in the contrast checker before you ship a
+          500 as 14px copy.
         </p>
+        <ToolCtaRow className="mt-5 flex flex-wrap gap-2" />
       </header>
 
       <div

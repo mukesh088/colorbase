@@ -53,6 +53,9 @@ if (!fs.existsSync(serverJs)) {
 rm(path.join(nextDir, "cache"));
 rm(path.join(nextDir, "trace"));
 rm(path.join(nextDir, "diagnostics"));
+rm(path.join(standalone, ".next", "cache"));
+rm(path.join(standalone, "node_modules", "typescript"));
+rm(path.join(standalone, "node_modules", "@types"));
 
 copyDir(path.join(nextDir, "static"), path.join(standalone, ".next", "static"));
 copyDir(path.join(root, "public"), path.join(standalone, "public"));

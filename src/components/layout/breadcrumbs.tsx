@@ -4,7 +4,7 @@ import type { BreadcrumbItem } from "@/types/tools";
 
 export function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
   return (
-    <nav aria-label="Breadcrumb" className="mb-4 overflow-x-auto">
+    <nav aria-label="Breadcrumb" className="mb-4 -mx-1 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       <ol className="flex min-w-0 items-center gap-1 text-xs text-muted-foreground sm:text-sm">
         {items.map((item, i) => {
           const last = i === items.length - 1;

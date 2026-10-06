@@ -953,8 +953,8 @@ function IdeaListTool({
                   </div>
                 </div>
               ))
-            )}
-          </div>
+          )}
+        </div>
         </SocialResultsPanel>
       }
     />
@@ -970,7 +970,7 @@ function InstagramFontTool() {
 
   const buildVariants = (text: string) => {
     const fancy = fancyIg(text);
-    return [
+        return [
       { label: "Script", value: fancy },
       { label: "Upper script", value: fancyIg(text.toUpperCase()) },
       { label: "Spaced", value: text.split("").join(" ") },

@@ -31,6 +31,11 @@ export const GLOBAL_FAQS: FAQItem[] = [
     answer:
       "All colorBase tools are free to use without signup. You can convert colors, generate palettes, check contrast, and export formats at no cost.",
   },
+  {
+    question: "How can I contact colorBase?",
+    answer:
+      "Email support@colorbase.in or use the Contact form. Queries go to that mailbox. Postal address: Lalpur, Ranchi 834001, Jharkhand, India.",
+  },
 ];
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
@@ -82,17 +87,37 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     {
       question: "How does seconds vs milliseconds detection work?",
       answer:
-        "10-digit values such as 1757318400 are treated as seconds. 13-digit values such as 1757318400000 are milliseconds. Longer values are read as microseconds or nanoseconds. A badge under the input shows the detected unit.",
+        "10-digit values such as 1757318400 are treated as seconds. 13-digit values such as 1757318400000 are milliseconds. 16-digit values are microseconds; 19-digit values are nanoseconds. A badge under the input shows the detected unit so you do not have to count by hand.",
+    },
+    {
+      question: "Is this the same as JavaScript Date.now()?",
+      answer:
+        "Date.now() returns milliseconds. Unix timestamps in JWTs, many databases, and Linux date +%s are seconds. Paste Date.now() here and you should see “milliseconds”. If you put that 13-digit number into a JWT exp field, auth libraries that expect seconds will treat the token as valid for millennia.",
+    },
+    {
+      question: "What timezone is “local” versus IST?",
+      answer:
+        "Unix time is timezone-less UTC. “Local” is the zone of this device. IST is Asia/Kolkata (UTC+5:30) — the zone we use for colorBase operations in Ranchi. Open the Timezones tab to compare the same instant in IST, EST, PST, and GMT.",
     },
     {
       question: "Are converted timestamps uploaded anywhere?",
       answer:
-        "No. Conversion, timezone formatting, JSON mode, and history all run in your browser. History is stored in localStorage on this device only.",
+        "No. Conversion, timezone formatting, JSON mode, and history all run in your browser. History is stored in localStorage on this device only and never sent to colorBase servers.",
     },
     {
       question: "What can JSON mode accept?",
       answer:
-        "Paste a JSON array of timestamps, an object with a timestamps array, comma-separated values, or one timestamp per line. The tool returns Unix, ISO 8601, UTC, local, and RFC 2822 fields for each value.",
+        "Paste a JSON array of timestamps, an object with a timestamps array, comma-separated values, or one timestamp per line. Each row returns Unix seconds/ms, ISO 8601, UTC, local, and RFC 2822 so you can clean a log dump without a spreadsheet.",
+    },
+    {
+      question: "Will this break in 2038?",
+      answer:
+        "32-bit Unix seconds overflow on 19 January 2038. This converter uses JavaScript Date (milliseconds as a 64-bit number), so dates after 2038 still convert. Leap seconds are not applied, matching typical web and Node stacks.",
+    },
+    {
+      question: "How do I convert a date in IST to Unix seconds?",
+      answer:
+        "Use Date to timestamp, set timezone to IST (Kolkata), pick the wall time, and copy Unix seconds. That value is the UTC instant — paste it into APIs, sitemap lastmod math, or JWT exp without applying +05:30 again.",
     },
   ],
   "jwt-decoder": [
@@ -658,6 +683,44 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
       question: "Which formats can I copy?",
       answer:
         "You can copy HEX, RGB, RGBA, HSL, HSLA, HSV, and CMYK values with one click from the advanced color picker.",
+    },
+    {
+      question: "How should I use the picker in a real project?",
+      answer:
+        "Sample or set the hue, check contrast on the same panel, then copy HEX for design tools or HSL/RGB for CSS. There is a written walkthrough under the tool on this page.",
+    },
+  ],
+  "hex-to-rgb": [
+    {
+      question: "What does HEX to RGB actually change?",
+      answer:
+        "Nothing visually if both are sRGB — #E11D48 and rgb(225, 29, 72) paint the same pixel. RGB is required when you need alpha (rgba / rgb with slash alpha) or APIs that speak 0–255 channels.",
+    },
+    {
+      question: "Why did my converted color look different?",
+      answer:
+        "Usually a truncated HEX (5 digits), a 3-digit short HEX you didn’t mean, or a color sampled through an OS color profile. The live swatch on this page is the CSS result.",
+    },
+  ],
+  "rgb-to-hex": [
+    {
+      question: "Should I store RGB or HEX in a design system?",
+      answer:
+        "Store HEX (or OKLCH) as the source of truth and derive RGB when you need transparency. Mixing both as independent sources is how tokens drift.",
+    },
+  ],
+  "hex-to-hsl": [
+    {
+      question: "Why convert HEX to HSL for hover states?",
+      answer:
+        "HSL lets you keep hue and saturation and step lightness. Mixing HEX toward #000 often kills chroma and makes hover look dirty.",
+    },
+  ],
+  "hsl-to-hex": [
+    {
+      question: "When do I need HSL to HEX?",
+      answer:
+        "When you designed in hsl() or on a color wheel but Figma, Tailwind, or a native app still wants a six-digit HEX.",
     },
   ],
   "palette-generator": [

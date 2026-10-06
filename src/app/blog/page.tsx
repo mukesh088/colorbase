@@ -9,9 +9,9 @@ import { formatDate } from "@/lib/utils";
 export const metadata: Metadata = createPageMetadata({
   title: "Blog",
   description:
-    "SEO-friendly articles on color psychology, UI trends, accessibility, branding, CSS, Tailwind, and developer tips.",
+    "Original colorBase guides on contrast, palettes, CSS tokens, Tailwind, and color psychology — written for designers and developers who ship UI.",
   path: "/blog",
-  keywords: ["color blog", "design blog", "css tutorials"],
+  keywords: ["color blog", "wcag contrast", "css color tokens", "palette guide"],
 });
 
 export default function BlogPage() {
@@ -26,7 +26,10 @@ export default function BlogPage() {
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
       <h1 className="font-display text-4xl font-semibold">Blog</h1>
-      <p className="mt-3 text-muted-foreground">Guides for designers and developers working with color on the web.</p>
+      <p className="mt-3 text-muted-foreground">
+        Practical writing from the colorBase studio in Ranchi — how to pick, contrast-check, and
+        ship color, not a dump of keyword pages.
+      </p>
       <div className="mt-6 flex flex-wrap gap-2">
         {BLOG_CATEGORIES.map((cat) => (
           <Link

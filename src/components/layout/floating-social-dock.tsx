@@ -43,9 +43,11 @@ export function FloatingSocialDock() {
 
   useEffect(() => {
     try {
+      const isNarrow = window.matchMedia("(max-width: 640px)").matches;
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved === "1") setOpen(true);
-      else if (saved === null) setOpen(true);
+      else if (saved === "0") setOpen(false);
+      else setOpen(!isNarrow);
     } catch {
       setOpen(true);
     }
@@ -68,7 +70,7 @@ export function FloatingSocialDock() {
 
   return (
     <div
-      className="pointer-events-none fixed bottom-[max(5.5rem,env(safe-area-inset-bottom))] right-3 z-40 flex flex-col items-end gap-2 sm:bottom-8 sm:right-5"
+      className="pointer-events-none fixed bottom-[max(4.75rem,calc(env(safe-area-inset-bottom)+0.75rem))] right-3 z-40 flex flex-col items-end gap-2 sm:bottom-8 sm:right-5"
       aria-label="Social media"
     >
       <AnimatePresence initial={false}>

@@ -10,8 +10,9 @@ import {
   faqJsonLd,
   softwareAppJsonLd,
 } from "@/lib/seo";
-import { GLOBAL_FAQS, TOOL_FAQS } from "@/lib/faqs";
+import { TOOL_FAQS } from "@/lib/faqs";
 import { getRelatedTools } from "@/lib/tools-registry";
+import { ToolGuideSection } from "@/components/content/tool-guide";
 
 export function ToolPageShell({
   tool,
@@ -28,17 +29,23 @@ export function ToolPageShell({
     { name: CATEGORY_LABELS[tool.category], href: `/tools?category=${tool.category}` },
     { name: tool.title, href: `/${tool.slug}` },
   ];
-  const faqs = [...(TOOL_FAQS[tool.slug] ?? []), ...GLOBAL_FAQS.slice(0, 2)];
+  const faqs = TOOL_FAQS[tool.slug] ?? [];
   const related = getRelatedTools(tool.slug);
 
   return (
     <div className="mx-auto w-full max-w-7xl px-3 py-5 sm:px-4 sm:py-6 lg:px-6">
-      <JsonLd data={[breadcrumbJsonLd(breadcrumbs), softwareAppJsonLd(tool), faqJsonLd(faqs)]} />
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(breadcrumbs),
+          softwareAppJsonLd(tool),
+          ...(faqs.length > 0 ? [faqJsonLd(faqs)] : []),
+        ]}
+      />
       <Breadcrumbs items={breadcrumbs} />
       {hideHeader ? (
         <h1 className="sr-only">{tool.title}</h1>
       ) : (
-        <header className="mb-6 max-w-3xl sm:mb-8">
+        <header className="mb-6 overflow-hidden rounded-[1.35rem] border border-border/50 bg-background/80 p-5 shadow-[0_18px_40px_-28px_rgba(225,29,72,0.35)] sm:mb-8 sm:rounded-[1.75rem] sm:p-7">
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <Link
               href={`/tools?category=${tool.category}`}
@@ -56,12 +63,13 @@ export function ToolPageShell({
           <h1 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl md:text-4xl">
             {tool.title}
           </h1>
-          <p className="mt-2 text-sm text-muted-foreground sm:mt-3 sm:text-base">{tool.description}</p>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:mt-3 sm:text-base">{tool.description}</p>
         </header>
       )}
       <div className="min-w-0">{children}</div>
+      <ToolGuideSection slug={tool.slug} />
       <RelatedTools tools={related} />
-      <ToolFaqs faqs={faqs} />
+      {faqs.length > 0 && <ToolFaqs faqs={faqs} />}
       <p className="mt-8 text-sm text-muted-foreground">
         Looking for more? Browse{" "}
         <Link href="/tools" className="text-primary underline-offset-4 hover:underline">

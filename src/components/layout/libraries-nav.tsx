@@ -44,7 +44,7 @@ export function LibrariesNav({ onNavigate }: { onNavigate?: () => void }) {
       </nav>
 
       {/* Tablet: dropdown */}
-      <div className="hidden md:block xl:hidden">
+      <div className="hidden lg:block xl:hidden">
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="sm" className="rounded-full gap-1.5">

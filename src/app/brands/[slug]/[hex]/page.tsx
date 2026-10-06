@@ -22,6 +22,7 @@ import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { Card, CardContent } from "@/components/ui/card";
 import { maybeStaticParams } from "@/lib/static-params";
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export function generateStaticParams() {

@@ -1,4 +1,5 @@
 const path = require("node:path");
+const retiredToolSlugs = require("./retired-tools");
 
 const projectRoot = path.join(__dirname);
 
@@ -28,7 +29,22 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  productionBrowserSourceMaps: false,
   serverExternalPackages: ["pg"],
+  compiler: {
+    removeConsole: { exclude: ["error", "warn"] },
+  },
+  outputFileTracingExcludes: {
+    "*": [
+      "colorbase/**",
+      "_gsc_xlsx_read/**",
+      "node_modules/jspdf/**",
+      "node_modules/jsbarcode/**",
+      "node_modules/sql-formatter/**",
+      "node_modules/js-yaml/**",
+      "node_modules/@swc/core*/**",
+    ],
+  },
   images: {
     // Skip /_next/image so Hostinger does not accumulate optimizer cache files
     // (inodes) and the AVIF/libheif RCE endpoint is not exposed.
@@ -109,6 +125,25 @@ const nextConfig = {
           ...securityHeaders,
         ],
       },
+    ];
+  },
+  async redirects() {
+    return [
+      {
+        source: "/tools/table-generator",
+        destination: "/tools",
+        permanent: true,
+      },
+      {
+        source: "/timestamp-converter",
+        destination: "/unix-timestamp-converter",
+        permanent: true,
+      },
+      ...retiredToolSlugs.map((slug) => ({
+        source: `/${slug}`,
+        destination: "/tools",
+        permanent: true,
+      })),
     ];
   },
 };

@@ -4,6 +4,7 @@ import { GLOBAL_FAQS } from "@/lib/faqs";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ToolFaqs } from "@/components/layout/tool-faqs";
 import { JsonLd } from "@/components/seo/json-ld";
+import { ContactDetails } from "@/components/layout/contact-details";
 
 export const metadata: Metadata = createPageMetadata({
   title: "FAQ",
@@ -24,6 +25,7 @@ export default function FaqPage() {
       <h1 className="font-display text-4xl font-semibold">FAQ</h1>
       <p className="mt-2 text-muted-foreground">Answers to common color and accessibility questions.</p>
       <ToolFaqs faqs={GLOBAL_FAQS} heading={false} className="mt-8" />
+      <ContactDetails className="mt-10 rounded-2xl border border-border/60 bg-background/80 p-4" />
     </div>
   );
 }

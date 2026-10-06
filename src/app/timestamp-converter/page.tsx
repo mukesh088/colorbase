@@ -1,24 +1,6 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { ToolPageShell } from "@/components/layout/tool-page-shell";
-import { ToolContent } from "@/components/tools/tool-content";
-import { getToolBySlug } from "@/lib/tools-registry";
-import { toolMetadata } from "@/lib/seo";
+import { redirect } from "next/navigation";
 
-const slug = "timestamp-converter";
-
-export function generateMetadata(): Metadata {
-  const tool = getToolBySlug(slug);
-  if (!tool) return {};
-  return toolMetadata(tool);
-}
-
+/** Old alias — canonical tool is /unix-timestamp-converter */
 export default function Page() {
-  const tool = getToolBySlug(slug);
-  if (!tool) notFound();
-  return (
-    <ToolPageShell tool={tool}>
-      <ToolContent slug={slug} />
-    </ToolPageShell>
-  );
+  redirect("/unix-timestamp-converter");
 }

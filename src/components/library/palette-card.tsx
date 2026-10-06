@@ -30,14 +30,14 @@ export function PaletteCard({
       <Link href={href} className="block" aria-label={`${name} palette`}>
         <PaletteStrip colors={colors} height="md" />
       </Link>
-      <div className="flex items-center justify-between gap-3 px-4 py-3">
+      <div className="flex items-center justify-between gap-3 px-4 py-3.5">
         <Link href={href} className="min-w-0">
           <p className="truncate font-medium tracking-tight transition-colors duration-300 group-hover:text-rose-700 dark:group-hover:text-rose-300">
             {name}
           </p>
           {meta && (
             <p className="mt-0.5 text-[11px] text-muted-foreground transition-colors group-hover:text-foreground/70">
-              {meta}
+              {meta} · {colors.length} stops
             </p>
           )}
         </Link>

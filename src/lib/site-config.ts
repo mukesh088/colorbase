@@ -1,9 +1,23 @@
 export const SITE_NAME = "colorBase";
 export const SITE_TAGLINE = "Modern color tools for designers & developers";
 export const SITE_DESCRIPTION =
-  "Free color tools, converters, palette generators, contrast checkers, CSS generators, and accessibility utilities from colorBase. Pick, convert, and export colors instantly.";
+  "Free color tools and original guides from colorBase in Ranchi: converters, palettes, WCAG contrast, CSS tokens, and accessibility checks for designers and developers.";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in";
+
+export const SUPPORT_EMAIL = "support@colorbase.in";
+
+export const BUSINESS_ADDRESS = {
+  street: "Lalpur",
+  city: "Ranchi",
+  postalCode: "834001",
+  region: "Jharkhand",
+  country: "India",
+} as const;
+
+export function formatBusinessAddress() {
+  return `${BUSINESS_ADDRESS.street}, ${BUSINESS_ADDRESS.city} ${BUSINESS_ADDRESS.postalCode}, ${BUSINESS_ADDRESS.region}, ${BUSINESS_ADDRESS.country}`;
+}
 
 /** Google AdSense publisher (verification + ads). */
 export const ADSENSE_CLIENT_ID =
@@ -14,7 +28,7 @@ export const ORGANIZATION = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/icon-512.png`,
-  email: "hello@colorbase.in",
+  email: SUPPORT_EMAIL,
   sameAs: [
     "https://twitter.com/colorbase",
     "https://github.com/colorbase",

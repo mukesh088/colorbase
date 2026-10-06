@@ -547,24 +547,23 @@ export const TOOLS: ToolDefinition[] = [
     related: ["tailwind-colors", "typography-color-pairing", "trending-palettes"],
   },
   {
-    slug: "table-generator",
-    title: "Universal Table Generator",
-    shortTitle: "Tables",
+    slug: "unix-timestamp-converter",
+    title: "Unix Timestamp Converter",
+    shortTitle: "Unix Time",
     description:
-      "Create HTML, Markdown, LaTeX, CSV, TSV, MediaWiki, BBCode, SQL, React and Tailwind tables visually with import, styling, and live preview.",
+      "Convert Unix epoch seconds and milliseconds to UTC, IST, and ISO 8601 — with timezone cards, JWT-style exp math, and a working calculator. Runs in your browser.",
     keywords: [
-      "table generator",
-      "html table generator",
-      "markdown table generator",
-      "csv to table",
-      "latex table generator",
-      "online spreadsheet to html",
+      "unix timestamp",
+      "epoch converter",
+      "unix time",
+      "timestamp to date",
+      "epoch milliseconds",
+      "utc to unix",
     ],
-    category: "developer-tools",
-    icon: "Table2",
-    featured: true,
+    category: "utility-tools",
+    icon: "Clock",
     popular: true,
-    related: ["json-formatter", "markdown-preview", "html-formatter"],
+    related: ["gradient-generator", "typography-generator", "color-picker"],
   },
   ...SUITE_TOOLS,
 ];
@@ -609,7 +608,7 @@ export const STATIC_PAGES = [
   {
     slug: "about",
     title: "About",
-    description: "Learn about colorBase — free modern color tools for the web.",
+    description: "Learn about colorBase — a free color studio in Ranchi with tools and original guides.",
   },
   {
     slug: "privacy",
@@ -648,13 +647,13 @@ export const STATIC_PAGES = [
   },
   {
     slug: "color-meaning",
-    title: "Color Meaning Blog",
-    description: "Explore the psychology and meaning of colors in design and branding.",
+    title: "Color Meaning",
+    description: "What hues signal in product UI, with do/don’t notes and contrast caveats.",
   },
   {
     slug: "learning",
-    title: "Learning Section",
-    description: "Learn color theory, HEX/RGB/HSL formats, contrast, and accessible design.",
+    title: "Learn color",
+    description: "A practical course on HEX/RGB/HSL, WCAG contrast, harmonies, and design tokens.",
   },
   { slug: "colors", title: "Color Library", description: "Complete color library across major design systems." },
   { slug: "brands", title: "Brand Hex Colors", description: "Searchable brand palettes and logo hex color codes." },
@@ -662,7 +661,7 @@ export const STATIC_PAGES = [
   { slug: "gradient-library", title: "Gradient Library", description: "Premade CSS gradient library." },
   { slug: "palette-library", title: "Palette Library", description: "Curated UI and brand palettes." },
   { slug: "developers", title: "Developer Resources", description: "Export colors to CSS, Tailwind, Flutter, and more." },
-  { slug: "blog", title: "Blog", description: "Articles on color, design, and accessibility." },
+  { slug: "blog", title: "Blog", description: "Original colorBase articles on contrast, tokens, Tailwind, and palettes." },
   { slug: "image-tools", title: "Image Color Tools", description: "Extract palettes and histograms from images." },
   {
     slug: "ai-color-palette-generator",
@@ -682,6 +681,6 @@ export const STATIC_PAGES = [
   {
     slug: "tools",
     title: "Our Tools",
-    description: "Browse every free CSS, text, developer, image, web, social, and color tool by menu.",
+    description: "Browse color, CSS, palette, and accessibility tools by menu.",
   },
 ] as const;

@@ -59,7 +59,7 @@ export function KitCard({
             </h3>
           </div>
           <span
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border/60 bg-background/70 text-muted-foreground opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100 group-hover:text-foreground"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-border/60 bg-background/70 text-muted-foreground opacity-100 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground sm:opacity-0 sm:group-hover:opacity-100"
             style={{ boxShadow: `0 0 0 1px ${accent}22` }}
           >
             <ArrowUpRight className="h-4 w-4" />

@@ -6,6 +6,8 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { PALETTE_CATEGORIES, getAllPalettes, getPalettesByCategory } from "@/lib/data/palette-library";
 import { PaletteCard } from "@/components/library/palette-card";
 import { GeneratedPaletteShelf } from "@/components/library/generated-palette-shelf";
+import { LibraryHero } from "@/components/library/library-hero";
+import { LibraryInsight } from "@/components/library/library-insight";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Palette Library",
@@ -21,22 +23,30 @@ export default function PaletteLibraryPage() {
     { name: "Palette Library", href: "/palette-library" },
   ];
 
+  const palettes = getAllPalettes();
+
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
-      <header className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
-          Curated schemes
-        </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Palette Library
-        </h1>
-        <p className="mt-3 text-muted-foreground">
-          {getAllPalettes().length.toLocaleString()} curated palettes with accessibility scores, export, and
-          sharing. Heart a palette to add your star — counts start between 30 and 2,000.
-        </p>
-      </header>
+      <LibraryHero
+        eyebrow="Curated schemes"
+        title="Palette Library"
+        description={`${palettes.length.toLocaleString("en-US")} UI schemes with accessibility scores, export, and sharing. Heart a palette on this device — counts start between 30 and 2,000.`}
+        stats={[
+          { label: "Palettes", value: palettes.length.toLocaleString("en-US") },
+          { label: "Categories", value: String(PALETTE_CATEGORIES.length) },
+        ]}
+        swatches={palettes[0]?.colors ?? ["#E11D48", "#0f172a", "#f8fafc", "#2563eb", "#10b981"]}
+        actions={[
+          { href: "/palette-generator", label: "Generate a palette", primary: true },
+          { href: "/contrast-checker", label: "Check contrast" },
+        ]}
+      />
+
+      <div className="mt-8">
+        <LibraryInsight id="palettes" />
+      </div>
 
       <div className="mt-10 space-y-12">
         <GeneratedPaletteShelf />

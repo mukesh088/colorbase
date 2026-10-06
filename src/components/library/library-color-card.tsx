@@ -55,7 +55,7 @@ export function LibraryColorCard({
 
       <button
         type="button"
-        className="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/25 bg-black/20 text-white opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100 hover:bg-black/35"
+        className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/25 text-white opacity-100 backdrop-blur-md transition-all duration-300 hover:bg-black/40 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
         aria-label={`Copy ${hex}`}
         onClick={async (e) => {
           e.preventDefault();

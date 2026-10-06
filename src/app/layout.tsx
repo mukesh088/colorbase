@@ -66,7 +66,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </a>
           <div className="flex min-h-dvh flex-col">
             <Header />
-            <main id="main-content" className="mx-auto w-full max-w-[1600px] flex-1">
+            <main id="main-content" className="mx-auto w-full min-w-0 max-w-[1600px] flex-1 overflow-x-clip">
               {children}
             </main>
             <Footer />

@@ -19,6 +19,8 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { CODE_FORMATS, type CodeFormat } from "@/lib/codegen";
 import { DeveloperPlayground } from "@/components/library/developer-playground";
+import { LibraryHero } from "@/components/library/library-hero";
+import { LibraryInsight } from "@/components/library/library-insight";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Developer Resources",
@@ -60,22 +62,27 @@ export default function DevelopersPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
 
-      <header className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
-          Code & tokens
-        </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
-          Developer Resources
-        </h1>
-        <p className="mt-3 text-muted-foreground">
-          Export any palette into production-ready code for web, mobile, and design systems. Pick
-          colors by hand or generate a random harmony, then copy tokens instantly.
-        </p>
-      </header>
+      <LibraryHero
+        eyebrow="Code & tokens"
+        title="Developer Resources"
+        description="Export any palette into production-ready tokens for web, mobile, and design systems — CSS variables, Tailwind ramps, Flutter, SwiftUI, JSON. Pick colors by hand or generate a harmony, then copy once."
+        stats={[
+          { label: "Formats", value: String(CODE_FORMATS.length) },
+        ]}
+        swatches={["#E11D48", "#111827", "#38bdf8", "#a78bfa", "#f8fafc", "#22c55e"]}
+        actions={[
+          { href: "#playground-heading", label: "Open playground", primary: true },
+          { href: "/palette-export", label: "Palette export" },
+        ]}
+      />
+
+      <div className="mt-8">
+        <LibraryInsight id="developers" />
+      </div>
 
       <section className="mt-10" aria-labelledby="formats-heading">
         <h2 id="formats-heading" className="font-display text-2xl font-semibold">

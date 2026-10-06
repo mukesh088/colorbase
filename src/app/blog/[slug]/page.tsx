@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getAllPosts, getPost, getPostsByCategory } from "@/lib/data/blog";
 import { formatDate } from "@/lib/utils";
+import { MarkdownBody } from "@/components/content/markdown-body";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -44,6 +45,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       question: `What is this article about?`,
       answer: post.description,
     },
+    {
+      question: "Where can I try the tools mentioned?",
+      answer:
+        "Every technique in this article links to a free colorBase tool — converters, contrast checker, palette generator, and exporters — so you can apply the advice on a real hex value.",
+    },
   ];
 
   return (
@@ -68,10 +74,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <p className="mt-3 text-sm text-muted-foreground">
         {formatDate(post.publishedAt)} · {post.readingTime}
       </p>
-      <div className="mt-8 space-y-4 text-base leading-relaxed text-muted-foreground">
-        {post.content.map((para) => (
-          <p key={para}>{para}</p>
-        ))}
+      <div className="mt-8">
+        <MarkdownBody markdown={post.body} />
       </div>
       {related.length > 0 && (
         <section className="mt-12">

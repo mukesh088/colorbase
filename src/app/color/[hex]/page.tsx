@@ -12,6 +12,7 @@ import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 import { familyFromHex, findSimilarColors } from "@/lib/colors/spaces";
 import { maybeStaticParams } from "@/lib/static-params";
 
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
 
 export function generateStaticParams() {
@@ -67,7 +68,7 @@ export default async function HexColorPage({ params }: { params: Promise<{ hex: 
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
       <div className="mt-4">

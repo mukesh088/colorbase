@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" path="/terms" updated="September 22, 2026">
+    <LegalPage title="Terms of Service" path="/terms" updated="October 6, 2026">
       <p>
         These Terms of Service (&quot;Terms&quot;) govern your access to and use of {SITE_NAME} at{" "}
         <a href={SITE_URL}>{SITE_URL.replace(/^https?:\/\//, "")}</a> (the &quot;Site&quot;). By
@@ -133,9 +133,9 @@ export default function TermsPage() {
 
       <h2>15. Contact</h2>
       <p>
-        Questions about these Terms:{" "}
-        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a> or{" "}
-        <Link href="/contact">Contact</Link>.
+        Questions about these Terms go to our mailbox at{" "}
+        <a href={`mailto:${ORGANIZATION.email}`}>{ORGANIZATION.email}</a>. Address: Lalpur, Ranchi
+        834001, Jharkhand, India. You can also use <Link href="/contact">Contact</Link>.
       </p>
     </LegalPage>
   );

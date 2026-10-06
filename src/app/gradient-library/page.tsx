@@ -7,6 +7,7 @@ import {
   getPopularGradients,
 } from "@/lib/data/gradient-library";
 import { GradientGallery } from "@/components/library/gradient-gallery";
+import { LibraryInsight } from "@/components/library/library-insight";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Premade Gradient Library",
@@ -33,6 +34,9 @@ export default function GradientLibraryPage() {
         categories={GRADIENT_CATEGORIES}
         showHero
       />
+      <div className="mx-auto max-w-7xl px-3 pb-12 sm:px-4 lg:px-6">
+        <LibraryInsight id="gradients" />
+      </div>
     </div>
   );
 }
