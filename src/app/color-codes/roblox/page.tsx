@@ -57,7 +57,7 @@ export default function RobloxColorCodesPage() {
             { id: "oklch", header: "OKLCH", copy: true, mono: true },
             { id: "hue", header: "Hue", mono: true },
           ]}
-          openPath={(row) => `/color-codes/roblox/${row.id}`}
+          detailBase="/color-codes/roblox"
           searchPlaceholder="Search BrickColor ID, name, or HEX…"
         />
         <AdReserve />

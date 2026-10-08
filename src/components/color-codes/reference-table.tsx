@@ -22,16 +22,21 @@ export type ReferenceColumn = {
   mono?: boolean;
 };
 
+function rowHref(row: ReferenceRow, detailBase?: string) {
+  if (detailBase) return `${detailBase}/${row.id}`;
+  return `/color/${String(row.hex).replace("#", "").toLowerCase()}`;
+}
+
 export function ColorReferenceTable({
   rows,
   columns,
   searchPlaceholder = "Search name, HEX, or code…",
-  openPath,
+  detailBase,
 }: {
   rows: ReferenceRow[];
   columns: ReferenceColumn[];
   searchPlaceholder?: string;
-  openPath?: (row: ReferenceRow) => string;
+  detailBase?: string;
 }) {
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<{ id: string; dir: "asc" | "desc" }>({ id: "name", dir: "asc" });
@@ -98,7 +103,7 @@ export function ColorReferenceTable({
               <tr key={row.id} className="border-t border-border/60 transition-colors duration-150 hover:bg-[var(--primary-soft)]">
                 <td className="px-3 py-2">
                   <Link
-                    href={openPath ? openPath(row) : `/color/${String(row.hex).replace("#", "").toLowerCase()}`}
+                    href={rowHref(row, detailBase)}
                     className="block h-9 w-14 rounded-lg border border-border/70"
                     style={{ backgroundColor: String(row.hex) }}
                     aria-label={`Open ${row.name}`}
@@ -120,7 +125,7 @@ export function ColorReferenceTable({
                         <CopyButton key={c.id} value={String(row[c.id] ?? "")} label={c.header} size="sm" className="h-8 px-2 text-[11px]" />
                       ))}
                     <Link
-                      href={openPath ? openPath(row) : `/color/${String(row.hex).replace("#", "").toLowerCase()}`}
+                      href={rowHref(row, detailBase)}
                       className="inline-flex h-8 items-center rounded-lg border border-border px-2 text-[11px] font-medium hover:bg-muted"
                     >
                       Open
@@ -138,7 +143,7 @@ export function ColorReferenceTable({
           <article key={row.id} className="overflow-hidden rounded-2xl border border-border/70 bg-card">
             <div className="flex h-16" style={{ backgroundColor: String(row.hex), color: getTextColor(String(row.hex)) }}>
               <Link
-                href={openPath ? openPath(row) : `/color/${String(row.hex).replace("#", "").toLowerCase()}`}
+                href={rowHref(row, detailBase)}
                 className="flex flex-1 items-end p-3 font-display text-sm font-semibold"
               >
                 {row.name}
