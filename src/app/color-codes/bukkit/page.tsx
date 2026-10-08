@@ -63,7 +63,7 @@ export default function BukkitColorCodesPage() {
         <section className="mt-8 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
           <h2 className="font-display text-lg font-semibold text-foreground">Using ChatColor in plugins</h2>
           <p>
-            Prefer `ChatColor.RED + "Warning"` or MiniMessage/Adventure components in modern Paper APIs.
+            Prefer `ChatColor.RED + &quot;Warning&quot;` or MiniMessage/Adventure components in modern Paper APIs.
             Config files still commonly store `&cWarning&r`. Translate `&` to `§` only for the 16 color
             digits and the six format codes (`k`–`o`, `r`). Do not treat `&` inside URLs as a color prefix.
           </p>
