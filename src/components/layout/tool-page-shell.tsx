@@ -45,17 +45,17 @@ export function ToolPageShell({
       {hideHeader ? (
         <h1 className="sr-only">{tool.title}</h1>
       ) : (
-        <header className="mb-6 overflow-hidden rounded-[1.35rem] border border-border/50 bg-background/80 p-5 shadow-[0_18px_40px_-28px_rgba(225,29,72,0.35)] sm:mb-8 sm:rounded-[1.75rem] sm:p-7">
+        <header className="mb-6 overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card p-5 shadow-[var(--shadow-sm)] sm:mb-8 sm:p-7">
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <Link
               href={`/tools?category=${tool.category}`}
-              className="rounded-full border border-rose-500/20 bg-rose-500/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-rose-700 transition-colors hover:border-rose-500/40 dark:text-rose-300"
+              className="rounded-full border border-primary/20 bg-[var(--primary-soft)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-primary transition-colors hover:border-primary/40"
             >
               {CATEGORY_LABELS[tool.category]}
             </Link>
             <Link
               href="/tools"
-              className="text-[11px] font-medium text-muted-foreground hover:text-rose-600"
+              className="text-[11px] font-medium text-muted-foreground hover:text-primary"
             >
               All menus →
             </Link>

@@ -51,7 +51,7 @@ Build them on the [color wheel](/color-wheel), then delete any stop you cannot n
 
 Name roles (\`--color-primary\`) and export with [palette export](/palette-export). Native and web should share the file. Hardcoded HEX in React components is how brands drift.
 
-Continue with [From HEX to design tokens in CSS](/blog/from-hex-to-design-tokens-in-css) and [Themeable React apps](/blog/developer-tips-for-themeable-react-apps).
+        Continue with [Color codes explained](/learn/color-codes), [From HEX to design tokens in CSS](/blog/from-hex-to-design-tokens-in-css) and [Themeable React apps](/blog/developer-tips-for-themeable-react-apps).
 
 ## 5. A one-hour studio exercise
 

@@ -37,7 +37,7 @@ export function CopyButton({
       }}
     >
       {copied ? <Check className="text-emerald-500" /> : <Copy />}
-      {size !== "icon" && <span>{copied ? "Copied" : label ?? "Copy"}</span>}
+      {size !== "icon" && <span>{copied ? "Copied!" : label ?? "Copy"}</span>}
     </Button>
   );
 }

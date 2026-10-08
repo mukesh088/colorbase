@@ -29,6 +29,7 @@ import {
   TAILWIND_COLORS,
   TRENDING_PALETTES,
 } from "@/lib/colors/palettes";
+import { SortedCssColors } from "@/components/tools/sorted-css-colors";
 import { cn } from "@/lib/utils";
 
 type Library =
@@ -55,7 +56,7 @@ const META: Record<
   named: {
     badge: "CSS reference",
     title: "CSS Named Colors",
-    hint: "Classic named web colors — search, inspect formats, and copy in one click.",
+    hint: "Classic named web colors — sort them by hue, lightness, and saturation, then copy any format.",
     samples: ["#DC143C", "#4169E1", "#2E8B57", "#FFD700", "#8A2BE2", "#FF7F50"],
     href: "/css-named-colors",
   },
@@ -517,6 +518,10 @@ export function ColorLibrary({ library }: { library: Library }) {
               </div>
             </div>
           </div>
+
+          {library === "named" ? (
+            <SortedCssColors query={q} onPick={(hex, name) => selectColor(hex, name, false)} />
+          ) : null}
 
           {(library === "named" || library === "bootstrap") && (
             <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">

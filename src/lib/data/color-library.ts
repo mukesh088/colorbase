@@ -3,6 +3,7 @@ import { familyFromHex, hslSeedHex } from "@/lib/colors/spaces";
 import { normalizeHex, rgbToHex } from "@/lib/colors/convert";
 import { slugify } from "@/lib/utils";
 import type { ColorFamily } from "@/lib/data/families";
+import { FLAT_UI_COLORS } from "@/lib/data/color-codes/flat-ui";
 
 export type ColorSource =
   | "html"
@@ -19,6 +20,7 @@ export type ColorSource =
   | "antd"
   | "radix"
   | "primereact"
+  | "flat-ui"
   | "generated";
 
 export interface LibraryColor {
@@ -242,6 +244,14 @@ export function getAllLibraryColors(): LibraryColor[] {
     ...fromMap(ANTD, "antd", "Ant Design"),
     ...fromMap(RADIX, "radix", "Radix"),
     ...fromMap(PRIME, "primereact", "PrimeReact"),
+    ...FLAT_UI_COLORS.map((c) => ({
+      slug: slugify(`flat-ui-${c.name}`),
+      name: c.name,
+      hex: c.hex,
+      family: c.family,
+      sources: ["flat-ui"] as ColorSource[],
+      kit: "Flat UI",
+    })),
     ...generatedLibraryColors(900),
   ].forEach(push);
 
@@ -308,7 +318,7 @@ export const UI_KITS = [
     title: "Tailwind Colors",
     source: "tailwind" as ColorSource,
     accent: "#38bdf8",
-    blurb: "Full Tailwind CSS color scales",
+    blurb: "Tailwind CSS default color scales (50–950)",
     preview: ["#0f172a", "#0369a1", "#0d9488", "#ca8a04", "#e11d48", "#7c3aed"],
   },
   {
@@ -382,6 +392,14 @@ export const UI_KITS = [
     accent: "#3b82f6",
     blurb: "PrimeReact theme color tokens",
     preview: ["#3b82f6", "#22c55e", "#eab308", "#06b6d4", "#a855f7", "#ef4444"],
+  },
+  {
+    slug: "flat-ui",
+    title: "Flat UI Colors",
+    source: "flat-ui" as ColorSource,
+    accent: "#1abc9c",
+    blurb: "Flat UI reference palettes for modern interfaces",
+    preview: ["#1abc9c", "#3498db", "#9b59b6", "#e74c3c", "#f1c40f", "#2c3e50"],
   },
 ];
 

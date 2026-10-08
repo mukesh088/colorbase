@@ -300,7 +300,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "Check 500-on-white; many Material 500s fail body-text AA.",
     ],
     why: "Material is a system. Cherry-picking one 500 and generating your own tints in HEX is how you leave the system.",
-    relatedReading: [{ href: "/colors/kits/material", title: "Material kit in the color library" }],
+    relatedReading: [{ href: "/colors/material", title: "Material kit in the color library" }],
   },
   "tailwind-colors": {
     intro:
@@ -311,7 +311,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "Export a scale when you are extending `theme.colors` — do not paste one-off hexes into className.",
     ],
     why: "A codebase with both `bg-[#E11D48]` and `bg-rose-600` is two design systems. Pick the token.",
-    relatedReading: [{ href: "/colors/kits/tailwind", title: "Tailwind kit in the color library" }],
+    relatedReading: [{ href: "/colors/tailwind", title: "Tailwind kit in the color library" }],
   },
   "bootstrap-colors": {
     intro:
@@ -322,7 +322,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "Do not use `$warning` yellow for body text — it is a badge color.",
     ],
     why: "Bootstrap sites look generic when every theme keeps the default blue. Replacing `$primary` and checking contrast is the whole job.",
-    relatedReading: [{ href: "/colors/kits/bootstrap", title: "Bootstrap kit in the color library" }],
+    relatedReading: [{ href: "/colors/bootstrap", title: "Bootstrap kit in the color library" }],
   },
   "css-named-colors": {
     intro:

@@ -29,9 +29,10 @@ export async function generateMetadata({
   if (!color) return {};
   return createPageMetadata({
     title: `${color.name} Color — ${color.hex}`,
-    description: `${color.name} color codes: HEX ${color.hex}, RGB, HSL, LAB, OKLCH, CMYK, Tailwind, CSS variables, tints, shades, and accessibility.`,
+    description: `${color.name} color codes: HEX ${color.hex}, RGB, HSL, LAB, OKLCH, CMYK, nearest Tailwind, CSS variables, tints, shades, and accessibility.`,
     path: `/colors/${color.slug}`,
     keywords: [color.name, color.hex, `${color.name} hex`, `${color.family} color`],
+    noIndex: color.sources.includes("generated"),
   });
 }
 

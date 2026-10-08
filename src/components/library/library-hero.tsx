@@ -20,7 +20,7 @@ export function LibraryHero({
   const mesh = swatches?.filter(Boolean).slice(0, 6) ?? [];
 
   return (
-    <header className="relative overflow-hidden rounded-[1.35rem] border border-border/50 bg-background/80 shadow-[0_20px_50px_-32px_rgba(225,29,72,0.35)] sm:rounded-[1.85rem]">
+    <header className="relative overflow-hidden rounded-[1.5rem] border border-border/50 bg-card/90 shadow-[0_24px_56px_-36px_rgba(24,24,27,0.45)] sm:rounded-[1.85rem]">
       {mesh.length > 0 && (
         <div className="pointer-events-none absolute inset-0" aria-hidden>
           <div
@@ -39,10 +39,10 @@ export function LibraryHero({
       )}
       <div className="relative grid gap-6 p-5 sm:p-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:items-center lg:p-10">
         <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
             {eyebrow}
           </p>
-          <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+          <h1 className="mt-2.5 font-display text-3xl font-semibold tracking-[-0.04em] sm:text-4xl lg:text-[3.15rem] lg:leading-[1.08]">
             {title}
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted-foreground sm:text-base">
@@ -77,7 +77,7 @@ export function LibraryHero({
                   <dt className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                     {stat.label}
                   </dt>
-                  <dd className="mt-1 font-display text-lg font-semibold tabular-nums tracking-tight sm:text-xl">
+                  <dd className="mt-1 font-display text-lg font-semibold tabular-nums tracking-[-0.04em] sm:text-xl">
                     {stat.value}
                   </dd>
                 </div>

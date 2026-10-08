@@ -1,6 +1,10 @@
 import type { MetadataRoute } from "next";
 import { SITEMAP_IDS, sitemapForId } from "@/lib/sitemaps";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  return SITEMAP_IDS.flatMap((id) => sitemapForId(id));
+export async function generateSitemaps() {
+  return SITEMAP_IDS.map((id) => ({ id }));
+}
+
+export default function sitemap({ id }: { id: string }): MetadataRoute.Sitemap {
+  return sitemapForId(id);
 }

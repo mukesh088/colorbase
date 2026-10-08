@@ -10,6 +10,7 @@ import { searchBrands } from "@/lib/data/brands";
 import { searchNamedColors } from "@/lib/data/color-names";
 import { searchGradients } from "@/lib/data/gradient-library";
 import { searchPalettes } from "@/lib/data/palette-library";
+import { querySearch } from "@/lib/search/query";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Search",
@@ -33,6 +34,7 @@ export default async function SearchPage({
   const colors = q ? searchNamedColors(q).slice(0, 8) : [];
   const gradients = q ? searchGradients(q).slice(0, 8) : [];
   const palettes = q ? searchPalettes(q).slice(0, 8) : [];
+  const codeGroups = q ? querySearch(q, 8).groups.filter((g) => g.category === "Color Codes") : [];
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
@@ -77,6 +79,20 @@ export default async function SearchPage({
               ))}
             </div>
           </ResultSection>
+          {codeGroups.map((group) => (
+            <ResultSection key={group.category} title="Color codes" count={group.items.length}>
+              <ul className="grid gap-2 sm:grid-cols-2">
+                {group.items.map((item) => (
+                  <li key={`${item.href}-${item.label}`}>
+                    <Link href={item.href} className="text-sm text-primary hover:underline">
+                      {item.label}
+                      {item.hint ? <span className="ml-2 font-mono text-xs text-muted-foreground">{item.hint}</span> : null}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </ResultSection>
+          ))}
           <ResultSection title="Brands" count={brands.length}>
             <ul className="grid gap-2 sm:grid-cols-2">
               {brands.map((b) => (

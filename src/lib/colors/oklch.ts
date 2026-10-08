@@ -95,6 +95,24 @@ export function oklchShadeScale(hex: string): ShadeScale {
   return scale;
 }
 
+export function perceptualTints(hex: string, count = 8): string[] {
+  const base = hexToOklch(hex);
+  const white: Oklch = { l: 0.99, c: Math.min(base.c * 0.08, 0.02), h: base.h };
+  return Array.from({ length: count }, (_, i) => oklchToHex(oklchMix(base, white, (i + 1) / (count + 1))));
+}
+
+export function perceptualShades(hex: string, count = 8): string[] {
+  const base = hexToOklch(hex);
+  const black: Oklch = { l: 0.12, c: Math.min(base.c * 0.35, 0.04), h: base.h };
+  return Array.from({ length: count }, (_, i) => oklchToHex(oklchMix(base, black, (i + 1) / (count + 1))));
+}
+
+export function perceptualTones(hex: string, count = 8): string[] {
+  const base = hexToOklch(hex);
+  const gray: Oklch = { l: base.l, c: 0, h: base.h };
+  return Array.from({ length: count }, (_, i) => oklchToHex(oklchMix(base, gray, (i + 1) / (count + 1))));
+}
+
 export function nearestShadeStep(hex: string): ShadeStep {
   const l = hexToOklch(hex).l;
   let best: ShadeStep = 500;

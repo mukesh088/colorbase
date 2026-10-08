@@ -94,7 +94,37 @@ export const LIBRARY_LINKS = [
   { href: "/blog", title: "Blog", fullTitle: "Blog", icon: BookOpen },
 ] as const;
 
+export const COLOR_CODE_NAV = [
+  { href: "/color-codes", title: "All color codes" },
+  { href: "/color-codes/common", title: "Common" },
+  { href: "/colors/css", title: "HTML/CSS" },
+  { href: "/colors/web-safe", title: "Web Safe" },
+  { href: "/colors/tailwind", title: "Tailwind" },
+  { href: "/colors/material", title: "Material" },
+  { href: "/colors/flat-ui", title: "Flat UI" },
+  { href: "/color-codes/minecraft", title: "Minecraft" },
+  { href: "/color-codes/bukkit", title: "Bukkit" },
+  { href: "/color-codes/roblox", title: "Roblox" },
+] as const;
+
+export const PRIMARY_NAV = [
+  { href: "/colors", title: "Colors" },
+  { href: "/tools", title: "Tools" },
+  { href: "/color-codes", title: "Color Codes", children: COLOR_CODE_NAV },
+  { href: "/colors/tailwind", title: "Design Systems" },
+  { href: "/brands", title: "Brands" },
+  { href: "/ai-color-copilot", title: "AI" },
+  { href: "/learning", title: "Learn" },
+] as const;
+
 export const HEADER_LIBRARY_LINKS = LIBRARY_LINKS.filter((item) => item.href !== "/blog");
+
+export const SECONDARY_NAV = [
+  { href: "/developers", title: "Developer" },
+  { href: "/color-names", title: "Color Names" },
+  { href: "/palette-library", title: "Palettes" },
+  { href: "/gradient-library", title: "Gradients" },
+] as const;
 
 export const TOOL_ICONS: Record<string, LucideIcon> = {
   Pipette,

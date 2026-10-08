@@ -1,16 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import {
-  Check,
-  Contrast,
-  Copy,
-  Heart,
-  Pipette,
-  Redo2,
-  Shuffle,
-  Undo2,
-} from "lucide-react";
+import { Check, Contrast, Copy } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -35,6 +26,7 @@ import {
   rgbToHsv,
 } from "@/lib/colors/convert";
 import { useFavoriteColors, useHistoryState, useRecentColors } from "@/hooks";
+import { OrbitalColorStage } from "@/components/color/orbital-color-stage";
 import { cn } from "@/lib/utils";
 
 interface AdvancedColorPickerProps {
@@ -153,7 +145,7 @@ function WcagPill({ label, pass }: { label: string; pass: boolean }) {
 }
 
 export function AdvancedColorPicker({
-  initialColor = "#e11d48",
+  initialColor = "#db2777",
   className,
 }: AdvancedColorPickerProps) {
   const { state: hex, set, undo, redo, canUndo, canRedo } = useHistoryState(
@@ -294,124 +286,27 @@ export function AdvancedColorPicker({
 
   return (
     <div className={cn("space-y-5", className)}>
-      {/* Hero */}
-      <div className="relative overflow-hidden rounded-[1.75rem] border border-border/50 bg-background/70 shadow-sm">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,rgba(244,63,94,0.14),transparent_42%),radial-gradient(circle_at_88%_10%,rgba(14,165,233,0.1),transparent_36%)]" />
-        <div className="relative grid gap-5 p-4 sm:p-6 lg:grid-cols-[1.05fr_0.95fr] lg:p-7">
-          <div className="flex flex-col justify-center">
-            <div className="mb-3 inline-flex w-fit items-center gap-2 rounded-full border border-rose-500/20 bg-rose-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-700 dark:text-rose-300">
-              <Pipette className="h-3.5 w-3.5" />
-              Flagship picker
-            </div>
-            <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-              Advanced Color Picker
-            </h2>
-            <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Sample from screen, fine-tune HSV/RGB/HSL, copy every format, explore harmonies, and
-              check contrast — built for designers and developers.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Button type="button" size="sm" className="h-9 rounded-full" onClick={pickFromScreen}>
-                <Pipette className="h-3.5 w-3.5" />
-                Eye dropper
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                variant="outline"
-                className="h-9 rounded-full"
-                onClick={() => commit(randomHex())}
-              >
-                <Shuffle className="h-3.5 w-3.5" />
-                Random
-              </Button>
-              <Button type="button" size="sm" variant="outline" className="h-9 rounded-full" onClick={copyAll}>
-                <Copy className="h-3.5 w-3.5" />
-                Copy all
-              </Button>
-              <Button
-                type="button"
-                size="sm"
-                variant="outline"
-                className="h-9 rounded-full"
-                onClick={() => {
-                  const wasFav = has(hex);
-                  toggle(hex);
-                  toast.success(wasFav ? "Removed from favorites" : "Saved to favorites");
-                }}
-              >
-                <Heart className={cn("h-3.5 w-3.5", has(hex) && "fill-rose-500 text-rose-500")} />
-                {has(hex) ? "Favorited" : "Favorite"}
-              </Button>
-            </div>
-          </div>
+      <div className="grid items-stretch gap-5 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+        <OrbitalColorStage
+          color={hex}
+          textColor={textOn}
+          onPick={commit}
+          onRandom={() => commit(randomHex())}
+          onEyedrop={pickFromScreen}
+          favorited={has(hex)}
+          onFavorite={() => {
+            const wasFav = has(hex);
+            toggle(hex);
+            toast.success(wasFav ? "Removed from favorites" : "Saved to favorites");
+          }}
+          onUndo={undo}
+          onRedo={redo}
+          canUndo={canUndo}
+          canRedo={canRedo}
+          onCopy={copyAll}
+        />
 
-          <div
-            className="relative min-h-[180px] overflow-hidden rounded-[1.35rem] border border-black/5 shadow-inner transition-colors duration-300 sm:min-h-[200px]"
-            style={{ background: hex, color: textOn }}
-          >
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_15%,rgba(255,255,255,0.28),transparent_40%)]" />
-            <div className="relative flex h-full flex-col justify-between p-5">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] opacity-70">
-                    Live preview
-                  </p>
-                  <p className="mt-1 font-mono text-2xl font-semibold tracking-tight sm:text-3xl">
-                    {hex.toUpperCase()}
-                  </p>
-                </div>
-                <div className="flex gap-1">
-                  <Button
-                    type="button"
-                    size="icon"
-                    variant="ghost"
-                    className="h-9 w-9 rounded-full bg-black/10 hover:bg-black/15"
-                    style={{ color: textOn }}
-                    disabled={!canUndo}
-                    onClick={undo}
-                    aria-label="Undo"
-                  >
-                    <Undo2 className="h-4 w-4" />
-                  </Button>
-                  <Button
-                    type="button"
-                    size="icon"
-                    variant="ghost"
-                    className="h-9 w-9 rounded-full bg-black/10 hover:bg-black/15"
-                    style={{ color: textOn }}
-                    disabled={!canRedo}
-                    onClick={redo}
-                    aria-label="Redo"
-                  >
-                    <Redo2 className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
-              <div className="mt-6 flex flex-wrap items-end justify-between gap-4">
-                <div>
-                  <p className="text-sm font-semibold">The quick brown fox</p>
-                  <p className="text-xs opacity-75">Aa Bb Cc · 123 · UI text sample</p>
-                </div>
-                <button
-                  type="button"
-                  className="rounded-full px-4 py-2 text-xs font-semibold shadow-lg transition-transform hover:scale-105"
-                  style={{
-                    background: textOn,
-                    color: hex,
-                  }}
-                >
-                  Primary action
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
-        {/* Picker workspace */}
-        <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/70 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.35)]">
+        <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-sm)]">
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-fuchsia-500/5 to-transparent px-4 py-3 sm:px-5">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
@@ -590,10 +485,10 @@ export function AdvancedColorPicker({
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Values + contrast */}
-        <div className="space-y-4">
-          <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/70 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.35)]">
+      <div className="grid gap-5 lg:grid-cols-2">
+          <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-sm)]">
             <div className="border-b border-border/40 px-4 py-3 sm:px-5">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
                 Formats
@@ -627,7 +522,7 @@ export function AdvancedColorPicker({
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-background/70 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.35)]">
+          <div className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card shadow-[var(--shadow-sm)]">
             <div className="border-b border-border/40 px-4 py-3 sm:px-5">
               <div className="flex items-center gap-2">
                 <Contrast className="h-4 w-4 text-rose-600" />
@@ -669,7 +564,6 @@ export function AdvancedColorPicker({
               ))}
             </div>
           </div>
-        </div>
       </div>
 
       {/* Tints / shades */}

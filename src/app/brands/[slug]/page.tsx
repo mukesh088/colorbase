@@ -78,7 +78,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   const faqs = [
     {
       question: `What are ${brand.name}'s brand hex colors?`,
-      answer: `${brand.name} brand hex colors are ${colors.join(", ")}. Primary colors: ${brand.primary.join(", ")}.`,
+      answer: `${brand.name} brand hex colors are ${colors.join(", ")}. Primary colors: ${brand.primary.join(", ")}. Treat them as commonly published brand colors, not a legal specification.`,
     },
     {
       question: `What is the ${brand.name} logo color code?`,
@@ -119,7 +119,8 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
               {brand.name} Hex Colors
             </h1>
             <p className="mt-3 max-w-3xl text-muted-foreground">
-              {brand.overview} Official {brand.name} hex color codes: {colors.join(", ")}.
+              {brand.overview} Commonly published {brand.name} hex values: {colors.join(", ")}. These
+              are curated reference swatches, not a substitute for the brand&apos;s official guidelines.
             </p>
           </div>
           <div className="flex flex-col items-start gap-3 lg:items-end">

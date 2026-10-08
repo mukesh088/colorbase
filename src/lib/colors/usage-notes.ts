@@ -24,7 +24,7 @@ export function colorUsageNotes(
   else if (onWhite >= 3) roles.push("large titles on light backgrounds (WCAG AA Large)");
   if (onBlack >= 4.5) roles.push("text or icons on charcoal / dark mode");
 
-  const summary = `${name} (${analysis.hex}) sits in the ${familyLabel.toLowerCase()} family at about ${hsl.h}° hue, ${hsl.s}% saturation, and ${hsl.l}% lightness. Contrast is ${onWhite}:1 on white and ${onBlack}:1 on black, so ${text} labels read more clearly on the swatch itself. Closest Tailwind token in our matcher: ${analysis.tailwind}.`;
+  const summary = `${name} (${analysis.hex}) sits in the ${familyLabel.toLowerCase()} family at about ${hsl.h}° hue, ${hsl.s}% saturation, and ${hsl.l}% lightness. Contrast is ${onWhite}:1 on white and ${onBlack}:1 on black, so ${text} labels read more clearly on the swatch itself. Nearest Tailwind token: ${analysis.tailwind} (approximation unless the hex is an official scale stop).`;
 
   const watchouts: string[] = [];
   if (onWhite < 4.5) {

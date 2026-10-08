@@ -307,6 +307,8 @@ export function generateHarmony(hex: string, type: string): string[] {
       return [hex, rotate(90), rotate(180), rotate(270)];
     case "split-complementary":
       return [hex, rotate(150), rotate(210)];
+    case "double-complementary":
+      return [hex, rotate(30), rotate(180), rotate(210)];
     case "monochromatic":
       return [0.2, 0.35, 0.5, 0.65, 0.8].map((factor) =>
         rgbToHex(hslToRgb({ h, s, l: Math.round(factor * 100) }))
@@ -314,6 +316,13 @@ export function generateHarmony(hex: string, type: string): string[] {
     default:
       return [hex];
   }
+}
+
+export function generateHarmonyByOffsets(hex: string, offsets: number[]): string[] {
+  const { h, s, l } = rgbToHsl(hexToRgb(hex));
+  return offsets.map((deg) =>
+    rgbToHex(hslToRgb({ h: (h + deg + 360) % 360, s, l }))
+  );
 }
 
 export function simulateColorBlind(

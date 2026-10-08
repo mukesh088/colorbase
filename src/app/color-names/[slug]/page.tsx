@@ -46,6 +46,7 @@ export async function generateMetadata({
       hex,
       color.hex,
     ],
+    noIndex: color.source !== "css",
   });
 }
 

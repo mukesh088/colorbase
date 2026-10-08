@@ -5,6 +5,7 @@ import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { ChunkLoadRecovery } from "@/components/chunk-load-recovery";
+import { SearchCommandProvider } from "@/components/search/search-command";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -25,8 +26,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
         zIndex={9999}
       />
       <TooltipProvider delayDuration={200}>
-        {children}
-        <Toaster richColors position="bottom-right" closeButton />
+        <SearchCommandProvider>
+          {children}
+          <Toaster richColors position="bottom-right" closeButton />
+        </SearchCommandProvider>
       </TooltipProvider>
     </NextThemesProvider>
   );

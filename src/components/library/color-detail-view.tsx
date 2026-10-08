@@ -1,9 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { Copy, Contrast, Pipette, Palette } from "lucide-react";
+import { Copy, Contrast, Pipette, Palette, Sparkles } from "lucide-react";
 import { toast } from "sonner";
-import { analyzeColor } from "@/lib/colors/spaces";
+import {
+  analyzeColor,
+  describeDeltaE,
+  nearestBootstrap,
+  nearestCssName,
+  nearestMaterial,
+  nearestTailwind,
+} from "@/lib/colors/spaces";
+import { oklchShadeScale, SHADE_STEPS } from "@/lib/colors/oklch";
 import { colorUsageNotes } from "@/lib/colors/usage-notes";
 import { psychologyForFamily, FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { getTextColor } from "@/lib/colors/convert";
@@ -28,10 +36,10 @@ function ColorStrip({
   tall?: boolean;
 }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
-      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-transparent to-transparent px-4 py-3 sm:px-5">
+    <section className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card">
+      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-border/40 panel-accent px-4 py-3 sm:px-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+          <p className="kicker">
             Palette
           </p>
           <h3 className="font-display text-lg font-semibold tracking-tight sm:text-xl">{title}</h3>
@@ -85,9 +93,9 @@ function HarmonyGrid({
   colors: string[];
 }) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
+    <section className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card">
       <div className="border-b border-border/40 px-4 py-3 sm:px-5">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+        <p className="kicker">
           Harmony
         </p>
         <h3 className="font-display text-lg font-semibold tracking-tight">{title}</h3>
@@ -100,7 +108,7 @@ function HarmonyGrid({
             <Link
               key={`${title}-${hex}-${i}`}
               href={`/color/${hex.slice(1)}`}
-              className="group relative flex min-h-[7.5rem] flex-col justify-end p-3 transition-transform hover:z-10 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[9rem]"
+              className="group relative flex min-h-[7.5rem] flex-col justify-end p-3 transition-[filter] duration-200 hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring sm:min-h-[9rem]"
               style={{ backgroundColor: hex, color: text }}
             >
               <span className="font-mono text-xs font-semibold drop-shadow-sm">{hex.toUpperCase()}</span>
@@ -134,15 +142,26 @@ export function ColorDetailView({
   const fam = (family ?? "blue") as ColorFamily;
   const path = sharePath ?? `/color/${a.hex.slice(1)}`;
   const usage = colorUsageNotes(a, name, family);
+  const tw = nearestTailwind(a.hex);
+  const material = nearestMaterial(a.hex);
+  const bootstrap = nearestBootstrap(a.hex);
+  const cssName = nearestCssName(a.hex);
+  const oklchScale = oklchShadeScale(a.hex);
 
   // Full scale: lightest tint → base → darkest shade
   const fullScale = [...[...a.tints].reverse(), a.hex, ...a.shades];
+  const slug = a.hex.slice(1);
+  const jsSnippet = `const color = "${a.hex}";`;
+  const tsSnippet = `const color: string = "${a.hex}";`;
+  const reactSnippet = `style={{ backgroundColor: "${a.hex}" }}`;
+  const jsonSnippet = JSON.stringify({ hex: a.hex, rgb: a.rgb, oklch: a.oklch }, null, 2);
 
   const rows = [
     ["HEX", a.hex],
     ["RGB", `rgb(${a.rgb.r}, ${a.rgb.g}, ${a.rgb.b})`],
     ["RGBA", a.rgba],
     ["HSL", a.hsl],
+    ["HSLA", a.hsla],
     ["HSV", a.hsv],
     ["LAB", a.lab],
     ["LCH", a.lch],
@@ -153,21 +172,32 @@ export function ColorDetailView({
     ["CSS", a.css],
     ["CSS variable", a.cssVar],
     ["SCSS", a.scss],
-    ["Tailwind", a.tailwind],
+    ["JavaScript", jsSnippet],
+    ["TypeScript", tsSnippet],
+    ["React", reactSnippet],
+    ["JSON", jsonSnippet],
   ] as const;
 
   return (
     <div className="space-y-6 sm:space-y-8">
       {/* Hero */}
-      <div className="overflow-hidden rounded-2xl border border-border/50 shadow-sm sm:rounded-[1.75rem]">
+      <div
+        className="overflow-hidden rounded-[var(--radius-lg)] border border-border"
+        style={{ boxShadow: `0 24px 64px -36px ${a.hex}` }}
+      >
         <div
           className="relative flex min-h-[240px] flex-col justify-end p-5 sm:min-h-[320px] sm:p-8 lg:min-h-[380px]"
           style={{
-            background: `linear-gradient(155deg, ${a.hex} 0%, color-mix(in srgb, ${a.hex} 82%, black) 100%)`,
+            backgroundColor: a.hex,
             color: a.textOnColor,
           }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_88%_12%,rgba(255,255,255,0.28),transparent_42%)]" />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 88% 12%, color-mix(in srgb, ${a.hex} 35%, white), transparent 42%)`,
+            }}
+          />
           <div className="relative z-[1] flex flex-wrap items-end justify-between gap-4">
             <div>
               {family && (
@@ -187,6 +217,7 @@ export function ColorDetailView({
               <Button
                 type="button"
                 size="sm"
+                variant="secondary"
                 className="min-h-11 rounded-full bg-white/90 text-slate-900 hover:bg-white"
                 onClick={async () => {
                   await navigator.clipboard.writeText(a.hex);
@@ -244,32 +275,57 @@ export function ColorDetailView({
         <nav aria-label="Try this color in tools" className="flex flex-wrap gap-2">
           <Link
             href="/color-picker"
-            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3.5 text-sm font-medium hover:border-rose-500/40"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-background px-3.5 text-sm font-medium transition-colors hover:border-primary/40"
           >
-            <Pipette className="h-4 w-4 text-rose-600" />
+            <Pipette className="h-4 w-4 text-primary" />
             Open in picker
           </Link>
           <Link
-            href="/contrast-checker"
-            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3.5 text-sm font-medium hover:border-rose-500/40"
+            href={`/tools/shades-tints-tones?hex=${slug}`}
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-background px-3.5 text-sm font-medium transition-colors hover:border-primary/40"
           >
-            <Contrast className="h-4 w-4 text-rose-600" />
+            Shades & tints
+          </Link>
+          <Link
+            href={`/tools/harmony-studio?hex=${slug}`}
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-background px-3.5 text-sm font-medium transition-colors hover:border-primary/40"
+          >
+            Harmony
+          </Link>
+          <Link
+            href={`/color-atlas?hex=${slug}`}
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-background px-3.5 text-sm font-medium transition-colors hover:border-primary/40"
+          >
+            Compare tokens
+          </Link>
+          <Link
+            href="/contrast-checker"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-background px-3.5 text-sm font-medium transition-colors hover:border-primary/40"
+          >
+            <Contrast className="h-4 w-4 text-primary" />
             Check contrast
           </Link>
           <Link
             href="/palette-generator"
-            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-border/60 bg-background/80 px-3.5 text-sm font-medium hover:border-rose-500/40"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-background px-3.5 text-sm font-medium transition-colors hover:border-primary/40"
           >
-            <Palette className="h-4 w-4 text-rose-600" />
+            <Palette className="h-4 w-4 text-primary" />
             Build palette
+          </Link>
+          <Link
+            href="/ai-color-copilot"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-[var(--radius-md)] border border-border bg-background px-3.5 text-sm font-medium transition-colors hover:border-primary/40"
+          >
+            <Sparkles className="h-4 w-4 text-primary" />
+            Copilot
           </Link>
         </nav>
       </div>
 
       {/* Formats */}
-      <section className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
-        <div className="border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-transparent to-transparent px-4 py-3 sm:px-5">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+      <section className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card">
+        <div className="border-b border-border/40 panel-accent px-4 py-3 sm:px-5">
+          <p className="kicker">
             Codes
           </p>
           <h2 className="font-display text-lg font-semibold tracking-tight">Formats</h2>
@@ -291,6 +347,66 @@ export function ColorDetailView({
       </section>
 
       <CodeExportPanel colors={[a.hex]} name={name.toLowerCase().replace(/\s+/g, "-")} />
+
+      <section className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card">
+        <div className="border-b border-border/40 px-4 py-3 sm:px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Design systems</p>
+          <h2 className="font-display text-lg font-semibold tracking-tight">Nearest official tokens</h2>
+          <p className="mt-1 text-xs text-muted-foreground">
+            An arbitrary HEX is not an official Tailwind, Material, or Bootstrap color. Distance is CIEDE2000.
+          </p>
+        </div>
+        <div className="grid gap-2 p-3 sm:grid-cols-2 sm:p-5">
+          {[tw, cssName, material, bootstrap].map((match) => (
+            <div key={match.label} className="rounded-xl border border-border/50 p-3">
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{match.label}</p>
+              <p className="mt-1 font-mono text-sm font-medium">{match.token}</p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                {match.exact ? "Exact match" : `${describeDeltaE(match.deltaE)} · ΔE ${match.deltaE}`}
+                {" · "}
+                {match.hex.toUpperCase()}
+              </p>
+              <div className="mt-2 flex flex-wrap gap-2">
+                <CopyButton value={match.token} label="Copy token" />
+                {match.label.includes("Tailwind") && (
+                  <>
+                    <CopyButton value={`bg-${match.token}`} label="Copy as Tailwind" />
+                    <CopyButton value={`text-${match.token}`} label="text-" />
+                  </>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card">
+        <div className="border-b border-border/40 px-4 py-3 sm:px-5">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">OKLCH</p>
+          <h2 className="font-display text-lg font-semibold tracking-tight">Perceptual 50–950 scale</h2>
+          <p className="mt-1 text-xs text-muted-foreground">
+            Generated in OKLCH from this hex. Not an official Tailwind scale unless the hex itself is a Tailwind token.
+          </p>
+        </div>
+        <div className="flex overflow-hidden">
+          {SHADE_STEPS.map((step) => {
+            const value = oklchScale[step];
+            const text = getTextColor(value);
+            return (
+              <Link
+                key={step}
+                href={`/color/${value.slice(1)}`}
+                className="min-w-0 flex-1 px-0.5 py-8 text-center"
+                style={{ backgroundColor: value, color: text }}
+              >
+                <span className="block text-[10px] font-semibold">{step}</span>
+                <span className="hidden font-mono text-[9px] sm:block">{value.replace("#", "")}</span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
 
       {/* Full tint–shade scale */}
       <ColorStrip
@@ -348,8 +464,8 @@ export function ColorDetailView({
       />
 
       {/* Usage — unique to this hex */}
-      <section className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 p-5 shadow-sm sm:rounded-3xl sm:p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+      <section className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card p-5 sm:p-6">
+        <p className="kicker">
           Using this color
         </p>
         <h2 className="mt-1 font-display text-xl font-semibold tracking-tight">Where {a.hex} works</h2>
@@ -380,9 +496,9 @@ export function ColorDetailView({
 
       {/* Similar */}
       {similar.length > 0 && (
-        <section className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
+        <section className="overflow-hidden rounded-[var(--radius-lg)] border border-border bg-card">
           <div className="border-b border-border/40 px-4 py-3 sm:px-5">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+            <p className="kicker">
               Related
             </p>
             <h2 className="font-display text-lg font-semibold tracking-tight sm:text-xl">

@@ -139,6 +139,46 @@ const nextConfig = {
         destination: "/unix-timestamp-converter",
         permanent: true,
       },
+      {
+        source: "/learn",
+        destination: "/learning",
+        permanent: true,
+      },
+      {
+        source: "/colors/kits/tailwind",
+        destination: "/colors/tailwind",
+        permanent: true,
+      },
+      {
+        source: "/colors/kits/material",
+        destination: "/colors/material",
+        permanent: true,
+      },
+      {
+        source: "/colors/kits/bootstrap",
+        destination: "/colors/bootstrap",
+        permanent: true,
+      },
+      {
+        source: "/colors/kits/css-named",
+        destination: "/colors/css",
+        permanent: true,
+      },
+      {
+        source: "/colors/kits/radix",
+        destination: "/colors/radix",
+        permanent: true,
+      },
+      {
+        source: "/colors/kits/web-safe",
+        destination: "/colors/web-safe",
+        permanent: true,
+      },
+      {
+        source: "/colors/kits/flat-ui",
+        destination: "/colors/flat-ui",
+        permanent: true,
+      },
       ...retiredToolSlugs.map((slug) => ({
         source: `/${slug}`,
         destination: "/tools",

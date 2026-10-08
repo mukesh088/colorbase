@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Copy } from "lucide-react";
+import { Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
-import { getTextColor } from "@/lib/colors/convert";
+import { getTextColor, hexToRgb } from "@/lib/colors/convert";
 import { cn } from "@/lib/utils";
 
 export function LibraryColorCard({
@@ -20,52 +20,56 @@ export function LibraryColorCard({
   className?: string;
 }) {
   const text = getTextColor(hex);
+  const rgb = hexToRgb(hex);
+  const rgbLabel = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
 
   return (
-    <div
+    <article
       className={cn(
-        "group card-lift relative overflow-hidden rounded-[1.35rem] border border-border/50 bg-background/30",
+        "group card-lift relative overflow-hidden rounded-[var(--radius-md)] border border-border bg-card",
         className
       )}
     >
       <Link href={href} className="block" aria-label={`${name} ${hex}`}>
         <div
-          className="relative flex h-28 flex-col justify-end p-3 transition-[filter] duration-500 group-hover:brightness-105"
-          style={{
-            background: `linear-gradient(160deg, ${hex} 0%, ${hex}cc 70%, ${hex}99 100%)`,
-            color: text,
-          }}
+          className="relative flex h-28 flex-col justify-end p-3"
+          style={{ backgroundColor: hex, color: text }}
         >
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_15%,rgba(255,255,255,0.35),transparent_40%)] opacity-50 transition-opacity duration-500 group-hover:opacity-80" />
-          <p className="relative font-mono text-xs font-semibold uppercase tracking-wider drop-shadow-sm">
-            {hex}
-          </p>
+          <p className="relative font-mono text-xs font-semibold uppercase tracking-wider">{hex}</p>
+          <p className="relative mt-0.5 font-mono text-[10px] opacity-80">{rgbLabel}</p>
         </div>
         <div className="space-y-1 px-3 py-3">
-          <p className="truncate text-sm font-semibold tracking-tight transition-colors duration-300 group-hover:text-rose-700 dark:group-hover:text-rose-300">
+          <p className="truncate text-sm font-semibold tracking-tight transition-colors duration-200 group-hover:text-primary">
             {name}
           </p>
           {meta && (
-            <p className="truncate text-[11px] text-muted-foreground transition-colors group-hover:text-foreground/70">
-              {meta}
-            </p>
+            <p className="truncate text-[11px] text-muted-foreground">{meta}</p>
           )}
         </div>
       </Link>
 
-      <button
-        type="button"
-        className="absolute right-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/25 bg-black/25 text-white opacity-100 backdrop-blur-md transition-all duration-300 hover:bg-black/40 sm:h-8 sm:w-8 sm:opacity-0 sm:group-hover:opacity-100"
-        aria-label={`Copy ${hex}`}
-        onClick={async (e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          await navigator.clipboard.writeText(hex);
-          toast.success(`${hex} copied`);
-        }}
-      >
-        <Copy className="h-3.5 w-3.5" />
-      </button>
-    </div>
+      <div className="absolute right-2 top-2 flex gap-1 opacity-100 transition-opacity duration-200 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-within:opacity-100">
+        <button
+          type="button"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-[var(--radius-sm)] border border-white/25 bg-black/30 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-black/45"
+          aria-label={`Copy ${hex}`}
+          onClick={async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            await navigator.clipboard.writeText(hex);
+            toast.success(`${hex} copied`);
+          }}
+        >
+          <Copy className="h-3.5 w-3.5" />
+        </button>
+        <Link
+          href={href}
+          className="inline-flex h-8 w-8 items-center justify-center rounded-[var(--radius-sm)] border border-white/25 bg-black/30 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-black/45"
+          aria-label={`Open ${name}`}
+        >
+          <ExternalLink className="h-3.5 w-3.5" />
+        </Link>
+      </div>
+    </article>
   );
 }

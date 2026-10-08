@@ -1,7 +1,10 @@
-export const SITE_NAME = "colorBase";
-export const SITE_TAGLINE = "Modern color tools for designers & developers";
+export const SITE_NAME = "ColorBase";
+export const SITE_NAME_DISPLAY = "COLORBASE";
+export const SITE_TAGLINE = "The developer's color library, toolkit, and AI workspace.";
+export const SITE_PROMISE =
+  "Explore colors, generate palettes, build design systems, check accessibility, and convert colors into production-ready code.";
 export const SITE_DESCRIPTION =
-  "Free color tools and original guides from colorBase in Ranchi: converters, palettes, WCAG contrast, CSS tokens, and accessibility checks for designers and developers.";
+  "ColorBase is the developer's color library, toolkit, and AI workspace. Explore colors, generate palettes, check WCAG contrast, and ship production-ready CSS, Tailwind, and design tokens.";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in";
 

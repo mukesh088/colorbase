@@ -23,7 +23,7 @@ export function PaletteCard({
   return (
     <article
       className={cn(
-        "group card-lift glass overflow-hidden rounded-3xl border border-border/50",
+        "group card-lift overflow-hidden rounded-[var(--radius-md)] border border-border bg-card",
         className
       )}
     >
@@ -32,7 +32,7 @@ export function PaletteCard({
       </Link>
       <div className="flex items-center justify-between gap-3 px-4 py-3.5">
         <Link href={href} className="min-w-0">
-          <p className="truncate font-medium tracking-tight transition-colors duration-300 group-hover:text-rose-700 dark:group-hover:text-rose-300">
+          <p className="truncate font-medium tracking-tight transition-colors duration-200 group-hover:text-primary">
             {name}
           </p>
           {meta && (
@@ -47,7 +47,7 @@ export function PaletteCard({
             {colors.slice(0, 4).map((c, i) => (
               <span
                 key={`${href}-chip-${c}-${i}`}
-                className="h-6 w-6 rounded-full border-2 border-background shadow-sm transition-transform duration-300 group-hover:scale-110"
+                className="h-6 w-6 rounded-full border-2 border-background shadow-sm"
                 style={{ backgroundColor: c, transitionDelay: `${i * 35}ms` }}
               />
             ))}

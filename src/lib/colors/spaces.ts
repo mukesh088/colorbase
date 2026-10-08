@@ -12,6 +12,7 @@ import {
   mixColors,
   getTextColor,
 } from "@/lib/colors/convert";
+import { BOOTSTRAP_COLORS, CSS_NAMED_COLORS, MATERIAL_COLORS, TAILWIND_COLORS } from "@/lib/colors/palettes";
 import { clamp } from "@/lib/utils";
 import type { RGB } from "@/types/color";
 
@@ -154,32 +155,171 @@ export function getTones(hex: string, count = 8): string[] {
   );
 }
 
+export interface NearestMatch {
+  token: string;
+  hex: string;
+  deltaE: number;
+  exact: boolean;
+  label: string;
+}
+
+function flattenShadeTokens(groups: Record<string, Record<string, string>>): { token: string; hex: string }[] {
+  const out: { token: string; hex: string }[] = [];
+  for (const [family, shades] of Object.entries(groups)) {
+    const slug = family.toLowerCase().replace(/\s+/g, "-");
+    for (const [shade, hex] of Object.entries(shades)) {
+      out.push({ token: `${slug}-${shade}`, hex: normalizeHex(hex) });
+    }
+  }
+  return out;
+}
+
+const TAILWIND_TOKENS = flattenShadeTokens(TAILWIND_COLORS);
+const MATERIAL_TOKENS = flattenShadeTokens(MATERIAL_COLORS);
+const BOOTSTRAP_TOKENS = Object.entries(BOOTSTRAP_COLORS).map(([token, hex]) => ({
+  token,
+  hex: normalizeHex(hex),
+}));
+const CSS_NAME_TOKENS = CSS_NAMED_COLORS.map((c) => ({
+  token: c.name,
+  hex: normalizeHex(c.hex),
+}));
+
+function nearestFromPool(
+  hex: string,
+  pool: { token: string; hex: string }[],
+  label: string
+): NearestMatch {
+  const n = normalizeHex(hex);
+  let best = pool[0]!;
+  let bestD = Infinity;
+  for (const item of pool) {
+    if (item.hex === n) {
+      return { token: item.token, hex: item.hex, deltaE: 0, exact: true, label };
+    }
+    const d = deltaE2000Hex(n, item.hex);
+    if (d < bestD) {
+      bestD = d;
+      best = item;
+    }
+  }
+  return {
+    token: best.token,
+    hex: best.hex,
+    deltaE: Math.round(bestD * 100) / 100,
+    exact: false,
+    label,
+  };
+}
+
+export function nearestTailwind(hex: string): NearestMatch {
+  return nearestFromPool(hex, TAILWIND_TOKENS, "Nearest Tailwind color");
+}
+
+export function nearestMaterial(hex: string): NearestMatch {
+  return nearestFromPool(hex, MATERIAL_TOKENS, "Nearest Material color");
+}
+
+export function nearestBootstrap(hex: string): NearestMatch {
+  return nearestFromPool(hex, BOOTSTRAP_TOKENS, "Nearest Bootstrap color");
+}
+
+export function nearestCssName(hex: string): NearestMatch {
+  return nearestFromPool(hex, CSS_NAME_TOKENS, "Nearest CSS named color");
+}
+
 export function nearestTailwindClass(hex: string): string {
-  const { h, s, l } = rgbToHsl(hexToRgb(hex));
-  const families = [
-    "slate",
-    "red",
-    "orange",
-    "amber",
-    "yellow",
-    "lime",
-    "green",
-    "emerald",
-    "teal",
-    "cyan",
-    "sky",
-    "blue",
-    "indigo",
-    "violet",
-    "purple",
-    "fuchsia",
-    "pink",
-    "rose",
-  ];
-  const family = families[Math.floor(((h % 360) / 360) * families.length)] ?? "slate";
-  const shade =
-    l > 90 ? "50" : l > 80 ? "100" : l > 70 ? "200" : l > 60 ? "300" : l > 50 ? "400" : l > 40 ? "500" : l > 30 ? "600" : l > 20 ? "700" : l > 12 ? "800" : "900";
-  return s < 8 ? `slate-${shade}` : `${family}-${shade}`;
+  return nearestTailwind(hex).token;
+}
+
+export function findTailwindToken(query: string): { token: string; hex: string } | null {
+  const q = query.trim().toLowerCase().replace(/^(bg|text|border|from|to|via)-/, "");
+  const hit = TAILWIND_TOKENS.find((item) => item.token === q);
+  return hit ?? null;
+}
+
+function hypot2(a: number, b: number) {
+  return Math.sqrt(a * a + b * b);
+}
+
+export function deltaE76(a: Lab, b: Lab): number {
+  return Math.sqrt((a.l - b.l) ** 2 + (a.a - b.a) ** 2 + (a.b - b.b) ** 2);
+}
+
+export function deltaE94(a: Lab, b: Lab): number {
+  const dL = a.l - b.l;
+  const c1 = hypot2(a.a, a.b);
+  const c2 = hypot2(b.a, b.b);
+  const dC = c1 - c2;
+  const dH = Math.sqrt(Math.max(0, (a.a - b.a) ** 2 + (a.b - b.b) ** 2 - dC * dC));
+  const sl = 1;
+  const sc = 1 + 0.045 * c1;
+  const sh = 1 + 0.015 * c1;
+  return Math.sqrt((dL / sl) ** 2 + (dC / sc) ** 2 + (dH / sh) ** 2);
+}
+
+export function deltaE2000(a: Lab, b: Lab): number {
+  const { l: l1, a: a1, b: b1 } = a;
+  const { l: l2, a: a2, b: b2 } = b;
+  const kL = 1;
+  const kC = 1;
+  const kH = 1;
+  const c1 = hypot2(a1, b1);
+  const c2 = hypot2(a2, b2);
+  const cBar = (c1 + c2) / 2;
+  const cBar7 = cBar ** 7;
+  const g = 0.5 * (1 - Math.sqrt(cBar7 / (cBar7 + 25 ** 7)));
+  const a1p = (1 + g) * a1;
+  const a2p = (1 + g) * a2;
+  const c1p = hypot2(a1p, b1);
+  const c2p = hypot2(a2p, b2);
+  const h1p = Math.atan2(b1, a1p) * (180 / Math.PI) + (Math.atan2(b1, a1p) < 0 ? 360 : 0);
+  const h2p = Math.atan2(b2, a2p) * (180 / Math.PI) + (Math.atan2(b2, a2p) < 0 ? 360 : 0);
+  const dLp = l2 - l1;
+  const dCp = c2p - c1p;
+  let dhp = 0;
+  if (c1p * c2p !== 0) {
+    dhp = h2p - h1p;
+    if (dhp > 180) dhp -= 360;
+    if (dhp < -180) dhp += 360;
+  }
+  const dHp = 2 * Math.sqrt(c1p * c2p) * Math.sin((dhp * Math.PI) / 180 / 2);
+  const lBar = (l1 + l2) / 2;
+  const cBarP = (c1p + c2p) / 2;
+  let hBar = h1p + h2p;
+  if (c1p * c2p !== 0) {
+    if (Math.abs(h1p - h2p) > 180) hBar += h1p + h2p < 360 ? 360 : -360;
+    hBar /= 2;
+  } else {
+    hBar = h1p + h2p;
+  }
+  const t =
+    1 -
+    0.17 * Math.cos(((hBar - 30) * Math.PI) / 180) +
+    0.24 * Math.cos((2 * hBar * Math.PI) / 180) +
+    0.32 * Math.cos(((3 * hBar + 6) * Math.PI) / 180) -
+    0.2 * Math.cos(((4 * hBar - 63) * Math.PI) / 180);
+  const sl = 1 + (0.015 * (lBar - 50) ** 2) / Math.sqrt(20 + (lBar - 50) ** 2);
+  const sc = 1 + 0.045 * cBarP;
+  const sh = 1 + 0.015 * cBarP * t;
+  const dTheta = 30 * Math.exp(-(((hBar - 275) / 25) ** 2));
+  const rc = 2 * Math.sqrt(cBarP ** 7 / (cBarP ** 7 + 25 ** 7));
+  const rt = -Math.sin((2 * dTheta * Math.PI) / 180) * rc;
+  const lTerm = dLp / (kL * sl);
+  const cTerm = dCp / (kC * sc);
+  const hTerm = dHp / (kH * sh);
+  return Math.sqrt(lTerm ** 2 + cTerm ** 2 + hTerm ** 2 + rt * cTerm * hTerm);
+}
+
+export function deltaE2000Hex(a: string, b: string): number {
+  return deltaE2000(xyzToLab(rgbToXyz(hexToRgb(a))), xyzToLab(rgbToXyz(hexToRgb(b))));
+}
+
+export function describeDeltaE(d: number): string {
+  if (d < 1) return "Very similar";
+  if (d < 2) return "Similar";
+  if (d < 5) return "Noticeably different";
+  return "Very different";
 }
 
 export interface FullColorAnalysis {
@@ -187,6 +327,7 @@ export interface FullColorAnalysis {
   rgb: RGB;
   rgba: string;
   hsl: string;
+  hsla: string;
   hsv: string;
   cmyk: string;
   lab: string;
@@ -230,6 +371,7 @@ export function analyzeColor(input: string): FullColorAnalysis {
     rgb,
     rgba: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1)`,
     hsl: `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`,
+    hsla: `hsla(${hsl.h}, ${hsl.s}%, ${hsl.l}%, 1)`,
     hsv: `hsv(${hsv.h}, ${hsv.s}%, ${hsv.v}%)`,
     cmyk: `cmyk(${cmyk.c}%, ${cmyk.m}%, ${cmyk.y}%, ${cmyk.k}%)`,
     lab: formatLab(lab),
@@ -257,9 +399,7 @@ export function analyzeColor(input: string): FullColorAnalysis {
 }
 
 export function colorDistance(a: string, b: string): number {
-  const la = xyzToLab(rgbToXyz(hexToRgb(a)));
-  const lb = xyzToLab(rgbToXyz(hexToRgb(b)));
-  return Math.sqrt((la.l - lb.l) ** 2 + (la.a - lb.a) ** 2 + (la.b - lb.b) ** 2);
+  return deltaE2000Hex(a, b);
 }
 
 export function findSimilarColors(hex: string, pool: string[], count = 8): string[] {

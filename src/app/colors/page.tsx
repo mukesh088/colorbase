@@ -13,6 +13,7 @@ import { KitCard, FamilyCard } from "@/components/library/kit-card";
 import { LibraryHero } from "@/components/library/library-hero";
 import { LibraryInsight } from "@/components/library/library-insight";
 import { mixColors } from "@/lib/colors/convert";
+import { kitToDesignPath } from "@/lib/data/design-systems";
 
 export const dynamic = "force-static";
 
@@ -83,7 +84,7 @@ export default function ColorsHubPage() {
                 style={{ animationDelay: `${Math.min(index, 12) * 40}ms` }}
               >
                 <KitCard
-                  href={`/colors/kits/${kit.slug}`}
+                  href={kitToDesignPath(kit.slug) ?? `/colors/kits/${kit.slug}`}
                   title={kit.title}
                   blurb={kit.blurb}
                   accent={kit.accent}

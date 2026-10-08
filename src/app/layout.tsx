@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Fraunces } from "next/font/google";
+import { JetBrains_Mono, Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
@@ -11,7 +11,7 @@ import { createPageMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo
 import { ADSENSE_CLIENT_ID, SITE_DESCRIPTION, SITE_TAGLINE } from "@/lib/site-config";
 import "./globals.css";
 
-const display = Fraunces({
+const display = Outfit({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
@@ -19,7 +19,7 @@ const display = Fraunces({
   preload: true,
 });
 
-const body = DM_Sans({
+const body = Plus_Jakarta_Sans({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
@@ -27,17 +27,33 @@ const body = DM_Sans({
   preload: true,
 });
 
+const mono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  adjustFontFallback: true,
+  preload: false,
+});
+
 export const metadata: Metadata = createPageMetadata({
   title: SITE_TAGLINE,
   description: SITE_DESCRIPTION,
   path: "/",
-  keywords: ["colorbase", "color tools", "hex converter", "palette generator", "css tools"],
+  keywords: [
+    "colorbase",
+    "color library",
+    "oklch",
+    "tailwind colors",
+    "wcag contrast",
+    "palette generator",
+    "design tokens",
+  ],
 });
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#e11d48" },
-    { media: "(prefers-color-scheme: dark)", color: "#120810" },
+    { media: "(prefers-color-scheme: light)", color: "#fafafa" },
+    { media: "(prefers-color-scheme: dark)", color: "#09090b" },
   ],
   width: "device-width",
   initialScale: 1,
@@ -48,7 +64,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <head>
         {/* Explicit head tags so AdSense crawler can verify without running JS */}
         <meta name="google-adsense-account" content={ADSENSE_CLIENT_ID} />

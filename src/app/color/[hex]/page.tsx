@@ -34,17 +34,20 @@ export async function generateMetadata({
   const name = known?.name ?? value.toUpperCase();
   const brands = getBrandsUsingHex(value);
   const brandNames = brands.map((b) => b.name).slice(0, 4);
-  const title = brandNames.length
-    ? `${value} Hex Color — ${brandNames.join(", ")}`
-    : `${name} — ${value}`;
+  const curated =
+    Boolean(known && !known.sources.includes("generated")) ||
+    brands.length > 0 ||
+    getCssNamedColors().some((c) => c.hex.toLowerCase() === value.toLowerCase());
+  const title = `${value.toUpperCase()} Color — RGB, HSL, OKLCH, Shades, Palettes & Code`;
   const description = brandNames.length
-    ? `${value} is a brand hex color used by ${brandNames.join(", ")}. Copy HEX, RGB, HSL, LAB, OKLCH, CMYK, CSS, and Tailwind.`
-    : `Color details for ${value}: HEX, RGB, HSL, LAB, OKLCH, CMYK, Tailwind class, CSS variables, tints, shades, and contrast.`;
+    ? `${value.toUpperCase()} is a brand hex color used by ${brandNames.join(", ")}. Copy HEX, RGB, HSL, LAB, OKLCH, CMYK, CSS, and nearest Tailwind.`
+    : `Color details for ${value.toUpperCase()}: HEX, RGB, HSL, LAB, OKLCH, CMYK, nearest Tailwind token, CSS variables, tints, shades, and contrast.`;
   return createPageMetadata({
     title,
     description,
     path: `/color/${hex}`,
     keywords: [value, name, "color hex", "hex color code", ...brandNames.map((n) => `${n} hex`)],
+    noIndex: !curated,
   });
 }
 
