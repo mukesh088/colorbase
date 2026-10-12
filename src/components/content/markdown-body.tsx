@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { CopyButton } from "@/components/color/copy-button";
+import { IdeCodeBlock } from "@/components/content/ide-code-block";
 import { cn, slugify } from "@/lib/utils";
 
 export function markdownHeadingId(raw: string) {
@@ -90,14 +91,7 @@ function renderBlocks(md: string) {
         i += 1;
       }
       i += 1;
-      nodes.push(
-        <pre
-          key={key++}
-          className="overflow-x-auto rounded-xl border border-border/60 bg-muted/40 p-4 text-sm"
-        >
-          <code className={lang ? `language-${lang}` : undefined}>{buf.join("\n")}</code>
-        </pre>
-      );
+      nodes.push(<IdeCodeBlock key={key++} code={buf.join("\n")} language={lang} />);
       continue;
     }
     if (line.startsWith("@swatch ")) {

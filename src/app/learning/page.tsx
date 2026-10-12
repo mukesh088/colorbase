@@ -3,6 +3,9 @@ import Link from "next/link";
 import { createPageMetadata } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { MarkdownBody } from "@/components/content/markdown-body";
+import { getAllPosts } from "@/lib/data/blog";
+import { GUIDE_POSTS } from "@/lib/data/blog-guides";
+import { formatDate, slugify } from "@/lib/utils";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Learn color on the web",
@@ -51,7 +54,17 @@ Build them on the [color wheel](/color-wheel), then delete any stop you cannot n
 
 Name roles (\`--color-primary\`) and export with [palette export](/palette-export). Native and web should share the file. Hardcoded HEX in React components is how brands drift.
 
-        Continue with [Color codes explained](/learn/color-codes), [From HEX to design tokens in CSS](/blog/from-hex-to-design-tokens-in-css) and [Themeable React apps](/blog/developer-tips-for-themeable-react-apps).
+\`\`\`css
+:root {
+  --color-primary: #e11d48;
+  --color-surface: #ffffff;
+  --color-text: #111827;
+}
+\`\`\`
+
+The worked shell is [Ship a five-role SaaS shell with CSS variables](/blog/ship-a-five-role-saas-shell-with-css-variables). Tint, shade, and tone jobs are in [Name the job of every tint, shade, and tone](/blog/name-the-job-of-every-tint-shade-and-tone). Confirm a logo color before you treat it as a token: [Confirm a brand HEX before you publish it](/blog/confirm-a-brand-hex-before-you-publish-it).
+
+Continue with [Color codes explained](/learn/color-codes), [From HEX to design tokens in CSS](/blog/from-hex-to-design-tokens-in-css) and [Themeable React apps](/blog/developer-tips-for-themeable-react-apps).
 
 ## 5. A one-hour studio exercise
 
@@ -62,6 +75,11 @@ Name roles (\`--color-primary\`) and export with [palette export](/palette-expor
 5. Write down why the accent is that hue — psychology notes are in [color meaning](/color-meaning) and the [conversion article](/blog/how-color-psychology-shapes-conversion-rates).
 
 When you can explain those five steps without opening this page, you are ready to ship color without hoping the mock “looks fine.”`;
+
+const guideSlugs = new Set(GUIDE_POSTS.map((post) => slugify(post.title)));
+const posts = getAllPosts();
+const guides = posts.filter((post) => guideSlugs.has(post.slug));
+const earlier = posts.filter((post) => !guideSlugs.has(post.slug));
 
 export default function LearningPage() {
   return (
@@ -79,62 +97,54 @@ export default function LearningPage() {
         <Link href="/blog" className="text-primary underline-offset-4 hover:underline">
           blog
         </Link>
-        .
+        . The article index sits under the course.
       </p>
-      <nav aria-label="Guides that go further" className="mt-8 rounded-2xl border border-border/60 p-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-          Go further
-        </p>
-        <ul className="mt-3 space-y-2 text-sm">
-          <li>
-            <Link className="text-primary underline-offset-4 hover:underline" href="/learn/color-codes">
-              Color codes explained
-            </Link>
-            <span className="text-muted-foreground"> — HEX, RGB, HSL, and OKLCH as notations</span>
-          </li>
-          <li>
-            <Link
-              className="text-primary underline-offset-4 hover:underline"
-              href="/blog/why-equal-rgb-steps-do-not-look-equally-bright"
-            >
-              Why equal RGB steps do not look equally bright
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="text-primary underline-offset-4 hover:underline"
-              href="/blog/design-status-colors-that-work-without-red-and-green"
-            >
-              Status colors that work without red and green
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="text-primary underline-offset-4 hover:underline"
-              href="/blog/choose-chart-colors-people-can-tell-apart"
-            >
-              Chart colors people can tell apart
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="text-primary underline-offset-4 hover:underline"
-              href="/blog/build-a-dark-mode-surface-stack-with-css-variables"
-            >
-              A dark-mode surface stack
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="text-primary underline-offset-4 hover:underline"
-              href="/blog/make-form-colors-readable-before-you-style-the-button"
-            >
-              Form colors before the button
-            </Link>
-          </li>
-        </ul>
-      </nav>
       <MarkdownBody markdown={COURSE} className="mt-8" />
+      <nav id="article-index" aria-label="Learn index" className="mt-12 space-y-8 scroll-mt-24">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Reference</p>
+          <ul className="mt-3">
+            <li className="rounded-2xl border border-border/60 p-4">
+              <Link className="font-medium text-primary underline-offset-4 hover:underline" href="/learn/color-codes">
+                Color codes explained
+              </Link>
+              <p className="mt-1 text-sm text-muted-foreground">HEX, RGB, HSL, and OKLCH as notations.</p>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Guides</p>
+          <ul className="mt-3 space-y-3">
+            {guides.map((post) => (
+              <li key={post.slug} className="rounded-2xl border border-border/60 p-4">
+                <Link
+                  className="font-medium text-primary underline-offset-4 hover:underline"
+                  href={`/blog/${post.slug}`}
+                >
+                  {post.title}
+                </Link>
+                <p className="mt-1 text-sm text-muted-foreground">{post.description}</p>
+                <p className="mt-2 text-xs text-muted-foreground">
+                  {formatDate(post.publishedAt)} · {post.readingTime} · {post.category}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Earlier articles</p>
+          <ul className="mt-3 space-y-2 text-sm">
+            {earlier.map((post) => (
+              <li key={post.slug}>
+                <Link className="text-primary underline-offset-4 hover:underline" href={`/blog/${post.slug}`}>
+                  {post.title}
+                </Link>
+                <span className="text-muted-foreground"> — {post.category}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
     </div>
   );
 }

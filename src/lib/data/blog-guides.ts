@@ -632,4 +632,284 @@ On a dark form, do not reuse these HEX values. Recalculate against the dark card
 - W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
 `,
   },
+  {
+    title: "Name the Job of Every Tint, Shade, and Tone",
+    description:
+      "A tint is a mix toward white, a shade toward black, and a tone toward gray. Give each step a job, then measure it, instead of filling a ramp you never use.",
+    category: "Color Theory",
+    publishedAt: "2026-10-13",
+    readingTime: "8 min",
+    keywords: ["tint shade tone", "color-mix css", "hover color", "design token ramp"],
+    faqs: [
+      {
+        question: "What is the difference between a tint, a shade, and a tone?",
+        answer:
+          "A tint moves a color toward white. A shade moves it toward black. A tone moves it toward gray. The names describe the mix, not a job in the interface.",
+      },
+      {
+        question: "Should every step from 50 to 950 ship in the product?",
+        answer:
+          "No. Keep a step when it has a job: page canvas, card, text, hover, or a large brand fill. Delete the rest from the stylesheet even if the generator drew them.",
+      },
+      {
+        question: "Does color-mix() replace a measured HEX?",
+        answer:
+          "Use color-mix() to describe the step. Still paste a HEX fallback, and still check the painted pair in a contrast checker. The mix is not a contrast result.",
+      },
+    ],
+    body: `A 50–950 ramp feels finished because it is full. Most of those chips never receive a job. The hover is “two steps darker,” the disabled label is “the 400,” and nobody writes down what those numbers are for. Tint, shade, and tone are mix directions. They become useful when each one is tied to a role.
+
+## The short answer
+
+Name the job before you mix. A tint is for a quiet surface. A shade is for text or a pressed control. A tone is for a border or a secondary label that should be less loud than the brand hue. If you cannot name the job, do not add the HEX to the stylesheet.
+
+## Three mixes, three jobs
+
+Start from \`#2563EB\`. These three mixes toward white are exact sRGB channel blends, useful as tints and not as an even brightness scale:
+
+@swatch #5C8AF0 A light tint. Surface or selected-row wash, not body text
+@swatch #92B1F5 Halfway to white. Too pale for text on white
+@swatch #C9D8FA A very light tint. Page wash only
+
+A darker sibling you can actually set type in is a shade, not another tint:
+
+@swatch #1E3A8A White text on this fill is about 10.36:1
+@swatch #2563EB White text on this fill is about 5.17:1
+
+\`#2563EB\` on white clears AA for normal text. \`#1E3A8A\` clears AAA. Use the lighter blue for a large button or a link that you have measured. Use the darker blue when the same hue has to carry a sentence.
+
+Build the mixes in the [shades, tints, and tones tool](/tools/shades-tints-tones), then prove the pair in the [contrast checker](/contrast-checker). [Why equal RGB steps do not look equally bright](/blog/why-equal-rgb-steps-do-not-look-equally-bright) explains why the halfway chip looks paler than “50%” suggests.
+
+## Write the job in CSS
+
+\`color-mix()\` is the readable way to say “this hover is the same blue, darker.” Current Chrome, Edge, Firefox, and Safari support it. Keep a HEX on the line above so older browsers still paint something you chose.
+
+\`\`\`css
+.button {
+  background: #2563eb;
+  color: #ffffff;
+}
+.button:hover {
+  background: #1e3a8a;
+  background: color-mix(in oklch, #2563eb, black 24%);
+}
+.selected {
+  background: #c9d8fa;
+  background: color-mix(in oklch, #2563eb, white 78%);
+  color: #1e3a8a;
+}
+\`\`\`
+
+The HEX line is the color you measured. The \`color-mix()\` line is the recipe for the next person who changes \`#2563EB\`. They are not guaranteed to be the same pixel. After you change the origin, sample the hover in the browser and run that pair through the contrast checker again.
+
+A tone is the mix you want when the brand hue is too loud for a border. Mix toward gray, then check the 3:1 non-text minimum if that border is how people see the control. \`#64748B\` on white is about 4.76:1, which clears it. \`#CBD5E1\` on white is about 1.48:1, which does not.
+
+## Mistakes
+
+**Using the 200 tint as placeholder text.** Light tints fail body-text contrast on white. \`#94A3B8\` on white is already about 2.56:1, and a tint of blue is often worse.
+
+**Inverting the ramp for dark mode.** A tint that was a wash on white becomes a glaring stripe on \`#0F172A\`. Dark surfaces need their own shades. The token layout is in [Build a dark mode surface stack with CSS variables](/blog/build-a-dark-mode-surface-stack-with-css-variables).
+
+**Shipping eleven stops because the scale looks complete.** A product needs the stops it can name. Export the ones you kept with [palette export](/palette-export).
+
+## A ten-minute pass
+
+1. List the roles on one screen: canvas, card, text, link, hover, border.
+2. Generate candidate mixes in the [shades, tints, and tones tool](/tools/shades-tints-tones).
+3. Delete any chip that does not match a role.
+4. Measure text pairs and UI boundaries in the [contrast checker](/contrast-checker).
+5. Paste the HEX fallback and the \`color-mix()\` recipe into the token file.
+
+## Sources
+
+- MDN, [\`color-mix()\`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/color-mix)
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+- W3C, [Understanding Non-text Contrast (1.4.11)](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast)
+`,
+  },
+  {
+    title: "Ship a Five-Role SaaS Shell With CSS Variables",
+    description:
+      "Canvas, surface, text, muted text, and accent are enough for an app shell. One stylesheet for light and dark, with ratios for every text pair.",
+    category: "CSS Tutorials",
+    publishedAt: "2026-10-14",
+    readingTime: "9 min",
+    keywords: ["css variables color", "saas color system", "dark mode tokens", "five color ui"],
+    faqs: [
+      {
+        question: "Why only five roles?",
+        answer:
+          "Canvas, surface, text, muted text, and accent cover the shell: page, card, reading text, secondary text, and the action. Borders and hover states can derive from these after the five are stable.",
+      },
+      {
+        question: "Can the accent be the text color too?",
+        answer:
+          "Only after you measure it. #1D4ED8 with white is about 6.70:1, so it works as a button fill with white type. That does not mean the same blue works as a sentence on every surface.",
+      },
+      {
+        question: "Is #1E293B on #0F172A a text color?",
+        answer:
+          "No. That pair is about 1.22:1. It is a small step between the page and a card. Text on the dark page should be #F8FAFC, which is about 17.06:1 against #0F172A.",
+      },
+    ],
+    body: `App shells collect colors one screen at a time: a slate for the sidebar, another slate for the card, a third for the empty state. Five named roles stop that. Everything else has to justify itself against this set.
+
+## The short answer
+
+Store five roles as CSS variables: canvas, surface, text, muted text, and accent. Switch their values under \`[data-theme="dark"]\`. Do not invert the light HEX values and hope the ratios survive.
+
+## The pairs worth keeping
+
+Ratios use the WCAG relative-luminance formula, rounded to two decimals. Contrast is symmetric, so white on \`#1D4ED8\` is the same ratio as \`#1D4ED8\` on white.
+
+| Role | Light | Dark | Known pair |
+| --- | --- | --- | --- |
+| Canvas | #F8FAFC | #0F172A | #0F172A on #F8FAFC is 17.06:1 |
+| Surface | #FFFFFF | #1E293B | #1E293B on #0F172A is 1.22:1, a card step, not text |
+| Text | #0F172A | #F8FAFC | #F8FAFC on #0F172A is 17.06:1 |
+| Muted | #475569 | #94A3B8 | 7.24:1 on #F8FAFC, and 6.96:1 on #0F172A |
+| Accent | #1D4ED8 | #1D4ED8 | White on #1D4ED8 is 6.70:1 |
+
+@swatch #F8FAFC Light canvas
+@swatch #0F172A Dark canvas and light text
+@swatch #475569 Muted text on the light canvas
+@swatch #94A3B8 Muted text on the dark canvas
+@swatch #1D4ED8 Accent fill, white label
+
+\`#334155\` on \`#0F172A\` is only about 1.72:1. It looks like a reasonable dark gray in a light theme and disappears as text in the dark theme. \`#94A3B8\` on white is about 2.56:1, so the light-theme muted color cannot be reused as dark-theme muted text either. Each theme gets its own muted token.
+
+## The stylesheet
+
+\`\`\`css
+:root {
+  color-scheme: light;
+  --canvas: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --accent: #1d4ed8;
+  --on-accent: #ffffff;
+  --line: #64748b;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #0f172a;
+  --surface: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #1d4ed8;
+  --on-accent: #ffffff;
+  --line: #64748b;
+}
+body {
+  background: var(--canvas);
+  color: var(--text);
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.meta {
+  color: var(--muted);
+}
+.button {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+\`\`\`
+
+\`color-scheme\` tells the browser how to paint its own controls and scrollbars. It does not recolor \`--canvas\`. Both lines belong in the theme block. The longer note is in [Build a dark mode surface stack with CSS variables](/blog/build-a-dark-mode-surface-stack-with-css-variables).
+
+\`#64748B\` on white is about 4.76:1, and on \`#0F172A\` it is about 3.75:1. Both clear the 3:1 minimum when a border is what identifies the card. If you swap \`--line\` for a softer gray, measure the new pair before you ship it.
+
+## What not to add yet
+
+A success green, a warning amber, and a chart series are real products, and they are separate jobs. Status pairs that survive without relying on red versus green are in [Design status colors that work without red and green](/blog/design-status-colors-that-work-without-red-and-green). Chart series are in [Choose chart colors people can tell apart](/blog/choose-chart-colors-people-can-tell-apart).
+
+Export the five roles with [palette export](/palette-export) once the contrast checker agrees with the table. Components should read \`var(--text)\`, not a fresh HEX from a screenshot.
+
+## Sources
+
+- MDN, [Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties)
+- MDN, [\`color-scheme\`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme)
+- web.dev, [color-scheme and dark-mode defaults](https://web.dev/articles/color-scheme)
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+- W3C, [Understanding Non-text Contrast (1.4.11)](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast)
+`,
+  },
+  {
+    title: "Confirm a Brand HEX Before You Publish It",
+    description:
+      "A logo file, a favicon, and an icon library can disagree. Confirm the source, label estimates, and only then put the HEX in a token.",
+    category: "Branding",
+    publishedAt: "2026-10-15",
+    readingTime: "8 min",
+    keywords: ["brand hex colors", "official brand color", "logo color picker", "design tokens"],
+    faqs: [
+      {
+        question: "Is a Simple Icons hex the official brand color?",
+        answer:
+          "No. Simple Icons publishes the color used to draw that icon. The company’s guidelines, site, or logo file can use a different HEX. Treat the icon color as a lead, then confirm it.",
+      },
+      {
+        question: "Can I take the color from a favicon?",
+        answer:
+          "A favicon is a tiny asset, often simplified or compressed. Sample it if you have nothing else, label it as an estimate, and replace it when you have the guidelines or a full logo.",
+      },
+      {
+        question: "Should an estimated HEX get its own color page?",
+        answer:
+          "Not as an official color. colorBase can show an estimate on a brand card and mark it. Those estimates stay out of the sitemap so they are not presented as the brand’s specification.",
+      },
+    ],
+    body: `Brand pages spread a HEX because it was easy to copy, not because anyone opened the guidelines. A year later the marketing site, the app, and the pitch deck each use a different blue, and all three claim to be the brand.
+
+## The short answer
+
+Publish a HEX as the brand color only when you can name the source: the brand’s own guidelines, the logo file they distribute, or a color you sampled from a page they control and then checked against that file. A favicon, a third-party icon, or a palette screenshot is an estimate until that check happens.
+
+## Three sources that are not the same
+
+**Guidelines or a press kit.** This is the source to store. Note the page or the file name next to the token.
+
+**The live site.** Useful when the guidelines are missing. Sample a flat area of the logo with the [image color picker](/image-color-picker), not a photograph, a gradient edge, or a compressed social avatar.
+
+**An icon library or a favicon.** These are drawings of the mark, often in one color. They are a reasonable placeholder and a bad citation. On colorBase, estimated swatches are labeled and left out of the color sitemap. Browse what is already catalogued on [brands](/brands) before you add another unofficial ramp.
+
+If two sources disagree, keep the guidelines. Write the other HEX down as a mismatch, not as a second “primary.”
+
+## Put the citation in the token file
+
+\`\`\`css
+:root {
+  /* Replace this note with the file you opened: guidelines PDF, page, date. */
+  --brand: #1d4ed8;
+  --on-brand: #ffffff; /* 6.70:1 against --brand */
+}
+\`\`\`
+
+\`#1D4ED8\` in that block is a measured example, not a claim that a brand PDF specifies it. The comment is the slot for the real source. White on \`#1D4ED8\` is about 6.70:1, so this particular pair also works as a button. A confirmed brand HEX still needs that contrast check before it becomes small text. Run it in the [contrast checker](/contrast-checker), then export the confirmed roles with [palette export](/palette-export).
+
+## Mistakes
+
+**Averaging two blues from two screenshots.** Compression and overlays shift pixels. Averaging them creates a third color nobody specified.
+
+**Calling a favicon color official in a title or a heading.** If you show it, say it is an estimate and name what you sampled.
+
+**Letting every product team “adjust” the primary.** One confirmed HEX, then tints and shades for jobs. Those jobs are separate from the brand citation: [Name the job of every tint, shade, and tone](/blog/name-the-job-of-every-tint-shade-and-tone).
+
+## A confirmation pass
+
+1. Find the guidelines or the logo file the company actually publishes.
+2. If you only have a screenshot, sample a flat area with the [image color picker](/image-color-picker).
+3. Compare that sample to the icon-library HEX instead of assuming they match.
+4. Measure text and button pairs in the [contrast checker](/contrast-checker).
+5. Store the HEX with a one-line source note. Leave estimates out of the token file until step 1 exists.
+
+## Sources
+
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+- MDN, [Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties)
+`,
+  },
 ];
