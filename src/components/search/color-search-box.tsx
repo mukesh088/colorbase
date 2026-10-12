@@ -1,11 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { flattenHits, querySearch } from "@/lib/search/query";
+import type { SearchHit } from "@/lib/search/query";
 import { cn } from "@/lib/utils";
 
 export function ColorSearchBox({
@@ -19,8 +19,24 @@ export function ColorSearchBox({
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
-  const result = useMemo(() => querySearch(query), [query]);
-  const hits = flattenHits(result);
+  const [engine, setEngine] = useState<typeof import("@/lib/search/query") | null>(null);
+
+  useEffect(() => {
+    if (!open || engine) return;
+    let cancelled = false;
+    void import("@/lib/search/query").then((mod) => {
+      if (!cancelled) setEngine(mod);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [open, engine]);
+
+  const result = useMemo(
+    () => (engine ? engine.querySearch(query) : { parsedHex: null as string | null, groups: [] }),
+    [engine, query]
+  );
+  const hits: SearchHit[] = engine ? engine.flattenHits(result) : [];
 
   const commit = (href?: string) => {
     if (href) {

@@ -20,7 +20,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { flattenHits, querySearch, type SearchHit } from "@/lib/search/query";
+import type { SearchHit } from "@/lib/search/query";
 import { cn } from "@/lib/utils";
 
 type SearchApi = {
@@ -81,6 +81,7 @@ export function SearchCommandDialog({
   const router = useRouter();
   const [query, setQuery] = useState(initialQuery);
   const [active, setActive] = useState(0);
+  const [engine, setEngine] = useState<typeof import("@/lib/search/query") | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -91,8 +92,22 @@ export function SearchCommandDialog({
     }
   }, [open, initialQuery]);
 
-  const result = useMemo(() => querySearch(query), [query]);
-  const hits = flattenHits(result);
+  useEffect(() => {
+    if (!open || engine) return;
+    let cancelled = false;
+    void import("@/lib/search/query").then((mod) => {
+      if (!cancelled) setEngine(mod);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [open, engine]);
+
+  const result = useMemo(
+    () => (engine ? engine.querySearch(query) : { parsedHex: null as string | null, groups: [] }),
+    [engine, query]
+  );
+  const hits = engine ? engine.flattenHits(result) : [];
 
   const go = useCallback(
     (hit?: SearchHit) => {

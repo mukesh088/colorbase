@@ -59,7 +59,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
     let bgColor = colors[0];
     let width = 0;
     let height = 0;
-    let raf = 0;
+    let frame = 0;
     let visible = true;
     let reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const tweens: Tween[] = [];
@@ -69,7 +69,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
       const nextW = host.clientWidth;
       const nextH = host.clientHeight;
       if (nextW === 0 || nextH === 0) return;
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = nextW < 768 ? 1 : Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.floor(nextW * dpr);
       canvas.height = Math.floor(nextH * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -126,6 +126,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
       });
 
       liveCircles.push(fill, ripple, ...particles.map((p) => p.circle));
+      ensureFrame();
 
       tweens.push({
         start: now,
@@ -159,7 +160,13 @@ export function HeroColorRipple({ className }: { className?: string }) {
       });
     };
 
+    const ensureFrame = () => {
+      if (frame || reduced || !visible) return;
+      frame = requestAnimationFrame(tick);
+    };
+
     const tick = (now: number) => {
+      frame = 0;
       ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, width, height);
       for (const tween of tweens) {
@@ -171,11 +178,13 @@ export function HeroColorRipple({ className }: { className?: string }) {
       for (const circle of liveCircles) {
         if (circle.r > 0.4 && circle.opacity > 0.02) drawCircle(circle);
       }
-      if (tweens.length > 0 && tweens.every((tw) => tw.done)) {
+      const busy = tweens.some((tween) => !tween.done);
+      if (!busy) {
         liveCircles.length = 0;
         tweens.length = 0;
+        return;
       }
-      if (visible && !reduced) raf = requestAnimationFrame(tick);
+      if (visible && !reduced) frame = requestAnimationFrame(tick);
     };
 
     let autoTimer = 0;
@@ -218,12 +227,12 @@ export function HeroColorRipple({ className }: { className?: string }) {
     const onMotion = () => {
       reduced = motionQuery.matches;
       if (reduced) {
-        cancelAnimationFrame(raf);
+        cancelAnimationFrame(frame);
         window.clearTimeout(autoTimer);
         ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, width, height);
       } else if (visible) {
-        raf = requestAnimationFrame(tick);
+        ensureFrame();
         scheduleAuto(900);
       }
     };
@@ -238,8 +247,11 @@ export function HeroColorRipple({ className }: { className?: string }) {
     const io = new IntersectionObserver(
       ([entry]) => {
         visible = entry?.isIntersecting ?? true;
-        if (visible && !reduced) raf = requestAnimationFrame(tick);
-        else cancelAnimationFrame(raf);
+        if (visible && !reduced) ensureFrame();
+        else {
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
       },
       { threshold: 0.08 }
     );
@@ -251,13 +263,10 @@ export function HeroColorRipple({ className }: { className?: string }) {
     const section = host.parentElement;
     section?.addEventListener("pointerdown", onPointer);
     motionQuery.addEventListener("change", onMotion);
-    if (!reduced) {
-      raf = requestAnimationFrame(tick);
-      scheduleAuto(1100);
-    }
+    if (!reduced) scheduleAuto(1800);
 
     return () => {
-      cancelAnimationFrame(raf);
+      cancelAnimationFrame(frame);
       window.clearTimeout(autoTimer);
       ro.disconnect();
       io.disconnect();
