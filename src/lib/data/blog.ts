@@ -1,4 +1,5 @@
 import { slugify } from "@/lib/utils";
+import { GUIDE_POSTS } from "@/lib/data/blog-guides";
 
 export const BLOG_CATEGORIES = [
   "Color Psychology",
@@ -15,6 +16,11 @@ export const BLOG_CATEGORIES = [
 
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 
+export interface BlogFaq {
+  question: string;
+  answer: string;
+}
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -24,9 +30,11 @@ export interface BlogPost {
   readingTime: string;
   keywords: string[];
   body: string;
+  faqs?: BlogFaq[];
 }
 
 const POSTS: Omit<BlogPost, "slug">[] = [
+  ...GUIDE_POSTS,
   {
     title: "How Color Psychology Shapes Conversion Rates",
     description:
@@ -433,7 +441,9 @@ let _cache: BlogPost[] | null = null;
 
 export function getAllPosts() {
   if (!_cache) {
-    _cache = POSTS.map((p) => ({ ...p, slug: slugify(p.title) }));
+    _cache = POSTS.map((p) => ({ ...p, slug: slugify(p.title) })).sort((a, b) =>
+      b.publishedAt.localeCompare(a.publishedAt)
+    );
   }
   return _cache;
 }

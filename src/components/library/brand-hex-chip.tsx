@@ -8,9 +8,11 @@ import { cn } from "@/lib/utils";
 export function BrandHexChip({
   hex,
   className,
+  estimated = false,
 }: {
   hex: string;
   className?: string;
+  estimated?: boolean;
 }) {
   const { copy } = useCopyToClipboard();
   const label = hex.replace("#", "").toUpperCase();
@@ -24,7 +26,7 @@ export function BrandHexChip({
         className
       )}
       style={{ backgroundColor: hex, color: text }}
-      aria-label={`Copy ${hex}`}
+      aria-label={estimated ? `Copy estimated color ${hex}` : `Copy ${hex}`}
       onClick={async (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -36,6 +38,7 @@ export function BrandHexChip({
       <span className="w-full truncate font-mono text-[10px] font-semibold tracking-wide sm:text-[11px]">
         {label}
       </span>
+      {estimated ? <span className="text-[9px] font-semibold uppercase tracking-wide">Est.</span> : null}
     </button>
   );
 }

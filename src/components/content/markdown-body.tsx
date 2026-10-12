@@ -1,6 +1,24 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { cn } from "@/lib/utils";
+import { CopyButton } from "@/components/color/copy-button";
+import { cn, slugify } from "@/lib/utils";
+
+export function markdownHeadingId(raw: string) {
+  return slugify(raw.replace(/[*`]/g, ""));
+}
+
+function Swatch({ hex, label }: { hex: string; label?: string }) {
+  return (
+    <span className="my-1 inline-flex max-w-full items-center gap-3 rounded-xl border border-border/70 bg-background px-3 py-2 align-middle">
+      <span className="h-8 w-8 shrink-0 rounded-md border border-black/10" style={{ backgroundColor: hex }} />
+      <span className="min-w-0">
+        <code className="font-mono text-sm font-semibold text-foreground">{hex.toUpperCase()}</code>
+        {label ? <span className="mt-0.5 block text-xs text-muted-foreground">{label}</span> : null}
+      </span>
+      <CopyButton value={hex.toUpperCase()} label="Copy HEX" size="sm" variant="outline" className="shrink-0" />
+    </span>
+  );
+}
 
 function inline(text: string) {
   const parts: ReactNode[] = [];
@@ -82,19 +100,90 @@ function renderBlocks(md: string) {
       );
       continue;
     }
-    if (line.startsWith("### ")) {
+    if (line.startsWith("@swatch ")) {
+      const match = line.slice(8).trim().match(/^(#[0-9A-Fa-f]{6})(?:\s+(.+))?$/);
+      if (match) {
+        nodes.push(<Swatch key={key++} hex={match[1]} label={match[2]} />);
+        i += 1;
+        continue;
+      }
+    }
+    if (line.startsWith("|") && /^\s*\|?\s*:?-{3,}/.test(lines[i + 1] ?? "")) {
+      const split = (row: string) =>
+        row
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map((cell) => cell.trim());
+      const headers = split(line);
+      i += 2;
+      const rows: string[][] = [];
+      while (i < lines.length && lines[i].startsWith("|")) {
+        rows.push(split(lines[i]));
+        i += 1;
+      }
       nodes.push(
-        <h3 key={key++} className="font-display text-xl font-semibold tracking-tight">
-          {inline(line.slice(4))}
+        <div key={key++} className="overflow-x-auto rounded-xl border border-border/60">
+          <table className="w-full min-w-[36rem] border-collapse text-left text-sm">
+            <thead className="bg-muted/50 text-foreground">
+              <tr>
+                {headers.map((cell, headerIndex) => (
+                  <th key={headerIndex} className="px-3 py-2 font-semibold">
+                    {inline(cell)}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row, rowIndex) => (
+                <tr key={rowIndex} className="border-t border-border/60">
+                  {row.map((cell, cellIndex) => (
+                    <td key={cellIndex} className="px-3 py-2 align-middle">
+                      {/^#[0-9A-Fa-f]{6}$/.test(cell) ? (
+                        <span className="inline-flex items-center gap-2">
+                          <span
+                            className="h-5 w-5 rounded border border-black/10"
+                            style={{ backgroundColor: cell }}
+                          />
+                          <code className="font-mono text-foreground">{cell.toUpperCase()}</code>
+                        </span>
+                      ) : (
+                        inline(cell)
+                      )}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+      continue;
+    }
+    if (line.startsWith("### ")) {
+      const text = line.slice(4);
+      nodes.push(
+        <h3
+          key={key++}
+          id={markdownHeadingId(text)}
+          className="scroll-mt-24 font-display text-xl font-semibold tracking-tight"
+        >
+          {inline(text)}
         </h3>
       );
       i += 1;
       continue;
     }
     if (line.startsWith("## ")) {
+      const text = line.slice(3);
       nodes.push(
-        <h2 key={key++} className="font-display text-2xl font-semibold tracking-tight">
-          {inline(line.slice(3))}
+        <h2
+          key={key++}
+          id={markdownHeadingId(text)}
+          className="scroll-mt-24 font-display text-2xl font-semibold tracking-tight"
+        >
+          {inline(text)}
         </h2>
       );
       i += 1;

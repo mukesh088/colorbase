@@ -5,8 +5,9 @@ import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getAllPosts, getPost, getPostsByCategory } from "@/lib/data/blog";
+import { SITE_URL } from "@/lib/site-config";
 import { formatDate } from "@/lib/utils";
-import { MarkdownBody } from "@/components/content/markdown-body";
+import { MarkdownBody, markdownHeadingId } from "@/components/content/markdown-body";
 
 export function generateStaticParams() {
   return getAllPosts().map((p) => ({ slug: p.slug }));
@@ -35,29 +36,26 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = getPost(slug);
   if (!post) notFound();
   const related = getPostsByCategory(post.category).filter((p) => p.slug !== post.slug).slice(0, 3);
+  const toc = post.body
+    .split("\n")
+    .filter((line) => line.startsWith("## ") && !line.startsWith("### "))
+    .map((line) => {
+      const text = line.slice(3).replace(/[*`]/g, "");
+      return { text, id: markdownHeadingId(text) };
+    });
   const crumbs = [
     { name: "Home", href: "/" },
     { name: "Blog", href: "/blog" },
     { name: post.title, href: `/blog/${post.slug}` },
   ];
-  const faqs = [
-    {
-      question: `What is this article about?`,
-      answer: post.description,
-    },
-    {
-      question: "Where can I try the tools mentioned?",
-      answer:
-        "Every technique in this article links to a free colorBase tool — converters, contrast checker, palette generator, and exporters — so you can apply the advice on a real hex value.",
-    },
-  ];
+  const faqs = post.faqs ?? [];
 
   return (
-    <article className="mx-auto max-w-3xl px-4 py-8 lg:px-6">
+    <article className="mx-auto max-w-3xl px-4 py-8 pb-28 sm:pb-10 lg:px-6">
       <JsonLd
         data={[
           breadcrumbJsonLd(crumbs),
-          faqJsonLd(faqs),
+          ...(faqs.length ? [faqJsonLd(faqs)] : []),
           {
             "@context": "https://schema.org",
             "@type": "BlogPosting",
@@ -65,6 +63,8 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             description: post.description,
             datePublished: post.publishedAt,
             author: { "@type": "Organization", name: "colorBase" },
+            publisher: { "@type": "Organization", name: "colorBase" },
+            mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
           },
         ]}
       />
@@ -74,9 +74,38 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <p className="mt-3 text-sm text-muted-foreground">
         {formatDate(post.publishedAt)} · {post.readingTime}
       </p>
+      {toc.length > 2 ? (
+        <nav aria-label="On this page" className="mt-8 rounded-2xl border border-border/60 bg-muted/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">On this page</p>
+          <ol className="mt-3 space-y-2 text-sm">
+            {toc.map((item) => (
+              <li key={item.id}>
+                <a href={`#${item.id}`} className="text-foreground underline-offset-4 hover:underline">
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      ) : null}
       <div className="mt-8">
         <MarkdownBody markdown={post.body} />
       </div>
+      {faqs.length > 0 ? (
+        <section className="mt-12">
+          <h2 id="frequently-asked-questions" className="scroll-mt-24 font-display text-2xl font-semibold">
+            Frequently asked questions
+          </h2>
+          <div className="mt-4 space-y-6">
+            {faqs.map((faq) => (
+              <section key={faq.question}>
+                <h3 className="font-display text-lg font-semibold text-foreground">{faq.question}</h3>
+                <p className="mt-2 text-muted-foreground">{faq.answer}</p>
+              </section>
+            ))}
+          </div>
+        </section>
+      ) : null}
       {related.length > 0 && (
         <section className="mt-12">
           <h2 className="font-display text-xl font-semibold">Related articles</h2>

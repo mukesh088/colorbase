@@ -1,5 +1,6 @@
 import { FOOTBALL_BRANDS } from "@/lib/data/football-brands";
 import { FOOD_BRANDS } from "@/lib/data/food-brands";
+import { IMPORTED_BRANDS } from "@/lib/data/imported-brands";
 import { normalizeHex } from "@/lib/colors/convert";
 
 export interface BrandPalette {
@@ -10,6 +11,13 @@ export interface BrandPalette {
   primary: string[];
   secondary: string[];
   related: string[];
+  websiteUrl?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  logoUrl?: string;
+  logoProvider?: "simple-icons" | "google-favicon";
+  /** Swatches that are not from a published brand guideline. */
+  unverified?: string[];
 }
 
 export const BRANDS: BrandPalette[] = [
@@ -111,6 +119,7 @@ export const BRANDS: BrandPalette[] = [
   { slug: "lg", name: "LG", overview: "LG wine-red branding spans TVs, appliances, and consumer electronics.", category: "Tech", primary: ["#A50034", "#000000"], secondary: ["#FFFFFF", "#ED1C24"], related: ["samsung", "sony", "dell"] },
   ...FOOTBALL_BRANDS,
   ...FOOD_BRANDS,
+  ...IMPORTED_BRANDS,
 ];
 
 export function getBrandBySlug(slug: string) {
@@ -137,6 +146,11 @@ export function searchBrands(query: string) {
 
 export function brandAllColors(brand: BrandPalette) {
   return [...brand.primary, ...brand.secondary].map(normalizeHex);
+}
+
+export function isUnverifiedBrandHex(brand: BrandPalette, hex: string) {
+  const key = normalizeHex(hex).toLowerCase();
+  return (brand.unverified ?? []).some((item) => normalizeHex(item).toLowerCase() === key);
 }
 
 export function getBrandCategories() {

@@ -9,6 +9,7 @@ import {
   getBrandHexEntry,
   getBrandsUsingHex,
   brandAllColors,
+  isUnverifiedBrandHex,
 } from "@/lib/data/brands";
 import { analyzeColor, getShades, getTints } from "@/lib/colors/spaces";
 import { formatRgb, formatHsl, rgbToHsl, hexToRgb } from "@/lib/colors/convert";
@@ -41,10 +42,14 @@ export async function generateMetadata({
   if (!entry) return {};
   const hexDisplay = entry.hex.toUpperCase();
   const { brand } = entry;
+  const unverified = isUnverifiedBrandHex(brand, entry.hex);
   return createPageMetadata({
     title: `${brand.name} Hex Color ${hexDisplay}`,
-    description: `${brand.name} ${entry.role} brand hex color ${hexDisplay}. Copy the official ${brand.name} color code in HEX, RGB, HSL, CMYK, CSS, and Tailwind.`,
+    description: unverified
+      ? `${brand.name} reference swatch ${hexDisplay} is an unverified estimate, not a published brand guideline color.`
+      : `${brand.name} ${entry.role} brand hex color ${hexDisplay}. Copy the ${brand.name} color code in HEX, RGB, HSL, CMYK, CSS, and Tailwind.`,
     path: `/brands/${brand.slug}/${entry.hexSlug}`,
+    noIndex: unverified,
     keywords: [
       `${brand.name} hex`,
       `${brand.name} hex color`,
@@ -74,6 +79,7 @@ export default async function BrandHexPage({
   const palette = brandAllColors(brand);
   const others = palette.filter((c) => c.toLowerCase() !== entry.hex.toLowerCase());
   const alsoUsedBy = getBrandsUsingHex(entry.hex).filter((b) => b.slug !== brand.slug);
+  const unverified = isUnverifiedBrandHex(brand, entry.hex);
   const path = `/brands/${brand.slug}/${entry.hexSlug}`;
   const crumbs = [
     { name: "Home", href: "/" },
@@ -92,26 +98,34 @@ export default async function BrandHexPage({
     },
     {
       question: `Is ${entry.hex} an official ${brand.name} brand color?`,
-      answer: `Yes. ${entry.hex} is listed as a ${role} color in the ${brand.name} brand palette on colorBase, alongside ${palette.join(", ")}.`,
+      answer: unverified
+        ? `No. ${entry.hex} is an unverified estimate on the ${brand.name} reference palette. It is not presented as an official guideline color.`
+        : `${entry.hex} is listed as a ${role} color in the ${brand.name} reference palette on colorBase, alongside ${palette.join(", ")}.`,
     },
   ];
-  const description = `${brand.name} uses ${entry.hex} as a ${role} brand color. ${brand.overview}`;
+  const description = unverified
+    ? `${entry.hex} is an unverified estimate shown with the ${brand.name} reference palette. ${brand.overview}`
+    : `${brand.name} uses ${entry.hex} as a ${role} brand color. ${brand.overview}`;
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 pb-28 sm:px-4 sm:py-8 sm:pb-10 lg:px-6">
       <JsonLd
         data={[
           breadcrumbJsonLd(crumbs),
           faqJsonLd(faqs),
-          brandHexJsonLd({
-            brandName: brand.name,
-            slug: brand.slug,
-            hex: entry.hex,
-            rgb: rgbLabel,
-            hsl: hslLabel,
-            role,
-            description,
-          }),
+          ...(unverified
+            ? []
+            : [
+                brandHexJsonLd({
+                  brandName: brand.name,
+                  slug: brand.slug,
+                  hex: entry.hex,
+                  rgb: rgbLabel,
+                  hsl: hslLabel,
+                  role,
+                  description,
+                }),
+              ]),
         ]}
       />
       <Breadcrumbs items={crumbs} />
@@ -123,11 +137,11 @@ export default async function BrandHexPage({
             className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-border/50 bg-white sm:flex dark:bg-card"
             aria-label={`${brand.name} palette`}
           >
-            <BrandLogo slug={brand.slug} name={brand.name} colors={palette} size="sm" />
+            <BrandLogo slug={brand.slug} name={brand.name} colors={palette} size="sm" logoUrl={brand.logoUrl} />
           </Link>
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
-              {brand.name} · {role} brand color
+              {brand.name} · {unverified ? "unverified estimate" : `${role} brand color`}
             </p>
             <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
               {brand.name} Hex Color {entry.hex.toUpperCase()}
@@ -202,16 +216,28 @@ export default async function BrandHexPage({
             The full {brand.name} brand palette includes {palette.join(", ")}.
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {others.map((color) => (
-              <Link
-                key={color}
-                href={`/brands/${brand.slug}/${color.slice(1).toLowerCase()}`}
-                className="card-lift overflow-hidden rounded-3xl border border-border/50"
-              >
-                <div className="h-20" style={{ backgroundColor: color }} />
-                <p className="px-4 py-3 font-mono text-sm font-semibold">{color}</p>
-              </Link>
-            ))}
+            {others.map((color) => {
+              const estimated = isUnverifiedBrandHex(brand, color);
+              const className = "card-lift overflow-hidden rounded-3xl border border-border/50";
+              const body = (
+                <>
+                  <div className="h-20" style={{ backgroundColor: color }} />
+                  <p className="px-4 py-3 font-mono text-sm font-semibold">
+                    {color}
+                    {estimated ? " · Est." : ""}
+                  </p>
+                </>
+              );
+              return estimated ? (
+                <div key={color} className={className}>
+                  {body}
+                </div>
+              ) : (
+                <Link key={color} href={`/brands/${brand.slug}/${color.slice(1).toLowerCase()}`} className={className}>
+                  {body}
+                </Link>
+              );
+            })}
           </div>
           <p className="mt-4 text-sm">
             <Link href={`/brands/${brand.slug}`} className="text-primary underline-offset-4 hover:underline">
@@ -235,6 +261,8 @@ export default async function BrandHexPage({
                 overview={b.overview}
                 category={b.category}
                 colors={brandAllColors(b)}
+                logoUrl={b.logoUrl}
+                unverified={b.unverified}
               />
             ))}
           </div>

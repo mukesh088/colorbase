@@ -65,7 +65,7 @@ When you can explain those five steps without opening this page, you are ready t
 
 export default function LearningPage() {
   return (
-    <div className="mx-auto max-w-3xl px-4 py-10 lg:px-6">
+    <div className="mx-auto max-w-3xl px-4 py-10 pb-28 sm:pb-10 lg:px-6">
       <Breadcrumbs
         items={[
           { name: "Home", href: "/" },
@@ -75,13 +75,66 @@ export default function LearningPage() {
       <h1 className="font-display text-4xl font-semibold">Learn color on the web</h1>
       <p className="mt-3 text-muted-foreground">
         A short course from colorBase — formats, contrast, harmony, and tokens — with the free tools
-        next to every step.
+        next to every step. Longer guides live on the{" "}
+        <Link href="/blog" className="text-primary underline-offset-4 hover:underline">
+          blog
+        </Link>
+        .
       </p>
+      <nav aria-label="Guides that go further" className="mt-8 rounded-2xl border border-border/60 p-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+          Go further
+        </p>
+        <ul className="mt-3 space-y-2 text-sm">
+          <li>
+            <Link className="text-primary underline-offset-4 hover:underline" href="/learn/color-codes">
+              Color codes explained
+            </Link>
+            <span className="text-muted-foreground"> — HEX, RGB, HSL, and OKLCH as notations</span>
+          </li>
+          <li>
+            <Link
+              className="text-primary underline-offset-4 hover:underline"
+              href="/blog/why-equal-rgb-steps-do-not-look-equally-bright"
+            >
+              Why equal RGB steps do not look equally bright
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="text-primary underline-offset-4 hover:underline"
+              href="/blog/design-status-colors-that-work-without-red-and-green"
+            >
+              Status colors that work without red and green
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="text-primary underline-offset-4 hover:underline"
+              href="/blog/choose-chart-colors-people-can-tell-apart"
+            >
+              Chart colors people can tell apart
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="text-primary underline-offset-4 hover:underline"
+              href="/blog/build-a-dark-mode-surface-stack-with-css-variables"
+            >
+              A dark-mode surface stack
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="text-primary underline-offset-4 hover:underline"
+              href="/blog/make-form-colors-readable-before-you-style-the-button"
+            >
+              Form colors before the button
+            </Link>
+          </li>
+        </ul>
+      </nav>
       <MarkdownBody markdown={COURSE} className="mt-8" />
-      <p className="mt-10 text-sm text-muted-foreground">
-        Prefer articles? The <Link href="/blog" className="text-primary underline-offset-4 hover:underline">blog</Link>{" "}
-        goes deeper on psychology, Tailwind, and dark mode.
-      </p>
     </div>
   );
 }

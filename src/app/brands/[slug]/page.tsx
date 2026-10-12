@@ -9,6 +9,7 @@ import {
   brandAllColors,
   getBrandBySlug,
   getRelatedBrands,
+  isUnverifiedBrandHex,
 } from "@/lib/data/brands";
 import { analyzeColor, getShades, getTints } from "@/lib/colors/spaces";
 import { getTextColor } from "@/lib/colors/convert";
@@ -38,9 +39,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const brand = getBrandBySlug(slug);
   if (!brand) return {};
+  const colors = brandAllColors(brand);
   return createPageMetadata({
-    title: `${brand.name} Hex Colors & Brand Color Codes`,
-    description: `${brand.name} brand hex colors: ${brandAllColors(brand).join(", ")}. Copy HEX, RGB, CMYK, CSS variables, and Tailwind classes for the ${brand.name} logo and UI.`,
+    title: brand.metaTitle ?? `${brand.name} Hex Colors & Brand Color Codes`,
+    description:
+      brand.metaDescription ??
+      `${brand.name} brand hex colors: ${colors.join(", ")}. Copy HEX, RGB, CMYK, CSS variables, and Tailwind classes for the ${brand.name} logo and UI.`,
     path: `/brands/${brand.slug}`,
     keywords: [
       `${brand.name} colors`,
@@ -75,14 +79,21 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
     { name: "Brands", href: "/brands" },
     { name: brand.name, href: `/brands/${brand.slug}` },
   ];
+  const indexableColors = colors.filter((hex) => !isUnverifiedBrandHex(brand, hex));
   const faqs = [
     {
       question: `What are ${brand.name}'s brand hex colors?`,
-      answer: `${brand.name} brand hex colors are ${colors.join(", ")}. Primary colors: ${brand.primary.join(", ")}. Treat them as commonly published brand colors, not a legal specification.`,
+      answer: `${brand.name} reference colors are ${colors.join(", ")}. Primary colors: ${brand.primary.join(", ")}.${
+        brand.unverified?.length
+          ? " Swatches marked unverified are estimates, not published guideline colors."
+          : " Treat them as commonly published brand colors, not a legal specification."
+      }`,
     },
     {
       question: `What is the ${brand.name} logo color code?`,
-      answer: `The main ${brand.name} logo / primary hex color${brand.primary.length === 1 ? " is" : "s are"} ${brand.primary.join(", ")}.`,
+      answer: isUnverifiedBrandHex(brand, brand.primary[0] ?? "")
+        ? `The displayed ${brand.name} primary ${brand.primary.join(", ")} is an unverified estimate. Confirm it against the brand's own guidelines before treating it as a logo color.`
+        : `The main ${brand.name} logo / primary hex color${brand.primary.length === 1 ? " is" : "s are"} ${brand.primary.join(", ")}.`,
     },
     {
       question: `Can I download the ${brand.name} color palette?`,
@@ -91,46 +102,73 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
   ];
 
   return (
-    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 pb-28 sm:px-4 sm:py-8 sm:pb-10 lg:px-6">
       <JsonLd
         data={[
           breadcrumbJsonLd(crumbs),
           faqJsonLd(faqs),
-          brandPaletteJsonLd({
-            name: brand.name,
-            slug: brand.slug,
-            description: `${brand.name} brand hex color codes: ${colors.join(", ")}.`,
-            colors,
-          }),
+          ...(indexableColors.length
+            ? [
+                brandPaletteJsonLd({
+                  name: brand.name,
+                  slug: brand.slug,
+                  description: `${brand.name} brand hex color codes: ${indexableColors.join(", ")}.`,
+                  colors: indexableColors,
+                }),
+              ]
+            : []),
         ]}
       />
       <Breadcrumbs items={crumbs} />
 
       <header className="mt-4 overflow-hidden rounded-[1.75rem] border border-border/50 bg-white shadow-sm dark:bg-card">
-        <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-[auto_1fr_auto] lg:items-center">
-          <div className="flex h-40 w-40 items-center justify-center rounded-3xl bg-muted/40">
-            <BrandLogo slug={brand.slug} name={brand.name} colors={colors} size="xl" />
+        <div className="grid gap-6 p-4 sm:p-8 lg:grid-cols-[auto_1fr_auto] lg:items-center">
+          <div className="flex h-28 w-28 items-center justify-center rounded-3xl bg-muted/40 sm:h-40 sm:w-40">
+            <BrandLogo
+              slug={brand.slug}
+              name={brand.name}
+              colors={colors}
+              size="xl"
+              logoUrl={brand.logoUrl}
+              priority
+              className="h-24 w-24 sm:h-36 sm:w-36"
+            />
           </div>
-          <div>
+          <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
               {brand.category}
             </p>
-            <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-5xl">
               {brand.name} Hex Colors
             </h1>
-            <p className="mt-3 max-w-3xl text-muted-foreground">
+            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
               {brand.overview} Commonly published {brand.name} hex values: {colors.join(", ")}. These
               are curated reference swatches, not a substitute for the brand&apos;s official guidelines.
             </p>
+            {brand.websiteUrl ? (
+              <a
+                href={brand.websiteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+              >
+                Visit {brand.name}
+              </a>
+            ) : null}
           </div>
           <div className="flex flex-col items-start gap-3 lg:items-end">
             <BrandPaletteDownload name={brand.name} colors={colors} />
             <ShareButtons title={`${brand.name} colors`} path={`/brands/${brand.slug}`} />
           </div>
         </div>
-        <div className="flex min-h-[5.5rem]">
+        <div className="flex min-h-16 overflow-x-auto">
           {colors.map((hex, i) => (
-            <BrandHexChip key={`${brand.slug}-hero-${hex}-${i}`} hex={hex} />
+            <BrandHexChip
+              key={`${brand.slug}-hero-${hex}-${i}`}
+              hex={hex}
+              estimated={isUnverifiedBrandHex(brand, hex)}
+              className="min-w-[4.75rem] flex-none"
+            />
           ))}
         </div>
       </header>
@@ -155,7 +193,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         <div>
           <h2 className="font-display text-2xl font-semibold tracking-tight">All {brand.name} colors</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Every brand hex with tints and shades. Click a swatch to copy, or open the dedicated color page.
+            Every brand hex with tints and shades. Click a swatch to copy. Verified colors also have a dedicated page.
           </p>
         </div>
 
@@ -164,6 +202,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           const role = brand.primary.some((c) => c.toLowerCase() === hex.toLowerCase())
             ? "Primary"
             : "Secondary";
+          const estimated = isUnverifiedBrandHex(brand, hex);
           const tints = getTints(hex, 8);
           const shades = [...getShades(hex, 8)].reverse();
           return (
@@ -172,18 +211,27 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
               className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-white shadow-sm dark:bg-card"
             >
               <div className="grid lg:grid-cols-[minmax(0,280px)_1fr]">
-                <Link
-                  href={`/brands/${brand.slug}/${a.hex.slice(1).toLowerCase()}`}
-                  className="flex min-h-44 items-end p-5 transition-opacity hover:opacity-95"
-                  style={{ backgroundColor: hex, color: getTextColor(hex) }}
-                >
-                  <span className="font-mono text-2xl font-semibold tracking-tight">{a.hex}</span>
-                </Link>
+                {estimated ? (
+                  <div
+                    className="flex min-h-36 items-end p-5 sm:min-h-44"
+                    style={{ backgroundColor: hex, color: getTextColor(hex) }}
+                  >
+                    <span className="font-mono text-2xl font-semibold tracking-tight">{a.hex}</span>
+                  </div>
+                ) : (
+                  <Link
+                    href={`/brands/${brand.slug}/${a.hex.slice(1).toLowerCase()}`}
+                    className="flex min-h-36 items-end p-5 transition-opacity hover:opacity-95 sm:min-h-44"
+                    style={{ backgroundColor: hex, color: getTextColor(hex) }}
+                  >
+                    <span className="font-mono text-2xl font-semibold tracking-tight">{a.hex}</span>
+                  </Link>
+                )}
                 <div className="space-y-4 p-5 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
                       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                        {role} color
+                        {estimated ? "Unverified estimate" : `${role} color`}
                       </p>
                       <h3 className="mt-1 font-display text-xl font-semibold">{brand.name} {a.hex}</h3>
                       <p className="mt-1 text-sm text-muted-foreground">
@@ -192,12 +240,14 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                     </div>
                     <div className="flex flex-wrap gap-2">
                       <CopyButton value={a.hex} label="Copy HEX" />
-                      <Link
-                        href={`/brands/${brand.slug}/${a.hex.slice(1).toLowerCase()}`}
-                        className="inline-flex h-8 items-center rounded-md border border-input px-3 text-xs font-medium hover:bg-accent"
-                      >
-                        Color page
-                      </Link>
+                      {estimated ? null : (
+                        <Link
+                          href={`/brands/${brand.slug}/${a.hex.slice(1).toLowerCase()}`}
+                          className="inline-flex h-11 items-center rounded-md border border-input px-3 text-xs font-medium hover:bg-accent sm:h-8"
+                        >
+                          Color page
+                        </Link>
+                      )}
                     </div>
                   </div>
                   <BrandScaleRow label="Tints" colors={tints} />
@@ -225,6 +275,8 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                 overview={b.overview}
                 category={b.category}
                 colors={brandAllColors(b)}
+                logoUrl={b.logoUrl}
+                unverified={b.unverified}
               />
             ))}
           </div>

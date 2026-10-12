@@ -105,8 +105,8 @@ export function brandIconUrl(slug: string, hex: string) {
   return `https://cdn.simpleicons.org/${icon}/${color}`;
 }
 
-export function brandLogoSrc(slug: string, hex: string) {
-  return brandCrestUrl(slug) ?? brandIconUrl(slug, hex);
+export function brandLogoSrc(slug: string, hex: string, logoUrl?: string) {
+  return logoUrl ?? brandCrestUrl(slug) ?? brandIconUrl(slug, hex);
 }
 
 /** Prefer a chromatic brand color so monochrome logos stay visible. */

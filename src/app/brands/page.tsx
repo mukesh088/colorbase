@@ -14,7 +14,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = createPageMetadata({
   title: "Brand Hex Color Codes",
   description:
-    "Official brand hex color codes for Google, Apple, Spotify, McDonald's, Swiggy, Zomato, Uber Eats, Premier League clubs, and 100+ brands. Copy logo HEX, RGB, and CSS values.",
+    "Official brand hex color codes for Google, Apple, Spotify, McDonald's, Swiggy, and sports clubs, plus reference palettes that label any unverified swatch. Copy logo HEX, RGB, and CSS values.",
   path: "/brands",
   keywords: [
     "brand hex colors",
@@ -44,6 +44,8 @@ export default function BrandsPage() {
     overview: brand.overview,
     category: brand.category,
     colors: brandAllColors(brand),
+    logoUrl: brand.logoUrl,
+    unverified: brand.unverified,
   }));
 
   const hexEntries = getAllBrandHexEntries();
@@ -52,7 +54,7 @@ export default function BrandsPage() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Brand hex color codes",
-    description: "Index of company brand palettes with official hex color codes.",
+    description: "Index of company brand palettes. Estimated swatches are labeled and left out of the sitemap.",
     url: `${SITE_URL}/brands`,
     numberOfItems: BRANDS.length,
     itemListElement: BRANDS.map((brand, index) => ({
@@ -64,13 +66,13 @@ export default function BrandsPage() {
   };
 
   return (
-    <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-6 pb-28 sm:px-4 sm:py-8 sm:pb-10 lg:px-6">
       <JsonLd data={[breadcrumbJsonLd(crumbs), brandListLd]} />
       <Breadcrumbs items={crumbs} />
       <LibraryHero
         eyebrow="Popular brands"
         title="Brand Hex Color Codes"
-        description={`${BRANDS.length} palettes with logos and official hexes — food apps, Premier League kits, and tech marks. Open a brand for primary vs secondary roles, tints, and a downloadable palette.`}
+        description={`${BRANDS.length} palettes with logos and hex values for food apps, clubs, tech marks, and newer reference sets. Open a brand for primary and secondary roles. Swatches marked Est. are not official guideline colors.`}
         stats={[
           { label: "Brands", value: String(BRANDS.length) },
           { label: "Categories", value: String(categories.length) },

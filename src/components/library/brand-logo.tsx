@@ -18,17 +18,24 @@ export function BrandLogo({
   colors,
   size = "md",
   className,
+  logoUrl,
+  priority = false,
 }: {
   slug: string;
   name: string;
   colors: string[];
   size?: keyof typeof sizes;
   className?: string;
+  logoUrl?: string;
+  /** Load immediately only for the brand the visitor is looking at. */
+  priority?: boolean;
 }) {
-  const [failed, setFailed] = useState(false);
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
   const mark = brandMarkHex(colors);
   const initial = brandInitial(name);
   const box = sizes[size];
+  const src = brandLogoSrc(slug, mark, logoUrl);
+  const failed = failedSrc === src;
 
   if (failed) {
     return (
@@ -51,21 +58,22 @@ export function BrandLogo({
   }
 
   return (
-    <span
-      className={cn("inline-flex items-center justify-center", box, className)}
-      aria-hidden
-    >
+    <span className={cn("inline-flex items-center justify-center", box, className)} aria-hidden>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src={brandLogoSrc(slug, mark)}
+        src={src}
         alt=""
         width={160}
         height={160}
         className="h-full w-full object-contain"
-        loading="lazy"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "low"}
         decoding="async"
         referrerPolicy="no-referrer"
-        onError={() => setFailed(true)}
+        ref={(node) => {
+          if (node?.complete && node.naturalWidth === 0) setFailedSrc(src);
+        }}
+        onError={() => setFailedSrc(src)}
       />
     </span>
   );

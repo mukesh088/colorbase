@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site-config";
 import { STATIC_PAGES, TOOLS } from "@/lib/tools-registry";
-import { BRANDS, getAllBrandHexEntries } from "@/lib/data/brands";
+import { BRANDS, getAllBrandHexEntries, isUnverifiedBrandHex } from "@/lib/data/brands";
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { UI_KITS, getAllLibraryColors } from "@/lib/data/color-library";
 import { kitToDesignPath } from "@/lib/data/design-systems";
@@ -46,7 +46,9 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
     case "brands":
       return [
         ...BRANDS.map((b) => entry(`/brands/${b.slug}`, 0.85)),
-        ...getAllBrandHexEntries().map((e) => entry(`/brands/${e.brand.slug}/${e.hexSlug}`, 0.8)),
+        ...getAllBrandHexEntries()
+          .filter((e) => !isUnverifiedBrandHex(e.brand, e.hex))
+          .map((e) => entry(`/brands/${e.brand.slug}/${e.hexSlug}`, 0.8)),
       ];
     case "color-names":
       return getCssNamedColors().map((c) => entry(`/color-names/${c.slug}`, 0.85));
@@ -57,6 +59,7 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
         hexUrls.set(slug, entry(`/color/${slug}`, 0.6));
       }
       for (const e of getAllBrandHexEntries()) {
+        if (isUnverifiedBrandHex(e.brand, e.hex)) continue;
         if (!hexUrls.has(e.hexSlug)) hexUrls.set(e.hexSlug, entry(`/color/${e.hexSlug}`, 0.55));
       }
       return [

@@ -30,12 +30,12 @@ export default function BlogPage() {
         Practical writing from the colorBase studio in Ranchi — how to pick, contrast-check, and
         ship color, not a dump of keyword pages.
       </p>
-      <div className="mt-6 flex flex-wrap gap-2">
+      <div className="mt-6 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 sm:flex-wrap">
         {BLOG_CATEGORIES.map((cat) => (
           <Link
             key={cat}
             href={`/blog/category/${encodeURIComponent(cat)}`}
-            className="rounded-full border border-border/60 px-3 py-1 text-xs hover:border-primary/40"
+            className="shrink-0 whitespace-nowrap rounded-full border border-border/60 px-3 py-2 text-xs hover:border-primary/40"
           >
             {cat}
           </Link>
