@@ -4,6 +4,7 @@ import { Providers } from "@/components/providers";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { FloatingSocialDockClient } from "@/components/layout/floating-social-dock-client";
+import { ConsentBanner } from "@/components/layout/consent-banner";
 import { GoogleAdSense } from "@/components/analytics/google-adsense";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Footer />
             <FloatingSocialDockClient />
           </div>
+          <ConsentBanner />
         </Providers>
       </body>
     </html>

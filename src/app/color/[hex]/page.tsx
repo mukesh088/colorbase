@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -12,7 +12,7 @@ import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 import { familyFromHex, findSimilarColors } from "@/lib/colors/spaces";
 import { maybeStaticParams } from "@/lib/static-params";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 export function generateStaticParams() {
@@ -45,7 +45,7 @@ export async function generateMetadata({
   return createPageMetadata({
     title,
     description,
-    path: `/color/${hex}`,
+    path: `/color/${value.slice(1)}`,
     keywords: [value, name, "color hex", "hex color code", ...brandNames.map((n) => `${n} hex`)],
     noIndex: !curated,
   });
@@ -55,6 +55,8 @@ export default async function HexColorPage({ params }: { params: Promise<{ hex: 
   const { hex } = await params;
   if (!isValidHex(hex)) notFound();
   const value = normalizeHex(hex);
+  const canonicalHex = value.slice(1);
+  if (hex !== canonicalHex) permanentRedirect(`/color/${canonicalHex}`);
   const known = getColorByHex(value);
   const name = known?.name ?? value.toUpperCase();
   const all = getAllLibraryColors();

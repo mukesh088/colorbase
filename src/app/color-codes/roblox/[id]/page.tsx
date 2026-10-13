@@ -9,7 +9,7 @@ import { CopyButton } from "@/components/color/copy-button";
 import { getRobloxById, robloxAnalysis, uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
 import { maybeStaticParams } from "@/lib/static-params";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 export function generateStaticParams() {

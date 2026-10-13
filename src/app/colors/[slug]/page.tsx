@@ -8,7 +8,7 @@ import { ColorDetailView } from "@/components/library/color-detail-view";
 import { findSimilarColors } from "@/lib/colors/spaces";
 import { maybeStaticParams } from "@/lib/static-params";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 export function generateStaticParams() {

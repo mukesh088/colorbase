@@ -10,7 +10,7 @@ import { GradientJpgButton } from "@/components/library/gradient-jpg-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { maybeStaticParams } from "@/lib/static-params";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 export function generateStaticParams() {

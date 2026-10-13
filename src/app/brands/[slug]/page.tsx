@@ -24,7 +24,7 @@ import { BrandHexChip } from "@/components/library/brand-hex-chip";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { maybeStaticParams } from "@/lib/static-params";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 export const dynamicParams = true;
 
 export function generateStaticParams() {
