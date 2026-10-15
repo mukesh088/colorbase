@@ -66,13 +66,17 @@ export default function PrivacyPage() {
 
       <h2>4. Google Analytics</h2>
       <p>
-        We use Google Analytics to measure site usage (for example page views). Google may set
-        cookies and process usage data as described in{" "}
+        Google Analytics initializes automatically when you visit the Site to measure page views
+        and usage. It may use cookies and similar identifiers, and Google processes usage data as
+        described in{" "}
         <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">
           Google&apos;s Privacy Policy
         </a>
-        . You can learn more about Google Analytics cookies and opt-out options in Google&apos;s
-        documentation.
+        . You can block or delete cookies in your browser settings or opt out using the{" "}
+        <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener noreferrer" target="_blank">
+          Google Analytics opt-out browser add-on
+        </a>
+        .
       </p>
 
       <h2>5. Google AdSense and advertising</h2>
@@ -114,12 +118,12 @@ export default function PrivacyPage() {
       <p>Where GDPR or UK GDPR applies, we rely on one or more of:</p>
       <ul>
         <li>
-          <strong>Consent</strong> — for non-essential cookies and personalized advertising where
-          required
+          <strong>Consent</strong> — for personalized advertising and other processing where
+          required by applicable law
         </li>
         <li>
           <strong>Legitimate interests</strong> — to operate and secure the Site, improve tools, and
-          understand aggregate usage in a privacy-respecting way
+          understand site usage where permitted by applicable law
         </li>
         <li>
           <strong>Contract / steps prior to contract</strong> — when you contact us for support

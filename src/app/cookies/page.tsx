@@ -37,10 +37,13 @@ export default function CookiesPage() {
 
       <h3>2.2 Analytics</h3>
       <p>
-        We use Google Analytics cookies/identifiers to understand how visitors use the Site (for
-        example pages viewed). See{" "}
+        Google Analytics initializes automatically when you visit and may use cookies or similar
+        identifiers to measure page views and site usage. See{" "}
         <a href="https://policies.google.com/privacy" rel="noopener noreferrer" target="_blank">
           Google&apos;s Privacy Policy
+        </a>. You can block or delete cookies in your browser settings or use the{" "}
+        <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener noreferrer" target="_blank">
+          Google Analytics opt-out browser add-on
         </a>
         .
       </p>
@@ -87,6 +90,12 @@ export default function CookiesPage() {
       <h2>4. Your choices</h2>
       <ul>
         <li>Block or delete cookies in your browser settings</li>
+        <li>
+          Opt out of Google Analytics using the{" "}
+          <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener noreferrer" target="_blank">
+            Google Analytics opt-out browser add-on
+          </a>
+        </li>
         <li>
           Opt out of personalized Google ads at{" "}
           <a href="https://www.google.com/settings/ads" rel="noopener noreferrer" target="_blank">
