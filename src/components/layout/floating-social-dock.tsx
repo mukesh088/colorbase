@@ -1,16 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ComponentType } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import {
-  ChevronRight,
-  Facebook,
-  Github,
-  Instagram,
-  Linkedin,
-  Share2,
-  Youtube,
-} from "lucide-react";
+import { ChevronRight, Facebook, Github, Instagram, Linkedin, Share2, Youtube } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
@@ -67,90 +58,54 @@ export function FloatingSocialDock() {
 
   return (
     <div
-      className="pointer-events-none fixed bottom-8 right-5 z-40 hidden flex-col items-end gap-2 sm:flex"
+      className="pointer-events-none fixed right-5 bottom-8 z-40 hidden flex-col items-end gap-2 sm:flex"
       aria-label="Social media"
     >
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.ul
-            key="social-list"
-            initial={{ opacity: 0, x: 24, scale: 0.92 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: 24, scale: 0.92 }}
-            transition={{ type: "spring", stiffness: 380, damping: 28 }}
-            className="pointer-events-auto flex flex-col items-center gap-2"
-            id="floating-social-links"
-          >
-            {SOCIAL_LINKS.map((item, i) => {
-              const Icon = ICONS[item.id];
-              return (
-                <motion.li
-                  key={item.id}
-                  initial={{ opacity: 0, x: 16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.04 }}
+      {open && (
+        <ul
+          className="animate-rise pointer-events-auto flex flex-col items-center gap-2"
+          id="floating-social-links"
+        >
+          {SOCIAL_LINKS.map((item) => {
+            const Icon = ICONS[item.id];
+            return (
+              <li key={item.id}>
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
+                  title={item.label}
+                  className={cn(
+                    "group focus-visible:ring-ring flex h-11 w-11 items-center justify-center rounded-full shadow-lg shadow-black/15 transition hover:scale-110 focus-visible:ring-2 focus-visible:outline-none",
+                    item.color
+                  )}
                 >
-                  <a
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={item.label}
-                    title={item.label}
-                    className={cn(
-                      "group flex h-11 w-11 items-center justify-center rounded-full shadow-lg shadow-black/15 transition hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                      item.color
-                    )}
-                  >
-                    <Icon className="h-5 w-5" />
-                  </a>
-                </motion.li>
-              );
-            })}
-          </motion.ul>
-        )}
-      </AnimatePresence>
+                  <Icon className="h-5 w-5" />
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
 
-      <motion.button
+      <button
         type="button"
         onClick={toggle}
         aria-expanded={open}
         aria-controls="floating-social-links"
         aria-label={open ? "Hide social links" : "Show social links"}
-        whileTap={{ scale: 0.94 }}
         className={cn(
-          "pointer-events-auto relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-fuchsia-600 text-white shadow-lg shadow-rose-500/30 transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          "focus-visible:ring-ring pointer-events-auto relative flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-rose-500 to-fuchsia-600 text-white shadow-lg shadow-rose-500/30 transition hover:opacity-95 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none active:scale-95"
         )}
       >
-        <AnimatePresence mode="wait" initial={false}>
-          {open ? (
-            <motion.span
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <ChevronRight className="h-5 w-5" />
-            </motion.span>
-          ) : (
-            <motion.span
-              key="open"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.15 }}
-            >
-              <Share2 className="h-5 w-5" />
-            </motion.span>
-          )}
-        </AnimatePresence>
+        {open ? <ChevronRight className="h-5 w-5" /> : <Share2 className="h-5 w-5" />}
         {!open && (
-          <span className="absolute -left-1 -top-1 flex h-3 w-3">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-300 opacity-75" />
+          <span className="absolute -top-1 -left-1 flex h-3 w-3">
             <span className="relative inline-flex h-3 w-3 rounded-full bg-rose-200" />
           </span>
         )}
-      </motion.button>
+      </button>
     </div>
   );
 }

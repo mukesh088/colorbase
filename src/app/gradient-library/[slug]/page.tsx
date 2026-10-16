@@ -3,19 +3,14 @@ import { notFound } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
-import { getAllGradients, getGradient } from "@/lib/data/gradient-library";
+import { getGradient } from "@/lib/data/gradient-library";
 import { CopyButton } from "@/components/color/copy-button";
 import { ShareButtons } from "@/components/library/share-buttons";
 import { GradientJpgButton } from "@/components/library/gradient-jpg-button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { maybeStaticParams } from "@/lib/static-params";
 
-export const revalidate = 86400;
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return maybeStaticParams(getAllGradients().map((g) => ({ slug: g.slug })));
-}
 
 export async function generateMetadata({
   params,
@@ -33,7 +28,11 @@ export async function generateMetadata({
   });
 }
 
-export default async function GradientDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function GradientDetailPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const { slug } = await params;
   const g = getGradient(slug);
   if (!g) notFound();
@@ -51,13 +50,15 @@ export default async function GradientDetailPage({ params }: { params: Promise<{
       <Breadcrumbs items={crumbs} />
       <div className="mb-6 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-wider text-rose-600">{g.category}</p>
+          <p className="text-xs font-semibold tracking-wider text-rose-600 uppercase">
+            {g.category}
+          </p>
           <h1 className="font-display text-4xl font-semibold">{g.name}</h1>
         </div>
         <ShareButtons title={g.name} path={`/gradient-library/${g.slug}`} />
       </div>
       <div
-        className="h-40 w-full rounded-none border border-border/50 sm:h-48 sm:rounded-3xl"
+        className="border-border/50 h-40 w-full rounded-none border sm:h-48 sm:rounded-3xl"
         style={{ background: g.css }}
         role="img"
         aria-label={`${g.name} preview`}
@@ -65,7 +66,7 @@ export default async function GradientDetailPage({ params }: { params: Promise<{
       <div className="mt-6 flex flex-wrap gap-2">
         <GradientJpgButton gradient={g} />
         <a
-          className="inline-flex h-10 items-center rounded-lg border border-input px-4 text-sm hover:bg-accent"
+          className="border-input hover:bg-accent inline-flex h-10 items-center rounded-lg border px-4 text-sm"
           href={`data:text/css;charset=utf-8,${encodeURIComponent(file)}`}
           download={`${g.slug}.css`}
         >
@@ -84,7 +85,7 @@ export default async function GradientDetailPage({ params }: { params: Promise<{
               <CopyButton value={value} label={label} />
             </CardHeader>
             <CardContent>
-              <pre className="overflow-x-auto rounded-xl bg-muted/50 p-3 text-xs">{value}</pre>
+              <pre className="bg-muted/50 overflow-x-auto rounded-xl p-3 text-xs">{value}</pre>
             </CardContent>
           </Card>
         ))}

@@ -113,6 +113,18 @@ export const PRIMARY_NAV = [
   { href: "/image-color-picker", title: "Image Picker" },
   { href: "/theme-builder", title: "UI Theme" },
   {
+    href: "/gradient-library",
+    title: "Gradients",
+    children: [
+      { href: "/gradient-library", title: "Named gradient library" },
+      { href: "/gradient-library#new-gradients", title: "100 new named gradients" },
+      { href: "/gradient-generator", title: "Gradient generator" },
+      { href: "/linear-gradient-generator", title: "Linear gradients" },
+      { href: "/radial-gradient-generator", title: "Radial gradients" },
+      { href: "/conic-gradient-generator", title: "Conic gradients" },
+    ],
+  },
+  {
     href: "/tools",
     title: "Tools",
     children: [

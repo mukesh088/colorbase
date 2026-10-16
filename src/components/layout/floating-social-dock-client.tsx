@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const FloatingSocialDockLazy = dynamic(
   () =>
@@ -12,6 +13,14 @@ const FloatingSocialDockLazy = dynamic(
 );
 
 export function FloatingSocialDockClient() {
+  const [desktop, setDesktop] = useState(false);
+  useEffect(() => {
+    const media = matchMedia("(min-width: 640px)");
+    const update = () => setDesktop(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
   const pathname = usePathname();
   if (
     pathname.startsWith("/color/") ||
@@ -41,5 +50,5 @@ export function FloatingSocialDockClient() {
     ].includes(pathname)
   )
     return null;
-  return <FloatingSocialDockLazy />;
+  return desktop ? <FloatingSocialDockLazy /> : null;
 }

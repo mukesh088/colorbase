@@ -3,73 +3,66 @@
 import { useEffect, useRef } from "react";
 import { Sparkles } from "lucide-react";
 
-const COLORS = ["#635bff", "#ef5da8", "#10b981", "#f59e0b", "#0ea5e9"];
+const LIGHT_COLORS = ["#A9DDCD", "#F4B8CF", "#ADC8F4", "#F5CCA3", "#C58CF4"];
+const DARK_COLORS = ["#164C46", "#572B47", "#233F68", "#553A2B", "#462565"];
 
-/** One bounded animation per click, with no idle loop or background timers. */
+/** A single click reveals a new background; no animation runs while idle. */
 export function HomeColorBlast() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const surfaceRef = useRef<HTMLSpanElement>(null);
   const play = useRef<() => void>(() => {});
+
   useEffect(() => {
-    const canvas = canvasRef.current;
-    const section = canvas?.parentElement?.parentElement;
-    const ctx = canvas?.getContext("2d");
-    if (!canvas || !section || !ctx) return;
+    const surface = surfaceRef.current;
+    const section = surface?.parentElement?.parentElement;
+    if (!surface || !section) return;
+
     const motion = matchMedia("(prefers-reduced-motion: reduce)");
-    let frame = 0,
-      index = 0,
-      width = 0,
-      height = 0,
-      visible = true;
-    const stop = () => {
-      cancelAnimationFrame(frame);
-      frame = 0;
-      ctx.clearRect(0, 0, width, height);
+    let animation: Animation | undefined;
+    let nextColor: string | undefined;
+    let index = 0;
+    let visible = true;
+    let dark = document.documentElement.classList.contains("dark");
+
+    const settle = () => {
+      if (animation) {
+        animation.onfinish = null;
+        animation.cancel();
+        animation = undefined;
+      }
+      if (nextColor) section.style.setProperty("--hero-color", nextColor);
+      nextColor = undefined;
+      surface.hidden = true;
     };
-    const resize = () => {
-      stop();
-      width = section.clientWidth;
-      height = section.clientHeight;
-      const dpr = Math.min(devicePixelRatio || 1, 1.5);
-      canvas.width = Math.round(width * dpr);
-      canvas.height = Math.round(height * dpr);
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
+
     const burst = (x: number, y: number) => {
-      if (motion.matches || !visible || document.hidden) return;
-      stop();
-      const started = performance.now();
-      const color = COLORS[index++ % COLORS.length];
-      const radius = Math.hypot(width, height);
-      const tick = (now: number) => {
-        const t = Math.min(1, (now - started) / 1000);
-        ctx.clearRect(0, 0, width, height);
-        ctx.globalAlpha = 0.24 * (1 - t);
-        ctx.fillStyle = color;
-        ctx.beginPath();
-        ctx.arc(x, y, radius * (1 - (1 - t) ** 3), 0, Math.PI * 2);
-        ctx.fill();
-        for (let i = 0; i < 16; i++) {
-          const angle = (i * Math.PI) / 8;
-          ctx.globalAlpha = 0.45 * (1 - t);
-          ctx.beginPath();
-          ctx.arc(
-            x + Math.cos(angle) * t * 260,
-            y + Math.sin(angle) * t * 260,
-            12 * (1 - t),
-            0,
-            Math.PI * 2
-          );
-          ctx.fill();
-        }
-        ctx.globalAlpha = 1;
-        if (t < 1) frame = requestAnimationFrame(tick);
-        else stop();
-      };
-      frame = requestAnimationFrame(tick);
+      if (!visible || document.hidden) return;
+      settle();
+      const colors = dark ? DARK_COLORS : LIGHT_COLORS;
+      nextColor = colors[index++ % colors.length];
+      if (motion.matches) {
+        settle();
+        return;
+      }
+      surface.style.setProperty("--blast-color", nextColor);
+      surface.hidden = false;
+      const radius = Math.hypot(
+        Math.max(x, section.clientWidth - x),
+        Math.max(y, section.clientHeight - y)
+      );
+      animation = surface.animate(
+        [
+          { clipPath: `circle(0px at ${x}px ${y}px)` },
+          { clipPath: `circle(${radius}px at ${x}px ${y}px)` },
+        ],
+        { duration: 850, easing: "cubic-bezier(0.2, 0.7, 0.3, 1)", fill: "forwards" }
+      );
+      animation.onfinish = settle;
     };
+
     const pointer = (event: PointerEvent) => {
       if (
         event.button !== 0 ||
+        event.pointerType === "touch" ||
         (event.target as Element).closest(
           "a,button,input,textarea,select,label,[role=slider],[role=button],[role=combobox]"
         )
@@ -78,35 +71,50 @@ export function HomeColorBlast() {
       const rect = section.getBoundingClientRect();
       burst(event.clientX - rect.left, event.clientY - rect.top);
     };
-    play.current = () => burst(width * 0.35, height * 0.35);
-    resize();
-    const ro = new ResizeObserver(resize);
-    ro.observe(section);
-    const io = new IntersectionObserver(([entry]) => {
+    play.current = () => burst(section.clientWidth * 0.35, section.clientHeight * 0.35);
+
+    const resize = new ResizeObserver(settle);
+    resize.observe(section);
+    const intersection = new IntersectionObserver(([entry]) => {
       visible = entry.isIntersecting;
-      if (!visible) stop();
+      if (!visible) settle();
     });
-    io.observe(section);
+    intersection.observe(section);
+    const theme = new MutationObserver(() => {
+      const isDark = document.documentElement.classList.contains("dark");
+      if (isDark === dark) return;
+      settle();
+      section.style.removeProperty("--hero-color");
+      dark = isDark;
+      index = 0;
+    });
+    theme.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
     const visibility = () => {
-      if (document.hidden) stop();
+      if (document.hidden) settle();
     };
     section.addEventListener("pointerdown", pointer);
-    motion.addEventListener("change", stop);
+    motion.addEventListener("change", settle);
     document.addEventListener("visibilitychange", visibility);
     return () => {
-      stop();
-      ro.disconnect();
-      io.disconnect();
+      settle();
+      resize.disconnect();
+      intersection.disconnect();
+      theme.disconnect();
       section.removeEventListener("pointerdown", pointer);
-      motion.removeEventListener("change", stop);
+      motion.removeEventListener("change", settle);
       document.removeEventListener("visibilitychange", visibility);
       play.current = () => {};
     };
   }, []);
+
   return (
     <div className="home-color-blast">
-      <canvas ref={canvasRef} aria-hidden="true" />
-      <button type="button" onClick={() => play.current()}>
+      <span ref={surfaceRef} className="home-color-blast-surface" aria-hidden="true" hidden />
+      <button
+        type="button"
+        onClick={() => play.current()}
+        title="Click the background to reveal another color"
+      >
         <Sparkles size={13} />
         Try a color blast
       </button>

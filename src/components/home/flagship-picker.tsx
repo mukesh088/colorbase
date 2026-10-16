@@ -140,10 +140,10 @@ export function FlagshipPicker() {
           <CopyButton value={formatRgb(hexToRgb(hex))} label="RGB" size="icon" variant="ghost" />
         </div>
         <nav>
-          <Link href={`/color-picker?hex=${hex.slice(1)}`}>
+          <Link prefetch={false} href={`/color-picker?hex=${hex.slice(1)}`}>
             Open full color picker <ArrowRight size={14} />
           </Link>
-          <Link href="/image-color-picker">
+          <Link prefetch={false} href="/image-color-picker">
             <ImagePlus size={14} />
             Pick from an image
           </Link>

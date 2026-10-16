@@ -1,5 +1,6 @@
 import { hslSeedHex, seededRandom } from "@/lib/colors/spaces";
 import { slugify } from "@/lib/utils";
+import { STUDIO_GRADIENTS } from "./studio-gradients";
 
 export const GRADIENT_CATEGORIES = [
   "modern",
@@ -30,6 +31,7 @@ export interface LibraryGradient {
   tailwind: string;
   scss: string;
   popular?: boolean;
+  collection?: "studio";
 }
 
 const CATEGORY_OPTS: Record<
@@ -53,20 +55,91 @@ const CATEGORY_OPTS: Record<
 };
 
 const ADJECTIVES = [
-  "Velvet", "Silent", "Amber", "Crystal", "Electric", "Misty", "Copper", "Ivory",
-  "Neon", "Opal", "Ruby", "Sage", "Solar", "Twilight", "Arctic", "Bloom",
-  "Cedar", "Cobalt", "Coral", "Dawn", "Ember", "Fable", "Frost", "Golden",
-  "Harbor", "Indigo", "Jade", "Lagoon", "Maple", "Midnight", "Nimbus", "Orchid",
-  "Pearl", "Quartz", "River", "Shadow", "Timber", "Ultraviolet", "Vivid", "Willow",
+  "Velvet",
+  "Silent",
+  "Amber",
+  "Crystal",
+  "Electric",
+  "Misty",
+  "Copper",
+  "Ivory",
+  "Neon",
+  "Opal",
+  "Ruby",
+  "Sage",
+  "Solar",
+  "Twilight",
+  "Arctic",
+  "Bloom",
+  "Cedar",
+  "Cobalt",
+  "Coral",
+  "Dawn",
+  "Ember",
+  "Fable",
+  "Frost",
+  "Golden",
+  "Harbor",
+  "Indigo",
+  "Jade",
+  "Lagoon",
+  "Maple",
+  "Midnight",
+  "Nimbus",
+  "Orchid",
+  "Pearl",
+  "Quartz",
+  "River",
+  "Shadow",
+  "Timber",
+  "Ultraviolet",
+  "Vivid",
+  "Willow",
 ];
 
 const NOUNS = [
-  "Harbor", "Orchid", "Ember", "Tide", "Lantern", "Meadow", "Comet", "Dune",
-  "Glacier", "Blossom", "Current", "Mirage", "Pavilion", "Sparrow", "Canyon", "Drift",
-  "Eclipse", "Garden", "Horizon", "Island", "Jasmine", "Kite", "Lumen", "Monarch",
-  "Nova", "Oasis", "Prism", "Quill", "Reef", "Summit", "Thistle", "Umbra",
-  "Vesper", "Willow", "Yarrow", "Zephyr", "Arcade", "Breeze", "Cascade", "Delta",
-  "Echo", "Flare",
+  "Harbor",
+  "Orchid",
+  "Ember",
+  "Tide",
+  "Lantern",
+  "Meadow",
+  "Comet",
+  "Dune",
+  "Glacier",
+  "Blossom",
+  "Current",
+  "Mirage",
+  "Pavilion",
+  "Sparrow",
+  "Canyon",
+  "Drift",
+  "Eclipse",
+  "Garden",
+  "Horizon",
+  "Island",
+  "Jasmine",
+  "Kite",
+  "Lumen",
+  "Monarch",
+  "Nova",
+  "Oasis",
+  "Prism",
+  "Quill",
+  "Reef",
+  "Summit",
+  "Thistle",
+  "Umbra",
+  "Vesper",
+  "Willow",
+  "Yarrow",
+  "Zephyr",
+  "Arcade",
+  "Breeze",
+  "Cascade",
+  "Delta",
+  "Echo",
+  "Flare",
 ];
 
 type PopularDef = [string, GradientCategory, number, string[]];
@@ -198,7 +271,9 @@ function buildGradients(): LibraryGradient[] {
       const seed = 8000 + n * 73;
       const rand = seededRandom(seed);
       const angle = Math.floor(rand() * 360);
-      const colors = Array.from({ length: opts.stops }, (_, idx) => hslSeedHex(seed + idx * 19, opts));
+      const colors = Array.from({ length: opts.stops }, (_, idx) =>
+        hslSeedHex(seed + idx * 19, opts)
+      );
       let name = poeticName(n);
       let slug = slugify(name);
       let extra = 2;
@@ -212,10 +287,15 @@ function buildGradients(): LibraryGradient[] {
       n += 1;
     }
   }
-  return [...curated, ...generated];
+  const studio = STUDIO_GRADIENTS.map(([name, category, angle, colors]) => ({
+    ...toGradient(name, category, angle, colors),
+    collection: "studio" as const,
+  }));
+  return [...curated, ...studio, ...generated];
 }
 
 let _cache: LibraryGradient[] | null = null;
+let bySlug: Map<string, LibraryGradient> | undefined;
 
 export function getAllGradients() {
   if (!_cache) _cache = buildGradients();
@@ -223,7 +303,12 @@ export function getAllGradients() {
 }
 
 export function getGradient(slug: string) {
-  return getAllGradients().find((g) => g.slug === slug);
+  bySlug ??= new Map(getAllGradients().map((gradient) => [gradient.slug, gradient]));
+  return bySlug.get(slug);
+}
+
+export function getStudioGradients() {
+  return getAllGradients().filter((gradient) => gradient.collection === "studio");
 }
 
 export function getGradientsByCategory(category: string) {
@@ -238,6 +323,11 @@ export function searchGradients(query: string) {
   const q = query.toLowerCase().trim();
   if (!q) return getPopularGradients();
   return getAllGradients()
-    .filter((g) => g.name.toLowerCase().includes(q) || g.category.includes(q) || g.colors.some((c) => c.toLowerCase().includes(q.replace(/^#/, ""))))
+    .filter(
+      (g) =>
+        g.name.toLowerCase().includes(q) ||
+        g.category.includes(q) ||
+        g.colors.some((c) => c.toLowerCase().includes(q.replace(/^#/, "")))
+    )
     .slice(0, 80);
 }

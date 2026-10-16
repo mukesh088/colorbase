@@ -30,7 +30,7 @@ export function HomeImageStarter() {
             take it straight into your next design.
           </p>
         </div>
-        <Link href="/image-color-picker">
+        <Link prefetch={false} href="/image-color-picker">
           Open Image Picker <ArrowRight size={15} />
         </Link>
       </div>

@@ -9,6 +9,7 @@ import { BRANDS } from "@/lib/data/brands";
 import { POPULAR_UI_COLOR_GROUPS } from "@/lib/colors/palettes";
 import { getFeaturedPosts } from "@/lib/data/blog";
 import { getToolsByCategory } from "@/lib/tools-registry";
+import { getStudioGradients } from "@/lib/data/gradient-library";
 import { FlagshipPicker } from "./flagship-picker";
 import { HomeColorBlast } from "./home-color-blast";
 import { HomeImageStarter } from "./home-image-starter";
@@ -54,11 +55,11 @@ export function HomeHero() {
             </p>
             <div className="home-studio-actions">
               <Button asChild size="lg" className="home-studio-primary">
-                <Link href="/color-picker">
+                <Link prefetch={false} href="/color-picker">
                   Open color picker <ArrowRight />
                 </Link>
               </Button>
-              <Link href="/image-color-picker" className="home-studio-secondary">
+              <Link prefetch={false} href="/image-color-picker" className="home-studio-secondary">
                 Pick from an image <ArrowUpRightIcon />
               </Link>
             </div>
@@ -106,7 +107,7 @@ export function HomeHero() {
               href: "/contrast-checker",
             },
           ].map(({ icon: Icon, name, description, href }) => (
-            <Link key={href} href={href}>
+            <Link key={href} href={href} prefetch={false}>
               <span className="home-workflow-icon">
                 <Icon size={19} />
               </span>
@@ -124,6 +125,33 @@ export function HomeHero() {
       <PaletteDiscovery />
 
       <HomeSection
+        title="A fresh take on gradients"
+        href="/gradient-library#new-gradients"
+        description="100 new named blends. Find a background you love and take the CSS with you."
+      >
+        <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+          {getStudioGradients()
+            .slice(0, 4)
+            .map((gradient) => (
+              <Link
+                prefetch={false}
+                key={gradient.slug}
+                href={`/gradient-library/${gradient.slug}`}
+                className="card-lift border-border bg-card overflow-hidden rounded-2xl border"
+              >
+                <span className="block h-28 sm:h-36" style={{ background: gradient.css }} />
+                <span className="block p-4">
+                  <strong className="block text-sm font-semibold">{gradient.name}</strong>
+                  <span className="text-muted-foreground mt-1 block text-xs">
+                    Preview & copy CSS
+                  </span>
+                </span>
+              </Link>
+            ))}
+        </div>
+      </HomeSection>
+
+      <HomeSection
         title="Popular colors"
         href="/colors"
         description="Start from colors developers actually ship."
@@ -131,6 +159,7 @@ export function HomeHero() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
           {POPULAR_COLORS.map((c) => (
             <Link
+              prefetch={false}
               key={c.hex}
               href={`/color/${c.hex.slice(1).toLowerCase()}`}
               className="card-lift border-border bg-card overflow-hidden rounded-[var(--radius-md)] border"
@@ -153,6 +182,7 @@ export function HomeHero() {
         <div className="flex flex-wrap gap-2">
           {COLOR_FAMILIES.map((family) => (
             <Link
+              prefetch={false}
               key={family}
               href={`/colors/family/${family}`}
               className="border-border/70 bg-card hover:border-primary/30 hover:bg-muted rounded-full border px-3.5 py-1.5 text-sm font-medium tracking-[-0.01em]"
@@ -171,6 +201,7 @@ export function HomeHero() {
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {DESIGN_SYSTEM_ROUTES.map((item) => (
             <Link
+              prefetch={false}
               key={item.path}
               href={item.path}
               className="card-lift border-border bg-card rounded-[var(--radius-md)] border p-5"
@@ -194,6 +225,7 @@ export function HomeHero() {
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {brands.map((b) => (
             <Link
+              prefetch={false}
               key={b.slug}
               href={`/brands/${b.slug}`}
               className="card-lift border-border bg-card rounded-[var(--radius-md)] border p-3.5"
@@ -217,6 +249,7 @@ export function HomeHero() {
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           {converters.map((t) => (
             <Link
+              prefetch={false}
               key={t.slug}
               href={`/${t.slug}`}
               className="border-border/70 bg-card hover:border-primary/25 hover:bg-muted/50 rounded-xl border px-3.5 py-3.5 text-sm font-medium tracking-[-0.01em]"
@@ -234,12 +267,14 @@ export function HomeHero() {
       >
         <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
           <Link
+            prefetch={false}
             href="/palette-generator"
             className="border-border/70 bg-card hover:border-primary/25 hover:bg-muted/50 rounded-xl border px-3.5 py-3.5 text-sm font-medium tracking-[-0.01em]"
           >
             Palette generator
           </Link>
           <Link
+            prefetch={false}
             href="/gradient-generator"
             className="border-border/70 bg-card hover:border-primary/25 hover:bg-muted/50 rounded-xl border px-3.5 py-3.5 text-sm font-medium tracking-[-0.01em]"
           >
@@ -247,6 +282,7 @@ export function HomeHero() {
           </Link>
           {generators.slice(0, 4).map((t) => (
             <Link
+              prefetch={false}
               key={t.slug}
               href={`/${t.slug}`}
               className="border-border/70 bg-card hover:border-primary/25 hover:bg-muted/50 rounded-xl border px-3.5 py-3.5 text-sm font-medium tracking-[-0.01em]"
@@ -264,6 +300,7 @@ export function HomeHero() {
       >
         <div className="grid gap-2 sm:grid-cols-2">
           <Link
+            prefetch={false}
             href="/contrast-checker"
             className="border-border/70 bg-card hover:border-primary/25 hover:bg-muted/50 flex items-center gap-2 rounded-xl border px-3.5 py-3.5 text-sm font-medium tracking-[-0.01em]"
           >
@@ -271,6 +308,7 @@ export function HomeHero() {
           </Link>
           {a11y.map((t) => (
             <Link
+              prefetch={false}
               key={t.slug}
               href={`/${t.slug}`}
               className="border-border/70 bg-card hover:border-primary/25 hover:bg-muted/50 rounded-xl border px-3.5 py-3.5 text-sm font-medium tracking-[-0.01em]"
@@ -287,6 +325,7 @@ export function HomeHero() {
         description="Describe a product. Get semantic tokens, light/dark themes, and exportable code."
       >
         <Link
+          prefetch={false}
           href="/ai-color-copilot"
           className="border-border bg-card hover:border-primary/30 flex items-center justify-between rounded-[var(--radius-lg)] border p-5 shadow-[var(--shadow-sm)] transition-colors duration-200"
         >
@@ -310,6 +349,7 @@ export function HomeHero() {
         <div className="grid gap-3 sm:grid-cols-3">
           {guides.map((post) => (
             <Link
+              prefetch={false}
               key={post.slug}
               href={`/blog/${post.slug}`}
               className="card-lift border-border bg-card rounded-[var(--radius-md)] border p-4"
@@ -334,6 +374,7 @@ export function HomeHero() {
           <div className="flex flex-wrap gap-2">
             {popularUi.map((c) => (
               <Link
+                prefetch={false}
                 key={c.hex + c.name}
                 href={`/color/${c.hex.replace("#", "").toLowerCase()}`}
                 className="border-border/70 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm"
@@ -391,7 +432,11 @@ function HomeSection({
               {description}
             </p>
           </div>
-          <Link href={href} className="text-primary text-sm font-medium hover:underline">
+          <Link
+            prefetch={false}
+            href={href}
+            className="text-primary text-sm font-medium hover:underline"
+          >
             View all
           </Link>
         </div>

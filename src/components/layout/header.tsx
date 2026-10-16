@@ -1,22 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Menu, Palette, Pipette, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeSwitcher } from "@/components/layout/theme-switcher";
-import { PRIMARY_NAV, SECONDARY_NAV } from "@/lib/nav";
+import { PRIMARY_NAV } from "@/lib/nav";
 import { useSearchCommand } from "@/components/search/search-command";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import { SITE_NAME, SITE_NAME_DISPLAY } from "@/lib/site-config";
+
+const MobileNavigation = dynamic(
+  () => import("./mobile-navigation").then((mod) => mod.MobileNavigation),
+  { ssr: false }
+);
 
 function navActive(pathname: string, href: string) {
   if (href === "/colors") {
@@ -51,16 +50,15 @@ function navActive(pathname: string, href: string) {
 
 export function Header() {
   const pathname = usePathname();
-  const [mounted, setMounted] = useState(false);
+  const menuTriggerRef = useRef<HTMLButtonElement>(null);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const search = useSearchCommand();
-
-  useEffect(() => setMounted(true), []);
 
   return (
     <header className="border-border/70 bg-background/88 supports-[backdrop-filter]:bg-background/78 sticky top-0 z-40 border-b pt-[env(safe-area-inset-top)] backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-1.5 px-3 sm:h-16 sm:gap-3 sm:px-5 lg:px-8">
         <Link
+          prefetch={false}
           href="/"
           className="group flex min-w-0 shrink-0 items-center gap-2"
           aria-label={`${SITE_NAME} home`}
@@ -86,6 +84,7 @@ export function Header() {
               return (
                 <div key={item.href} className="group relative">
                   <Link
+                    prefetch={false}
                     href={item.href}
                     className={cn(
                       "inline-flex items-center gap-0.5 rounded-[var(--radius-sm)] px-2.5 py-1.5 text-[13px] font-medium tracking-[-0.01em] transition-colors duration-200 ease-out",
@@ -102,6 +101,7 @@ export function Header() {
                     {children.map((child) => (
                       <li key={child.href}>
                         <Link
+                          prefetch={false}
                           href={child.href}
                           className="text-muted-foreground hover:bg-muted hover:text-foreground block rounded-lg px-3 py-1.5 text-[13px]"
                         >
@@ -115,6 +115,7 @@ export function Header() {
             }
             return (
               <Link
+                prefetch={false}
                 key={item.href}
                 href={item.href}
                 className={cn(
@@ -131,92 +132,27 @@ export function Header() {
           })}
         </nav>
 
-        {mounted ? (
-          <Dialog open={mobileNavOpen} onOpenChange={setMobileNavOpen}>
-            <DialogTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-11 w-11 shrink-0 rounded-lg sm:h-10 sm:w-10 xl:hidden"
-                aria-label="Open navigation menu"
-              >
-                <Menu className="h-4 w-4" />
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="border-border/60 fixed inset-y-0 top-0 left-0 h-dvh max-h-none w-[min(100vw,22rem)] max-w-none translate-x-0 translate-y-0 gap-0 overflow-y-auto rounded-none border-r p-0 pt-[env(safe-area-inset-top)] sm:rounded-none">
-              <DialogHeader className="border-border/50 border-b px-4 py-4 text-left">
-                <DialogTitle className="font-display text-lg tracking-[-0.03em]">
-                  {SITE_NAME_DISPLAY}
-                </DialogTitle>
-              </DialogHeader>
-              <div className="space-y-5 p-3 pb-[max(1.5rem,env(safe-area-inset-bottom))]">
-                <nav aria-label="Primary" className="space-y-1">
-                  {PRIMARY_NAV.map((item) => {
-                    const active = navActive(pathname, item.href);
-                    const children = "children" in item ? item.children : undefined;
-                    return (
-                      <div key={item.href}>
-                        <Link
-                          href={item.href}
-                          onClick={() => setMobileNavOpen(false)}
-                          className={cn(
-                            "flex items-center rounded-lg px-3 py-3 text-sm transition-colors",
-                            active
-                              ? "text-foreground bg-[var(--primary-soft)] font-medium"
-                              : "text-muted-foreground hover:text-foreground hover:bg-[var(--primary-soft)]"
-                          )}
-                        >
-                          {item.title}
-                        </Link>
-                        {children ? (
-                          <ul className="border-border/60 mb-2 ml-3 border-l pl-2">
-                            {children.slice(1).map((child) => (
-                              <li key={child.href}>
-                                <Link
-                                  href={child.href}
-                                  onClick={() => setMobileNavOpen(false)}
-                                  className="text-muted-foreground hover:bg-muted hover:text-foreground flex items-center rounded-lg px-3 py-2 text-[13px]"
-                                >
-                                  {child.title}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : null}
-                      </div>
-                    );
-                  })}
-                </nav>
-                <div>
-                  <p className="text-muted-foreground mb-2 px-3 text-[10px] font-semibold tracking-[0.14em] uppercase">
-                    More
-                  </p>
-                  <nav aria-label="Secondary" className="space-y-1">
-                    {SECONDARY_NAV.map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        onClick={() => setMobileNavOpen(false)}
-                        className="text-muted-foreground hover:bg-muted hover:text-foreground flex items-center rounded-lg px-3 py-3 text-sm"
-                      >
-                        {item.title}
-                      </Link>
-                    ))}
-                  </nav>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
-        ) : (
-          <Button
-            variant="outline"
-            size="icon"
-            className="h-11 w-11 shrink-0 rounded-lg sm:h-10 sm:w-10 xl:hidden"
-            disabled
-            aria-label="Open navigation menu"
-          >
-            <Menu className="h-4 w-4" />
-          </Button>
+        <Button
+          ref={menuTriggerRef}
+          type="button"
+          variant="outline"
+          size="icon"
+          className="h-11 w-11 shrink-0 rounded-lg sm:h-10 sm:w-10 xl:hidden"
+          aria-label="Open navigation menu"
+          aria-haspopup="dialog"
+          aria-expanded={mobileNavOpen}
+          aria-controls={mobileNavOpen ? "mobile-navigation" : undefined}
+          onClick={() => setMobileNavOpen(true)}
+        >
+          <Menu className="h-4 w-4" />
+        </Button>
+        {mobileNavOpen && (
+          <MobileNavigation
+            open={mobileNavOpen}
+            onOpenChange={setMobileNavOpen}
+            isActive={(href) => navActive(pathname, href)}
+            restoreFocus={() => menuTriggerRef.current?.focus()}
+          />
         )}
 
         <div className="ml-auto flex min-w-0 flex-1 items-center justify-end gap-1.5">
@@ -256,7 +192,7 @@ export function Header() {
               pathname === "/color-picker" && "opacity-90"
             )}
           >
-            <Link href="/color-picker">
+            <Link prefetch={false} href="/color-picker">
               <Pipette className="h-3.5 w-3.5" />
               Color Picker
             </Link>
@@ -266,7 +202,7 @@ export function Header() {
             size="icon"
             className="h-11 w-11 rounded-[var(--radius-md)] sm:h-10 sm:w-10 xl:hidden"
           >
-            <Link href="/color-picker" aria-label="Color Picker">
+            <Link prefetch={false} href="/color-picker" aria-label="Color Picker">
               <Pipette className="h-4 w-4" />
             </Link>
           </Button>
