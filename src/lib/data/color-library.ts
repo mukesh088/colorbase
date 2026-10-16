@@ -4,6 +4,7 @@ import { normalizeHex, rgbToHex } from "@/lib/colors/convert";
 import { slugify } from "@/lib/utils";
 import type { ColorFamily } from "@/lib/data/families";
 import { FLAT_UI_COLORS } from "@/lib/data/color-codes/flat-ui";
+import { CURATED_TARGET_COLORS, getCuratedColorBySlug } from "@/lib/data/curated-colors";
 
 export type ColorSource =
   | "html"
@@ -194,6 +195,8 @@ function generatedLibraryColors(count = 900): LibraryColor[] {
 }
 
 let _cache: LibraryColor[] | null = null;
+let _slugMap: Map<string, LibraryColor> | null = null;
+let _hexMap: Map<string, LibraryColor> | null = null;
 
 export function getAllLibraryColors(): LibraryColor[] {
   if (_cache) return _cache;
@@ -217,6 +220,14 @@ export function getAllLibraryColors(): LibraryColor[] {
     kit: "Bootstrap",
   }));
 
+  const curated = CURATED_TARGET_COLORS.map((c) => ({
+    slug: c.slug,
+    name: c.name,
+    hex: normalizeHex(c.hex),
+    family: c.family,
+    sources: ["html", "css-named"] as ColorSource[],
+  }));
+
   const merged = new Map<string, LibraryColor>();
   const push = (c: LibraryColor) => {
     const key = normalizeHex(c.hex).toLowerCase();
@@ -232,6 +243,7 @@ export function getAllLibraryColors(): LibraryColor[] {
   };
 
   [
+    ...curated,
     ...named,
     ...webSafeColors(),
     ...material,
@@ -256,16 +268,35 @@ export function getAllLibraryColors(): LibraryColor[] {
   ].forEach(push);
 
   _cache = [...merged.values()].sort((a, b) => a.name.localeCompare(b.name));
+  _slugMap = new Map();
+  _hexMap = new Map();
+  for (const c of _cache) {
+    _slugMap.set(c.slug, c);
+    _hexMap.set(c.hex.toLowerCase(), c);
+  }
+
   return _cache;
 }
 
 export function getColorBySlug(slug: string) {
-  return getAllLibraryColors().find((c) => c.slug === slug);
+  const curated = getCuratedColorBySlug(slug);
+  if (curated) {
+    return {
+      slug: curated.slug,
+      name: curated.name,
+      hex: normalizeHex(curated.hex),
+      family: curated.family,
+      sources: ["html", "css-named"] as ColorSource[],
+    };
+  }
+  if (!_slugMap) getAllLibraryColors();
+  return _slugMap?.get(slug);
 }
 
 export function getColorByHex(hex: string) {
   const n = normalizeHex(hex).toLowerCase();
-  return getAllLibraryColors().find((c) => c.hex.toLowerCase() === n);
+  if (!_hexMap) getAllLibraryColors();
+  return _hexMap?.get(n);
 }
 
 export function getColorsByFamily(family: string) {

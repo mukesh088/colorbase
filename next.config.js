@@ -73,19 +73,23 @@ const nextConfig = {
     // On-demand pages stay in memory. Writing each crawled URL to disk
     // (.html, .rsc, .meta) exhausts Hostinger inodes after a few days.
     isrFlushToDisk: false,
-    optimizePackageImports: [
-      "lucide-react",
-      "framer-motion",
-      "@radix-ui/react-accordion",
-      "@radix-ui/react-dialog",
-      "@radix-ui/react-dropdown-menu",
-      "@radix-ui/react-label",
-      "@radix-ui/react-scroll-area",
-      "@radix-ui/react-select",
-      "@radix-ui/react-slider",
-      "@radix-ui/react-slot",
-      "@radix-ui/react-tooltip",
-    ],
+      optimizePackageImports: [
+        "lucide-react",
+        "framer-motion",
+        "zustand",
+        "sonner",
+        "clsx",
+        "tailwind-merge",
+        "@radix-ui/react-accordion",
+        "@radix-ui/react-dialog",
+        "@radix-ui/react-dropdown-menu",
+        "@radix-ui/react-label",
+        "@radix-ui/react-scroll-area",
+        "@radix-ui/react-select",
+        "@radix-ui/react-slider",
+        "@radix-ui/react-slot",
+        "@radix-ui/react-tooltip",
+      ],
   },
   async headers() {
     return [
@@ -95,6 +99,16 @@ const nextConfig = {
           {
             key: "Cache-Control",
             value: "public, max-age=31536000, immutable",
+          },
+          ...securityHeaders,
+        ],
+      },
+      {
+        source: "/:all*(svg|png|jpg|jpeg|webp|ico|webmanifest)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=604800, stale-while-revalidate=2592000",
           },
           ...securityHeaders,
         ],

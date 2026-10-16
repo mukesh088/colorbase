@@ -80,6 +80,10 @@ export function rgbToHsl({ r, g, b }: RGB): HSL {
   };
 }
 
+export function hexToHsl(hex: string): HSL {
+  return rgbToHsl(hexToRgb(hex));
+}
+
 export function hslToRgb({ h, s, l }: HSL): RGB {
   const sn = s / 100;
   const ln = l / 100;

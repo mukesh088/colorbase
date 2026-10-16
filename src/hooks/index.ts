@@ -144,14 +144,31 @@ export function useRecentColors(limit = 24) {
     if (!hydrated || synced.current) return;
     synced.current = true;
     let cancelled = false;
-    void (async () => {
-      const data = await apiFetch<{ items: string[] }>("/api/me/recents");
-      if (cancelled || !data?.items) return;
-      setColors((prev) => mergeUnique(prev, data.items, limit));
-    })();
-    return () => {
-      cancelled = true;
+
+    const runSync = () => {
+      void (async () => {
+        const data = await apiFetch<{ items: string[] }>("/api/me/recents");
+        if (cancelled || !data?.items) return;
+        setColors((prev) => mergeUnique(prev, data.items, limit));
+      })();
     };
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const handle = (window as Window & { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number })
+        .requestIdleCallback(runSync, { timeout: 2000 });
+      return () => {
+        cancelled = true;
+        if ("cancelIdleCallback" in window) {
+          (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(handle);
+        }
+      };
+    } else {
+      const timer = setTimeout(runSync, 1200);
+      return () => {
+        cancelled = true;
+        clearTimeout(timer);
+      };
+    }
   }, [hydrated, limit, setColors]);
 
   const add = useCallback(
@@ -180,26 +197,43 @@ export function useFavoriteColors() {
     synced.current = true;
     let cancelled = false;
     const localColors = colors;
-    void (async () => {
-      const data = await apiFetch<{ items: { value: string }[] }>("/api/me/favorites?kind=color&limit=100");
-      if (cancelled || !data) return;
-      const remote = (data.items ?? []).map((i) => i.value);
-      if (remote.length === 0 && localColors.length > 0) {
-        await apiFetch("/api/me/favorites", {
-          method: "POST",
-          body: JSON.stringify({
-            items: localColors.slice(0, 200).map((value) => ({ kind: "color", value })),
-          }),
-        });
-        return;
-      }
-      if (remote.length > 0) {
-        setColors((prev) => mergeUnique(prev, remote, 200));
-      }
-    })();
-    return () => {
-      cancelled = true;
+
+    const runSync = () => {
+      void (async () => {
+        const data = await apiFetch<{ items: { value: string }[] }>("/api/me/favorites?kind=color&limit=100");
+        if (cancelled || !data) return;
+        const remote = (data.items ?? []).map((i) => i.value);
+        if (remote.length === 0 && localColors.length > 0) {
+          await apiFetch("/api/me/favorites", {
+            method: "POST",
+            body: JSON.stringify({
+              items: localColors.slice(0, 200).map((value) => ({ kind: "color", value })),
+            }),
+          });
+          return;
+        }
+        if (remote.length > 0) {
+          setColors((prev) => mergeUnique(prev, remote, 200));
+        }
+      })();
     };
+
+    if (typeof window !== "undefined" && "requestIdleCallback" in window) {
+      const handle = (window as Window & { requestIdleCallback: (cb: () => void, opts?: { timeout: number }) => number })
+        .requestIdleCallback(runSync, { timeout: 2000 });
+      return () => {
+        cancelled = true;
+        if ("cancelIdleCallback" in window) {
+          (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(handle);
+        }
+      };
+    } else {
+      const timer = setTimeout(runSync, 1200);
+      return () => {
+        cancelled = true;
+        clearTimeout(timer);
+      };
+    }
   }, [hydrated, colors, setColors]);
 
   const toggle = useCallback(

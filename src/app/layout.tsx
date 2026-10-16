@@ -24,7 +24,7 @@ const body = Plus_Jakarta_Sans({
   variable: "--font-body",
   display: "swap",
   adjustFontFallback: true,
-  preload: false,
+  preload: true,
 });
 
 const mono = JetBrains_Mono({

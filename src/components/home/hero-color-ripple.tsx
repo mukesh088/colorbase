@@ -101,7 +101,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
       const next = colors[colorIndex];
       const targetR = fillRadius(x, y, width, height);
       const rippleSize = Math.min(200, width * 0.4);
-      const particleCount = width < 640 ? 14 : 32;
+      const particleCount = width < 640 ? 8 : 16;
       const now = performance.now();
 
       const fill: Circle = { x, y, r: 0, fill: next, opacity: 1 };
@@ -161,7 +161,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
     };
 
     const ensureFrame = () => {
-      if (frame || reduced || !visible) return;
+      if (frame || reduced || !visible || document.hidden) return;
       frame = requestAnimationFrame(tick);
     };
 
@@ -184,7 +184,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
         tweens.length = 0;
         return;
       }
-      if (visible && !reduced) frame = requestAnimationFrame(tick);
+      if (visible && !reduced && !document.hidden) frame = requestAnimationFrame(tick);
     };
 
     let autoTimer = 0;
@@ -192,12 +192,12 @@ export function HeroColorRipple({ className }: { className?: string }) {
       window.clearTimeout(autoTimer);
       if (reduced) return;
       autoTimer = window.setTimeout(() => {
-        if (!visible || width === 0) {
+        if (!visible || width === 0 || document.hidden) {
           scheduleAuto(delay);
           return;
         }
         burst(width * (0.18 + Math.random() * 0.64), height * (0.16 + Math.random() * 0.5));
-        scheduleAuto(4200 + Math.random() * 1400);
+        scheduleAuto(5000 + Math.random() * 2000);
       }, delay);
     };
 
@@ -212,7 +212,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
       const y = event.clientY - rect.top;
       if (x < 0 || y < 0 || x > rect.width || y > rect.height) return;
       burst(x, y);
-      scheduleAuto(5200);
+      scheduleAuto(6500);
     };
 
     const themeSync = () => {
@@ -231,9 +231,20 @@ export function HeroColorRipple({ className }: { className?: string }) {
         window.clearTimeout(autoTimer);
         ctx.fillStyle = bgColor;
         ctx.fillRect(0, 0, width, height);
-      } else if (visible) {
+      } else if (visible && !document.hidden) {
         ensureFrame();
         scheduleAuto(900);
+      }
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+        window.clearTimeout(autoTimer);
+      } else if (visible && !reduced) {
+        ensureFrame();
+        scheduleAuto(2500);
       }
     };
 
@@ -247,7 +258,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
     const io = new IntersectionObserver(
       ([entry]) => {
         visible = entry?.isIntersecting ?? true;
-        if (visible && !reduced) ensureFrame();
+        if (visible && !reduced && !document.hidden) ensureFrame();
         else {
           cancelAnimationFrame(frame);
           frame = 0;
@@ -263,7 +274,8 @@ export function HeroColorRipple({ className }: { className?: string }) {
     const section = host.parentElement;
     section?.addEventListener("pointerdown", onPointer);
     motionQuery.addEventListener("change", onMotion);
-    if (!reduced) scheduleAuto(1800);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    if (!reduced) scheduleAuto(3500);
 
     return () => {
       cancelAnimationFrame(frame);
@@ -273,6 +285,7 @@ export function HeroColorRipple({ className }: { className?: string }) {
       mo.disconnect();
       section?.removeEventListener("pointerdown", onPointer);
       motionQuery.removeEventListener("change", onMotion);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
     };
   }, []);
 

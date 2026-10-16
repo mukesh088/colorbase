@@ -769,4 +769,64 @@ export const STATIC_PAGES = [
     title: "Our Tools",
     description: "Browse color, CSS, palette, and accessibility tools by menu.",
   },
+  {
+    slug: "color-palette-generator",
+    title: "Color Palette Generator",
+    description: "Generate and export harmonious color palettes with one click.",
+  },
+  {
+    slug: "color-theory",
+    title: "Color Theory Guide",
+    description: "Complete guide to the color wheel, primary/secondary/tertiary colors, harmonies, and psychology.",
+  },
+  {
+    slug: "complementary-colors",
+    title: "Complementary Colors Finder",
+    description: "Find the exact opposite 180° complementary color, split-complements, and accessible pairings.",
+  },
+  {
+    slug: "colors/pastel-colors",
+    title: "Pastel Colors Collection",
+    description: "Aesthetic pastel color codes, soft hues, and gentle design palettes.",
+  },
+  {
+    slug: "colors/neutral-colors",
+    title: "Neutral Colors Collection",
+    description: "Warm and cool neutral colors, beiges, greiges, taupes, and architectural tones.",
+  },
+  {
+    slug: "colors/shades-of-purple",
+    title: "Shades of Purple",
+    description: "Complete spectrum of purple shades from lavender and lilac to royal amethyst.",
+  },
+  {
+    slug: "house-color-combinations",
+    title: "House Color Combinations",
+    description: "Designer-curated interior and exterior house color schemes, room elevations, and paint sheen advice.",
+  },
+  {
+    slug: "white-background",
+    title: "White Background Photo Tool",
+    description: "Convert photos to pure white #FFFFFF backgrounds for e-commerce listings and transparent PNGs.",
+  },
+  {
+    slug: "colorize-photo",
+    title: "Colorize Photo Tool",
+    description: "Transform photos with archival sepia, vintage cyanotype blues, and neon duotone washes.",
+  },
+  {
+    slug: "watercolor-colors",
+    title: "Watercolor Paint Colors",
+    description: "Essential artist watercolor pigments with CII pigment codes, lightfastness, and granulation details.",
+  },
+  {
+    slug: "acrylic-colors",
+    title: "Acrylic Paint Colors",
+    description: "Heavy body and fluid acrylic paint pigments, opacity ratings, and digital artist HEX codes.",
+  },
+  {
+    slug: "color-pencil-colors",
+    title: "Colored Pencil Colors",
+    description: "Colored pencil pigment reference, wax vs oil core guides, and Procreate sketch swatches.",
+  },
 ] as const;
