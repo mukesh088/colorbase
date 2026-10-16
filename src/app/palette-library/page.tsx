@@ -12,7 +12,7 @@ import { LibraryInsight } from "@/components/library/library-insight";
 export const metadata: Metadata = createPageMetadata({
   title: "Palette Library",
   description:
-    "Thousands of curated color palettes for business, startup, dashboard, gaming, healthcare, fashion, cyberpunk, and more.",
+    "Explore generated color palettes for dashboards, portfolios, gaming, and more. Compare contrast pairs, save favorites, and export CSS or Tailwind tokens.",
   path: "/palette-library",
   keywords: ["color palettes", "palette library", "ui palettes"],
 });
@@ -30,9 +30,9 @@ export default function PaletteLibraryPage() {
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Breadcrumbs items={crumbs} />
       <LibraryHero
-        eyebrow="Curated schemes"
+        eyebrow="Color combinations"
         title="Palette Library"
-        description={`${palettes.length.toLocaleString("en-US")} UI schemes with accessibility scores, export, and sharing. Heart a palette on this device — counts start between 30 and 2,000.`}
+        description={`${palettes.length.toLocaleString("en-US")} generated color schemes with contrast comparisons and code exports. Save favorites on this device and open a palette to check readable text combinations.`}
         stats={[
           { label: "Palettes", value: palettes.length.toLocaleString("en-US") },
           { label: "Categories", value: String(PALETTE_CATEGORIES.length) },
@@ -77,7 +77,7 @@ export default function PaletteLibraryPage() {
                       id={p.slug}
                       name={p.name}
                       colors={p.colors}
-                      meta={`A11y ${p.accessibilityScore}`}
+                      meta={`${p.accessibilityScore}% of pairs ≥ 3:1`}
                     />
                   </div>
                 ))}

@@ -6,6 +6,9 @@ import {
 } from "@/lib/suite-modes";
 import { isImageStudio } from "@/lib/image-studio";
 
+const ThemeBuilder = dynamic(() => import("@/components/theme-builder/theme-builder").then((m) => m.ThemeBuilder));
+const ChartPaletteBuilder = dynamic(() => import("@/components/theme-builder/chart-palette-builder").then((m) => m.ChartPaletteBuilder));
+
 const AdvancedColorPicker = dynamic(() =>
   import("@/components/color/advanced-color-picker").then((m) => m.AdvancedColorPicker)
 );
@@ -140,6 +143,10 @@ export function ToolContent({ slug }: { slug: string }) {
       return <GradientGenerator defaultType="conic" />;
     case "ai-color-copilot":
       return <AiColorCopilotTool />;
+    case "theme-builder":
+      return <ThemeBuilder />;
+    case "chart-palette-generator":
+      return <ChartPaletteBuilder />;
     case "palette-generator":
       return <PaletteGeneratorTool />;
     case "random-color-generator":

@@ -12,12 +12,16 @@ import { searchGradients } from "@/lib/data/gradient-library";
 import { searchPalettes } from "@/lib/data/palette-library";
 import { querySearch } from "@/lib/search/query";
 
-export const metadata: Metadata = createPageMetadata({
-  title: "Search",
-  description:
-    "Instant global search across color tools, brands, named colors, gradients, and palettes with autocomplete and history.",
-  path: "/search",
-});
+export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: "Search",
+    description:
+      "Instant global search across color tools, brands, named colors, gradients, and palettes with autocomplete and history.",
+    path: "/search",
+    noIndex: true,
+  }),
+  robots: { index: false, follow: true },
+};
 
 export default async function SearchPage({
   searchParams,

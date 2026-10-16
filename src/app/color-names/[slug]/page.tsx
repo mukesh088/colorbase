@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, namedColorJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
-import { getAllNamedColors, getCssNamedColors, getNamedColor } from "@/lib/data/color-names";
+import { getCssNamedColors, getNamedColor } from "@/lib/data/color-names";
 import { ColorDetailView } from "@/components/library/color-detail-view";
 import { getTints, getTones, findSimilarColors } from "@/lib/colors/spaces";
 import { formatRgb, hexToRgb } from "@/lib/colors/convert";
@@ -13,14 +13,10 @@ import { PaletteStrip } from "@/components/library/palette-strip";
 import { FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
-import { maybeStaticParams } from "@/lib/static-params";
 
-export const revalidate = 86400;
+// Catalog size must not create a prebuilt/ISR file for each entry.
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return maybeStaticParams(getAllNamedColors().map((c) => ({ slug: c.slug })));
-}
 
 export async function generateMetadata({
   params,
@@ -29,12 +25,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const color = getNamedColor(slug);
-  if (!color) return {};
+  if (!color) notFound();
   const label = color.displayName;
   const hex = color.hex.toUpperCase();
   return createPageMetadata({
     title: `${label} Color Hex Code ${hex}`,
-    description: `${label} color hex code is ${hex}. Copy ${label} HEX, RGB, HSL, and CSS. CSS name: ${color.name.toLowerCase()}.`,
+    description: `${label} color hex code is ${hex}. Copy HEX, RGB, HSL, and CSS. ${color.source === "css" ? `CSS keyword: ${color.name.toLowerCase()}.` : "Attributed color-name reference with preview, shades, harmonies, and contrast."}`,
     path: `/color-names/${color.slug}`,
     keywords: [
       `${label} color`,
@@ -46,7 +42,7 @@ export async function generateMetadata({
       hex,
       color.hex,
     ],
-    noIndex: color.source !== "css",
+    noIndex: color.source === "catalog",
   });
 }
 
@@ -72,7 +68,7 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
     },
     {
       question: `What is the hex code for ${label} color?`,
-      answer: `The hex code for ${label} color is ${hexUpper}. In CSS you can also write color: ${color.name.toLowerCase()};`,
+      answer: `The hex code for ${label} color is ${hexUpper}. ${color.source === "css" ? `In CSS you can also write color: ${color.name.toLowerCase()};` : `Use color: ${color.hex}; in CSS. This catalog name is not a CSS keyword.`}`,
     },
     {
       question: `How do I use ${label} color in CSS?`,
@@ -99,47 +95,87 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
       <Breadcrumbs items={crumbs} />
 
       <header className="mb-8 max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
+        <p className="text-xs font-semibold tracking-[0.16em] text-rose-600 uppercase dark:text-rose-400">
           {FAMILY_LABELS[color.family as ColorFamily] ?? color.family}
-          {color.source === "css" ? " · CSS named color" : ""}
+          {color.source === "css"
+            ? " · CSS named color"
+            : color.source === "community"
+              ? " · Community color name"
+              : " · Inspiration name"}
         </p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+        <h1 className="font-display mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
           {label} Color
         </h1>
-        <p className="mt-3 text-muted-foreground">
+        <p className="text-muted-foreground mt-3">
           {label} color hex code is{" "}
-          <span className="font-mono font-semibold text-foreground">{hexUpper}</span>
+          <span className="text-foreground font-mono font-semibold">{hexUpper}</span>
           {" · "}
-          {rgbLabel}. CSS keyword{" "}
-          <span className="font-mono">{color.name.toLowerCase()}</span>.
+          {rgbLabel}.{" "}
+          {color.source === "css" ? (
+            <>
+              CSS keyword <span className="font-mono">{color.name.toLowerCase()}</span>.
+            </>
+          ) : (
+            "Use its HEX value in CSS; this name is a catalog label."
+          )}
         </p>
       </header>
 
-      <div className="card-lift mb-8 overflow-hidden rounded-[1.75rem] border border-border/50">
+      <div className="card-lift border-border/50 mb-8 overflow-hidden rounded-[1.75rem] border">
         <PaletteStrip colors={[color.hex, ...relatedShades.slice(0, 5)]} height="lg" />
       </div>
 
       <div className="mb-8 grid gap-4 lg:grid-cols-3">
         {[
           ["Meaning", color.meaning],
-          ["History", color.history],
+          [color.source === "css" ? "History" : "Source", color.history],
           ["Usage", color.usage],
         ].map(([title, body]) => (
-          <Card key={title} className="card-lift rounded-3xl border-border/50">
+          <Card key={title} className="card-lift border-border/50 rounded-3xl">
             <CardHeader>
               <CardTitle className="text-base">{title}</CardTitle>
             </CardHeader>
-            <CardContent className="text-sm leading-relaxed text-muted-foreground">{body}</CardContent>
+            <CardContent className="text-muted-foreground text-sm leading-relaxed">
+              {body}
+            </CardContent>
           </Card>
         ))}
       </div>
 
+      {color.sourceUrl && (
+        <p className="text-muted-foreground mb-6 text-sm">
+          Name and HEX reference:{" "}
+          <a
+            href={color.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="underline underline-offset-4"
+          >
+            Color Names by David Aerne · MIT license
+          </a>
+          .
+        </p>
+      )}
+
       <ToolCtaRow hex={color.hex} className="mb-8 flex flex-wrap gap-2" />
 
-      <ColorDetailView name={`${label} color`} hex={color.hex} family={color.family} />
+      <ColorDetailView
+        name={`${label} color`}
+        hex={color.hex}
+        family={color.family}
+        headingLevel={2}
+        sources={[
+          color.source === "css"
+            ? "CSS named colors"
+            : color.source === "community"
+              ? "Color Names community dataset"
+              : "ColorBase inspiration",
+        ]}
+        sharePath={`/color-names/${color.slug}`}
+      />
 
       <section className="mt-12">
-        <h2 className="mb-5 font-display text-xl font-semibold tracking-tight">
+        <h2 className="font-display mb-5 text-xl font-semibold tracking-tight">
           Related shades & tints of {label} color
         </h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
@@ -155,7 +191,7 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
       </section>
 
       <section className="mt-12">
-        <h2 className="mb-5 font-display text-xl font-semibold tracking-tight">Similar colors</h2>
+        <h2 className="font-display mb-5 text-xl font-semibold tracking-tight">Similar colors</h2>
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 lg:grid-cols-8">
           {similar.map((hex, index) => (
             <LibraryColorCard
@@ -168,7 +204,7 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
         </div>
       </section>
 
-      <p className="mt-10 text-sm text-muted-foreground">
+      <p className="text-muted-foreground mt-10 text-sm">
         Browse more named colors like wheat, salmon, and tomato in the{" "}
         <Link href="/color-names" className="text-primary underline-offset-4 hover:underline">
           color name library

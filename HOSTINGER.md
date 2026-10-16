@@ -35,6 +35,7 @@ Env:
 
 ```
 NEXT_PUBLIC_SITE_URL=https://colorbase.in
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-H9NJB2152F
 NODE_ENV=production
 DATABASE_URL=
 USER_COOKIE_SECRET=
@@ -73,6 +74,24 @@ New files cannot be created → builds fail, app may crash, cron/tasks stop, som
 ## After a green build
 
 Restart the Node process, purge CDN cache, hard-refresh the site.
+
+## Google Analytics
+
+The site sends GA4 events to `G-H9NJB2152F` by default. In Google Analytics,
+check **Admin → Data streams → your web stream** and confirm its measurement ID
+matches `NEXT_PUBLIC_GA_MEASUREMENT_ID`. This public environment variable is read
+at build time; rebuild and redeploy after changing it.
+
+For a collection check, open the site and look in **Reports → Realtime** after a
+few minutes. The Home dashboard's daily active-user total is processed separately;
+[standard reports can take 24–48 hours](https://support.google.com/analytics/answer/11198161)
+to finish processing. Realtime shows recent activity, not the full day's total.
+
+If Realtime stays empty, check the selected property and active data filters.
+In browser developer tools, verify that `googletagmanager.com/gtag/js` loads and
+`google-analytics.com/g/collect` receives a successful response. Browser privacy
+extensions can block these requests for individual visitors. The app initializes
+Analytics once; GA4 enhanced measurement tracks browser-history navigation.
 
 ## Postgres + daily cleanup
 

@@ -22,6 +22,7 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category } = await params;
+  if (!GRADIENT_CATEGORIES.includes(category as GradientCategory)) notFound();
   return createPageMetadata({
     title: `${category[0].toUpperCase()}${category.slice(1)} Gradients`,
     description: `Browse ${category} CSS gradients with live preview and copy-ready code.`,

@@ -5,7 +5,7 @@ export function ToolGuideSection({ slug }: { slug: string }) {
   const guide = getToolGuide(slug);
   if (!guide) return null;
   return (
-    <section className="mt-8 max-w-3xl rounded-2xl border border-border/60 bg-background/80 p-4 sm:mt-10 sm:p-6 md:p-8">
+    <section className="tool-guide">
       <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
         How to use this tool
       </p>

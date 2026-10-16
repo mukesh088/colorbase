@@ -198,11 +198,12 @@ export function getContrastRatio(fg: string, bg: string): number {
 }
 
 export function checkContrast(fg: string, bg: string): ContrastResult {
-  const ratio = Math.round(getContrastRatio(fg, bg) * 100) / 100;
-  const normalAAA = ratio >= 7;
-  const normalAA = ratio >= 4.5;
-  const largeAAA = ratio >= 4.5;
-  const largeAA = ratio >= 3;
+  const exactRatio = getContrastRatio(fg, bg);
+  const ratio = Math.round(exactRatio * 100) / 100;
+  const normalAAA = exactRatio >= 7;
+  const normalAA = exactRatio >= 4.5;
+  const largeAAA = exactRatio >= 4.5;
+  const largeAA = exactRatio >= 3;
   let level: ContrastResult["level"] = "Fail";
   if (normalAAA) level = "AAA";
   else if (normalAA) level = "AA";

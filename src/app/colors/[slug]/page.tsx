@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -7,9 +7,18 @@ import { getColorBySlug, getAllLibraryColors } from "@/lib/data/color-library";
 import { ColorDetailView } from "@/components/library/color-detail-view";
 import { findSimilarColors } from "@/lib/colors/spaces";
 import { maybeStaticParams } from "@/lib/static-params";
+import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
+
+function resolveColor(slug: string) {
+  const color = getColorBySlug(slug);
+  if (color) return color;
+  // Also handle aliases if this page is rendered without middleware.
+  if (isValidHex(slug)) permanentRedirect(`/color/${normalizeHex(slug).slice(1)}`);
+  notFound();
+}
 
 export function generateStaticParams() {
   return maybeStaticParams(
@@ -25,8 +34,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const color = getColorBySlug(slug);
-  if (!color) return {};
+  const color = resolveColor(slug);
   return createPageMetadata({
     title: `${color.name} Color — ${color.hex}`,
     description: `${color.name} color codes: HEX ${color.hex}, RGB, HSL, LAB, OKLCH, CMYK, nearest Tailwind, CSS variables, tints, shades, and accessibility.`,
@@ -38,8 +46,7 @@ export async function generateMetadata({
 
 export default async function ColorSlugPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const color = getColorBySlug(slug);
-  if (!color) notFound();
+  const color = resolveColor(slug);
 
   const all = getAllLibraryColors();
   const pool = all.map((c) => c.hex);

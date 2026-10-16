@@ -2,6 +2,10 @@ const path = require("node:path");
 const retiredToolSlugs = require("./retired-tools");
 
 const projectRoot = path.join(__dirname);
+const canonicalSiteUrl = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://colorbase.in");
+const alternateHost = canonicalSiteUrl.hostname.startsWith("www.")
+  ? canonicalSiteUrl.hostname.slice(4)
+  : `www.${canonicalSiteUrl.hostname}`;
 
 const securityHeaders = [
   { key: "X-DNS-Prefetch-Control", value: "on" },
@@ -129,6 +133,17 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: alternateHost.replace(/\./g, "\\.") }],
+        destination: `${canonicalSiteUrl.origin}/:path*`,
+        permanent: true,
+      },
+      {
+        source: "/sitemap/:id(pages|brands|color-names|colors|libraries).xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
       {
         source: "/tools/table-generator",
         destination: "/tools",

@@ -1,0 +1,21 @@
+{
+  "importedOn": "2026-10-17",
+  "brandCount": 2000,
+  "colorNameCount": 1000,
+  "sources": [
+    {
+      "project": "Simple Icons",
+      "url": "https://github.com/simple-icons/simple-icons",
+      "dataUrl": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/data/simple-icons.json",
+      "license": "CC0-1.0 (metadata; individual marks retain their own terms)",
+      "sha256": "256322f4f06fe56b5ae8aed66375fda9d8f16a8955449f010c8533ef8b993ad2"
+    },
+    {
+      "project": "Color Names",
+      "url": "https://github.com/meodai/color-names",
+      "dataUrl": "https://raw.githubusercontent.com/meodai/color-names/main/src/colornames.csv",
+      "license": "MIT",
+      "sha256": "e42302fbb144e880987babc1c2a67a8bdf85ffe13d559ea6ef32b678208259f0"
+    }
+  ]
+}

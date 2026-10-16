@@ -19,7 +19,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const color = getRobloxById(Number(id));
-  if (!color) return {};
+  if (!color) notFound();
   return createPageMetadata({
     title: `${color.name} — BrickColor ${color.id}`,
     description: `Roblox BrickColor ${color.id} (${color.name}) with official RGB (${color.r}, ${color.g}, ${color.b}) and calculated HEX, HSL, and OKLCH.`,

@@ -5,19 +5,18 @@ import { BRANDS, getAllBrandHexEntries, isUnverifiedBrandHex } from "@/lib/data/
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { UI_KITS, getAllLibraryColors } from "@/lib/data/color-library";
 import { kitToDesignPath } from "@/lib/data/design-systems";
-import { getCssNamedColors } from "@/lib/data/color-names";
+import { getCssNamedColors, getIndexableNamedColors } from "@/lib/data/color-names";
 import { GRADIENT_CATEGORIES, getAllGradients } from "@/lib/data/gradient-library";
 import { PALETTE_CATEGORIES, getAllPalettes } from "@/lib/data/palette-library";
 import { getAllPosts, BLOG_CATEGORIES } from "@/lib/data/blog";
 import { CODE_FORMATS } from "@/lib/codegen";
 import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
+import { HEX_REFERENCES } from "@/lib/data/hex-references";
 
 export const SITEMAP_IDS = ["pages", "brands", "color-names", "colors", "libraries"] as const;
 export type SitemapId = (typeof SITEMAP_IDS)[number];
 
 type Entry = MetadataRoute.Sitemap[number];
-
-const LAST_MODIFIED = new Date();
 
 function entry(
   path: string,
@@ -26,7 +25,6 @@ function entry(
 ): Entry {
   return {
     url: `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`,
-    lastModified: LAST_MODIFIED,
     changeFrequency,
     priority,
   };
@@ -38,7 +36,9 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       return [
         entry("/", 1, "daily"),
         ...TOOLS.map((t) => entry(`/${t.slug}`, t.popular || t.featured ? 0.9 : 0.7)),
-        ...STATIC_PAGES.map((p) => entry(`/${p.slug}`, 0.7, "weekly")),
+        ...STATIC_PAGES.filter((p) => p.slug !== "search").map((p) =>
+          entry(`/${p.slug}`, 0.7, "weekly")
+        ),
         ...CODE_FORMATS.map((f) => entry(`/developers/${f.slug}`, 0.7)),
         ...BLOG_CATEGORIES.map((c) => entry(`/blog/category/${encodeURIComponent(c)}`, 0.65)),
         ...getAllPosts().map((p) => entry(`/blog/${p.slug}`, 0.7)),
@@ -51,9 +51,13 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
           .map((e) => entry(`/brands/${e.brand.slug}/${e.hexSlug}`, 0.8)),
       ];
     case "color-names":
-      return getCssNamedColors().map((c) => entry(`/color-names/${c.slug}`, 0.85));
+      return getIndexableNamedColors().map((c) => entry(`/color-names/${c.slug}`, 0.85));
     case "colors": {
       const hexUrls = new Map<string, ReturnType<typeof entry>>();
+      for (const reference of HEX_REFERENCES) {
+        const slug = reference.hex.slice(1);
+        hexUrls.set(slug, entry(`/color/${slug}`, 0.7));
+      }
       for (const c of getCssNamedColors()) {
         const slug = c.hex.slice(1).toLowerCase();
         hexUrls.set(slug, entry(`/color/${slug}`, 0.6));

@@ -1,10 +1,10 @@
 export const SITE_NAME = "ColorBase";
 export const SITE_NAME_DISPLAY = "COLORBASE";
-export const SITE_TAGLINE = "The developer's color library, toolkit, and AI workspace.";
+export const SITE_TAGLINE = "Free Color Picker, Palette Generator & Contrast Checker";
 export const SITE_PROMISE =
-  "Explore colors, generate palettes, build design systems, check accessibility, and convert colors into production-ready code.";
+  "Pick a color, build a palette, check contrast, and copy CSS or Tailwind tokens. Free to use, with no account required.";
 export const SITE_DESCRIPTION =
-  "ColorBase is the developer's color library, toolkit, and AI workspace. Explore colors, generate palettes, check WCAG contrast, and ship production-ready CSS, Tailwind, and design tokens.";
+  "Free color picker, palette generator, and WCAG contrast checker. Explore HEX colors, build palettes, and export CSS or Tailwind tokens with ColorBase.";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in";
 

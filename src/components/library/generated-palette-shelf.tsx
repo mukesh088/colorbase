@@ -20,7 +20,7 @@ export function GeneratedPaletteShelf() {
       <div className="mb-4">
         <h2 className="font-display text-2xl font-semibold tracking-tight">Your generated palettes</h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Saved on this device when you generate a palette. Heart a palette to add your star.
+          Your recent palettes are stored on this device. Use Save to mark a favorite.
         </p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

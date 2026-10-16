@@ -21,7 +21,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { kit } = await params;
   const meta = UI_KITS.find((k) => k.slug === kit);
-  if (!meta) return {};
+  if (!meta) notFound();
   return createPageMetadata({
     title: meta.title,
     description: `Browse ${meta.title} with HEX values, copy buttons, and detailed color pages.`,

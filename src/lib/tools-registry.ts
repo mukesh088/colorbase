@@ -22,6 +22,28 @@ export const CATEGORY_LABELS: Record<ToolCategory, string> = {
 
 export const TOOLS: ToolDefinition[] = [
   {
+    slug: "theme-builder",
+    title: "UI Theme Builder",
+    shortTitle: "Theme Studio",
+    description: "Build light and dark UI themes with real interface previews, image colors, contrast checks, and shadcn/ui or Tailwind v4 exports.",
+    keywords: ["ui theme builder", "shadcn theme generator", "tailwind theme", "website color preview"],
+    category: "palettes",
+    icon: "LayoutDashboard",
+    featured: true,
+    related: ["chart-palette-generator", "palette-generator", "image-palette-extractor", "contrast-checker"],
+  },
+  {
+    slug: "chart-palette-generator",
+    title: "Chart Palette Generator",
+    shortTitle: "Chart Palettes",
+    description: "Create categorical, sequential, and diverging chart palettes with simulations, labeled previews, and Chart.js exports.",
+    keywords: ["chart palette generator", "data visualization colors", "sequential color scale"],
+    category: "palettes",
+    icon: "BarChart3",
+    featured: true,
+    related: ["theme-builder", "contrast-checker", "color-blind-simulator"],
+  },
+  {
     slug: "color-picker",
     title: "Color Picker",
     shortTitle: "Picker",
@@ -193,7 +215,7 @@ export const TOOLS: ToolDefinition[] = [
     title: "Palette Generator",
     shortTitle: "Palettes",
     description:
-      "Generate palettes like Coolors: full-screen colors, add or delete swatches, lock, download, and share a hex URL.",
+      "Build a color palette with harmony generation, locked swatches, undo, reordering, local saves, and CSS or image exports. Preview your palette as a UI theme.",
     keywords: ["palette generator", "color palette", "color scheme"],
     category: "palettes",
     icon: "SwatchBook",

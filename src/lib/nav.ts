@@ -5,6 +5,7 @@ import {
   ArrowLeftRight,
   ArrowUpDown,
   BadgeCheck,
+  BarChart3,
   Baseline,
   Binary,
   Blend,
@@ -108,18 +109,34 @@ export const COLOR_CODE_NAV = [
 ] as const;
 
 export const PRIMARY_NAV = [
-  { href: "/colors", title: "Colors" },
-  { href: "/tools", title: "Tools" },
+  { href: "/color-picker", title: "Color Picker" },
+  { href: "/image-color-picker", title: "Image Picker" },
+  { href: "/theme-builder", title: "UI Theme" },
+  {
+    href: "/tools",
+    title: "Tools",
+    children: [
+      { href: "/colors", title: "Color Library" },
+      { href: "/palette-generator", title: "Palette Studio" },
+      { href: "/theme-builder", title: "UI Theme Builder" },
+      { href: "/image-palette-extractor", title: "Colors from an image" },
+      { href: "/contrast-checker", title: "Contrast Checker" },
+      { href: "/chart-palette-generator", title: "Chart Palettes" },
+      { href: "/palette-library", title: "Palette Library" },
+      { href: "/tools", title: "All tools" },
+    ],
+  },
   { href: "/color-codes", title: "Color Codes", children: COLOR_CODE_NAV },
-  { href: "/colors/tailwind", title: "Design Systems" },
   { href: "/brands", title: "Brands" },
-  { href: "/ai-color-copilot", title: "AI" },
   { href: "/learning", title: "Learn" },
 ] as const;
 
 export const HEADER_LIBRARY_LINKS = LIBRARY_LINKS.filter((item) => item.href !== "/blog");
 
 export const SECONDARY_NAV = [
+  { href: "/colors/tailwind", title: "Design Systems" },
+  { href: "/ai-color-copilot", title: "Color Copilot" },
+  { href: "/chart-palette-generator", title: "Chart Palettes" },
   { href: "/developers", title: "Developer" },
   { href: "/color-names", title: "Color Names" },
   { href: "/palette-library", title: "Palettes" },
@@ -127,6 +144,7 @@ export const SECONDARY_NAV = [
 ] as const;
 
 export const TOOL_ICONS: Record<string, LucideIcon> = {
+  BarChart3,
   Pipette,
   ArrowLeftRight,
   RefreshCw,

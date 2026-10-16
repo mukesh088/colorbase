@@ -5,7 +5,6 @@ import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, brandPaletteJsonLd } f
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
-  BRANDS,
   brandAllColors,
   getBrandBySlug,
   getRelatedBrands,
@@ -22,14 +21,11 @@ import { BrandPaletteDownload } from "@/components/library/brand-palette-downloa
 import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { BrandHexChip } from "@/components/library/brand-hex-chip";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
-import { maybeStaticParams } from "@/lib/static-params";
+import { BrandReferenceSource } from "@/components/library/brand-reference-source";
 
-export const revalidate = 86400;
+// Catalog size must not create a prebuilt/ISR file for each entry.
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return maybeStaticParams(BRANDS.map((b) => ({ slug: b.slug })));
-}
 
 export async function generateMetadata({
   params,
@@ -38,7 +34,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const brand = getBrandBySlug(slug);
-  if (!brand) return {};
+  if (!brand) notFound();
   const colors = brandAllColors(brand);
   return createPageMetadata({
     title: brand.metaTitle ?? `${brand.name} Hex Colors & Brand Color Codes`,
@@ -120,10 +116,11 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         ]}
       />
       <Breadcrumbs items={crumbs} />
+      <BrandReferenceSource brand={brand} />
 
-      <header className="mt-4 overflow-hidden rounded-[1.75rem] border border-border/50 bg-white shadow-sm dark:bg-card">
+      <header className="border-border/50 dark:bg-card mt-4 overflow-hidden rounded-[1.75rem] border bg-white shadow-sm">
         <div className="grid gap-6 p-4 sm:p-8 lg:grid-cols-[auto_1fr_auto] lg:items-center">
-          <div className="flex h-28 w-28 items-center justify-center rounded-3xl bg-muted/40 sm:h-40 sm:w-40">
+          <div className="bg-muted/40 flex h-28 w-28 items-center justify-center rounded-3xl sm:h-40 sm:w-40">
             <BrandLogo
               slug={brand.slug}
               name={brand.name}
@@ -135,22 +132,23 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
             />
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
+            <p className="text-xs font-semibold tracking-[0.16em] text-rose-600 uppercase dark:text-rose-400">
               {brand.category}
             </p>
-            <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-5xl">
               {brand.name} Hex Colors
             </h1>
-            <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-              {brand.overview} Commonly published {brand.name} hex values: {colors.join(", ")}. These
-              are curated reference swatches, not a substitute for the brand&apos;s official guidelines.
+            <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
+              {brand.overview} Commonly published {brand.name} hex values: {colors.join(", ")}.
+              These are curated reference swatches, not a substitute for the brand&apos;s official
+              guidelines.
             </p>
             {brand.websiteUrl ? (
               <a
                 href={brand.websiteUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 inline-flex text-sm font-medium text-primary underline-offset-4 hover:underline"
+                className="text-primary mt-3 inline-flex text-sm font-medium underline-offset-4 hover:underline"
               >
                 Visit {brand.name}
               </a>
@@ -173,27 +171,30 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
         </div>
       </header>
 
-      <section className="mt-8 rounded-[1.35rem] border border-border/50 bg-background/80 p-5 sm:rounded-[1.75rem] sm:p-7">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+      <section className="border-border/50 bg-background/80 mt-8 rounded-[1.35rem] border p-5 sm:rounded-[1.75rem] sm:p-7">
+        <p className="text-xs font-semibold tracking-[0.14em] text-rose-600 uppercase dark:text-rose-400">
           Using {brand.name} in UI
         </p>
-        <h2 className="mt-1 font-display text-xl font-semibold tracking-tight">
+        <h2 className="font-display mt-1 text-xl font-semibold tracking-tight">
           Logo hex vs product ramp
         </h2>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
+        <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
           Keep {brand.primary[0] ?? colors[0]} for the mark and a single CTA if it passes contrast.
           Use the tints below for surfaces and the shades for icons on light canvases. Logo colors
-          are rarely safe as 14px body text on white — check the pair before a marketing page
-          floods every surface with the brand fill.
+          are rarely safe as 14px body text on white — check the pair before a marketing page floods
+          every surface with the brand fill.
         </p>
         <ToolCtaRow hex={brand.primary[0] ?? colors[0]} className="mt-5 flex flex-wrap gap-2" />
       </section>
 
       <section className="mt-12 space-y-10">
         <div>
-          <h2 className="font-display text-2xl font-semibold tracking-tight">All {brand.name} colors</h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Every brand hex with tints and shades. Click a swatch to copy. Verified colors also have a dedicated page.
+          <h2 className="font-display text-2xl font-semibold tracking-tight">
+            All {brand.name} colors
+          </h2>
+          <p className="text-muted-foreground mt-1 text-sm">
+            Every brand hex with tints and shades. Click a swatch to copy. Verified colors also have
+            a dedicated page.
           </p>
         </div>
 
@@ -208,7 +209,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           return (
             <article
               key={`${brand.slug}-color-${hex}-${index}`}
-              className="overflow-hidden rounded-[1.5rem] border border-border/50 bg-white shadow-sm dark:bg-card"
+              className="border-border/50 dark:bg-card overflow-hidden rounded-[1.5rem] border bg-white shadow-sm"
             >
               <div className="grid lg:grid-cols-[minmax(0,280px)_1fr]">
                 {estimated ? (
@@ -230,11 +231,13 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                 <div className="space-y-4 p-5 sm:p-6">
                   <div className="flex flex-wrap items-start justify-between gap-3">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+                      <p className="text-xs font-semibold tracking-[0.14em] text-rose-600 uppercase dark:text-rose-400">
                         {estimated ? "Unverified estimate" : `${role} color`}
                       </p>
-                      <h3 className="mt-1 font-display text-xl font-semibold">{brand.name} {a.hex}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
+                      <h3 className="font-display mt-1 text-xl font-semibold">
+                        {brand.name} {a.hex}
+                      </h3>
+                      <p className="text-muted-foreground mt-1 text-sm">
                         RGB {a.rgb.r}, {a.rgb.g}, {a.rgb.b} · {a.cmyk}
                       </p>
                     </div>
@@ -243,7 +246,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
                       {estimated ? null : (
                         <Link
                           href={`/brands/${brand.slug}/${a.hex.slice(1).toLowerCase()}`}
-                          className="inline-flex h-11 items-center rounded-md border border-input px-3 text-xs font-medium hover:bg-accent sm:h-8"
+                          className="border-input hover:bg-accent inline-flex h-11 items-center rounded-md border px-3 text-xs font-medium sm:h-8"
                         >
                           Color page
                         </Link>
@@ -265,7 +268,7 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
 
       {related.length > 0 && (
         <section className="mt-12">
-          <h2 className="mb-5 font-display text-xl font-semibold tracking-tight">Related brands</h2>
+          <h2 className="font-display mb-5 text-xl font-semibold tracking-tight">Related brands</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {related.map((b) => (
               <BrandCard

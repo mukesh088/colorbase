@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SUPPORT_EMAIL, SITE_NAME, SITE_NAME_DISPLAY, SITE_PROMISE, formatBusinessAddress } from "@/lib/site-config";
+import { SOCIAL_LINKS, SUPPORT_EMAIL, SITE_NAME, SITE_NAME_DISPLAY, SITE_PROMISE, formatBusinessAddress } from "@/lib/site-config";
 
 const FOOTER_GROUPS = [
   {
@@ -76,6 +76,19 @@ export function Footer() {
             <br />
             {formatBusinessAddress()}
           </p>
+          <nav aria-label="Social profiles" className="mt-4 flex flex-wrap gap-x-4 text-sm text-zinc-400 sm:hidden">
+            {SOCIAL_LINKS.map((item) => (
+              <a
+                key={item.id}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 items-center transition-colors hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
         </div>
         {FOOTER_GROUPS.map((group) => (
           <div key={group.title}>

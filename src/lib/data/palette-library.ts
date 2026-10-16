@@ -42,7 +42,7 @@ function scorePalette(colors: string[]) {
   for (let i = 0; i < colors.length; i++) {
     for (let j = i + 1; j < colors.length; j++) {
       total++;
-      if (checkContrast(colors[i], colors[j]).ratio >= 3) passes++;
+      if (checkContrast(colors[i], colors[j]).largeAA) passes++;
     }
   }
   return total === 0 ? 50 : Math.round((passes / total) * 100);

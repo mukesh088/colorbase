@@ -19,7 +19,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { format } = await params;
   const meta = CODE_FORMATS.find((f) => f.slug === format);
-  if (!meta) return {};
+  if (!meta) notFound();
   return createPageMetadata({
     title: `${meta.title} Color Code Generator`,
     description: meta.description,

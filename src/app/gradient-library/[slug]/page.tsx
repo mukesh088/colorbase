@@ -24,7 +24,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const g = getGradient(slug);
-  if (!g) return {};
+  if (!g) notFound();
   return createPageMetadata({
     title: `${g.name} Gradient`,
     description: `${g.name} CSS gradient with Tailwind and SCSS exports. Category: ${g.category}.`,

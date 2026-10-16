@@ -1,20 +1,24 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { CopyButton } from "@/components/color/copy-button";
 import type { GradientStop, GradientType } from "@/types/color";
+import { readHexColor } from "@/lib/colors/tool-links";
 
-export function GradientGenerator({
-  defaultType = "linear",
-}: {
-  defaultType?: GradientType;
-}) {
+export function GradientGenerator({ defaultType = "linear" }: { defaultType?: GradientType }) {
   const [type, setType] = useState<GradientType>(defaultType);
   const [angle, setAngle] = useState(90);
   const [stops, setStops] = useState<GradientStop[]>([
@@ -34,7 +38,7 @@ export function GradientGenerator({
   }, [type, angle, stops]);
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
+    <div className="gradient-tool-layout grid gap-6 lg:grid-cols-2">
       <Card>
         <CardHeader>
           <CardTitle>Controls</CardTitle>
@@ -61,54 +65,21 @@ export function GradientGenerator({
           )}
           <div className="space-y-3">
             {stops.map((stop, i) => (
-              <div key={i} className="grid grid-cols-[auto_1fr_1fr_auto] items-end gap-2">
-                <Input
-                  type="color"
-                  value={stop.color}
-                  aria-label={`Stop ${i + 1} color`}
-                  className="h-10 w-12 p-1"
-                  onChange={(e) => {
-                    const next = [...stops];
-                    next[i] = { ...stop, color: e.target.value };
-                    setStops(next);
-                  }}
-                />
-                <Input
-                  value={stop.color}
-                  onChange={(e) => {
-                    const next = [...stops];
-                    next[i] = { ...stop, color: e.target.value };
-                    setStops(next);
-                  }}
-                />
-                <Input
-                  type="number"
-                  min={0}
-                  max={100}
-                  value={stop.position}
-                  onChange={(e) => {
-                    const next = [...stops];
-                    next[i] = { ...stop, position: Number(e.target.value) };
-                    setStops(next);
-                  }}
-                />
-                <Button
-                  type="button"
-                  variant="ghost"
-                  size="sm"
-                  disabled={stops.length <= 2}
-                  onClick={() => setStops(stops.filter((_, idx) => idx !== i))}
-                >
-                  Remove
-                </Button>
-              </div>
+              <GradientStopRow
+                key={i}
+                stop={stop}
+                index={i}
+                canRemove={stops.length > 2}
+                onChange={(value) =>
+                  setStops(stops.map((entry, index) => (index === i ? value : entry)))
+                }
+                onRemove={() => setStops(stops.filter((_, index) => index !== i))}
+              />
             ))}
             <Button
               type="button"
               variant="outline"
-              onClick={() =>
-                setStops([...stops, { color: "#ffffff", position: 50 }])
-              }
+              onClick={() => setStops([...stops, { color: "#ffffff", position: 50 }])}
             >
               Add stop
             </Button>
@@ -121,7 +92,7 @@ export function GradientGenerator({
         </CardHeader>
         <CardContent className="space-y-4">
           <div
-            className="h-56 rounded-2xl border border-border/50"
+            className="border-border/50 h-56 rounded-2xl border"
             style={{ background: css }}
             role="img"
             aria-label="Gradient preview"
@@ -135,6 +106,86 @@ export function GradientGenerator({
           </div>
         </CardContent>
       </Card>
+    </div>
+  );
+}
+
+function GradientStopRow({
+  stop,
+  index,
+  canRemove,
+  onChange,
+  onRemove,
+}: {
+  stop: GradientStop;
+  index: number;
+  canRemove: boolean;
+  onChange: (stop: GradientStop) => void;
+  onRemove: () => void;
+}) {
+  const [color, setColor] = useState(stop.color);
+  const [position, setPosition] = useState(String(stop.position));
+  const [error, setError] = useState("");
+  useEffect(() => {
+    setColor(stop.color);
+    setPosition(String(stop.position));
+    setError("");
+  }, [stop.color, stop.position]);
+  const applyColor = () => {
+    const valid = readHexColor(color);
+    if (valid) {
+      onChange({ ...stop, color: valid });
+      setColor(valid);
+      setError("");
+    } else setError("Use a 3 or 6 digit HEX color.");
+  };
+  const applyPosition = () => {
+    const value = Number(position);
+    if (position.trim() && Number.isFinite(value) && value >= 0 && value <= 100) {
+      onChange({ ...stop, position: value });
+      setError("");
+    } else setError("Position must be between 0% and 100%.");
+  };
+  return (
+    <div className="gradient-stop-row">
+      <Input
+        type="color"
+        aria-label={`Stop ${index + 1} color picker`}
+        value={stop.color}
+        onChange={(event) => onChange({ ...stop, color: event.target.value })}
+      />
+      <Input
+        aria-label={`Stop ${index + 1} HEX`}
+        value={color}
+        onChange={(event) => setColor(event.target.value)}
+        onBlur={applyColor}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") applyColor();
+        }}
+      />
+      <Input
+        type="number"
+        aria-label={`Stop ${index + 1} position`}
+        min={0}
+        max={100}
+        value={position}
+        onChange={(event) => setPosition(event.target.value)}
+        onBlur={applyPosition}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") applyPosition();
+        }}
+      />
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        aria-label={`Remove stop ${index + 1}`}
+        disabled={!canRemove}
+        onClick={onRemove}
+      >
+        <Trash2 size={13} />
+      </Button>
+      {error && <p role="alert">{error}</p>}
     </div>
   );
 }

@@ -22,9 +22,10 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const { category } = await params;
+  if (!PALETTE_CATEGORIES.includes(category as PaletteCategory)) notFound();
   return createPageMetadata({
     title: `${category[0].toUpperCase()}${category.slice(1)} Palettes`,
-    description: `Browse ${category} color palettes with accessibility scores and exports.`,
+    description: `Browse ${category} color palettes with contrast comparisons, personal saves, and code exports.`,
     path: `/palette-library/category/${category}`,
     keywords: [`${category} palettes`, "color schemes"],
   });
@@ -63,7 +64,7 @@ export default async function PaletteCategoryPage({
               id={p.slug}
               name={p.name}
               colors={p.colors}
-              meta={`A11y ${p.accessibilityScore}`}
+              meta={`${p.accessibilityScore}% of pairs ≥ 3:1`}
             />
           </div>
         ))}

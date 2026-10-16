@@ -15,6 +15,7 @@ import { PaletteCard } from "@/components/library/palette-card";
 import { PaletteHeart } from "@/components/library/palette-heart";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { maybeStaticParams } from "@/lib/static-params";
+import { PaletteContrastTable } from "@/components/library/palette-contrast-table";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -30,10 +31,10 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const p = getPalette(slug);
-  if (!p) return {};
+  if (!p) notFound();
   return createPageMetadata({
     title: `${p.name}`,
-    description: `${p.name} — ${p.colors.join(", ")}. Accessibility score ${p.accessibilityScore}. Export CSS, Tailwind, Flutter, and more.`,
+    description: `${p.name}: ${p.colors.join(", ")}. Compare WCAG text contrast for each color pair, save the palette, and export CSS or Tailwind tokens.`,
     path: `/palette-library/${p.slug}`,
     keywords: [p.name, `${p.category} palette`, "color scheme"],
   });
@@ -60,8 +61,8 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
             {p.category}
           </p>
           <h1 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">{p.name}</h1>
-          <div className="mt-3 flex items-center gap-3">
-            <Badge>Accessibility score {p.accessibilityScore}</Badge>
+          <div className="mt-3 flex flex-wrap items-center gap-3">
+            <Badge>{p.accessibilityScore}% of pairs ≥ 3:1</Badge>
             <PaletteHeart id={p.slug} />
           </div>
         </div>
@@ -72,17 +73,18 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
       </div>
 
       <p className="mb-5 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-        Score {p.accessibilityScore} is a starting filter, not a free pass — click each swatch for
-        contrast vs white and black. Promote one hex to primary and keep the rest quieter; five loud
-        stops fight each other in a dashboard.
+        This generated palette is a starting point for your theme. The percentage above counts
+        pairs with at least 3:1 contrast. Check the table below for combinations that meet
+        normal-text requirements, then export your colors as reusable tokens.
       </p>
-      <ToolCtaRow hex={p.colors[0]} className="mb-8 flex flex-wrap gap-2" />
+      <ToolCtaRow hex={p.colors[0]} colors={p.colors} className="mb-8 flex flex-wrap gap-2" />
 
       <div className="card-lift mb-8 overflow-hidden rounded-[1.75rem] border border-border/50">
         <PaletteStrip colors={p.colors} height="lg" />
       </div>
+      <PaletteContrastTable colors={p.colors} />
 
-      <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="mt-8 grid gap-4 sm:grid-cols-3 lg:grid-cols-5">
         {p.colors.map((c, index) => (
           <Link
             key={`${p.slug}-${c}-${index}`}
@@ -108,7 +110,7 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
               href={`/palette-library/${r.slug}`}
               name={r.name}
               colors={r.colors}
-              meta={`A11y ${r.accessibilityScore}`}
+              meta={`${r.accessibilityScore}% of pairs ≥ 3:1`}
             />
           ))}
         </div>

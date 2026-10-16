@@ -22,7 +22,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
-  if (!post) return {};
+  if (!post) notFound();
   return createPageMetadata({
     title: post.title,
     description: post.description,

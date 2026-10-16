@@ -17,7 +17,7 @@ export default function Page() {
   const tool = getToolBySlug(slug);
   if (!tool) notFound();
   return (
-    <ToolPageShell tool={tool}>
+    <ToolPageShell tool={tool} hideHeader>
       <ToolContent slug={slug} />
     </ToolPageShell>
   );

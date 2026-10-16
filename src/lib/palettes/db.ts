@@ -1,15 +1,17 @@
 "use client";
 
-import { paletteIdFromColors, seededLikes } from "@/lib/palettes/likes";
+import { paletteIdFromColors } from "@/lib/palettes/likes";
+import { parseThemeProject, type ThemeProject } from "@/lib/theme-builder";
 
 const DB_NAME = "colorbase-palettes";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
+
+export type StoredThemeProject = { id: string; project: ThemeProject; updatedAt: number };
 
 export type StoredPalette = {
   id: string;
   name: string;
   colors: string[];
-  likes: number;
   createdAt: number;
 };
 
@@ -33,10 +35,69 @@ function openDb(): Promise<IDBDatabase> {
       if (!db.objectStoreNames.contains("hearts")) {
         db.createObjectStore("hearts", { keyPath: "id" });
       }
+      if (!db.objectStoreNames.contains("theme-projects")) {
+        db.createObjectStore("theme-projects", { keyPath: "id" });
+      }
     };
-    req.onsuccess = () => resolve(req.result);
+    req.onsuccess = () => {
+      req.result.onversionchange = () => req.result.close();
+      resolve(req.result);
+    };
+    req.onblocked = () => reject(new Error("Close other ColorBase tabs and try saving again."));
     req.onerror = () => reject(req.error ?? new Error("Failed to open palette DB"));
   });
+}
+
+export async function saveThemeProject(
+  id: string,
+  project: ThemeProject
+): Promise<StoredThemeProject> {
+  const valid = parseThemeProject(project);
+  if (!valid) throw new Error("This theme could not be saved.");
+  const row = { id, project: valid, updatedAt: Date.now() };
+  const db = await openDb();
+  try {
+    const tx = db.transaction(["theme-projects", "palettes"], "readwrite");
+    tx.objectStore("theme-projects").put(row);
+    const colors = [valid.primary, valid.secondary, valid.accent];
+    tx.objectStore("palettes").put({
+      id: paletteIdFromColors(colors),
+      name: valid.name,
+      colors,
+      createdAt: row.updatedAt,
+    } satisfies StoredPalette);
+    await txDone(tx);
+    return row;
+  } finally {
+    db.close();
+  }
+}
+
+export async function listThemeProjects(): Promise<StoredThemeProject[]> {
+  const db = await openDb();
+  try {
+    const req = db.transaction("theme-projects", "readonly").objectStore("theme-projects").getAll();
+    const rows = await new Promise<StoredThemeProject[]>((resolve, reject) => {
+      req.onsuccess = () => resolve(req.result);
+      req.onerror = () => reject(req.error);
+    });
+    return rows
+      .filter((row) => parseThemeProject(row.project))
+      .sort((a, b) => b.updatedAt - a.updatedAt);
+  } finally {
+    db.close();
+  }
+}
+
+export async function deleteThemeProject(id: string) {
+  const db = await openDb();
+  try {
+    const tx = db.transaction("theme-projects", "readwrite");
+    tx.objectStore("theme-projects").delete(id);
+    await txDone(tx);
+  } finally {
+    db.close();
+  }
 }
 
 function txDone(tx: IDBTransaction) {
@@ -53,7 +114,6 @@ export async function saveGeneratedPalette(colors: string[], name?: string) {
     id,
     name: name || `Palette ${id.slice(0, 8)}`,
     colors: colors.map((c) => (c.startsWith("#") ? c.toUpperCase() : `#${c.toUpperCase()}`)),
-    likes: seededLikes(id),
     createdAt: Date.now(),
   };
   const db = await openDb();

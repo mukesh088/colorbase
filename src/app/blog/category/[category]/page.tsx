@@ -20,6 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { category } = await params;
   const decoded = decodeURIComponent(category);
+  if (!BLOG_CATEGORIES.includes(decoded as BlogCategory)) notFound();
   return createPageMetadata({
     title: `${decoded} Articles`,
     description: `Read ${decoded.toLowerCase()} articles from the colorBase blog.`,

@@ -5,7 +5,6 @@ import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, brandHexJsonLd } from 
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
-  getAllBrandHexEntries,
   getBrandHexEntry,
   getBrandsUsingHex,
   brandAllColors,
@@ -21,16 +20,11 @@ import { BrandLogo } from "@/components/library/brand-logo";
 import { BrandPaletteDownload } from "@/components/library/brand-palette-download";
 import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { Card, CardContent } from "@/components/ui/card";
-import { maybeStaticParams } from "@/lib/static-params";
+import { BrandReferenceSource } from "@/components/library/brand-reference-source";
 
-export const revalidate = 86400;
+// Catalog size must not create a prebuilt/ISR file for each entry.
+export const dynamic = "force-dynamic";
 export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return maybeStaticParams(
-    getAllBrandHexEntries().map((e) => ({ slug: e.brand.slug, hex: e.hexSlug }))
-  );
-}
 
 export async function generateMetadata({
   params,
@@ -39,7 +33,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug, hex } = await params;
   const entry = getBrandHexEntry(slug, hex);
-  if (!entry) return {};
+  if (!entry) notFound();
   const hexDisplay = entry.hex.toUpperCase();
   const { brand } = entry;
   const unverified = isUnverifiedBrandHex(brand, entry.hex);
@@ -129,24 +123,31 @@ export default async function BrandHexPage({
         ]}
       />
       <Breadcrumbs items={crumbs} />
+      <BrandReferenceSource brand={brand} />
 
       <div className="mb-8 flex flex-wrap items-start justify-between gap-4">
         <div className="flex max-w-3xl gap-4">
           <Link
             href={`/brands/${brand.slug}`}
-            className="hidden h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-border/50 bg-white sm:flex dark:bg-card"
+            className="border-border/50 dark:bg-card hidden h-16 w-16 shrink-0 items-center justify-center rounded-2xl border bg-white sm:flex"
             aria-label={`${brand.name} palette`}
           >
-            <BrandLogo slug={brand.slug} name={brand.name} colors={palette} size="sm" logoUrl={brand.logoUrl} />
+            <BrandLogo
+              slug={brand.slug}
+              name={brand.name}
+              colors={palette}
+              size="sm"
+              logoUrl={brand.logoUrl}
+            />
           </Link>
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-rose-600 dark:text-rose-400">
+            <p className="text-xs font-semibold tracking-[0.16em] text-rose-600 uppercase dark:text-rose-400">
               {brand.name} · {unverified ? "unverified estimate" : `${role} brand color`}
             </p>
-            <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="font-display mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
               {brand.name} Hex Color {entry.hex.toUpperCase()}
             </h1>
-            <p className="mt-3 text-muted-foreground">{description}</p>
+            <p className="text-muted-foreground mt-3">{description}</p>
           </div>
         </div>
         <div className="flex flex-col items-start gap-3 sm:items-end">
@@ -156,11 +157,13 @@ export default async function BrandHexPage({
       </div>
 
       <div
-        className="card-lift mb-8 overflow-hidden rounded-[1.75rem] border border-border/50"
+        className="card-lift border-border/50 mb-8 overflow-hidden rounded-[1.75rem] border"
         style={{ backgroundColor: entry.hex, color: a.textOnColor }}
       >
         <div className="flex min-h-[200px] flex-col justify-end p-6 sm:min-h-[240px] sm:p-8">
-          <p className="font-mono text-3xl font-semibold tracking-tight sm:text-4xl">{entry.hex.toUpperCase()}</p>
+          <p className="font-mono text-3xl font-semibold tracking-tight sm:text-4xl">
+            {entry.hex.toUpperCase()}
+          </p>
           <p className="mt-1 font-mono text-sm opacity-80">{rgbLabel}</p>
         </div>
       </div>
@@ -172,9 +175,9 @@ export default async function BrandHexPage({
           ["HSL", hslLabel],
           ["CMYK", a.cmyk],
         ].map(([label, value]) => (
-          <Card key={label} className="card-lift rounded-3xl border-border/50">
+          <Card key={label} className="card-lift border-border/50 rounded-3xl">
             <CardContent className="space-y-2 pt-5">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
+              <p className="text-[11px] font-semibold tracking-[0.14em] text-rose-600 uppercase dark:text-rose-400">
                 {label}
               </p>
               <p className="font-mono text-sm font-semibold">{value}</p>
@@ -184,7 +187,7 @@ export default async function BrandHexPage({
         ))}
       </div>
 
-      <section className="mt-10 space-y-5 rounded-[1.5rem] border border-border/50 bg-white p-5 dark:bg-card sm:p-6">
+      <section className="border-border/50 dark:bg-card mt-10 space-y-5 rounded-[1.5rem] border bg-white p-5 sm:p-6">
         <h2 className="font-display text-xl font-semibold tracking-tight">
           Tints and shades of {entry.hex.toUpperCase()}
         </h2>
@@ -192,12 +195,15 @@ export default async function BrandHexPage({
         <BrandScaleRow label="Shades" colors={[...getShades(entry.hex, 8)].reverse()} />
       </section>
 
-      <div className="mt-8 grid gap-3 font-mono text-sm text-muted-foreground sm:grid-cols-2">
+      <div className="text-muted-foreground mt-8 grid gap-3 font-mono text-sm sm:grid-cols-2">
         <p>CSS {a.cssVar}</p>
         <p>Tailwind bg-{a.tailwind}</p>
         <p>OKLCH {a.oklch}</p>
         <p>
-          <Link href={`/color/${entry.hexSlug}`} className="text-primary underline-offset-4 hover:underline">
+          <Link
+            href={`/color/${entry.hexSlug}`}
+            className="text-primary underline-offset-4 hover:underline"
+          >
             Full color details for {entry.hex}
           </Link>
         </p>
@@ -212,7 +218,7 @@ export default async function BrandHexPage({
           <h2 className="font-display text-2xl font-semibold tracking-tight">
             More {brand.name} hex colors
           </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="text-muted-foreground mt-2 text-sm">
             The full {brand.name} brand palette includes {palette.join(", ")}.
           </p>
           <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -233,14 +239,21 @@ export default async function BrandHexPage({
                   {body}
                 </div>
               ) : (
-                <Link key={color} href={`/brands/${brand.slug}/${color.slice(1).toLowerCase()}`} className={className}>
+                <Link
+                  key={color}
+                  href={`/brands/${brand.slug}/${color.slice(1).toLowerCase()}`}
+                  className={className}
+                >
                   {body}
                 </Link>
               );
             })}
           </div>
           <p className="mt-4 text-sm">
-            <Link href={`/brands/${brand.slug}`} className="text-primary underline-offset-4 hover:underline">
+            <Link
+              href={`/brands/${brand.slug}`}
+              className="text-primary underline-offset-4 hover:underline"
+            >
               View the full {brand.name} brand color palette
             </Link>
           </p>
@@ -249,7 +262,7 @@ export default async function BrandHexPage({
 
       {alsoUsedBy.length > 0 && (
         <section className="mt-12">
-          <h2 className="mb-5 font-display text-xl font-semibold tracking-tight">
+          <h2 className="font-display mb-5 text-xl font-semibold tracking-tight">
             Other brands using {entry.hex}
           </h2>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

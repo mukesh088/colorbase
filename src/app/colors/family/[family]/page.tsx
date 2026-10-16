@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -15,6 +16,7 @@ import { LibraryColorCard } from "@/components/library/library-color-card";
 import { PaletteStrip } from "@/components/library/palette-strip";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { mixColors } from "@/lib/colors/convert";
+import { HEX_REFERENCES } from "@/lib/data/hex-references";
 
 export function generateStaticParams() {
   return COLOR_FAMILIES.map((family) => ({ family }));
@@ -28,6 +30,7 @@ export async function generateMetadata({
   params: Promise<{ family: string }>;
 }): Promise<Metadata> {
   const { family } = await params;
+  if (!COLOR_FAMILIES.includes(family as ColorFamily)) notFound();
   const label = FAMILY_LABELS[family as ColorFamily] ?? family;
   return createPageMetadata({
     title: `${label} Colors`,
@@ -41,6 +44,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ family:
   const { family } = await params;
   if (!COLOR_FAMILIES.includes(family as ColorFamily)) notFound();
   const colors = getColorsByFamily(family).slice(0, 120);
+  const references = HEX_REFERENCES.filter((reference) => reference.family === family);
   const label = FAMILY_LABELS[family as ColorFamily];
   const base = FAMILY_SWATCH[family as ColorFamily];
   const strip = [
@@ -73,6 +77,19 @@ export default async function FamilyPage({ params }: { params: Promise<{ family:
         </p>
         <ToolCtaRow className="mt-5 flex flex-wrap gap-2" />
       </header>
+      {references.length > 0 && (
+        <section className="mt-8" aria-label="Selected reference colors">
+          <h2 className="font-display text-xl font-semibold">Selected reference colors</h2>
+          <div className="mt-3 flex flex-wrap gap-3">
+            {references.map((reference) => (
+              <Link key={reference.hex} href={`/color/${reference.hex.slice(1)}`} className="inline-flex min-h-11 items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 text-sm font-medium hover:border-primary">
+                <span className="h-8 w-8 rounded-lg" style={{ backgroundColor: reference.hex }} aria-hidden="true" />
+                {reference.name}
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       <div className="card-lift mt-8 overflow-hidden rounded-[1.75rem] border border-border/50">
         <PaletteStrip colors={strip} height="md" />

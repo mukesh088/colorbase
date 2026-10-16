@@ -56,13 +56,13 @@ export const LIBRARY_GUIDES: Record<LibraryGuideId, LibraryGuide> = {
   },
   palettes: {
     intro:
-      "Each palette is a short UI scheme with an accessibility score — business, dashboard, healthcare — not 500 nearly-identical 5-hex strips. Heart one to keep it on this device.",
+      "These generated color combinations are starting points for a UI theme. Save a favorite on this device, then check the specific foreground and background colors you plan to use.",
     steps: [
-      "Skim a category that matches the product (SaaS, fashion, gaming), then open a palette whose score is not a vanity 100 on pastel mush.",
+      "Choose a category that matches your product. The percentage shows color pairs with contrast of at least 3:1; it is not an overall accessibility grade.",
       "Click a swatch to the color page for contrast vs white/black. Export CSS or Tailwind from the detail page.",
-      "If two statuses look the same, change shape or label, not only hue — scores do not catch color-blind collisions.",
+      "For normal text, look for AA at 4.5:1 or better. If two statuses look alike, also distinguish them with a label, shape, or icon.",
     ],
-    why: "A palette without contrast notes is a moodboard. The score and per-swatch pages are the difference between “pretty” and shippable.",
+    why: "A readable interface depends on the actual color pair, text size, and surrounding content. Test your chosen combinations before exporting the theme.",
   },
   developers: {
     intro:

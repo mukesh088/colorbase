@@ -14,13 +14,7 @@ import { FLAT_UI_COLORS } from "@/lib/data/color-codes/flat-ui";
 import { getCommonColorRows } from "@/lib/data/color-codes/common";
 
 export type SearchCategory =
-  | "Colors"
-  | "Color Names"
-  | "Color Codes"
-  | "Design Systems"
-  | "Brands"
-  | "Tools"
-  | "Guides";
+  "Colors" | "Color Names" | "Color Codes" | "Design Systems" | "Brands" | "Tools" | "Guides";
 
 export interface SearchHit {
   href: string;
@@ -59,9 +53,21 @@ export function querySearch(raw: string, limit = 6): SearchResultSet {
           category: "Color Codes",
           items: [
             { href: "/color-codes", label: "Color codes hub", category: "Color Codes" as const },
-            { href: "/color-codes/minecraft", label: "Minecraft color codes", category: "Color Codes" as const },
-            { href: "/color-codes/roblox", label: "Roblox BrickColor", category: "Color Codes" as const },
-            { href: "/color-atlas", label: "Universal Color Atlas", category: "Color Codes" as const },
+            {
+              href: "/color-codes/minecraft",
+              label: "Minecraft color codes",
+              category: "Color Codes" as const,
+            },
+            {
+              href: "/color-codes/roblox",
+              label: "Roblox BrickColor",
+              category: "Color Codes" as const,
+            },
+            {
+              href: "/color-atlas",
+              label: "Universal Color Atlas",
+              category: "Color Codes" as const,
+            },
           ],
         },
       ],
@@ -104,7 +110,7 @@ export function querySearch(raw: string, limit = 6): SearchResultSet {
   }
 
   const names = searchNamedColors(q)
-    .filter((c) => c.source === "css")
+    .filter((c) => c.source !== "catalog")
     .slice(0, limit)
     .map((c) => ({
       href: `/color-names/${c.slug}`,
@@ -126,7 +132,8 @@ export function querySearch(raw: string, limit = 6): SearchResultSet {
     .filter((item, i, arr) => arr.findIndex((x) => x.href === item.href) === i)
     .filter(
       (item) =>
-        item.label.toLowerCase().includes(q.toLowerCase()) || item.href.includes(q.toLowerCase().replace(/\s+/g, "-"))
+        item.label.toLowerCase().includes(q.toLowerCase()) ||
+        item.href.includes(q.toLowerCase().replace(/\s+/g, "-"))
     )
     .slice(0, limit);
 
@@ -163,20 +170,52 @@ export function querySearch(raw: string, limit = 6): SearchResultSet {
       category: "Guides" as const,
     }));
 
-  if (q.toLowerCase().includes("learn") || q.toLowerCase().includes("oklch") || q.toLowerCase().includes("guide")) {
-    guides.unshift({ href: "/learning", label: "Learning guides", hint: "Learn", category: "Guides" });
-    guides.unshift({ href: "/learn/color-codes", label: "Color codes explained", hint: "Learn", category: "Guides" });
+  if (
+    q.toLowerCase().includes("learn") ||
+    q.toLowerCase().includes("oklch") ||
+    q.toLowerCase().includes("guide")
+  ) {
+    guides.unshift({
+      href: "/learning",
+      label: "Learning guides",
+      hint: "Learn",
+      category: "Guides",
+    });
+    guides.unshift({
+      href: "/learn/color-codes",
+      label: "Color codes explained",
+      hint: "Learn",
+      category: "Guides",
+    });
   }
 
   const ql = q.toLowerCase();
   const codeHits: SearchHit[] = [];
   for (const cat of COLOR_CODE_CATEGORIES) {
-    if (cat.title.toLowerCase().includes(ql) || cat.slug.includes(ql.replace(/\s+/g, "-")) || ql.includes(cat.slug)) {
-      codeHits.push({ href: cat.href, label: cat.title, hint: "Color codes", category: "Color Codes" });
+    if (
+      cat.title.toLowerCase().includes(ql) ||
+      cat.slug.includes(ql.replace(/\s+/g, "-")) ||
+      ql.includes(cat.slug)
+    ) {
+      codeHits.push({
+        href: cat.href,
+        label: cat.title,
+        hint: "Color codes",
+        category: "Color Codes",
+      });
     }
   }
-  if (ql.includes("minecraft") || ql.includes("motd") || ql.includes("chat code") || /minecraft color code/.test(ql)) {
-    codeHits.push({ href: "/color-codes/minecraft", label: "Minecraft color codes", category: "Color Codes" });
+  if (
+    ql.includes("minecraft") ||
+    ql.includes("motd") ||
+    ql.includes("chat code") ||
+    /minecraft color code/.test(ql)
+  ) {
+    codeHits.push({
+      href: "/color-codes/minecraft",
+      label: "Minecraft color codes",
+      category: "Color Codes",
+    });
     for (const c of MINECRAFT_COLORS) {
       const digit = c.chat.replace("§", "");
       if (
@@ -196,10 +235,19 @@ export function querySearch(raw: string, limit = 6): SearchResultSet {
     }
   }
   if (ql.includes("bukkit") || ql.includes("chatcolor") || ql.includes("spigot")) {
-    codeHits.push({ href: "/color-codes/bukkit", label: "Bukkit ChatColor", category: "Color Codes" });
+    codeHits.push({
+      href: "/color-codes/bukkit",
+      label: "Bukkit ChatColor",
+      category: "Color Codes",
+    });
   }
   if (ql.includes("roblox") || ql.includes("brickcolor") || ql.includes("brick color")) {
-    codeHits.push({ href: "/color-codes/roblox", label: "Roblox BrickColor", hint: "Game colors", category: "Color Codes" });
+    codeHits.push({
+      href: "/color-codes/roblox",
+      label: "Roblox BrickColor",
+      hint: "Game colors",
+      category: "Color Codes",
+    });
     const idMatch = ql.match(/\b(\d{1,4})\b/);
     const bricks = uniqueRobloxColors();
     if (idMatch) {
@@ -243,10 +291,18 @@ export function querySearch(raw: string, limit = 6): SearchResultSet {
     }
   }
   if (ql.includes("atlas")) {
-    codeHits.push({ href: "/color-atlas", label: "Universal Color Atlas", category: "Color Codes" });
+    codeHits.push({
+      href: "/color-atlas",
+      label: "Universal Color Atlas",
+      category: "Color Codes",
+    });
   }
   if (ql.includes("explore") || ql.includes("16.7") || ql.includes("million")) {
-    codeHits.push({ href: "/explore-colors", label: "16.7 million color explorer", category: "Color Codes" });
+    codeHits.push({
+      href: "/explore-colors",
+      label: "16.7 million color explorer",
+      category: "Color Codes",
+    });
   }
   for (const row of getCommonColorRows()) {
     if (row.name.toLowerCase() === ql) {
@@ -260,7 +316,9 @@ export function querySearch(raw: string, limit = 6): SearchResultSet {
     }
   }
   const uniqueCodes = codeHits
-    .filter((item, i, arr) => arr.findIndex((x) => x.href === item.href && x.label === item.label) === i)
+    .filter(
+      (item, i, arr) => arr.findIndex((x) => x.href === item.href && x.label === item.label) === i
+    )
     .slice(0, limit);
 
   if (colors.length) groups.push({ category: "Colors", items: colors.slice(0, limit) });
