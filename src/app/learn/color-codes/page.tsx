@@ -157,6 +157,17 @@ export default function LearnColorCodesPage() {
         }
       >
         <MarkdownBody markdown={BODY} />
+        <section className="mt-10 max-w-3xl">
+          <h2 className="font-display text-2xl font-semibold">Color format questions</h2>
+          <dl className="mt-5 space-y-5">
+            {faqs.map((faq) => (
+              <div key={faq.question}>
+                <dt className="font-semibold">{faq.question}</dt>
+                <dd className="mt-2 text-sm leading-relaxed text-muted-foreground">{faq.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
         <AdReserve />
       </ColorCodePageShell>
     </>

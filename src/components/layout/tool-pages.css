@@ -224,11 +224,13 @@
   max-width: 900px;
   margin-top: 44px;
 }
-.tool-faqs [data-orientation="vertical"] > div {
+.tool-faqs [data-orientation="vertical"] > div,
+.tool-faqs details {
   border-bottom: 1px solid var(--border);
   border-top: 0;
 }
-.tool-faqs button {
+.tool-faqs button,
+.tool-faqs summary {
   padding: 18px 0;
   gap: 16px;
   text-align: left;
@@ -237,11 +239,16 @@
   line-height: 1.6;
   text-decoration: none;
 }
-.tool-faqs button:hover {
+.tool-faqs button:hover,
+.tool-faqs summary:hover {
   text-decoration: none;
 }
-.tool-faqs button > span:not(.tool-faq-number) {
+.tool-faqs button > span:not(.tool-faq-number),
+.tool-faqs summary > span:not(.tool-faq-number) {
   flex: 1;
+}
+.tool-faqs summary::-webkit-details-marker {
+  display: none;
 }
 .tool-faq-number {
   font-family: var(--font-mono);
@@ -432,7 +439,8 @@
     margin-top: 35px;
     padding: 0 4px;
   }
-  .tool-faqs button {
+  .tool-faqs button,
+  .tool-faqs summary {
     font-size: 11px;
     gap: 10px;
     padding: 16px 0;

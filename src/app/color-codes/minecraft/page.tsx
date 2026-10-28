@@ -1,3 +1,4 @@
+import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import { createPageMetadata, faqJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -100,6 +101,7 @@ export default function MinecraftColorCodesPage() {
             8-bit RGB triples; they are not separate official Minecraft color spaces.
           </p>
         </section>
+        <ToolFaqs faqs={faqs} />
       </ColorCodePageShell>
     </>
   );

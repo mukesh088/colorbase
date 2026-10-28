@@ -1,3 +1,4 @@
+import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import { createPageMetadata, faqJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -70,6 +71,7 @@ export default function BukkitColorCodesPage() {
           <pre className="overflow-x-auto rounded-xl border border-border/70 bg-muted/40 p-4 font-mono text-xs">{`player.sendMessage(ChatColor.GREEN + "Ready " + ChatColor.WHITE + "to play");
 // config.yml style: "&aReady &fto play"`}</pre>
         </section>
+        <ToolFaqs faqs={faqs} />
       </ColorCodePageShell>
     </>
   );

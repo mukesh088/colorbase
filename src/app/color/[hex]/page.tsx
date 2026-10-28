@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { ColorDetailView } from "@/components/library/color-detail-view";
 import { getColorByHex, getAllLibraryColors } from "@/lib/data/color-library";
 import { getBrandsUsingHex, brandAllColors } from "@/lib/data/brands";
-import { getCssNamedColors } from "@/lib/data/color-names";
+import { isIndexableHex } from "@/lib/hex-indexing";
 import { BrandCard } from "@/components/library/brand-card";
 import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 import { familyFromHex, findSimilarColors } from "@/lib/colors/spaces";
@@ -37,11 +37,6 @@ export async function generateMetadata({
   const name = known?.name ?? reference?.name ?? value.toUpperCase();
   const brands = getBrandsUsingHex(value);
   const brandNames = brands.map((b) => b.name).slice(0, 4);
-  const curated =
-    Boolean(reference) ||
-    Boolean(known && !known.sources.includes("generated")) ||
-    brands.length > 0 ||
-    getCssNamedColors().some((c) => c.hex.toLowerCase() === value.toLowerCase());
   const title = `${value.toUpperCase()} Color — RGB, HSL, OKLCH, Shades, Palettes & Code`;
   const description =
     reference?.summary ??
@@ -53,7 +48,7 @@ export async function generateMetadata({
     description,
     path: `/color/${value.slice(1)}`,
     keywords: [value, name, "color hex", "hex color code", ...brandNames.map((n) => `${n} hex`)],
-    noIndex: !curated,
+    noIndex: !isIndexableHex(value),
   });
 }
 

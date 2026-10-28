@@ -1,4 +1,6 @@
+import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
+import { isCuratedLibraryColor } from "@/lib/hex-indexing";
 import { notFound, permanentRedirect } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -23,7 +25,7 @@ function resolveColor(slug: string) {
 export function generateStaticParams() {
   return maybeStaticParams(
     getAllLibraryColors()
-      .filter((c) => !c.sources.includes("generated"))
+      .filter(isCuratedLibraryColor)
       .map((c) => ({ slug: c.slug }))
   );
 }
@@ -40,7 +42,7 @@ export async function generateMetadata({
     description: `${color.name} color codes: HEX ${color.hex}, RGB, HSL, LAB, OKLCH, CMYK, nearest Tailwind, CSS variables, tints, shades, and accessibility.`,
     path: `/colors/${color.slug}`,
     keywords: [color.name, color.hex, `${color.name} hex`, `${color.family} color`],
-    noIndex: color.sources.includes("generated"),
+    noIndex: !isCuratedLibraryColor(color),
   });
 }
 
@@ -85,6 +87,7 @@ export default async function ColorSlugPage({ params }: { params: Promise<{ slug
           sharePath={`/colors/${color.slug}`}
         />
       </div>
+      <ToolFaqs faqs={faqs} />
     </div>
   );
 }

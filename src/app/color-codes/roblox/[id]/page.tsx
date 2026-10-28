@@ -1,3 +1,4 @@
+import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -75,8 +76,9 @@ export default async function RobloxBrickColorPage({ params }: { params: Promise
             Open color page
           </Link>
         </div>
-        <ColorDetailView name={`${color.name} (BrickColor ${color.id})`} hex={a.hex} sharePath={`/color-codes/roblox/${color.id}`} />
+        <ColorDetailView headingLevel={2} name={`${color.name} (BrickColor ${color.id})`} hex={a.hex} sharePath={`/color-codes/roblox/${color.id}`} />
         <AdReserve />
+        <ToolFaqs faqs={faqs} />
       </ColorCodePageShell>
     </>
   );

@@ -5,13 +5,13 @@ import { BRANDS, getAllBrandHexEntries, isUnverifiedBrandHex } from "@/lib/data/
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { UI_KITS, getAllLibraryColors } from "@/lib/data/color-library";
 import { kitToDesignPath } from "@/lib/data/design-systems";
-import { getCssNamedColors, getIndexableNamedColors } from "@/lib/data/color-names";
+import { getIndexableNamedColors } from "@/lib/data/color-names";
 import { GRADIENT_CATEGORIES, getAllGradients } from "@/lib/data/gradient-library";
 import { PALETTE_CATEGORIES, getAllPalettes } from "@/lib/data/palette-library";
 import { getAllPosts, BLOG_CATEGORIES } from "@/lib/data/blog";
 import { CODE_FORMATS } from "@/lib/codegen";
 import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
-import { HEX_REFERENCES } from "@/lib/data/hex-references";
+import { getIndexableHexSlugs, isCuratedLibraryColor } from "@/lib/hex-indexing";
 
 export const SITEMAP_IDS = ["pages", "brands", "color-names", "colors", "libraries"] as const;
 export type SitemapId = (typeof SITEMAP_IDS)[number];
@@ -53,26 +53,13 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
     case "color-names":
       return getIndexableNamedColors().map((c) => entry(`/color-names/${c.slug}`, 0.85));
     case "colors": {
-      const hexUrls = new Map<string, ReturnType<typeof entry>>();
-      for (const reference of HEX_REFERENCES) {
-        const slug = reference.hex.slice(1);
-        hexUrls.set(slug, entry(`/color/${slug}`, 0.7));
-      }
-      for (const c of getCssNamedColors()) {
-        const slug = c.hex.slice(1).toLowerCase();
-        hexUrls.set(slug, entry(`/color/${slug}`, 0.6));
-      }
-      for (const e of getAllBrandHexEntries()) {
-        if (isUnverifiedBrandHex(e.brand, e.hex)) continue;
-        if (!hexUrls.has(e.hexSlug)) hexUrls.set(e.hexSlug, entry(`/color/${e.hexSlug}`, 0.55));
-      }
       return [
         ...COLOR_FAMILIES.map((f) => entry(`/colors/family/${f}`, 0.75)),
         ...UI_KITS.map((k) => entry(kitToDesignPath(k.slug) ?? `/colors/kits/${k.slug}`, 0.75)),
         ...getAllLibraryColors()
-          .filter((c) => !c.sources.includes("generated"))
+          .filter(isCuratedLibraryColor)
           .map((c) => entry(`/colors/${c.slug}`, 0.65)),
-        ...hexUrls.values(),
+        ...getIndexableHexSlugs().map((hex) => entry(`/color/${hex}`, 0.6)),
         ...uniqueRobloxColors().map((c) => entry(`/color-codes/roblox/${c.id}`, 0.5)),
       ];
     }

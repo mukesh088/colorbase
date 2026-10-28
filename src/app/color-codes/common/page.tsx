@@ -1,3 +1,4 @@
+import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import { createPageMetadata, faqJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -67,6 +68,7 @@ export default function CommonColorCodesPage() {
         />
         <AdReserve />
         <ColorSpaceNotes ids={["hex", "rgb", "hsl", "oklch"]} />
+        <ToolFaqs faqs={faqs} />
       </ColorCodePageShell>
     </>
   );

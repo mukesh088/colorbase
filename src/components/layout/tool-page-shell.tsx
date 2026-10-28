@@ -117,6 +117,11 @@ export function ToolPageShell({
       <RelatedTools tools={related} />
       {faqs.length > 0 && <ToolFaqs faqs={faqs} />}
       <p className="text-muted-foreground mt-8 text-sm">
+        Need a reference? Browse the{" "}
+        <Link href="/color-codes" className="text-primary underline-offset-4 hover:underline">
+          HEX and RGB color code chart
+        </Link>
+        .{" "}
         Looking for more? Browse{" "}
         <Link href="/tools" className="text-primary underline-offset-4 hover:underline">
           Our Tools

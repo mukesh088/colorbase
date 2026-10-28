@@ -63,6 +63,8 @@ function ColorStrip({
             <Link
               key={`${title}-${hex}-${i}`}
               href={`/color/${hex.slice(1)}`}
+              rel="nofollow"
+              prefetch={false}
               className="group focus-visible:ring-ring relative min-w-0 flex-1 transition-all duration-300 focus-visible:z-10 focus-visible:ring-2 focus-visible:outline-none sm:hover:flex-[1.45]"
               style={{ backgroundColor: hex, color: text }}
               title={hex}
@@ -112,6 +114,8 @@ function HarmonyGrid({
             <Link
               key={`${title}-${hex}-${i}`}
               href={`/color/${hex.slice(1)}`}
+              rel="nofollow"
+              prefetch={false}
               className="group focus-visible:ring-ring relative flex min-h-[7.5rem] flex-col justify-end p-3 transition-[filter] duration-200 hover:brightness-105 focus-visible:ring-2 focus-visible:outline-none sm:min-h-[9rem]"
               style={{ backgroundColor: hex, color: text }}
             >
@@ -279,6 +283,8 @@ export function ColorDetailView({
               <Link
                 key={step}
                 href={`/color/${value.slice(1)}`}
+                rel="nofollow"
+                prefetch={false}
                 className="min-w-0 flex-1 px-0.5 py-8 text-center"
                 style={{ backgroundColor: value, color: text }}
               >

@@ -18,9 +18,9 @@ import { kitToDesignPath } from "@/lib/data/design-systems";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Complete Color Library",
+  title: "Color Library — CSS Names & Design System Colors",
   description:
-    "Explore one of the largest color databases: HTML, CSS, SVG, web-safe, Tailwind, Bootstrap, Material, Fluent, Apple, Android, Chakra, Ant Design, Radix, and PrimeReact.",
+    "Browse CSS color names, web-safe colors, Tailwind, Material, and other design-system palettes. Find HEX, RGB and HSL values, shades, and contrast details.",
   path: "/colors",
   keywords: ["color library", "html colors", "tailwind colors", "material colors"],
 });

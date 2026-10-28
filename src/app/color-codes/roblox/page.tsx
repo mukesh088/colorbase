@@ -1,3 +1,4 @@
+import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import { createPageMetadata, faqJsonLd } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -65,6 +66,7 @@ export default function RobloxColorCodesPage() {
           Sort by ID, name, or hue from the column headers. Duplicate display names can share similar RGB
           with different IDs; each ID has its own page so Studio lookups stay unambiguous.
         </p>
+        <ToolFaqs faqs={faqs} />
       </ColorCodePageShell>
     </>
   );

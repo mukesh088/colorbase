@@ -25,7 +25,7 @@ const FOOTER_GROUPS = [
   {
     title: "Color Codes",
     links: [
-      { href: "/color-codes", label: "Color codes" },
+      { href: "/color-codes", label: "HEX & RGB color codes" },
       { href: "/color-codes/minecraft", label: "Minecraft" },
       { href: "/color-codes/roblox", label: "Roblox" },
       { href: "/colors/flat-ui", label: "Flat UI" },

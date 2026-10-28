@@ -1,3 +1,4 @@
+import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -281,6 +282,7 @@ export default async function BrandHexPage({
           </div>
         </section>
       )}
+      <ToolFaqs faqs={faqs} />
     </div>
   );
 }

@@ -92,7 +92,7 @@ export function createPageMetadata({
       "google-adsense-account": ADSENSE_CLIENT_ID,
     },
     robots: noIndex
-      ? { index: false, follow: false }
+      ? { index: false, follow: true }
       : {
           index: true,
           follow: true,
