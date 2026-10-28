@@ -24,6 +24,7 @@ import { getTextColor } from "@/lib/colors/convert";
 import {
   applyManualHex,
   applyRecommendation,
+  buildColorSystem,
   buildDarkMode,
   improveAccessibility,
   parsePaletteInput,
@@ -31,6 +32,7 @@ import {
   reviewSystem,
   toggleLock,
 } from "@/lib/copilot/engine";
+import { heuristicIntent } from "@/lib/copilot/heuristic";
 import {
   copyForAi,
   EXPORT_FORMATS,
@@ -62,6 +64,34 @@ type Snapshot = {
 };
 
 const STORAGE_KEY = "colorbase-ai-copilot";
+
+function localSnapshot(
+  action: "generate" | "refine" | "review" | "search",
+  text: string,
+  previous: Snapshot | null
+): Snapshot {
+  const intent = heuristicIntent(text, previous?.intent);
+  if (action === "review" && previous?.system) {
+    return {
+      system: previous.system,
+      darkSystem: previous.darkSystem,
+      intent,
+      explanation: "Accessibility review of the current color system.",
+      recommendations: reviewSystem(previous.system),
+      notice: "Reviewed with the local engine. AI assist was unavailable.",
+    };
+  }
+  const system = buildColorSystem(intent, action === "refine" ? previous?.system : undefined);
+  const darkSystem = system.theme === "light" ? buildDarkMode(system, intent) : undefined;
+  return {
+    system,
+    darkSystem,
+    intent,
+    explanation: "A semantic color system from the ColorBase engine.",
+    recommendations: reviewSystem(system),
+    notice: "Generated with the local color engine. AI assist was unavailable — your palette is ready.",
+  };
+}
 
 function contrastBadge(passAA: boolean, passAAA: boolean) {
   if (passAAA) return { label: "WCAG AAA", className: "bg-emerald-500/12 text-emerald-700 dark:text-emerald-400" };
@@ -121,6 +151,17 @@ function AiColorCopilotInner() {
     async (action: "generate" | "refine" | "review" | "search", text: string) => {
       const previous = history.state;
       setLoading(true);
+      const apply = (next: Snapshot) => {
+        commit(next);
+        setMessages((m) => [
+          ...m,
+          { role: "user", text },
+          { role: "ai", text: next.explanation || "Color system updated." },
+        ]);
+        if (next.searchHits?.length) setTab("search");
+        else if (action === "review") setTab("review");
+        toast.success(action === "generate" ? "Color system ready" : "Updated");
+      };
       try {
         const res = await fetch("/api/ai/color-copilot", {
           method: "POST",
@@ -138,12 +179,20 @@ function AiColorCopilotInner() {
             })),
           }),
         });
-        const data = (await res.json()) as CopilotResponse & { error?: string };
-        if (!res.ok && !data.system) {
-          toast.error(data.error || "We couldn't generate your color system right now. Your existing palette is safe.");
+        const contentType = res.headers.get("content-type") ?? "";
+        if (!contentType.includes("application/json")) {
+          apply(localSnapshot(action, text, previous));
           return;
         }
-        commit({
+        const data = (await res.json()) as CopilotResponse & { error?: string };
+        if (!res.ok && !data.system) {
+          apply({
+            ...localSnapshot(action, text, previous),
+            notice: data.error,
+          });
+          return;
+        }
+        apply({
           system: data.system,
           darkSystem: data.darkSystem,
           intent: data.intent,
@@ -152,16 +201,8 @@ function AiColorCopilotInner() {
           searchHits: data.searchHits,
           notice: data.usedFallback ? data.error : undefined,
         });
-        setMessages((m) => [
-          ...m,
-          { role: "user", text },
-          { role: "ai", text: data.explanation || "Color system updated." },
-        ]);
-        if (data.searchHits?.length) setTab("search");
-        else if (action === "review") setTab("review");
-        toast.success(action === "generate" ? "Color system ready" : "Updated");
       } catch {
-        toast.error("We couldn't generate your color system right now. Your existing palette is safe.");
+        apply(localSnapshot(action, text, previous));
       } finally {
         setLoading(false);
       }

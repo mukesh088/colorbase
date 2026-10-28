@@ -21,7 +21,7 @@ export function createPageMetadata({
 }): Metadata {
   const url = absoluteUrl(path);
   const fullTitle = path === "/" ? `${SITE_NAME} | ${title}` : `${title} | ${SITE_NAME}`;
-  const ogImage = absoluteUrl(`/api/og?title=${encodeURIComponent(title)}`);
+  const ogImage = absoluteUrl("/og-image.png");
 
   return {
     title: fullTitle,
@@ -72,10 +72,7 @@ export function createPageMetadata({
       siteName: SITE_NAME,
       title: fullTitle,
       description,
-      images: [
-        { url: ogImage, width: 1200, height: 630, alt: title },
-        { url: absoluteUrl("/og-image.png"), width: 1200, height: 630, alt: SITE_NAME },
-      ],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",

@@ -9,28 +9,14 @@ export async function GET() {
   const configured = isDbConfigured();
   const cookieSecret = Boolean(process.env.USER_COOKIE_SECRET?.trim());
   if (!configured) {
-    return NextResponse.json(
-      {
-        ok: false,
-        configured: false,
-        cookieSecret,
-        connected: false,
-        schema: false,
-        error: "DATABASE_URL is not set",
-      },
-      { status: 503 }
-    );
+    return NextResponse.json({ ok: false }, { status: 503 });
   }
 
   try {
     await query("SELECT 1 AS ok");
   } catch (err) {
-    const error = sanitizeDbError(err);
-    console.error("[db] health connect failed:", error);
-    return NextResponse.json(
-      { ok: false, configured: true, cookieSecret, connected: false, schema: false, error },
-      { status: 503 }
-    );
+    console.error("[db] health connect failed:", sanitizeDbError(err));
+    return NextResponse.json({ ok: false }, { status: 503 });
   }
 
   try {
@@ -40,19 +26,9 @@ export async function GET() {
        WHERE table_schema = 'public' AND table_name = 'users'`
     );
     const schema = Number(tables.rows[0]?.n ?? 0) > 0;
-    return NextResponse.json({
-      ok: schema && cookieSecret,
-      configured: true,
-      cookieSecret,
-      connected: true,
-      schema,
-    });
+    return NextResponse.json({ ok: schema && cookieSecret });
   } catch (err) {
-    const error = sanitizeDbError(err);
-    console.error("[db] health schema failed:", error);
-    return NextResponse.json(
-      { ok: false, configured: true, cookieSecret, connected: true, schema: false, error },
-      { status: 503 }
-    );
+    console.error("[db] health schema failed:", sanitizeDbError(err));
+    return NextResponse.json({ ok: false }, { status: 503 });
   }
 }

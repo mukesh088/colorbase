@@ -1,10 +1,12 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const title = searchParams.get("title") ?? "colorBase";
+  const raw = searchParams.get("title") ?? "ColorBase";
+  const title = raw.replace(/[<>]/g, "").slice(0, 80) || "ColorBase";
 
   return new ImageResponse(
     (
@@ -37,7 +39,7 @@ export async function GET(request: Request) {
           >
             cB
           </div>
-          <div style={{ fontSize: 28, opacity: 0.95 }}>colorBase</div>
+          <div style={{ fontSize: 28, opacity: 0.95 }}>ColorBase</div>
         </div>
         <div style={{ fontSize: 60, fontWeight: 700, lineHeight: 1.1, maxWidth: 920 }}>
           {title}

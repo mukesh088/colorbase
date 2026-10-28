@@ -10,6 +10,7 @@ import { saveCopilotSession } from "@/lib/db/queries";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 30;
 
 export async function POST(request: Request) {
   try {
@@ -22,33 +23,10 @@ export async function POST(request: Request) {
       );
     }
 
-    let userId: string | null = null;
-    if (isDbConfigured()) {
-      try {
-        await ensureSchema();
-        userId = await ensureUserId();
-        if (userId) {
-          const allowed = await checkRateLimit(userId, "copilot", LIMITS.copilotPerMinute);
-          if (!allowed) {
-            return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-          }
-        }
-      } catch {
-        userId = null;
-      }
-    }
-
     const result = await runCopilot(parsed.data);
 
-    if (userId) {
-      try {
-        const slim = { intent: parsed.data, result };
-        if (Buffer.byteLength(JSON.stringify(slim), "utf8") <= LIMITS.copilotBytes) {
-          await saveCopilotSession(userId, slim);
-        }
-      } catch {
-        // Persistence is optional; the generated palette still returns.
-      }
+    if (isDbConfigured()) {
+      void persistSession(parsed.data, result).catch(() => {});
     }
 
     return NextResponse.json(result);
@@ -59,5 +37,17 @@ export async function POST(request: Request) {
       },
       { status: 500 }
     );
+  }
+}
+
+async function persistSession(intent: unknown, result: unknown) {
+  await ensureSchema();
+  const userId = await ensureUserId();
+  if (!userId) return;
+  const allowed = await checkRateLimit(userId, "copilot", LIMITS.copilotPerMinute);
+  if (!allowed) return;
+  const slim = { intent, result };
+  if (Buffer.byteLength(JSON.stringify(slim), "utf8") <= LIMITS.copilotBytes) {
+    await saveCopilotSession(userId, slim);
   }
 }

@@ -37,6 +37,7 @@ export async function completeCopilotJson(action: string, prompt: string, extra:
         Authorization: `Bearer ${key}`,
         "Content-Type": "application/json",
       },
+      signal: AbortSignal.timeout(10_000),
       body: JSON.stringify({
         model,
         temperature: 0.4,

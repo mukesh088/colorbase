@@ -15,9 +15,12 @@ import { FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 
-// Catalog size must not create a prebuilt/ISR file for each entry.
-export const dynamic = "force-dynamic";
+export const revalidate = 86400;
 export const dynamicParams = true;
+
+export function generateStaticParams() {
+  return getCssNamedColors().map((c) => ({ slug: c.slug }));
+}
 
 export async function generateMetadata({
   params,
