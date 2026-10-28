@@ -13,7 +13,7 @@ import { getCommonColorRows } from "@/lib/data/color-codes/common";
 import { COLOR_CODE_FAQS } from "@/lib/data/color-code-guide";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Color Codes ? HEX, RGB & HTML Color Chart",
+  title: "Color Codes: HEX, RGB & HTML Color Chart",
   description:
     "Find HEX color codes, RGB values and CSS color names in a searchable chart. Copy common colors, look up a HEX code, and learn how to use it in CSS.",
   path: "/color-codes",
@@ -151,8 +151,8 @@ export default function ColorCodesHubPage() {
           </h2>
           <p>
             A six-digit code uses the pattern <code>#RRGGBB</code>. Split #3B82F6 into 3B, 82, and
-            F6: those pairs describe red, green, and blue. Hexadecimal uses the digits 0?9 and
-            letters A?F; each pair represents a number from 0 to 255. This example converts to{" "}
+            F6: those pairs describe red, green, and blue. Hexadecimal uses the digits 0 to 9 and
+            letters A to F; each pair represents a number from 0 to 255. This example converts to{" "}
             <code>rgb(59, 130, 246)</code>.
           </p>
           <p>
