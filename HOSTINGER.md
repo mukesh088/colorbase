@@ -47,31 +47,37 @@ OPENAI_MODEL=gpt-4o-mini
 
 ### D) Allow AI / search agents through CDN (required for agent audits)
 
-**Verified live (2026-10-31):** Hostinger CDN (`Server: hcdn`) returns **HTTP 429** for `GPTBot` and `ClaudeBot` on `https://colorbase.in/`. `PerplexityBot` and normal browsers return 200. This is **CDN Security**, not the Next.js app. There is no Hostinger API to allowlist bot UAs — use hPanel or support.
+**What the CDN logs mean (2026-10-31):**
 
-Do this in hPanel:
+| Signal | Meaning |
+| --- | --- |
+| `429` + `ClaudeBot` + IP `216.73.217.169` (US) + ~0.4ms + 0 bytes | Hostinger CDN (`hcdn`) rate-limits Anthropic’s crawler **before** Next.js. Not an app bug. |
+| Occasional single ClaudeBot/GPTBot request returning `200` | UA may be allowed, but **burst crawl of `/color/*` still trips 429**. |
+| `403` from random Chrome UAs (e.g. Cambodia / US VPS) | Separate bot/scraper filter — usually fine to leave. |
+
+There is **no Hostinger API** to allowlist bot UAs or raise ClaudeBot rate limits — use hPanel or support.
+
+#### hPanel checklist
 
 1. Websites → **colorbase.in** → **Performance** → **CDN** → **Manage** → **Security**
-2. Set security level to **Medium** or **Low**
-3. Turn **I’m under attack** / under-attack mode **Off**
-4. Do **not** country-block **United States** (many AI crawlers egress there)
-5. If a bot / crawler allowlist exists, allow at least:
-   - `GPTBot`
-   - `ChatGPT-User`
-   - `OAI-SearchBot`
-   - `ClaudeBot`
-   - `Claude-User`
-   - `anthropic-ai`
-   - `PerplexityBot`
-   - `Googlebot`
-   - `Google-Extended`
-   - `Bingbot`
-6. Save, then purge CDN cache
-7. If GPTBot/ClaudeBot still get **429**, open **Hostinger support** and ask:
+2. Security level **Medium** or **Low**; **I’m under attack = Off**
+3. **Country blocking:** use **Block specific countries** with an **empty** list (do **not** use “Allow only specific countries” empty — that blocks the world)
+4. Do **not** country-block **United States** (ClaudeBot / GPTBot egress there)
+5. **IP allowlist** (if available): allow `216.73.217.169` or Anthropic’s published crawler ranges
+6. **Bot / crawler allowlist** (if available):  
+   `ClaudeBot`, `Claude-User`, `anthropic-ai`, `GPTBot`, `ChatGPT-User`, `OAI-SearchBot`, `PerplexityBot`, `Googlebot`, `Google-Extended`, `Bingbot`
+7. If a “Bot fight / rate limit / challenge” toggle exists for known good bots, set it to **Allow** / **Off** for AI crawlers
+8. Save → purge CDN cache
 
-   > Please allowlist AI agent crawlers for colorbase.in on Hostinger CDN (hcdn). GPTBot and ClaudeBot currently receive HTTP 429. We need search/AI retrieval access; training is already refused via robots.txt Content-Signal `ai-train=no`.
+#### Hostinger support ticket (paste if 429 continues in CDN logs)
 
-**Do not turn CDN off** unless you accept losing edge caching; disabling CDN only as a last-resort test, then turn it back on after support allowlists the bots.
+> Domain: colorbase.in  
+> CDN edge (`hcdn`) returns HTTP 429 for ClaudeBot during catalog crawls.  
+> Example: 2026-10-31 16:09:04 UTC — GET /color/4d8f84 — UA ClaudeBot/1.0 — IP 216.73.217.169 (US) — response 0 bytes / ~0.4ms.  
+> Please allowlist ClaudeBot / Anthropic crawler IPs and disable rate-limit challenges for that UA on colorbase.in.  
+> We only need search/AI retrieval; model training is already refused via robots.txt Content-Signal `ai-train=no`.
+
+**Do not turn CDN off** unless testing; turn it back on after the allowlist works.
 
 Agent discovery files after deploy:
 
