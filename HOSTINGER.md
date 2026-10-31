@@ -45,15 +45,33 @@ OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 ```
 
-### D) Allow AI / search agents through CDN or LiteSpeed (required for agent audits)
+### D) Allow AI / search agents through CDN (required for agent audits)
 
-Fake bot user-agents from random IPs are blocked by Hostinger (403/429). Real Googlebot usually works. For AI agent audits that send custom UAs:
+**Verified live (2026-10-31):** Hostinger CDN (`Server: hcdn`) returns **HTTP 429** for `GPTBot` and `ClaudeBot` on `https://colorbase.in/`. `PerplexityBot` and normal browsers return 200. This is **CDN Security**, not the Next.js app. There is no Hostinger API to allowlist bot UAs — use hPanel or support.
 
-1. Website Dashboard → **Performance → CDN → Manage → Security**
-2. Security level **Medium** or **Low**; **I’m under attack = Off**
-3. Do not country-block **United States**
-4. If bot lists exist, allow: `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `Googlebot`, `Bingbot`
-5. If you still get 429 for agent UAs, open Hostinger support and ask to allowlist AI agent crawlers for `colorbase.in`
+Do this in hPanel:
+
+1. Websites → **colorbase.in** → **Performance** → **CDN** → **Manage** → **Security**
+2. Set security level to **Medium** or **Low**
+3. Turn **I’m under attack** / under-attack mode **Off**
+4. Do **not** country-block **United States** (many AI crawlers egress there)
+5. If a bot / crawler allowlist exists, allow at least:
+   - `GPTBot`
+   - `ChatGPT-User`
+   - `OAI-SearchBot`
+   - `ClaudeBot`
+   - `Claude-User`
+   - `anthropic-ai`
+   - `PerplexityBot`
+   - `Googlebot`
+   - `Google-Extended`
+   - `Bingbot`
+6. Save, then purge CDN cache
+7. If GPTBot/ClaudeBot still get **429**, open **Hostinger support** and ask:
+
+   > Please allowlist AI agent crawlers for colorbase.in on Hostinger CDN (hcdn). GPTBot and ClaudeBot currently receive HTTP 429. We need search/AI retrieval access; training is already refused via robots.txt Content-Signal `ai-train=no`.
+
+**Do not turn CDN off** unless you accept losing edge caching; disabling CDN only as a last-resort test, then turn it back on after support allowlists the bots.
 
 Agent discovery files after deploy:
 
