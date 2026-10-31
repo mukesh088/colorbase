@@ -51,7 +51,8 @@ const nextConfig = {
   },
   images: {
     // Skip /_next/image so Hostinger does not accumulate optimizer cache files
-    // (inodes) and the AVIF/libheif RCE endpoint is not exposed.
+    // (inodes) and the image-optimizer attack surface stays closed.
+    // Keep sharp >= 0.35.5 via package overrides for GHSA-2464-fhr4-w9xw.
     unoptimized: true,
     formats: ["image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,

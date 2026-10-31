@@ -13,6 +13,13 @@ import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 type CatalogDecision = { status: 404 } | { status: 308; pathname: string };
 const missing: CatalogDecision = { status: 404 };
 
+/** Static /colors/* section pages that are not design-system routes or library slugs. */
+const COLOR_SECTION_SLUGS = new Set([
+  "pastel-colors",
+  "neutral-colors",
+  "shades-of-purple",
+]);
+
 /** Validate finite catalogs before React can stream a success response. */
 export function catalogRouteDecision(pathname: string): CatalogDecision | null {
   let segments: string[];
@@ -30,8 +37,12 @@ export function catalogRouteDecision(pathname: string): CatalogDecision | null {
         return pathname === canonical ? null : { status: 308, pathname: canonical };
       }
       case "colors": {
-        // Keep named library/design-system pages, but accept HEX URLs here too.
-        if (DESIGN_SYSTEM_ROUTES.some((route) => route.path === pathname) || getColorBySlug(slug))
+        // Keep named library/design-system/section pages, but accept HEX URLs here too.
+        if (
+          DESIGN_SYSTEM_ROUTES.some((route) => route.path === pathname) ||
+          COLOR_SECTION_SLUGS.has(slug) ||
+          getColorBySlug(slug)
+        )
           return null;
         return isValidHex(slug)
           ? { status: 308, pathname: `/color/${normalizeHex(slug).slice(1)}` }

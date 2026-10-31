@@ -14,7 +14,7 @@ export const favoriteBulkSchema = z.object({
 
 export const preferencesSchema = z.object({
   theme: z.string().trim().max(32).nullable().optional(),
-  settings: z.record(z.unknown()).optional(),
+  settings: z.record(z.string(), z.unknown()).optional(),
 });
 
 const hexColor = z
@@ -45,7 +45,7 @@ export const tableWriteSchema = z.object({
     hasHeader: z.boolean().optional(),
     freezeHeader: z.boolean().optional(),
     stickyFirstColumn: z.boolean().optional(),
-    style: z.record(z.unknown()).optional(),
+    style: z.record(z.string(), z.unknown()).optional(),
     updatedAt: z.number().optional(),
     favorite: z.boolean().optional(),
   }),
