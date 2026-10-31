@@ -13,6 +13,11 @@ const KEY_PAGES = [
   { path: "/ai-color-copilot", title: "AI Color Copilot", summary: "Prompt-to-semantic color system." },
   { path: "/tools", title: "All Tools", summary: "Full ColorBase tool directory." },
   { path: "/contact", title: "Contact", summary: "Support email and business address." },
+  {
+    path: "/resources",
+    title: "Resources & citations",
+    summary: "WCAG/MDN references and a cite-ready ColorBase credit.",
+  },
   { path: "/llms.txt", title: "llms.txt", summary: "Machine-readable site summary for AI agents." },
   { path: "/.well-known/mcp/server-card.json", title: "MCP Server Card", summary: "Discovery card for MCP clients." },
 ] as const;

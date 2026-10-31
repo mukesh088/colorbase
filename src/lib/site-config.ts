@@ -14,7 +14,7 @@ export const SUPPORT_PHONE =
   process.env.NEXT_PUBLIC_SUPPORT_PHONE?.trim() || "+91-651-310-2200";
 
 /** Content revision date for sitemaps / agents (ISO date). Bump when shipping major content. */
-export const SITE_CONTENT_UPDATED = "2026-10-31";
+export const SITE_CONTENT_UPDATED = "2026-11-01";
 
 export const BUSINESS_ADDRESS = {
   street: "Lalpur",

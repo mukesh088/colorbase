@@ -701,6 +701,12 @@ export const STATIC_PAGES = [
     title: "Learn color",
     description: "A practical course on HEX/RGB/HSL, WCAG contrast, harmonies, and design tokens.",
   },
+  {
+    slug: "resources",
+    title: "Color Resources",
+    description:
+      "WCAG, MDN, and CSS Color Module references plus a cite-ready ColorBase credit for writers and agents.",
+  },
   { slug: "colors", title: "Color Library", description: "Complete color library across major design systems." },
   {
     slug: "color-codes",

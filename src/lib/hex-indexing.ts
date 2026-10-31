@@ -3,7 +3,6 @@ import { getAllLibraryColors, type LibraryColor } from "@/lib/data/color-library
 import { getAllBrandHexEntries, isUnverifiedBrandHex } from "@/lib/data/brands";
 import { getCssNamedColors } from "@/lib/data/color-names";
 import { HEX_REFERENCES } from "@/lib/data/hex-references";
-import { SEARCH_LANDING_HEXES } from "@/lib/data/search-landing-hexes";
 
 export function isCuratedLibraryColor(color: Pick<LibraryColor, "sources">) {
   return color.sources.some((source) => source !== "generated");
@@ -11,9 +10,16 @@ export function isCuratedLibraryColor(color: Pick<LibraryColor, "sources">) {
 
 let indexableHexes: Set<string> | undefined;
 
+/**
+ * Index only curated inventory: design-system colors, CSS names, verified brand
+ * hexes, and hand-written hex references. Arbitrary search-landing RGB values
+ * stay reachable at /color/{hex} but are noindex to avoid thin catalog bloat.
+ */
 function getIndexableHexes() {
   if (!indexableHexes) {
-    indexableHexes = new Set<string>([...SEARCH_LANDING_HEXES, ...HEX_REFERENCES.map((reference) => normalizeHex(reference.hex).slice(1))]);
+    indexableHexes = new Set<string>(
+      HEX_REFERENCES.map((reference) => normalizeHex(reference.hex).slice(1))
+    );
     for (const color of getAllLibraryColors()) {
       if (isCuratedLibraryColor(color)) indexableHexes.add(normalizeHex(color.hex).slice(1));
     }

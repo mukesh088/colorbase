@@ -5,6 +5,7 @@ import { Copy, ExternalLink } from "lucide-react";
 import { toast } from "sonner";
 import { getTextColor, hexToRgb } from "@/lib/colors/convert";
 import { cn } from "@/lib/utils";
+import { ColorSwatchImage } from "@/components/library/color-swatch-image";
 
 export function LibraryColorCard({
   href,
@@ -32,10 +33,17 @@ export function LibraryColorCard({
     >
       <Link href={href} className="block" aria-label={`${name} ${hex}`}>
         <div
-          className="relative flex h-28 flex-col justify-end p-3"
-          style={{ backgroundColor: hex, color: text }}
+          className="relative flex h-28 flex-col justify-end overflow-hidden p-3"
+          style={{ color: text }}
         >
-          <p className="relative font-mono text-xs font-semibold uppercase tracking-wider">{hex}</p>
+          <ColorSwatchImage
+            hex={hex}
+            name={name}
+            width={240}
+            height={112}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <p className="relative font-mono text-xs font-semibold tracking-wider uppercase">{hex}</p>
           <p className="relative mt-0.5 font-mono text-[10px] opacity-80">{rgbLabel}</p>
         </div>
         <div className="space-y-1 px-3 py-3">

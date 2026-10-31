@@ -10,6 +10,8 @@ import { ColorDetailView } from "@/components/library/color-detail-view";
 import { findSimilarColors } from "@/lib/colors/spaces";
 import { maybeStaticParams } from "@/lib/static-params";
 import { isValidHex, normalizeHex } from "@/lib/colors/convert";
+import { ColorCatalogBrief } from "@/components/library/color-catalog-brief";
+import { buildColorBrief } from "@/lib/seo/color-brief";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -62,11 +64,15 @@ export default async function ColorSlugPage({ params }: { params: Promise<{ slug
     { name: "Color Library", href: "/colors" },
     { name: color.name, href: `/colors/${color.slug}` },
   ];
+  const path = `/colors/${color.slug}`;
+  const brief = buildColorBrief({
+    name: color.name,
+    hex: color.hex,
+    family: color.family,
+    path,
+  });
   const faqs = [
-    {
-      question: `What is the HEX code for ${color.name}?`,
-      answer: `${color.name} uses ${color.hex}. Copy HEX for design tools, or the CSS variable and Tailwind token from this page. Verify 14px text contrast before using it as body copy on white.`,
-    },
+    ...brief.faqs,
     {
       question: `Which color family does ${color.name} belong to?`,
       answer: `${color.name} is in the ${color.family} family. Use the tints for surfaces and the shades for icons; the family psychology note is a starting mood, not a license to skip WCAG.`,
@@ -78,13 +84,19 @@ export default async function ColorSlugPage({ params }: { params: Promise<{ slug
       <JsonLd data={[breadcrumbJsonLd(crumbs), faqJsonLd(faqs)]} />
       <Breadcrumbs items={crumbs} />
       <div className="mt-4">
+        <ColorCatalogBrief
+          name={color.name}
+          hex={color.hex}
+          family={color.family}
+          path={path}
+        />
         <ColorDetailView
           name={color.name}
           hex={color.hex}
           family={color.family}
           sources={color.sources}
           similar={similar}
-          sharePath={`/colors/${color.slug}`}
+          sharePath={path}
         />
       </div>
       <ToolFaqs faqs={faqs} />

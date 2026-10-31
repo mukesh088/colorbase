@@ -14,6 +14,9 @@ import { PaletteStrip } from "@/components/library/palette-strip";
 import { FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
+import { ColorCatalogBrief } from "@/components/library/color-catalog-brief";
+import { ColorSwatchImage } from "@/components/library/color-swatch-image";
+import { COLOR_AUTHORITY_LINKS } from "@/lib/seo/color-brief";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -124,6 +127,41 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
           )}
         </p>
       </header>
+
+      <div className="mb-6 flex items-center gap-4">
+        <ColorSwatchImage
+          hex={color.hex}
+          name={`${label} color`}
+          width={72}
+          height={72}
+          className="border-border h-[72px] w-[72px] rounded-2xl border"
+          priority
+        />
+        <p className="text-muted-foreground max-w-2xl text-sm leading-relaxed">
+          Specs:{" "}
+          {COLOR_AUTHORITY_LINKS.slice(0, 2).map((link, index) => (
+            <span key={link.href}>
+              {index > 0 ? " · " : null}
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary underline-offset-4 hover:underline"
+              >
+                {link.label}
+              </a>
+            </span>
+          ))}
+          .
+        </p>
+      </div>
+
+      <ColorCatalogBrief
+        name={`${label} color`}
+        hex={color.hex}
+        family={color.family}
+        path={`/color-names/${color.slug}`}
+      />
 
       <div className="card-lift border-border/50 mb-8 overflow-hidden rounded-[1.75rem] border">
         <PaletteStrip colors={[color.hex, ...relatedShades.slice(0, 5)]} height="lg" />

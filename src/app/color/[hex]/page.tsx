@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ColorDetailView } from "@/components/library/color-detail-view";
@@ -12,6 +12,8 @@ import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 import { familyFromHex, findSimilarColors } from "@/lib/colors/spaces";
 import { getHexReference } from "@/lib/data/hex-references";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
+import { ColorCatalogBrief } from "@/components/library/color-catalog-brief";
+import { buildColorBrief } from "@/lib/seo/color-brief";
 
 // All RGB colors share this page. Never prebuild or persist HTML/RSC per HEX,
 // including when PREBUILD_LIBRARY_PAGES is enabled for the finite catalogs.
@@ -69,24 +71,28 @@ export default async function HexColorPage({ params }: { params: Promise<{ hex: 
     .map((c) => ({ slug: c.slug, name: c.name, hex: c.hex }));
   const brands = getBrandsUsingHex(value);
 
+  const family = known?.family ?? reference?.family ?? familyFromHex(value);
+  const path = `/color/${value.slice(1)}`;
+  const brief = buildColorBrief({ name, hex: value, family, path });
   const crumbs = [
     { name: "Home", href: "/" },
     { name: "Colors", href: "/colors" },
-    { name: name, href: `/color/${hex}` },
+    { name: name, href: path },
   ];
 
   return (
     <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
-      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      <JsonLd data={[breadcrumbJsonLd(crumbs), faqJsonLd(brief.faqs)]} />
       <Breadcrumbs items={crumbs} />
       <div className="mt-4">
+        <ColorCatalogBrief name={name} hex={value} family={family} path={path} />
         <ColorDetailView
           name={name}
           hex={value}
-          family={known?.family ?? reference?.family ?? familyFromHex(value)}
+          family={family}
           sources={known?.sources}
           similar={similar}
-          sharePath={`/color/${hex}`}
+          sharePath={path}
         />
       </div>
       {reference && (

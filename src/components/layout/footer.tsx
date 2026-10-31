@@ -47,6 +47,7 @@ const FOOTER_GROUPS = [
     links: [
       { href: "/learning", label: "Guides" },
       { href: "/learn/color-codes", label: "Color codes 101" },
+      { href: "/resources", label: "Resources & citations" },
       { href: "/blog", label: "Blog" },
       { href: "/ai-color-copilot", label: "AI Copilot" },
       { href: "/developers", label: "Developers" },
