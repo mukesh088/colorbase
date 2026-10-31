@@ -36,11 +36,31 @@ Env:
 ```
 NEXT_PUBLIC_SITE_URL=https://colorbase.in
 NEXT_PUBLIC_GA_MEASUREMENT_ID=G-H9NJB2152F
+NEXT_PUBLIC_SUPPORT_PHONE=+91-651-310-2200
 NODE_ENV=production
 DATABASE_URL=
 USER_COOKIE_SECRET=
 CRON_SECRET=
+OPENAI_API_KEY=
+OPENAI_MODEL=gpt-4o-mini
 ```
+
+### D) Allow AI / search agents through CDN or LiteSpeed (required for agent audits)
+
+Fake bot user-agents from random IPs are blocked by Hostinger (403/429). Real Googlebot usually works. For AI agent audits that send custom UAs:
+
+1. Website Dashboard → **Performance → CDN → Manage → Security**
+2. Security level **Medium** or **Low**; **I’m under attack = Off**
+3. Do not country-block **United States**
+4. If bot lists exist, allow: `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `PerplexityBot`, `Googlebot`, `Bingbot`
+5. If you still get 429 for agent UAs, open Hostinger support and ask to allowlist AI agent crawlers for `colorbase.in`
+
+Agent discovery files after deploy:
+
+- `https://colorbase.in/llms.txt`
+- `https://colorbase.in/.well-known/mcp/server-card.json`
+- `https://colorbase.in/robots.txt` (includes `Content-Signal`)
+- `Accept: text/markdown` on `/` returns Markdown
 
 `DATABASE_URL` is a Neon or Supabase **pooled** connection string. Leave it empty if you have not created a database yet — the site still runs with browser localStorage only.
 

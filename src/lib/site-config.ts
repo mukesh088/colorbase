@@ -9,6 +9,12 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in";
 
 export const SUPPORT_EMAIL = "support@colorbase.in";
+/** Public support phone in E.164. Override with NEXT_PUBLIC_SUPPORT_PHONE in Hostinger. */
+export const SUPPORT_PHONE =
+  process.env.NEXT_PUBLIC_SUPPORT_PHONE?.trim() || "+91-651-310-2200";
+
+/** Content revision date for sitemaps / agents (ISO date). Bump when shipping major content. */
+export const SITE_CONTENT_UPDATED = "2026-10-31";
 
 export const BUSINESS_ADDRESS = {
   street: "Lalpur",
@@ -32,6 +38,7 @@ export const ORGANIZATION = {
   url: SITE_URL,
   logo: `${SITE_URL}/icon-512.png`,
   email: SUPPORT_EMAIL,
+  telephone: SUPPORT_PHONE,
   sameAs: [
     "https://twitter.com/colorbase",
     "https://github.com/colorbase",

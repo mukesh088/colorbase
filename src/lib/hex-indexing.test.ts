@@ -39,14 +39,14 @@ describe("hex search landing recovery", () => {
     }
   });
 
-  it("uses one finite canonical inventory without artificial modification dates", () => {
+  it("uses one finite canonical inventory with shared lastmod dates", () => {
     const slugs = getIndexableHexSlugs();
     expect(new Set(slugs).size).toBe(slugs.length);
     expect(slugs.every((slug) => /^[0-9a-f]{6}$/.test(slug))).toBe(true);
     const hexUrls = sitemapForId("colors").filter((entry) => entry.url.includes("/color/"));
     expect(hexUrls.map((entry) => entry.url.split("/").pop())).toEqual(slugs);
     for (const entry of SITEMAP_IDS.flatMap(sitemapForId)) {
-      expect(entry.lastModified).toBeUndefined();
+      expect(entry.lastModified).toBeInstanceOf(Date);
     }
   });
 });

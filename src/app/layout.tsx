@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/footer";
 import { FloatingSocialDockClient } from "@/components/layout/floating-social-dock-client";
 import { GoogleAdSense } from "@/components/analytics/google-adsense";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { WebMcpTools } from "@/components/agent/webmcp-tools";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, organizationJsonLd, websiteJsonLd } from "@/lib/seo";
 import { ADSENSE_CLIENT_ID, SITE_DESCRIPTION, SITE_TAGLINE } from "@/lib/site-config";
@@ -72,6 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans antialiased" suppressHydrationWarning>
         <GoogleAdSense />
         <GoogleAnalytics />
+        <WebMcpTools />
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         <Providers>
           <a

@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL } from "@/lib/site-config";
+import { SITE_CONTENT_UPDATED, SITE_URL } from "@/lib/site-config";
 import { STATIC_PAGES, TOOLS } from "@/lib/tools-registry";
 import { BRANDS, getAllBrandHexEntries, isUnverifiedBrandHex } from "@/lib/data/brands";
 import { COLOR_FAMILIES } from "@/lib/data/families";
@@ -18,6 +18,8 @@ export type SitemapId = (typeof SITEMAP_IDS)[number];
 
 type Entry = MetadataRoute.Sitemap[number];
 
+const LAST_MODIFIED = new Date(`${SITE_CONTENT_UPDATED}T00:00:00.000Z`);
+
 function entry(
   path: string,
   priority = 0.7,
@@ -25,6 +27,7 @@ function entry(
 ): Entry {
   return {
     url: `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`,
+    lastModified: LAST_MODIFIED,
     changeFrequency,
     priority,
   };
@@ -56,9 +59,13 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       return [
         ...COLOR_FAMILIES.map((f) => entry(`/colors/family/${f}`, 0.75)),
         ...UI_KITS.map((k) => entry(kitToDesignPath(k.slug) ?? `/colors/kits/${k.slug}`, 0.75)),
-        ...getAllLibraryColors()
-          .filter(isCuratedLibraryColor)
-          .map((c) => entry(`/colors/${c.slug}`, 0.65)),
+        ...[
+          ...new Map(
+            getAllLibraryColors()
+              .filter(isCuratedLibraryColor)
+              .map((c) => [c.slug, c] as const)
+          ).values(),
+        ].map((c) => entry(`/colors/${c.slug}`, 0.65)),
         ...getIndexableHexSlugs().map((hex) => entry(`/color/${hex}`, 0.6)),
         ...uniqueRobloxColors().map((c) => entry(`/color-codes/roblox/${c.id}`, 0.5)),
       ];

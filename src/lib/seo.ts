@@ -126,6 +126,7 @@ export function organizationJsonLd() {
       url: ORGANIZATION.logo,
     },
     email: ORGANIZATION.email,
+    telephone: ORGANIZATION.telephone,
     address: {
       "@type": "PostalAddress",
       streetAddress: BUSINESS_ADDRESS.street,
@@ -136,10 +137,12 @@ export function organizationJsonLd() {
     },
     contactPoint: {
       "@type": "ContactPoint",
+      telephone: ORGANIZATION.telephone,
       email: ORGANIZATION.email,
       contactType: "customer support",
       areaServed: "IN",
       availableLanguage: ["en", "hi"],
+      url: `${SITE_URL}/contact`,
     },
     sameAs: ORGANIZATION.sameAs,
   };
