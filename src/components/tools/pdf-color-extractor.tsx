@@ -56,7 +56,7 @@ export function PdfColorExtractor() {
         canvas.height = viewport.height;
         const ctx = canvas.getContext("2d", { willReadFrequently: true });
         if (!ctx) continue;
-        await page.render({ canvasContext: ctx, viewport, canvas }).promise;
+        await page.render({ canvasContext: ctx, viewport }).promise;
         const sampled = extractImagePalette(ctx.getImageData(0, 0, canvas.width, canvas.height).data, 6);
         const explicit: string[] = [];
         try {
