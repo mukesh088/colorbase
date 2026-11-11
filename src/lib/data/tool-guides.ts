@@ -533,6 +533,69 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     why: "Teams invent a clever teal, then spend a year explaining it. Starting from a known UI hex and customizing one step is faster.",
     relatedReading: [{ href: "/colors", title: "Complete color library" }],
   },
+  "theme-builder": {
+    intro:
+      "Use the theme builder when you already have a brand hue (or an image) and need light/dark UI roles on a realistic interface — not just a row of swatches.",
+    steps: [
+      "Set a primary brand color, or extract starters from an image.",
+      "Assign semantic roles: canvas, surface, text, muted, accent, and borders.",
+      "Preview dashboard and landing layouts in light and dark; fix any failing text pairs in the contrast checker.",
+      "Export CSS variables, Tailwind-friendly tokens, or shadcn-style theme snippets.",
+    ],
+    why: "A pretty palette still fails when text sits on the wrong surface. Previewing roles on UI chrome catches that before production.",
+    relatedReading: [
+      { href: "/blog/ship-a-five-role-saas-shell-with-css-variables", title: "Five-role SaaS shell with CSS variables" },
+      { href: "/blog/build-a-dark-mode-surface-stack-with-css-variables", title: "Dark-mode surface stack" },
+      { href: "/contrast-checker", title: "Contrast checker" },
+    ],
+  },
+  "chart-palette-generator": {
+    intro:
+      "Build categorical, sequential, or diverging chart colors with live previews. Charts fail when series are only distinguishable by hue — this tool keeps lightness gaps and export formats in view.",
+    steps: [
+      "Choose categorical (unordered series), sequential (magnitude), or diverging (above/below a midpoint).",
+      "Adjust the count and review the bar/line preview; avoid near-identical lightness between neighbors.",
+      "Run a color-vision simulation before shipping.",
+      "Export Chart.js, CSS, or JSON — then label series in the chart itself.",
+    ],
+    why: "Dashboard greens and reds that only differ by hue break for many users. Structure and labels matter more than a trendy gradient.",
+    relatedReading: [
+      { href: "/blog/choose-chart-colors-people-can-tell-apart", title: "Chart colors people can tell apart" },
+      { href: "/color-blind-simulator", title: "Color-blind simulator" },
+    ],
+  },
+  "tools/harmony-studio": {
+    intro:
+      "Harmony Studio builds complementary, analogous, triadic, and related schemes from a base HEX so you can assign jobs — not keep every stop.",
+    steps: [
+      "Pick a base color from your brand or the color picker.",
+      "Choose a harmony mode and inspect each stop’s HEX.",
+      "Delete any stop you cannot name a UI job for (canvas, text, accent, border).",
+      "Send keepers to contrast checking and palette export.",
+    ],
+    why: "A full wheel looks complete and ships noise. Jobs first, then export.",
+    relatedReading: [
+      { href: "/color-wheel", title: "Color wheel" },
+      { href: "/blog/name-the-job-of-every-tint-shade-and-tone", title: "Name tint, shade, and tone jobs" },
+      { href: "/palette-generator", title: "Palette generator" },
+    ],
+  },
+  "tools/shades-tints-tones": {
+    intro:
+      "Generate tints (toward white), shades (toward black), and tones (toward gray) from one HEX, then keep only the steps with a role.",
+    steps: [
+      "Enter a brand or UI hex.",
+      "Generate the ramp and label candidates: wash, hover, text, border.",
+      "Measure text and UI pairs in the contrast checker.",
+      "Export the kept stops — not the entire unused scale.",
+    ],
+    why: "Equal RGB mixes are not equal brightness. This tool is for job-named steps; OKLCH guides explain perceptual ramps.",
+    relatedReading: [
+      { href: "/blog/why-equal-rgb-steps-do-not-look-equally-bright", title: "Why equal RGB steps do not look equally bright" },
+      { href: "/blog/name-the-job-of-every-tint-shade-and-tone", title: "Name tint, shade, and tone jobs" },
+      { href: "/contrast-checker", title: "Contrast checker" },
+    ],
+  },
 };
 
 export function getToolGuide(slug: string): ToolGuide | undefined {

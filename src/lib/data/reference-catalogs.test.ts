@@ -1,7 +1,13 @@
 import { describe, expect, it } from "vitest";
 import brandRecords from "./expanded-brands.json";
 import nameRecords from "./expanded-color-names.json";
-import { BRANDS, getBrandBySlug, getBrandHexEntry } from "./brands";
+import {
+  BRANDS,
+  getBrandBySlug,
+  getBrandHexEntry,
+  isSitemapWorthyBrand,
+  isUnverifiedBrandHex,
+} from "./brands";
 import { getAllNamedColors, getIndexableNamedColors, getNamedColor } from "./color-names";
 import { SITEMAP_IDS, sitemapForId } from "@/lib/sitemaps";
 import { catalogRouteDecision } from "@/lib/catalog-routes";
@@ -40,7 +46,7 @@ describe("source-backed catalog expansion", () => {
     }
   });
 
-  it("publishes every new canonical route while excluding generated inspiration names", () => {
+  it("keeps brand stub routes crawlable; sitemap only lists guidelines-backed stubs", () => {
     const urls = new Set(
       SITEMAP_IDS.flatMap(sitemapForId).map((entry) => new URL(entry.url).pathname)
     );
@@ -49,8 +55,14 @@ describe("source-backed catalog expansion", () => {
         `/brands/${record.slug}`,
         `/brands/${record.slug}/${record.hex.slice(1)}`,
       ]) {
-        expect(urls.has(path), path).toBe(true);
+        // Routes stay live and catalog-valid even when omitted from the sitemap.
         expect(catalogRouteDecision(path), path).toBeNull();
+      }
+      const brand = getBrandBySlug(record.slug)!;
+      const inSitemap = isSitemapWorthyBrand(brand);
+      expect(urls.has(`/brands/${record.slug}`), record.slug).toBe(inSitemap);
+      if (inSitemap && !isUnverifiedBrandHex(brand, record.hex)) {
+        expect(urls.has(`/brands/${record.slug}/${record.hex.slice(1)}`)).toBe(true);
       }
     }
     for (const record of nameRecords) expect(urls.has(`/color-names/${record.slug}`)).toBe(true);

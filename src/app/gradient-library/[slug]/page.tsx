@@ -73,7 +73,8 @@ export default async function GradientDetailPage({
           Download CSS
         </a>
       </div>
-      <div className="mt-6 grid gap-4">
+      <h2 className="font-display mt-8 text-xl font-semibold tracking-tight">Export code</h2>
+      <div className="mt-4 grid gap-4">
         {[
           ["CSS", cssBlock],
           ["Tailwind", g.tailwind],
@@ -81,7 +82,7 @@ export default async function GradientDetailPage({
         ].map(([label, value]) => (
           <Card key={label}>
             <CardHeader className="flex-row items-center justify-between space-y-0">
-              <CardTitle className="text-base">{label}</CardTitle>
+              <CardTitle className="text-base font-semibold">{label}</CardTitle>
               <CopyButton value={value} label={label} />
             </CardHeader>
             <CardContent>

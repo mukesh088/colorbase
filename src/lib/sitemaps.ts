@@ -1,7 +1,12 @@
 import type { MetadataRoute } from "next";
 import { SITE_CONTENT_UPDATED, SITE_URL } from "@/lib/site-config";
 import { STATIC_PAGES, TOOLS } from "@/lib/tools-registry";
-import { BRANDS, getAllBrandHexEntries, isUnverifiedBrandHex } from "@/lib/data/brands";
+import {
+  BRANDS,
+  getAllBrandHexEntries,
+  isSitemapWorthyBrand,
+  isUnverifiedBrandHex,
+} from "@/lib/data/brands";
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { UI_KITS, getAllLibraryColors } from "@/lib/data/color-library";
 import { kitToDesignPath } from "@/lib/data/design-systems";
@@ -19,6 +24,12 @@ export type SitemapId = (typeof SITEMAP_IDS)[number];
 type Entry = MetadataRoute.Sitemap[number];
 
 const LAST_MODIFIED = new Date(`${SITE_CONTENT_UPDATED}T00:00:00.000Z`);
+
+/** Alias tools that 308 to a canonical slug — keep out of the sitemap. */
+const SITEMAP_EXCLUDED_TOOL_SLUGS = new Set([
+  "css-gradient-generator",
+  "palette-from-image",
+]);
 
 function entry(
   path: string,
@@ -38,7 +49,9 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
     case "pages":
       return [
         entry("/", 1, "daily"),
-        ...TOOLS.map((t) => entry(`/${t.slug}`, t.popular || t.featured ? 0.9 : 0.7)),
+        ...TOOLS.filter((t) => !SITEMAP_EXCLUDED_TOOL_SLUGS.has(t.slug)).map((t) =>
+          entry(`/${t.slug}`, t.popular || t.featured ? 0.9 : 0.7)
+        ),
         ...STATIC_PAGES.filter((p) => p.slug !== "search").map((p) =>
           entry(`/${p.slug}`, 0.7, "weekly")
         ),
@@ -48,9 +61,12 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       ];
     case "brands":
       return [
-        ...BRANDS.map((b) => entry(`/brands/${b.slug}`, 0.85)),
+        ...BRANDS.filter(isSitemapWorthyBrand).map((b) => entry(`/brands/${b.slug}`, 0.85)),
         ...getAllBrandHexEntries()
-          .filter((e) => !isUnverifiedBrandHex(e.brand, e.hex))
+          .filter(
+            (e) =>
+              isSitemapWorthyBrand(e.brand) && !isUnverifiedBrandHex(e.brand, e.hex)
+          )
           .map((e) => entry(`/brands/${e.brand.slug}/${e.hexSlug}`, 0.8)),
       ];
     case "color-names":

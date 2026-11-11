@@ -306,13 +306,20 @@ export function HomeBelowFold() {
               prefetch={false}
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="card-lift border-border bg-card rounded-[var(--radius-md)] border p-4"
+              className="card-lift border-border bg-card group relative overflow-hidden rounded-[var(--radius-md)] border p-4"
             >
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-rose-500 via-fuchsia-500 to-violet-500 opacity-80"
+              />
               <p className="text-muted-foreground text-[11px] font-semibold tracking-[0.14em] uppercase">
                 {post.category}
               </p>
-              <p className="font-display mt-2 text-[15px] leading-snug font-semibold tracking-[-0.03em]">
+              <p className="font-display mt-2 text-[15px] leading-snug font-semibold tracking-[-0.03em] transition-colors group-hover:text-primary">
                 {post.title}
+              </p>
+              <p className="text-muted-foreground mt-2 line-clamp-2 text-xs leading-relaxed">
+                {post.description}
               </p>
             </Link>
           ))}
@@ -362,9 +369,10 @@ function HomeSection({
   children: ReactNode;
 }) {
   return (
-    <section className="border-border/50 border-b">
+    <section className="border-border/50 relative border-b">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-rose-400/40 to-transparent" />
       <div className="mx-auto max-w-7xl px-4 py-10 sm:py-12">
-        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div>
             <h2 className="font-display text-xl font-semibold tracking-[-0.035em] sm:text-2xl">
               {title}
@@ -376,9 +384,9 @@ function HomeSection({
           <Link
             prefetch={false}
             href={href}
-            className="text-primary text-sm font-medium hover:underline"
+            className="text-primary inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-sm font-medium transition-colors hover:border-primary/40 hover:bg-primary/10"
           >
-            View all
+            View all <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
         {children}

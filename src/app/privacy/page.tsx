@@ -13,7 +13,7 @@ export const metadata: Metadata = createPageMetadata({
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" path="/privacy" updated="October 6, 2026">
+    <LegalPage title="Privacy Policy" path="/privacy" updated="November 11, 2026">
       <p>
         This Privacy Policy explains how {SITE_NAME} (&quot;we&quot;, &quot;us&quot;, or &quot;our&quot;)
         collects, uses, and shares information when you visit{" "}

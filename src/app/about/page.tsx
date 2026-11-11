@@ -32,10 +32,11 @@ export default function AboutPage() {
         </p>
         <h2>What we build</h2>
         <p>
-          Converters (HEX, RGB, HSL, HSV, CMYK), a serious color picker, palette and gradient
-          generators, WCAG contrast and color-blind checks, CSS extras, and libraries of named
-          colors, brands, and palettes. Copilot helps you describe a product; the math for contrast
-          and ramps stays deterministic.
+          Converters (HEX, RGB, HSL, HSV, CMYK, OKLCH), a color picker, palette and gradient
+          generators, a UI theme builder, chart palettes, WCAG contrast and color-blind checks,
+          CSS extras, and libraries of named colors, brands, and palettes. Brand pages label
+          Simple Icons references and guideline links honestly — ColorBase is not affiliated with
+          those brands. Copilot can draft a system; contrast and ramp math stay deterministic.
         </p>
         <h2>What we write</h2>
         <p>

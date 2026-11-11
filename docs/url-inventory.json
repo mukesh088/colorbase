@@ -1,0 +1,170 @@
+{
+  "generatedAt": "2026-11-11",
+  "branch": "main",
+  "baselineCommit": "b696ace",
+  "notes": "Family-level inventory for Wave 1. Not a dump of every hex URL.",
+  "sitemapShardsApprox": {
+    "pages": 148,
+    "brands": 4787,
+    "color-names": 1141,
+    "colors": 3925,
+    "libraries": 3334,
+    "total": 13335
+  },
+  "families": [
+    {
+      "pattern": "/",
+      "type": "homepage",
+      "intent": "navigational / product",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "interactive picker entry + workflows",
+      "duplicationRisk": "low",
+      "action": "KEEP_AND_IMPROVE",
+      "priority": "P1"
+    },
+    {
+      "pattern": "/color/{hex}",
+      "type": "programmatic_lookup",
+      "intent": "informational / tool",
+      "indexable": "allowlist_only_~2794",
+      "canonical": "lowercase_6_digit",
+      "uniqueValue": "formats, contrast, related brands when matched",
+      "duplicationRisk": "high_templated_prose",
+      "action": "KEEP_AND_IMPROVE_for_allowlist__KEEP_FUNCTIONAL_BUT_NOINDEX_for_arbitrary",
+      "priority": "P0"
+    },
+    {
+      "pattern": "/colors/{slug}",
+      "type": "library_alias",
+      "intent": "informational",
+      "indexable": "curated_sources_only",
+      "canonical": "self_or_hex_redirect",
+      "uniqueValue": "named library tokens",
+      "duplicationRisk": "medium",
+      "action": "KEEP_AND_IMPROVE",
+      "priority": "P0"
+    },
+    {
+      "pattern": "/brands/{slug}",
+      "type": "brand_hub",
+      "intent": "informational",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "palette + source labeling",
+      "duplicationRisk": "high_for_2000_simple_icons_stubs",
+      "action": "KEEP_AND_IMPROVE_core__REQUIRES_MANUAL_REVIEW_expanded_stubs",
+      "priority": "P0"
+    },
+    {
+      "pattern": "/brands/{slug}/{hex}",
+      "type": "brand_hex",
+      "intent": "informational",
+      "indexable": "verified_only",
+      "canonical": "self",
+      "uniqueValue": "brand context for one swatch",
+      "duplicationRisk": "medium",
+      "action": "KEEP_AND_IMPROVE_verified__KEEP_FUNCTIONAL_BUT_NOINDEX_unverified",
+      "priority": "P0"
+    },
+    {
+      "pattern": "/color-names/{slug}",
+      "type": "named_color",
+      "intent": "informational",
+      "indexable": "non_catalog_sources",
+      "canonical": "self",
+      "uniqueValue": "CSS/named color identity",
+      "duplicationRisk": "medium",
+      "action": "KEEP_AND_IMPROVE",
+      "priority": "P1"
+    },
+    {
+      "pattern": "/{tool-slug}",
+      "type": "interactive_tool",
+      "intent": "transactional / tool",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "working controls + guides (~44)",
+      "duplicationRisk": "high_for_gradient_and_image_aliases",
+      "action": "KEEP_AND_IMPROVE__CONSOLIDATE_aliases",
+      "priority": "P0"
+    },
+    {
+      "pattern": "/gradient-library/{slug}",
+      "type": "generated_library",
+      "intent": "inspirational",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "preview + CSS",
+      "duplicationRisk": "high_scale",
+      "action": "REQUIRES_MANUAL_REVIEW",
+      "priority": "P1"
+    },
+    {
+      "pattern": "/palette-library/{slug}",
+      "type": "generated_library",
+      "intent": "inspirational",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "palette preview",
+      "duplicationRisk": "high_scale",
+      "action": "REQUIRES_MANUAL_REVIEW",
+      "priority": "P1"
+    },
+    {
+      "pattern": "/blog/{slug}",
+      "type": "editorial",
+      "intent": "informational",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "18 original posts/guides",
+      "duplicationRisk": "low",
+      "action": "KEEP_AND_IMPROVE",
+      "priority": "P1"
+    },
+    {
+      "pattern": "/learning|/learn/color-codes",
+      "type": "course_reference",
+      "intent": "informational",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "original course + notation reference",
+      "duplicationRisk": "low",
+      "action": "KEEP_AND_IMPROVE",
+      "priority": "P1"
+    },
+    {
+      "pattern": "/search",
+      "type": "internal_search",
+      "intent": "navigational",
+      "indexable": false,
+      "canonical": "self",
+      "uniqueValue": "query UI",
+      "duplicationRisk": "n/a",
+      "action": "KEEP_FUNCTIONAL_BUT_NOINDEX",
+      "priority": "P0"
+    },
+    {
+      "pattern": "/about|/contact|/privacy|/terms|/cookies|/disclaimer",
+      "type": "trust",
+      "intent": "trust",
+      "indexable": true,
+      "canonical": "self",
+      "uniqueValue": "policy and ownership",
+      "duplicationRisk": "low",
+      "action": "KEEP_AND_IMPROVE",
+      "priority": "P0"
+    },
+    {
+      "pattern": "retired tool slugs → /tools",
+      "type": "legacy",
+      "intent": "former_tools",
+      "indexable": "redirect_308",
+      "canonical": "/tools",
+      "uniqueValue": "none_on_destination",
+      "duplicationRisk": "soft_404_risk",
+      "action": "REQUIRES_MANUAL_REVIEW",
+      "priority": "P0"
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { SITEMAP_IDS, sitemapForId } from "@/lib/sitemaps";
+import { BRANDS, isSitemapWorthyBrand } from "@/lib/data/brands";
 
 describe("published sitemap inventory", () => {
   it("keeps only unique canonical public URLs with shared lastmod dates", () => {
@@ -26,6 +27,22 @@ describe("published sitemap inventory", () => {
       "gradient-generator",
     ])
       expect(paths.has(`/${route}`), route).toBe(true);
+    expect(paths.has("/css-gradient-generator")).toBe(false);
+    expect(paths.has("/palette-from-image")).toBe(false);
     expect(SITEMAP_IDS.flatMap(sitemapForId).length).toBeLessThan(50_000);
+  });
+
+  it("limits brand sitemap entries to sitemap-worthy brands", () => {
+    const brandPaths = sitemapForId("brands").map((entry) => new URL(entry.url).pathname);
+    const hubPaths = brandPaths.filter((p) => /^\/brands\/[^/]+$/.test(p));
+    const worthy = new Set(
+      BRANDS.filter(isSitemapWorthyBrand).map((b) => `/brands/${b.slug}`)
+    );
+    expect(hubPaths.every((p) => worthy.has(p))).toBe(true);
+    expect(hubPaths.length).toBe(worthy.size);
+    expect(hubPaths.length).toBeLessThan(BRANDS.length);
+    // Wave 1 snapshot: stubs without guidelines dropped from sitemap (~13.3k → ~10.9k total).
+    expect(SITEMAP_IDS.flatMap(sitemapForId).length).toBeLessThan(12_000);
+    expect(hubPaths.length).toBeLessThan(1_200);
   });
 });

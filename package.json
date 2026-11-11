@@ -15,7 +15,9 @@
     "format:check": "prettier --check .",
     "icons": "node scripts/generate-favicons.js",
     "db:migrate": "node scripts/db-migrate.js",
-    "test": "vitest run"
+    "test": "vitest run",
+    "seo:flags": "node scripts/seo-quality-flags.mjs",
+    "seo:check": "node scripts/check-seo.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

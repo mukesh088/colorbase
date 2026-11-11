@@ -14,7 +14,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = createPageMetadata({
   title: "Brand Hex Color Codes",
   description:
-    "Official brand hex color codes for Google, Apple, Spotify, McDonald's, Swiggy, and sports clubs, plus reference palettes that label any unverified swatch. Copy logo HEX, RGB, and CSS values.",
+    "Brand HEX palettes with source labels. Copy logo colors, check contrast, and open related tools. Unverified swatches are marked.",
   path: "/brands",
   keywords: [
     "brand hex colors",

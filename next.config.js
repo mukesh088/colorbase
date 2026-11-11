@@ -209,6 +209,16 @@ const nextConfig = {
         destination: "/colors/flat-ui",
         permanent: true,
       },
+      {
+        source: "/css-gradient-generator",
+        destination: "/gradient-generator",
+        permanent: true,
+      },
+      {
+        source: "/palette-from-image",
+        destination: "/image-palette-extractor",
+        permanent: true,
+      },
       ...retiredToolSlugs.map((slug) => ({
         source: `/${slug}`,
         destination: "/tools",

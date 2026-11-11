@@ -1,12 +1,13 @@
 import { ChartPaletteBuilder } from "@/components/theme-builder/chart-palette-builder";
+import { ToolGuideSection } from "@/components/content/tool-guide";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, softwareAppJsonLd } from "@/lib/seo";
 import { getToolBySlug } from "@/lib/tools-registry";
 
 export const metadata = createPageMetadata({
-  title: "Chart Palette Generator — Categorical, Sequential & Diverging Colors",
+  title: "Chart Palette Generator",
   description:
-    "Build chart color palettes with live bar and line previews, color-vision simulations, patterns, and Chart.js, CSS, or JSON exports. Choose categorical, sequential, or diverging scales.",
+    "Build categorical, sequential, or diverging chart palettes with live previews, vision checks, and Chart.js, CSS, or JSON export.",
   path: "/chart-palette-generator",
   keywords: [
     "chart palette generator",
@@ -22,6 +23,9 @@ export default function ChartPalettePage() {
     <>
       <JsonLd data={softwareAppJsonLd(getToolBySlug("chart-palette-generator")!)} />
       <ChartPaletteBuilder />
+      <div className="mx-auto max-w-7xl px-3 pb-10 sm:px-4 lg:px-6">
+        <ToolGuideSection slug="chart-palette-generator" />
+      </div>
     </>
   );
 }

@@ -1,5 +1,6 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
-import { ArrowRight, Check, Contrast, ImagePlus, LayoutDashboard } from "lucide-react";
+import { ArrowRight, Check, Contrast, ImagePlus, LayoutDashboard, Palette, Pipette } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ColorSearchBox } from "@/components/search/color-search-box";
 import { FlagshipPicker } from "./flagship-picker";
@@ -11,29 +12,39 @@ import "./home-studio.css";
 export function HomeHero() {
   return (
     <section className="home-studio-hero">
+      <div className="home-studio-orb home-studio-orb-a" aria-hidden />
+      <div className="home-studio-orb home-studio-orb-b" aria-hidden />
       <HomeColorBlastLazy />
       <div className="home-studio-grid">
-        <div className="home-studio-copy">
+        <div className="home-studio-copy animate-rise">
           <p className="home-studio-eyebrow">
-            <span /> YOUR NEXT IDEA, IN COLOR
+            <span /> COLOR SYSTEMS FOR THE WEB
           </p>
           <h1>
-            Find your color.
+            Build better
             <br />
-            <span>Make it yours.</span>
+            <span>color systems.</span>
           </h1>
           <p className="home-studio-description">
-            Meet the color picker at the heart of ColorBase. Explore a shade, capture colors from an
-            image, and turn your inspiration into a beautiful UI theme.
+            Explore colors, create accessible palettes, preview interfaces, and export
+            production-ready CSS and design tokens — free, with no account required.
           </p>
           <div className="home-studio-actions">
             <Button asChild size="lg" className="home-studio-primary">
               <Link prefetch={false} href="/color-picker">
-                Open color picker <ArrowRight />
+                <Pipette className="h-4 w-4" />
+                Open Color Picker <ArrowRight />
               </Link>
             </Button>
-            <Link prefetch={false} href="/image-color-picker" className="home-studio-secondary">
-              Pick from an image <ArrowUpRightIcon />
+            <Button asChild size="lg" variant="outline" className="home-studio-secondary-btn">
+              <Link prefetch={false} href="/palette-generator">
+                <Palette className="h-4 w-4" />
+                Generate Palette
+              </Link>
+            </Button>
+            <Link prefetch={false} href="/contrast-checker" className="home-studio-secondary">
+              <Contrast className="h-3.5 w-3.5" />
+              Check Contrast <ArrowUpRightIcon />
             </Link>
           </div>
           <div className="home-studio-benefits">
@@ -54,48 +65,77 @@ export function HomeHero() {
             <span>LOOKING FOR A SPECIFIC COLOR?</span>
             <ColorSearchBox autoFocus={false} />
           </div>
-          <div className="mt-5 flex items-center gap-3">
+          <div className="home-studio-flagship">
             <ColorSwatchImage
               hex="#635BFF"
               name="ColorBase flagship violet"
               width={48}
               height={48}
-              className="border-border h-12 w-12 rounded-xl border shadow-sm"
+              className="home-studio-flagship-swatch"
               priority
             />
-            <p className="text-muted-foreground max-w-xs text-xs leading-relaxed">
-              Flagship starter swatch{" "}
-              <span className="text-foreground font-mono font-medium">#635BFF</span> — open it in
-              the picker or sample your own.
-            </p>
+            <div>
+              <p className="home-studio-flagship-label">Flagship starter</p>
+              <p className="home-studio-flagship-copy">
+                <span className="font-mono">#635BFF</span> — open it in the picker or sample your
+                own.
+              </p>
+            </div>
+            <Link prefetch={false} href="/color/635bff" className="home-studio-flagship-link">
+              Open swatch <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
-        <div className="home-studio-visual">
+        <div className="home-studio-visual home-studio-visual-rise">
           <FlagshipPicker />
         </div>
       </div>
       <div className="home-studio-workflows">
         {[
           {
-            icon: LayoutDashboard,
-            name: "Build a UI theme",
-            description: "Your palette, on a real interface.",
-            href: "/theme-builder",
+            icon: Pipette,
+            name: "Pick and convert",
+            description: "HEX, RGB, HSL, and OKLCH in one place.",
+            href: "/color-picker",
+            accent: "#db2777",
           },
           {
             icon: ImagePlus,
-            name: "Start from an image",
-            description: "Turn inspiration into usable colors.",
+            name: "Extract from an image",
+            description: "Sample pixels into a usable palette.",
             href: "/image-color-picker",
+            accent: "#ea580c",
+          },
+          {
+            icon: Palette,
+            name: "Generate a balanced palette",
+            description: "Harmony rules with lockable swatches.",
+            href: "/palette-generator",
+            accent: "#7c3aed",
           },
           {
             icon: Contrast,
-            name: "Check your contrast",
-            description: "Make every word easier to read.",
+            name: "Check accessibility",
+            description: "WCAG contrast before you ship text.",
             href: "/contrast-checker",
+            accent: "#0f766e",
           },
-        ].map(({ icon: Icon, name, description, href }) => (
-          <Link key={href} href={href} prefetch={false}>
+          {
+            icon: LayoutDashboard,
+            name: "Preview a UI theme",
+            description: "See tokens on a real interface.",
+            href: "/theme-builder",
+            accent: "#2563eb",
+          },
+          {
+            icon: ArrowRight,
+            name: "Export design tokens",
+            description: "CSS variables and Tailwind-ready output.",
+            href: "/palette-export",
+            accent: "#be185d",
+          },
+        ].map(({ icon: Icon, name, description, href, accent }) => (
+          <Link key={href} href={href} prefetch={false} style={{ "--wf-accent": accent } as CSSProperties}>
             <span className="home-workflow-icon">
               <Icon size={19} />
             </span>

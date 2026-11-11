@@ -64,14 +64,18 @@ Name roles (\`--color-primary\`) and export with [palette export](/palette-expor
 
 The worked shell is [Ship a five-role SaaS shell with CSS variables](/blog/ship-a-five-role-saas-shell-with-css-variables). Tint, shade, and tone jobs are in [Name the job of every tint, shade, and tone](/blog/name-the-job-of-every-tint-shade-and-tone). Confirm a logo color before you treat it as a token: [Confirm a brand HEX before you publish it](/blog/confirm-a-brand-hex-before-you-publish-it).
 
+Preview the same roles on a real interface in the [theme builder](/theme-builder), then walk two measured demos: [Accessible SaaS dashboard palette](/blog/case-study-an-accessible-saas-dashboard-palette) and [Light and dark from one brand blue](/blog/case-study-light-and-dark-theme-from-one-brand-blue).
+
+Also useful next: [Extract a palette from a screenshot](/blog/extract-a-palette-from-a-screenshot-without-guessing), [Hover and focus colors that stay accessible](/blog/pick-hover-and-focus-colors-that-stay-accessible), [Stop using brand primary for every UI role](/blog/stop-using-brand-primary-for-every-ui-role), and [Build a Tailwind color scale you can defend](/blog/build-a-tailwind-color-scale-you-can-defend).
+
 Continue with [Color codes explained](/learn/color-codes), [From HEX to design tokens in CSS](/blog/from-hex-to-design-tokens-in-css) and [Themeable React apps](/blog/developer-tips-for-themeable-react-apps).
 
 ## 5. A one-hour studio exercise
 
 1. Extract colors from a screenshot via [palette from image](/palette-from-image).
-2. Keep three roles: surface, text, accent.
+2. Keep three roles: surface, text, accent — or build a fuller set in the [theme builder](/theme-builder).
 3. Prove the text pair in the contrast checker.
-4. Export CSS variables.
+4. Export CSS variables with [palette export](/palette-export).
 5. Write down why the accent is that hue — psychology notes are in [color meaning](/color-meaning) and the [conversion article](/blog/how-color-psychology-shapes-conversion-rates).
 
 When you can explain those five steps without opening this page, you are ready to ship color without hoping the mock “looks fine.”`;
@@ -90,21 +94,29 @@ export default function LearningPage() {
           { name: "Learning", href: "/learning" },
         ]}
       />
-      <h1 className="font-display text-4xl font-semibold">Learn color on the web</h1>
-      <p className="mt-3 text-muted-foreground">
-        A short course from colorBase — formats, contrast, harmony, and tokens — with the free tools
-        next to every step. Longer guides live on the{" "}
-        <Link href="/blog" className="text-primary underline-offset-4 hover:underline">
-          blog
-        </Link>
-        . The article index sits under the course.
-      </p>
+      <header className="relative overflow-hidden rounded-3xl border border-border/60 bg-gradient-to-br from-rose-50 via-background to-violet-50 p-6 sm:p-8 dark:from-rose-950/40 dark:via-background dark:to-violet-950/30">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -left-8 top-0 h-36 w-36 rounded-full bg-rose-400/20 blur-3xl"
+        />
+        <h1 className="font-display relative text-4xl font-semibold tracking-[-0.04em]">
+          Learn color on the web
+        </h1>
+        <p className="text-muted-foreground relative mt-3 max-w-2xl">
+          A short course from colorBase — formats, contrast, harmony, and tokens — with the free tools
+          next to every step. Longer guides live on the{" "}
+          <Link href="/blog" className="text-primary underline-offset-4 hover:underline">
+            blog
+          </Link>
+          . The article index sits under the course.
+        </p>
+      </header>
       <MarkdownBody markdown={COURSE} className="mt-8" />
       <nav id="article-index" aria-label="Learn index" className="mt-12 space-y-8 scroll-mt-24">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Reference</p>
           <ul className="mt-3">
-            <li className="rounded-2xl border border-border/60 p-4">
+            <li className="card-lift rounded-2xl border border-border/60 bg-card/70 p-4">
               <Link className="font-medium text-primary underline-offset-4 hover:underline" href="/learn/color-codes">
                 Color codes explained
               </Link>
@@ -116,17 +128,26 @@ export default function LearningPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">Guides</p>
           <ul className="mt-3 space-y-3">
             {guides.map((post) => (
-              <li key={post.slug} className="rounded-2xl border border-border/60 p-4">
-                <Link
-                  className="font-medium text-primary underline-offset-4 hover:underline"
-                  href={`/blog/${post.slug}`}
-                >
-                  {post.title}
-                </Link>
-                <p className="mt-1 text-sm text-muted-foreground">{post.description}</p>
-                <p className="mt-2 text-xs text-muted-foreground">
-                  {formatDate(post.publishedAt)} · {post.readingTime} · {post.category}
-                </p>
+              <li
+                key={post.slug}
+                className="card-lift relative overflow-hidden rounded-2xl border border-border/60 bg-card/70 p-4"
+              >
+                <span
+                  aria-hidden
+                  className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-rose-500 to-violet-500"
+                />
+                <div className="pl-2">
+                  <Link
+                    className="font-medium text-primary underline-offset-4 hover:underline"
+                    href={`/blog/${post.slug}`}
+                  >
+                    {post.title}
+                  </Link>
+                  <p className="mt-1 text-sm text-muted-foreground">{post.description}</p>
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    {formatDate(post.publishedAt)} · {post.readingTime} · {post.category}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>

@@ -120,6 +120,44 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </ul>
         </section>
       )}
+      <section className="mt-12 border-t border-border/60 pt-8">
+        <h2 className="font-display text-xl font-semibold">Try it in the studio</h2>
+        <p className="mt-2 text-sm text-muted-foreground">
+          Open a tool, then come back to the guides when you need the why.
+        </p>
+        <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm">
+          <li>
+            <Link href="/theme-builder" className="text-primary hover:underline">
+              Theme builder
+            </Link>
+          </li>
+          <li>
+            <Link href="/contrast-checker" className="text-primary hover:underline">
+              Contrast checker
+            </Link>
+          </li>
+          <li>
+            <Link href="/palette-generator" className="text-primary hover:underline">
+              Palette generator
+            </Link>
+          </li>
+          <li>
+            <Link href="/tools/harmony-studio" className="text-primary hover:underline">
+              Harmony studio
+            </Link>
+          </li>
+          <li>
+            <Link href="/learning" className="text-primary hover:underline">
+              Learning path
+            </Link>
+          </li>
+          <li>
+            <Link href="/brands" className="text-primary hover:underline">
+              Brand colors
+            </Link>
+          </li>
+        </ul>
+      </section>
     </article>
   );
 }

@@ -912,4 +912,498 @@ If two sources disagree, keep the guidelines. Write the other HEX down as a mism
 - MDN, [Using CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Cascading_variables/Using_custom_properties)
 `,
   },
+  {
+    title: "Case Study: An Accessible SaaS Dashboard Palette",
+    description:
+      "A worked demonstration: starting brand blue, failed contrast checks, corrected tokens, and exportable CSS. Not a client engagement.",
+    category: "Accessibility",
+    publishedAt: "2026-11-10",
+    readingTime: "10 min",
+    keywords: [
+      "accessible saas palette",
+      "dashboard color tokens",
+      "wcag dashboard colors",
+      "css variables contrast",
+    ],
+    faqs: [
+      {
+        question: "Is this a real client project?",
+        answer:
+          "No. It is a reproducible studio demonstration with measured contrast ratios. Use it as a template, not as a claim of client work.",
+      },
+      {
+        question: "Why did #3B82F6 fail as body text?",
+        answer:
+          "On white, #3B82F6 is about 3.68:1 — below AA for normal text. The demo moves body text to #0F172A and keeps #1D4ED8 for the primary button with white labels (about 6.70:1).",
+      },
+      {
+        question: "Do these tokens make a whole product accessible?",
+        answer:
+          "No. Color contrast is one requirement. Focus, labels, and status text still need separate checks.",
+      },
+    ],
+    body: `This is a **studio demonstration**, not a client case study. The goal is a dashboard shell you can reproduce: one brand blue, honest failures, corrected roles, and CSS you can paste.
+
+## The brief
+
+Ship a SaaS analytics shell with:
+
+- Light canvas and white cards
+- Dark ink for reading
+- One primary action
+- Success and danger that do not rely on hue alone
+
+Starting brand hue: \`#3B82F6\` (Tailwind blue-600).
+
+## What failed first
+
+| Role tried | Pair | Ratio | Result |
+| --- | --- | --- | --- |
+| Body text = #3B82F6 on #FFFFFF | blue on white | ~3.68:1 | Fails AA for normal text; often mistaken for “fine” |
+| Muted label = #94A3B8 on #FFFFFF | slate on white | 2.56:1 | Fails AA |
+| Border = #CBD5E1 on #FFFFFF | soft slate | 1.48:1 | Fails 1.4.11 when the border identifies the card |
+| Danger text = #F97316 on #FFFFFF | orange | 2.80:1 | Fails AA |
+
+Use the [contrast checker](/contrast-checker) to remeasure any pair you change. The numbers above use the WCAG relative-luminance formula, rounded to two decimals for the known slate/orange failures.
+
+## Corrected palette
+
+@swatch #F8FAFC Canvas
+@swatch #FFFFFF Card surface
+@swatch #0F172A Body text
+@swatch #475569 Muted text (7.24:1 on #F8FAFC)
+@swatch #64748B Border (4.76:1 on white)
+@swatch #1D4ED8 Primary button fill
+@swatch #FFFFFF On-primary label
+@swatch #15803D Success text on #F0FDF4 (4.79:1)
+@swatch #B91C1C Danger text on #FEF2F2 (5.91:1)
+
+White on \`#1D4ED8\` is about **6.70:1**. Keep the brand’s brighter \`#3B82F6\` for charts or large accents if you want — not for 14px body copy.
+
+## Export
+
+\`\`\`css
+:root {
+  color-scheme: light;
+  --canvas: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: #64748b;
+  --accent: #1d4ed8;
+  --on-accent: #ffffff;
+  --success-fg: #15803d;
+  --success-bg: #f0fdf4;
+  --danger-fg: #b91c1c;
+  --danger-bg: #fef2f2;
+}
+body {
+  background: var(--canvas);
+  color: var(--text);
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+.button-primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.status-ok {
+  color: var(--success-fg);
+  background: var(--success-bg);
+}
+.status-bad {
+  color: var(--danger-fg);
+  background: var(--danger-bg);
+}
+\`\`\`
+
+Build the same roles in the [theme builder](/theme-builder), then export with [palette export](/palette-export). Status colors that survive without red-versus-green alone are covered in [Design status colors that work without red and green](/blog/design-status-colors-that-work-without-red-and-green).
+
+## Checklist before you call it done
+
+1. Body text pair ≥ 4.5:1
+2. Borders that define controls ≥ 3:1
+3. Success and danger include words or icons
+4. Primary button label measured on the fill
+5. One chart series palette checked in the [chart palette generator](/chart-palette-generator)
+
+## Sources
+
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+- W3C, [Understanding Non-text Contrast (1.4.11)](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast)
+`,
+  },
+  {
+    title: "Case Study: Light and Dark Theme From One Brand Blue",
+    description:
+      "Demonstration: one brand HEX, semantic tokens for light and dark, measured pairs, and a color-scheme switch. Not a client engagement.",
+    category: "CSS Tutorials",
+    publishedAt: "2026-11-11",
+    readingTime: "9 min",
+    keywords: [
+      "light dark theme css",
+      "brand color dark mode",
+      "css variables theme",
+      "color-scheme dark",
+    ],
+    faqs: [
+      {
+        question: "Can I invert the light theme for dark mode?",
+        answer:
+          "No. Inverting HEX values breaks contrast and often vibrates. Assign new token values under a dark selector and measure again.",
+      },
+      {
+        question: "Does color-scheme recolor my cards?",
+        answer:
+          "No. color-scheme tells the browser how to paint native controls and scrollbars. Your --canvas and --surface tokens still need explicit values.",
+      },
+      {
+        question: "Is this affiliated with a brand?",
+        answer:
+          "No. #1D4ED8 is a measured example blue for the demonstration.",
+      },
+    ],
+    body: `Another **studio demonstration**. Start with one brand blue, ship light and dark shells, and keep the math honest.
+
+## Brand seed
+
+Primary fill: \`#1D4ED8\`. White label on that fill ≈ **6.70:1**.
+
+## Light theme roles
+
+| Role | HEX | Notes |
+| --- | --- | --- |
+| Canvas | #F8FAFC | Page background |
+| Surface | #FFFFFF | Cards |
+| Text | #0F172A | 17.06:1 on canvas |
+| Muted | #475569 | 7.24:1 on #F8FAFC |
+| Line | #64748B | 4.76:1 on white |
+| Accent | #1D4ED8 | Primary actions |
+| On-accent | #FFFFFF | Button label |
+
+@swatch #F8FAFC Light canvas
+@swatch #0F172A Light text
+@swatch #1D4ED8 Accent
+
+## Dark theme roles
+
+| Role | HEX | Notes |
+| --- | --- | --- |
+| Canvas | #0F172A | Page |
+| Surface | #1E293B | Card step (~1.22:1 vs canvas — not text) |
+| Text | #F8FAFC | 17.06:1 on canvas |
+| Muted | #94A3B8 | 6.96:1 on #0F172A |
+| Line | #64748B | ~3.75:1 on #0F172A |
+| Accent | #1D4ED8 | Same fill if white labels still pass |
+| On-accent | #FFFFFF | Remeasure if you lighten the fill |
+
+Do **not** reuse \`#475569\` as dark muted text — that pair was for the light canvas. See [Build a dark mode surface stack with CSS variables](/blog/build-a-dark-mode-surface-stack-with-css-variables).
+
+## Implementation
+
+\`\`\`css
+:root {
+  color-scheme: light;
+  --canvas: #f8fafc;
+  --surface: #ffffff;
+  --text: #0f172a;
+  --muted: #475569;
+  --line: #64748b;
+  --accent: #1d4ed8;
+  --on-accent: #ffffff;
+}
+[data-theme="dark"] {
+  color-scheme: dark;
+  --canvas: #0f172a;
+  --surface: #1e293b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --line: #64748b;
+  --accent: #1d4ed8;
+  --on-accent: #ffffff;
+}
+body {
+  background: var(--canvas);
+  color: var(--text);
+}
+\`\`\`
+
+Preview the same tokens in the [theme builder](/theme-builder). Confirm pairs in the [contrast checker](/contrast-checker). For a five-role shell without the full narrative, use [Ship a five-role SaaS shell with CSS variables](/blog/ship-a-five-role-saas-shell-with-css-variables).
+
+## Perceived brightness note
+
+If hover states look uneven when mixed in RGB, step lightness in OKLCH instead. [Why equal RGB steps do not look equally bright](/blog/why-equal-rgb-steps-do-not-look-equally-bright) shows the trap.
+
+## Sources
+
+- MDN, [\`color-scheme\`](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme)
+- web.dev, [color-scheme](https://web.dev/articles/color-scheme)
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+`,
+  },
+  {
+    title: "Extract a Palette From a Screenshot Without Guessing",
+    description:
+      "Sample flat regions, discard compression noise, name jobs for keepers, and prove contrast before you export.",
+    category: "Web Design",
+    publishedAt: "2026-11-12",
+    readingTime: "8 min",
+    keywords: [
+      "extract palette from screenshot",
+      "image color picker",
+      "ui palette from image",
+      "screenshot color sampling",
+    ],
+    faqs: [
+      {
+        question: "Should I average every pixel in a button?",
+        answer:
+          "No. Sample a flat interior, away from anti-aliased edges and drop shadows. Averaging the whole button invents a third color.",
+      },
+      {
+        question: "Is a favicon color official brand color?",
+        answer:
+          "Not by itself. Treat it as an estimate until you confirm a brand guideline or logo file. See the brand HEX confirmation guide.",
+      },
+    ],
+    body: `Screenshots are useful references and terrible sources of truth if you sample carelessly. Compression, overlays, and anti-aliasing invent colors that never existed in the design file.
+
+## Workflow
+
+1. Open the screenshot in the [image color picker](/image-color-picker) or [palette from image](/palette-from-image).
+2. Click a **flat** region: solid fills, not borders or gradients mid-blend.
+3. Keep three to five candidates max. Delete anything you cannot name a job for.
+4. Measure text and control pairs in the [contrast checker](/contrast-checker).
+5. Export keepers with [palette export](/palette-export).
+
+## What to discard
+
+| Sample looks like | Usually is | Action |
+| --- | --- | --- |
+| Soft edge around a glyph | Anti-alias mix | Sample the fill, not the fringe |
+| Slightly different “same” blue | JPEG banding | Prefer the larger flat area |
+| Color under a 40% black overlay | Dimmed base | Sample without the overlay if you can |
+| Favicon corner pixel | Marketing guess | Label as estimate |
+
+@swatch #0F172A Likely text candidate
+@swatch #FFFFFF Likely surface
+@swatch #1D4ED8 Likely accent candidate
+
+## Assign jobs before you export
+
+- **Canvas / surface** — page and card backgrounds
+- **Text / muted** — reading ink
+- **Accent / on-accent** — primary action and its label
+- **Line** — borders that define controls (need ~3:1 when they identify the control)
+
+If the screenshot is a competitor product, do not publish their HEX as your brand. Build roles in the [theme builder](/theme-builder) from your own seed instead.
+
+## Sources
+
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+- W3C, [Understanding Non-text Contrast (1.4.11)](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast)
+`,
+  },
+  {
+    title: "Pick Hover and Focus Colors That Stay Accessible",
+    description:
+      "Darken or lighten with intent, keep label contrast, and never rely on hue alone for focus.",
+    category: "Accessibility",
+    publishedAt: "2026-11-12",
+    readingTime: "8 min",
+    keywords: [
+      "hover color contrast",
+      "focus ring accessibility",
+      "button hover css",
+      "accessible interactive states",
+    ],
+    faqs: [
+      {
+        question: "Is opacity: 0.8 a good hover?",
+        answer:
+          "Often no. Transparent hover over unknown backgrounds creates accidental pairs. Prefer an explicit HEX for hover and measure it.",
+      },
+      {
+        question: "Does a focus ring need 3:1?",
+        answer:
+          "WCAG 2.2 focus appearance expects a visible indicator with sufficient contrast against adjacent colors. Prefer a dedicated outline color, not only a fill change.",
+      },
+    ],
+    body: `Interactive states fail quietly. A button that passes AA at rest can fail on hover when the fill lightens and the label stays the same.
+
+## Rest, hover, focus — three jobs
+
+| State | Job | Typical move |
+| --- | --- | --- |
+| Rest | Clear primary action | Measured fill + label |
+| Hover | Stronger affordance | Slightly darker fill (light UI) or slightly lighter (dark UI) |
+| Focus | Keyboard location | Outline / ring with contrast — not hue alone |
+
+## Example (light UI)
+
+@swatch #1D4ED8 Rest fill
+@swatch #1E40AF Hover fill
+@swatch #FFFFFF Label
+@swatch #F97316 Focus ring (example)
+
+White on \`#1D4ED8\` ≈ **6.70:1**. White on \`#1E40AF\` is stronger, not weaker — a safe direction for hover on light pages. Always remeasure in the [contrast checker](/contrast-checker).
+
+\`\`\`css
+.button-primary {
+  background: #1d4ed8;
+  color: #ffffff;
+}
+.button-primary:hover {
+  background: #1e40af;
+}
+.button-primary:focus-visible {
+  outline: 3px solid #f97316;
+  outline-offset: 2px;
+}
+\`\`\`
+
+Build the rest/hover pair as named stops in [shades, tints, and tones](/tools/shades-tints-tones). Preview both in the [theme builder](/theme-builder).
+
+## Mistakes
+
+- Using red hover only for “importance” with no outline for keyboard users
+- Lightening a mid blue until label contrast collapses
+- Replacing focus with \`outline: none\` and no replacement
+
+## Sources
+
+- W3C, [Understanding Focus Appearance (2.4.13)](https://www.w3.org/WAI/WCAG22/Understanding/focus-appearance)
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+`,
+  },
+  {
+    title: "Stop Using Brand Primary for Every UI Role",
+    description:
+      "Keep the brand hue for actions and identity. Give canvas, text, borders, and status their own jobs.",
+    category: "Branding",
+    publishedAt: "2026-11-13",
+    readingTime: "7 min",
+    keywords: [
+      "brand color ui roles",
+      "semantic color tokens",
+      "primary color overuse",
+      "design tokens branding",
+    ],
+    faqs: [
+      {
+        question: "Can brand primary be body text?",
+        answer:
+          "Only if it passes AA on the surface behind it. Most mid-chroma brand blues and roses fail as 14px text on white.",
+      },
+      {
+        question: "Where should the brand hue show up?",
+        answer:
+          "Primary buttons, key links, selected states, and marketing accents — not every border and paragraph.",
+      },
+    ],
+    body: `Teams paste one brand HEX into text, borders, charts, and errors. The product looks loud and often fails contrast.
+
+## One hue, many roles — selectively
+
+| Role | Use brand hue? | Prefer |
+| --- | --- | --- |
+| Primary button | Yes | Brand fill + measured on-color |
+| Body text | Rarely | Near-black / near-white neutrals |
+| Borders | Rarely | Neutral slate with ≥3:1 when needed |
+| Success / danger | No (alone) | Status pair + icon/label |
+| Charts | Maybe one series | Distinguishable set from [chart palette](/chart-palette-generator) |
+
+@swatch #E11D48 Brand accent example
+@swatch #0F172A Body text
+@swatch #F8FAFC Canvas
+@swatch #64748B Border
+
+## A practical split
+
+1. Confirm the brand HEX ([confirm a brand HEX](/blog/confirm-a-brand-hex-before-you-publish-it)).
+2. Build semantic roles in the [theme builder](/theme-builder).
+3. Keep brand chroma on actions; keep reading ink neutral.
+4. Export tokens with [palette export](/palette-export).
+
+The five-role shell walkthrough is [Ship a five-role SaaS shell with CSS variables](/blog/ship-a-five-role-saas-shell-with-css-variables). Status without relying on red vs green alone: [Design status colors that work without red and green](/blog/design-status-colors-that-work-without-red-and-green).
+
+## Sources
+
+- W3C, [Understanding Use of Color (1.4.1)](https://www.w3.org/WAI/WCAG22/Understanding/use-of-color)
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+`,
+  },
+  {
+    title: "Build a Tailwind Color Scale You Can Defend",
+    description:
+      "Name stops by job, check contrast at 500/600/700, and avoid shipping a decorative 50–950 ramp unused.",
+    category: "Tailwind Tutorials",
+    publishedAt: "2026-11-13",
+    readingTime: "9 min",
+    keywords: [
+      "tailwind color scale",
+      "tailwind palette generator",
+      "css variables tailwind",
+      "tailwind contrast",
+    ],
+    faqs: [
+      {
+        question: "Do I need all stops from 50 to 950?",
+        answer:
+          "No. Ship the stops you use in components. A full ramp is fine as a source file; production CSS should keep named roles.",
+      },
+      {
+        question: "Is Tailwind’s default blue always accessible?",
+        answer:
+          "No default scale guarantees AA for your surfaces. Measure the pairs you actually render.",
+      },
+    ],
+    body: `A 50–950 scale looks complete in a config file and still fails in the UI if \`500\` is used for small text on white.
+
+## Defend the stops you ship
+
+| Stop (typical) | Common job | Check |
+| --- | --- | --- |
+| 50–100 | Washes / soft surfaces | Text on them still needs ink |
+| 200–300 | Borders / chips | Non-text contrast when they identify controls |
+| 500–600 | Solid fills | Label contrast on the fill |
+| 700–900 | Text on light / fills on dark | AA for the text size you use |
+
+## Example branding scale (illustrative)
+
+@swatch #FFF1F2 50
+@swatch #FECDD3 200
+@swatch #E11D48 600
+@swatch #9F1239 800
+
+White on \`#E11D48\` is a strong solid for large UI; still measure for 14px labels in the [contrast checker](/contrast-checker).
+
+\`\`\`js
+// tailwind.config illustration — prefer CSS variables in v4 projects
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        brand: {
+          50: "#fff1f2",
+          200: "#fecdd3",
+          600: "#e11d48",
+          800: "#9f1239",
+        },
+      },
+    },
+  },
+};
+\`\`\`
+
+Generate candidates in the [palette generator](/palette-generator) or [shades tool](/tools/shades-tints-tones), preview roles in the [theme builder](/theme-builder), then export. For perceptual ramps, read [Why equal RGB steps do not look equally bright](/blog/why-equal-rgb-steps-do-not-look-equally-bright).
+
+## Sources
+
+- Tailwind CSS, [Customizing colors](https://tailwindcss.com/docs/customizing-colors)
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+`,
+  },
 ];

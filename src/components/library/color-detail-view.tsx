@@ -13,7 +13,8 @@ import {
 } from "@/lib/colors/spaces";
 import { oklchShadeScale, SHADE_STEPS } from "@/lib/colors/oklch";
 import { colorUsageNotes } from "@/lib/colors/usage-notes";
-import { psychologyForFamily, FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
+import { FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
+import { getHexReference } from "@/lib/data/hex-references";
 import { CopyButton } from "@/components/color/copy-button";
 import { ShareButtons } from "@/components/library/share-buttons";
 import { CodeExportPanel } from "@/components/library/code-export-panel";
@@ -154,6 +155,7 @@ export function ColorDetailView({
   const [allFormats, setAllFormats] = useState(false);
   const fam = (family ?? "blue") as ColorFamily;
   const path = sharePath ?? `/color/${a.hex.slice(1)}`;
+  const reference = getHexReference(a.hex);
   const usage = colorUsageNotes(a, name, family);
   const tw = nearestTailwind(a.hex);
   const material = nearestMaterial(a.hex);
@@ -411,23 +413,24 @@ export function ColorDetailView({
           Where {a.hex} works
         </h2>
         <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
-          {usage.summary}
+          {reference?.summary ?? usage.summary}
         </p>
         <p className="text-foreground mt-4 text-sm font-medium">Sensible jobs for this swatch</p>
         <ul className="text-muted-foreground mt-2 list-disc space-y-1 pl-5 text-sm sm:text-base">
-          {usage.uses.map((item) => (
+          {(reference?.usage ?? usage.uses).map((item) => (
             <li key={item}>{item}</li>
           ))}
         </ul>
-        <div className="text-muted-foreground mt-4 space-y-2 text-sm leading-relaxed sm:text-base">
-          {usage.watchouts.map((item) => (
-            <p key={item}>{item}</p>
-          ))}
-        </div>
+        {!reference ? (
+          <div className="text-muted-foreground mt-4 space-y-2 text-sm leading-relaxed sm:text-base">
+            {usage.watchouts.map((item) => (
+              <p key={item}>{item}</p>
+            ))}
+          </div>
+        ) : null}
         <p className="text-muted-foreground mt-4 text-sm">
-          Family context: {psychologyForFamily(fam)} Common uses still include buttons, charts, and
-          accents in the {FAMILY_LABELS[fam] ?? family} range — always verify the pair for this
-          exact hex in the{" "}
+          {FAMILY_LABELS[fam] ?? family} family swatches still need a measured foreground pair.
+          Verify this exact hex in the{" "}
           <Link
             href={colorToolLinks(a.hex).contrast}
             className="text-primary underline-offset-4 hover:underline"

@@ -1,12 +1,13 @@
 import { ThemeBuilder } from "@/components/theme-builder/theme-builder";
+import { ToolGuideSection } from "@/components/content/tool-guide";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, softwareAppJsonLd } from "@/lib/seo";
 import { getToolBySlug } from "@/lib/tools-registry";
 
 export const metadata = createPageMetadata({
-  title: "UI Theme Builder — Live Previews, shadcn/ui & Tailwind Export",
+  title: "UI Theme Builder",
   description:
-    "Turn your brand colors or an image into a complete UI theme. Preview dashboards, landing pages, and stores in light and dark mode. Export shadcn/ui, Tailwind v4, CSS, and design tokens.",
+    "Build a UI theme from brand colors or an image. Preview light and dark interfaces, then export CSS, Tailwind, and design tokens.",
   path: "/theme-builder",
   keywords: [
     "ui theme builder",
@@ -22,6 +23,9 @@ export default function ThemeBuilderPage() {
     <>
       <JsonLd data={softwareAppJsonLd(getToolBySlug("theme-builder")!)} />
       <ThemeBuilder />
+      <div className="mx-auto max-w-7xl px-3 pb-10 sm:px-4 lg:px-6">
+        <ToolGuideSection slug="theme-builder" />
+      </div>
     </>
   );
 }
