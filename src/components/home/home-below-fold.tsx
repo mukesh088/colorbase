@@ -38,6 +38,79 @@ export function HomeBelowFold() {
       <PaletteDiscovery />
 
       <HomeSection
+        title="New flagship studios"
+        href="/tools"
+        description="Website extraction, SVG and image recolor, CSS token audit, and animated mesh gradients."
+      >
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          {[
+            {
+              href: "/website-color-extractor",
+              title: "Website colors",
+              blurb: "Public HTML/CSS palette analysis",
+            },
+            {
+              href: "/video-color-extractor",
+              title: "Video colors",
+              blurb: "Frame sampling to palettes",
+            },
+            {
+              href: "/pdf-color-extractor",
+              title: "PDF colors",
+              blurb: "Local page rendering + samples",
+            },
+            {
+              href: "/qr-code-color-designer",
+              title: "Color QR",
+              blurb: "Branded codes with decode check",
+            },
+            {
+              href: "/presentation-theme-generator",
+              title: "Deck theme",
+              blurb: "PPTX-ready slide palettes",
+            },
+            {
+              href: "/map-color-scale-generator",
+              title: "Map scales",
+              blurb: "Choropleth ramps + CVD",
+            },
+            {
+              href: "/email-dark-mode-tester",
+              title: "Email dark mode",
+              blurb: "Sanitized HTML contrast sims",
+            },
+            {
+              href: "/image-text-contrast",
+              title: "Image text",
+              blurb: "Readable type on photos",
+            },
+            {
+              href: "/css-blend-mode-generator",
+              title: "Blend modes",
+              blurb: "mix & background blending",
+            },
+            {
+              href: "/brand-color-consistency-checker",
+              title: "Brand audit",
+              blurb: "Screenshot vs approved palette",
+            },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              prefetch={false}
+              href={item.href}
+              className="card-lift border-border bg-card rounded-[var(--radius-md)] border p-4"
+            >
+              <strong className="font-display block text-sm tracking-[-0.03em]">{item.title}</strong>
+              <span className="text-muted-foreground mt-1 block text-xs leading-relaxed">
+                {item.blurb}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </HomeSection>
+
+      <HomeSection
         title="A fresh take on gradients"
         href="/gradient-library#new-gradients"
         description="100 new named blends. Find a background you love and take the CSS with you."

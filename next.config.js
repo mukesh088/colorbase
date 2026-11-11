@@ -160,6 +160,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/sitemap/:id(\\d+).xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
+      {
+        source: "/sitemap/:id(\\d+).xml",
+        destination: "/sitemap.xml",
+        permanent: true,
+      },
+      {
         source: "/tools/table-generator",
         destination: "/tools",
         permanent: true,

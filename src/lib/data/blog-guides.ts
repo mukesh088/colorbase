@@ -1144,6 +1144,61 @@ If hover states look uneven when mixed in RGB, step lightness in OKLCH instead. 
 `,
   },
   {
+    title: "Extract Colors From a Live Website With ColorBase",
+    description:
+      "Worked example: fetch public CSS from example.com-style pages, read roles and contrast pairs, then export tokens — with honest SSRF and SPA limits.",
+    category: "Web Design",
+    publishedAt: "2026-11-14",
+    readingTime: "8 min",
+    keywords: [
+      "extract website colors",
+      "website color palette",
+      "css color extraction",
+      "brand colors from website",
+    ],
+    faqs: [
+      {
+        question: "Will this work on every marketing site?",
+        answer:
+          "Only if colors appear in publicly fetchable HTML or CSS. Client-only theme packs and canvas art will be incomplete.",
+      },
+      {
+        question: "Is scraping behind login supported?",
+        answer:
+          "No. Authenticated or private network targets are blocked on purpose.",
+      },
+    ],
+    body: `Use the [Website Color Extractor](/website-color-extractor) when you need a **reproducible** inventory from public CSS — not a screenshot guess.
+
+## Demo workflow
+
+1. Open the extractor and analyze \`https://example.com\` (or another public docs site you are allowed to fetch).
+2. Note which colors are tagged background vs typography vs button.
+3. Select five keepers and export CSS variables.
+4. Paste into the [theme builder](/theme-builder) and verify text pairs in the [contrast checker](/contrast-checker).
+
+## What “frequency” means
+
+Frequency counts CSS declarations, not on-screen pixel area. A rarely used accent can still matter if it is the only CTA fill.
+
+## Security limits (intentional)
+
+- Private IPs, localhost, and credentialed URLs are rejected.
+- Redirects are re-validated.
+- Response size and time are capped.
+- No promise of full coverage for inaccessible or heavily dynamic sites.
+
+## Follow-on tools
+
+- Audit a pasted stylesheet with the [CSS color auditor](/css-color-audit).
+- Recolor vector marks in the [SVG recolor editor](/svg-color-editor).
+
+## Sources
+
+- W3C, [Understanding Contrast Minimum (1.4.3)](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum)
+`,
+  },
+  {
     title: "Extract a Palette From a Screenshot Without Guessing",
     description:
       "Sample flat regions, discard compression noise, name jobs for keepers, and prove contrast before you export.",

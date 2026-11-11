@@ -108,6 +108,51 @@ const TextShadowGeneratorTool = dynamic(() =>
 const UnixTimestampConverterTool = dynamic(() =>
   import("@/components/tools/unix-timestamp-converter").then((m) => m.UnixTimestampConverterTool)
 );
+const WebsiteColorExtractor = dynamic(() =>
+  import("@/components/tools/website-color-extractor").then((m) => m.WebsiteColorExtractor)
+);
+const SvgColorEditor = dynamic(() =>
+  import("@/components/tools/svg-color-editor").then((m) => m.SvgColorEditor)
+);
+const ImageRecolorStudio = dynamic(() =>
+  import("@/components/tools/image-recolor").then((m) => m.ImageRecolorStudio)
+);
+const CssColorAuditTool = dynamic(() =>
+  import("@/components/tools/css-color-audit").then((m) => m.CssColorAuditTool)
+);
+const AnimatedGradientGenerator = dynamic(() =>
+  import("@/components/tools/animated-gradient-generator").then((m) => m.AnimatedGradientGenerator)
+);
+const VideoColorExtractor = dynamic(() =>
+  import("@/components/tools/video-color-extractor").then((m) => m.VideoColorExtractor)
+);
+const PdfColorExtractor = dynamic(() =>
+  import("@/components/tools/pdf-color-extractor").then((m) => m.PdfColorExtractor)
+);
+const EmailDarkModeTester = dynamic(() =>
+  import("@/components/tools/email-dark-mode-tester").then((m) => m.EmailDarkModeTester)
+);
+const PrintColorProofing = dynamic(() =>
+  import("@/components/tools/print-color-proofing").then((m) => m.PrintColorProofing)
+);
+const ImageTextContrastTool = dynamic(() =>
+  import("@/components/tools/image-text-contrast").then((m) => m.ImageTextContrastTool)
+);
+const QrCodeColorDesigner = dynamic(() =>
+  import("@/components/tools/qr-code-color-designer").then((m) => m.QrCodeColorDesigner)
+);
+const MapColorScaleGenerator = dynamic(() =>
+  import("@/components/tools/map-color-scale-generator").then((m) => m.MapColorScaleGenerator)
+);
+const PresentationThemeGenerator = dynamic(() =>
+  import("@/components/tools/presentation-theme-generator").then((m) => m.PresentationThemeGenerator)
+);
+const CssBlendModeGenerator = dynamic(() =>
+  import("@/components/tools/css-blend-mode-generator").then((m) => m.CssBlendModeGenerator)
+);
+const BrandColorConsistencyChecker = dynamic(() =>
+  import("@/components/tools/brand-color-consistency-checker").then((m) => m.BrandColorConsistencyChecker)
+);
 const ImageStudioTool = dynamic(
   () => import("@/components/tools/image-studio").then((m) => m.ImageStudioTool),
   { ssr: false }
@@ -228,6 +273,36 @@ export function ToolContent({ slug }: { slug: string }) {
       return <PopularUiColorsTool />;
     case "unix-timestamp-converter":
       return <UnixTimestampConverterTool />;
+    case "website-color-extractor":
+      return <WebsiteColorExtractor />;
+    case "svg-color-editor":
+      return <SvgColorEditor />;
+    case "image-recolor":
+      return <ImageRecolorStudio />;
+    case "css-color-audit":
+      return <CssColorAuditTool />;
+    case "animated-gradient-generator":
+      return <AnimatedGradientGenerator />;
+    case "video-color-extractor":
+      return <VideoColorExtractor />;
+    case "pdf-color-extractor":
+      return <PdfColorExtractor />;
+    case "email-dark-mode-tester":
+      return <EmailDarkModeTester />;
+    case "print-color-proofing":
+      return <PrintColorProofing />;
+    case "image-text-contrast":
+      return <ImageTextContrastTool />;
+    case "qr-code-color-designer":
+      return <QrCodeColorDesigner />;
+    case "map-color-scale-generator":
+      return <MapColorScaleGenerator />;
+    case "presentation-theme-generator":
+      return <PresentationThemeGenerator />;
+    case "css-blend-mode-generator":
+      return <CssBlendModeGenerator />;
+    case "brand-color-consistency-checker":
+      return <BrandColorConsistencyChecker />;
     default:
       return <AdvancedColorPicker />;
   }

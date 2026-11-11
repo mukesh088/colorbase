@@ -1,31 +1,24 @@
-import { ThemeBuilder } from "@/components/theme-builder/theme-builder";
-import { ToolGuideSection } from "@/components/content/tool-guide";
-import { JsonLd } from "@/components/seo/json-ld";
-import { createPageMetadata, softwareAppJsonLd } from "@/lib/seo";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ToolPageShell } from "@/components/layout/tool-page-shell";
+import { ToolContent } from "@/components/tools/tool-content";
 import { getToolBySlug } from "@/lib/tools-registry";
+import { toolMetadata } from "@/lib/seo";
 
-export const metadata = createPageMetadata({
-  title: "UI Theme Builder",
-  description:
-    "Build a UI theme from brand colors or an image. Preview light and dark interfaces, then export CSS, Tailwind, and design tokens.",
-  path: "/theme-builder",
-  keywords: [
-    "ui theme builder",
-    "shadcn theme generator",
-    "tailwind theme generator",
-    "website color preview",
-    "image to theme",
-  ],
-});
+const slug = "theme-builder";
 
-export default function ThemeBuilderPage() {
+export function generateMetadata(): Metadata {
+  const tool = getToolBySlug(slug);
+  if (!tool) return {};
+  return toolMetadata(tool);
+}
+
+export default function Page() {
+  const tool = getToolBySlug(slug);
+  if (!tool) notFound();
   return (
-    <>
-      <JsonLd data={softwareAppJsonLd(getToolBySlug("theme-builder")!)} />
-      <ThemeBuilder />
-      <div className="mx-auto max-w-7xl px-3 pb-10 sm:px-4 lg:px-6">
-        <ToolGuideSection slug="theme-builder" />
-      </div>
-    </>
+    <ToolPageShell tool={tool}>
+      <ToolContent slug={slug} />
+    </ToolPageShell>
   );
 }

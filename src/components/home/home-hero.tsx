@@ -134,6 +134,20 @@ export function HomeHero() {
             href: "/palette-export",
             accent: "#be185d",
           },
+          {
+            icon: LayoutDashboard,
+            name: "Extract website colors",
+            description: "Pull a live site palette from public CSS.",
+            href: "/website-color-extractor",
+            accent: "#0284c7",
+          },
+          {
+            icon: Palette,
+            name: "Animated mesh gradient",
+            description: "Soft moving color fields for heroes.",
+            href: "/animated-gradient-generator",
+            accent: "#db2777",
+          },
         ].map(({ icon: Icon, name, description, href, accent }) => (
           <Link key={href} href={href} prefetch={false} style={{ "--wf-accent": accent } as CSSProperties}>
             <span className="home-workflow-icon">

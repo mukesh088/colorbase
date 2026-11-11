@@ -1,21 +1,44 @@
-import { SITE_CONTENT_UPDATED, SITE_URL } from "@/lib/site-config";
-import { SITEMAP_IDS } from "@/lib/sitemaps";
+import { allSitemapEntries } from "@/lib/sitemaps";
 
 export const runtime = "nodejs";
 export const dynamic = "force-static";
 
+function xmlEscape(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+}
+
+function formatLastmod(value: Date | string | undefined) {
+  if (!value) return undefined;
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return undefined;
+  return date.toISOString();
+}
+
 export function GET() {
-  const lastmod = SITE_CONTENT_UPDATED;
+  const entries = allSitemapEntries();
   const body = `<?xml version="1.0" encoding="UTF-8"?>
-<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${SITEMAP_IDS.map(
-    (_, index) => `  <sitemap>
-    <loc>${SITE_URL}/sitemap/${index}.xml</loc>
-    <lastmod>${lastmod}</lastmod>
-  </sitemap>`
-  ).join("\n")}
-</sitemapindex>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${entries
+  .map((entry) => {
+    const lastmod = formatLastmod(entry.lastModified);
+    const changefreq = entry.changeFrequency
+      ? `\n<changefreq>${entry.changeFrequency}</changefreq>`
+      : "";
+    const priority =
+      typeof entry.priority === "number" ? `\n<priority>${entry.priority}</priority>` : "";
+    return `<url>
+<loc>${xmlEscape(entry.url)}</loc>${lastmod ? `\n<lastmod>${lastmod}</lastmod>` : ""}${changefreq}${priority}
+</url>`;
+  })
+  .join("\n")}
+</urlset>
 `;
+
   return new Response(body, {
     headers: {
       "Content-Type": "application/xml; charset=utf-8",

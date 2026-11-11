@@ -185,6 +185,8 @@ await check("/robots.txt", (response, text) => {
 });
 await check("/sitemap.xml", (response, text) => {
   assert.equal(response.status, 200);
+  assert.ok(/<urlset\b/i.test(text), "Expected a single urlset, not a sitemap index");
+  assert.ok(!/<sitemapindex\b/i.test(text), "Sitemap index should not be used");
   const urls = [...text.matchAll(/<loc>(.*?)<\/loc>/g)].map(([, url]) => decode(url));
   assert.ok(urls.length > 0 && urls.length <= 50000, "Invalid sitemap URL count");
   assert.equal(new Set(urls).size, urls.length, "Duplicate sitemap URLs");
@@ -195,6 +197,10 @@ await check("/sitemap.xml", (response, text) => {
   assert.ok(
     urls.every((url) => new URL(url).origin === "https://colorbase.in" && !new URL(url).search),
     "Noncanonical sitemap entries"
+  );
+  assert.ok(
+    urls.every((url) => !/\/sitemap\/\d+\.xml$/i.test(new URL(url).pathname)),
+    "Child sitemap shards should not appear as locs"
   );
   assert.ok(!urls.includes("https://colorbase.in/search"), "Search utility is in the sitemap");
   return { urls: urls.length };

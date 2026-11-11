@@ -35,6 +35,7 @@ import {
   FlipHorizontal,
   Gamepad2,
   GitCompare,
+  Globe,
   Hash,
   Image,
   Images,
@@ -52,6 +53,7 @@ import {
   MoveDiagonal,
   Newspaper,
   Palette,
+  PenTool,
   Pentagon,
   PieChart,
   Pipette,
@@ -234,4 +236,6 @@ export const TOOL_ICONS: Record<string, LucideIcon> = {
   Gamepad2,
   Search,
   Wand2,
+  Globe,
+  PenTool,
 };

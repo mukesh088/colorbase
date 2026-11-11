@@ -1,31 +1,24 @@
-import { ChartPaletteBuilder } from "@/components/theme-builder/chart-palette-builder";
-import { ToolGuideSection } from "@/components/content/tool-guide";
-import { JsonLd } from "@/components/seo/json-ld";
-import { createPageMetadata, softwareAppJsonLd } from "@/lib/seo";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ToolPageShell } from "@/components/layout/tool-page-shell";
+import { ToolContent } from "@/components/tools/tool-content";
 import { getToolBySlug } from "@/lib/tools-registry";
+import { toolMetadata } from "@/lib/seo";
 
-export const metadata = createPageMetadata({
-  title: "Chart Palette Generator",
-  description:
-    "Build categorical, sequential, or diverging chart palettes with live previews, vision checks, and Chart.js, CSS, or JSON export.",
-  path: "/chart-palette-generator",
-  keywords: [
-    "chart palette generator",
-    "data visualization colors",
-    "categorical color palette",
-    "sequential color scale",
-    "diverging colors",
-  ],
-});
+const slug = "chart-palette-generator";
 
-export default function ChartPalettePage() {
+export function generateMetadata(): Metadata {
+  const tool = getToolBySlug(slug);
+  if (!tool) return {};
+  return toolMetadata(tool);
+}
+
+export default function Page() {
+  const tool = getToolBySlug(slug);
+  if (!tool) notFound();
   return (
-    <>
-      <JsonLd data={softwareAppJsonLd(getToolBySlug("chart-palette-generator")!)} />
-      <ChartPaletteBuilder />
-      <div className="mx-auto max-w-7xl px-3 pb-10 sm:px-4 lg:px-6">
-        <ToolGuideSection slug="chart-palette-generator" />
-      </div>
-    </>
+    <ToolPageShell tool={tool}>
+      <ToolContent slug={slug} />
+    </ToolPageShell>
   );
 }

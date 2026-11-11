@@ -596,6 +596,134 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       { href: "/contrast-checker", title: "Contrast checker" },
     ],
   },
+  "video-color-extractor": {
+    intro: "Sample frames from a local video, compare scene palettes, and export a combined set.",
+    steps: ["Upload MP4/WebM", "Set interval and sample", "Select keepers", "Export CSS/JSON/PNG"],
+    why: "Motion graphics shift hues by scene — a single still is rarely enough.",
+    relatedReading: [{ href: "/image-palette-extractor", title: "Image palette extractor" }],
+  },
+  "pdf-color-extractor": {
+    intro: "Render PDF pages locally and consolidate sampled plus explicit-ish colors.",
+    steps: ["Consent to local analysis", "Upload PDF", "Review page thumbs", "Export palette"],
+    why: "Brand books and one-pagers hide HEX in print layouts.",
+    relatedReading: [{ href: "/brand-color-consistency-checker", title: "Brand consistency checker" }],
+  },
+  "email-dark-mode-tester": {
+    intro: "Sanitize email HTML and stress-test contrast under a dark simulation.",
+    steps: ["Paste HTML", "Compare light/dark", "Copy suggested CSS", "Verify in real clients"],
+    why: "Email clients rewrite colors unpredictably.",
+    relatedReading: [{ href: "/contrast-checker", title: "Contrast checker" }],
+  },
+  "print-color-proofing": {
+    intro: "Educational CMYK soft-proof with gamut warnings — not an ICC contract proof.",
+    steps: ["Pick HEX", "Choose paper approximation", "Compare screen vs proof", "Copy CMYK"],
+    why: "Neon UI accents often collapse on coated stock.",
+    relatedReading: [{ href: "/color-picker", title: "Color picker" }],
+  },
+  "image-text-contrast": {
+    intro: "Place copy on photos and sample local contrast with overlays.",
+    steps: ["Upload image", "Drag/size text", "Tune overlay", "Export PNG/WebP"],
+    why: "Thumbnails fail when type sits on busy detail.",
+    relatedReading: [{ href: "/contrast-checker", title: "Contrast checker" }],
+  },
+  "qr-code-color-designer": {
+    intro: "Brand a QR without sacrificing scanability; validate with an in-browser decoder.",
+    steps: ["Enter URL/text", "Set colors & ECC", "Check decoder", "Export SVG/PNG"],
+    why: "Pretty QR codes that fail under fluorescent light are expensive.",
+    relatedReading: [{ href: "/contrast-checker", title: "Contrast checker" }],
+  },
+  "map-color-scale-generator": {
+    intro: "Choropleth scales with CVD preview and map-style exports.",
+    steps: ["Pick scale kind", "Set classes", "Preview districts", "Export CSS/JSON"],
+    why: "Chart categorical tools are not classed map ramps.",
+    relatedReading: [{ href: "/chart-palette-generator", title: "Chart palette generator" }],
+  },
+  "presentation-theme-generator": {
+    intro: "Slide roles with live previews and a downloadable PPTX.",
+    steps: ["Set brand colors", "Toggle light/dark", "Review slides", "Download PPTX"],
+    why: "Decks need readable body ink, not just a logo HEX.",
+    relatedReading: [{ href: "/theme-builder", title: "Theme builder" }],
+  },
+  "css-blend-mode-generator": {
+    intro: "Compare mix and background blend modes and copy CSS that matches the preview.",
+    steps: ["Choose mode family", "Pick colors", "Compare gallery", "Copy CSS"],
+    why: "Blend modes are hard to reason about without a live stage.",
+    relatedReading: [{ href: "/animated-gradient-generator", title: "Mesh gradient" }],
+  },
+  "brand-color-consistency-checker": {
+    intro: "Diff screenshots against an approved palette with distance tolerances.",
+    steps: ["Enter approved HEX list", "Upload screenshots", "Review flags", "Export CSV/JSON"],
+    why: "Off-brand drifts show up in marketing screenshots first.",
+    relatedReading: [{ href: "/website-color-extractor", title: "Website color extractor" }],
+  },
+  "website-color-extractor": {
+    intro:
+      "Pull a reproducible color inventory from public HTML/CSS, then move keepers into Theme Builder or palette export.",
+    steps: [
+      "Paste a public https URL (private/local hosts are blocked).",
+      "Review role guesses: background, typography, accent, border, button.",
+      "Select keepers, edit HEX if needed, and check estimated contrast pairs.",
+      "Export CSS/JSON or continue in Theme Builder.",
+    ],
+    why: "Manual eyedropping from screenshots invents anti-aliased colors. CSS declarations are closer to what engineering ships — with clear limits for SPAs.",
+    relatedReading: [
+      { href: "/blog/extract-colors-from-a-live-website-with-colorbase", title: "Extract colors from a live website" },
+      { href: "/theme-builder", title: "Theme builder" },
+      { href: "/css-color-audit", title: "CSS color audit" },
+    ],
+  },
+  "svg-color-editor": {
+    intro: "Sanitize SVG, list fills/strokes, replace colors, and export without executing scripts.",
+    steps: [
+      "Upload or paste SVG (demo mark included).",
+      "Pick a detected swatch and choose a replacement.",
+      "Apply, undo if needed, then export SVG or PNG.",
+    ],
+    why: "Brand refreshes often start with vector marks. Editing sanitized SVG keeps paths intact while changing paint.",
+    relatedReading: [
+      { href: "/image-recolor", title: "Image recolor studio" },
+      { href: "/tools/harmony-studio", title: "Harmony studio" },
+    ],
+  },
+  "image-recolor": {
+    intro: "Change actual pixels: selective recolor or duotone, with undo and browser-only processing.",
+    steps: [
+      "Upload PNG/JPEG/WebP under 4 MB.",
+      "Pick a source color from the image palette or presets.",
+      "Adjust tolerance, apply, compare with the before/after slider, export.",
+    ],
+    why: "Sampling a palette does not recolor a photo. Pixel remapping is the job when marketing assets must match a new brand hue.",
+    relatedReading: [
+      { href: "/image-palette-extractor", title: "Image palette extractor" },
+      { href: "/svg-color-editor", title: "SVG recolor editor" },
+    ],
+  },
+  "css-color-audit": {
+    intro: "Inventory stylesheet colors, flag duplicates, and draft CSS variables before a token migration.",
+    steps: [
+      "Paste CSS or upload a .css file.",
+      "Review inventory, duplicates, and similar pairs.",
+      "Copy suggested tokens and preview replacements — then verify in git.",
+    ],
+    why: "Literal HEX sprawl is how brands drift. Tokens only help after you see what is repeated.",
+    relatedReading: [
+      { href: "/blog/from-hex-to-design-tokens-in-css", title: "From HEX to design tokens" },
+      { href: "/theme-builder", title: "Theme builder" },
+    ],
+  },
+  "animated-gradient-generator": {
+    intro: "Compose soft mesh blobs, animate gently, and export CSS with reduced-motion fallbacks.",
+    steps: [
+      "Start from a preset or drag color points.",
+      "Tune blur and speed; pause or honor prefers-reduced-motion.",
+      "Export CSS, PNG, SVG, or try WebM where supported.",
+    ],
+    why: "Marketing heroes need atmosphere without shipping a video file. Mesh layers approximate that look in CSS.",
+    relatedReading: [
+      { href: "/gradient-generator", title: "Static gradient generator" },
+      { href: "/css-animation-generator", title: "CSS animation generator" },
+    ],
+  },
 };
 
 export function getToolGuide(slug: string): ToolGuide | undefined {

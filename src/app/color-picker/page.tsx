@@ -10,11 +10,7 @@ const slug = "color-picker";
 export function generateMetadata(): Metadata {
   const tool = getToolBySlug(slug);
   if (!tool) return {};
-  return toolMetadata({
-    ...tool,
-    title: "Color Picker — HEX, RGB & HSL Codes",
-    description: "Pick a color and copy its HEX, RGB or HSL code. Explore shades and harmonies, check text contrast, and find matching colors with this free online color picker.",
-  });
+  return toolMetadata(tool);
 }
 
 export default function Page() {

@@ -39,6 +39,136 @@ export const GLOBAL_FAQS: FAQItem[] = [
 ];
 
 export const TOOL_FAQS: Record<string, FAQItem[]> = {
+  "video-color-extractor": [
+    {
+      question: "Are videos uploaded to ColorBase servers?",
+      answer: "No. Frame sampling runs in your browser. Keep files under about 40 MB for reliable seeking.",
+    },
+  ],
+  "pdf-color-extractor": [
+    {
+      question: "Are PDF colors exact?",
+      answer:
+        "Sampled colors come from rendered pixels. Explicit operators are best-effort. Confirm you may analyze the document locally.",
+    },
+  ],
+  "email-dark-mode-tester": [
+    {
+      question: "Does this match Gmail dark mode?",
+      answer:
+        "No. It is a sanitized simulation. Clients rewrite HTML differently — always test in target clients.",
+    },
+  ],
+  "print-color-proofing": [
+    {
+      question: "Is this a contract proof?",
+      answer:
+        "No. It is an educational soft-proof approximation. Professional print needs ICC profiles and press conditions.",
+    },
+  ],
+  "image-text-contrast": [
+    {
+      question: "Is the contrast score WCAG-complete?",
+      answer:
+        "It samples local pixels under the text. Busy photos can fool automation — verify visually.",
+    },
+  ],
+  "qr-code-color-designer": [
+    {
+      question: "If the decoder succeeds, will every phone scan it?",
+      answer: "Not guaranteed. Lighting, print, and camera quality still matter.",
+    },
+  ],
+  "map-color-scale-generator": [
+    {
+      question: "Are the districts real maps?",
+      answer: "No. They are synthetic shapes for choropleth demos with suitable illustrative licensing.",
+    },
+  ],
+  "presentation-theme-generator": [
+    {
+      question: "Does the PPTX open in PowerPoint?",
+      answer: "Yes — files are generated with PptxGenJS using the same role colors shown in the previews.",
+    },
+  ],
+  "css-blend-mode-generator": [
+    {
+      question: "Do all blend modes look identical in every browser?",
+      answer: "Mostly for common modes; hue/saturation/color/luminosity can differ slightly by engine.",
+    },
+  ],
+  "brand-color-consistency-checker": [
+    {
+      question: "Why are anti-aliased edges flagged?",
+      answer:
+        "Mixed edge pixels are not brand fills. Raise tolerance or ignore near-white/near-black photo noise.",
+    },
+  ],
+  "website-color-extractor": [
+    {
+      question: "Does this tool browse the page like Chrome DevTools?",
+      answer:
+        "No. It fetches public HTML and linked CSS with SSRF protections. Computed styles from JavaScript-only apps may be incomplete, and private network targets are blocked.",
+    },
+    {
+      question: "Can I get a screenshot of the website?",
+      answer:
+        "Not from the fetch endpoint. Export the extracted palette or open Theme Builder to preview roles on a UI shell.",
+    },
+    {
+      question: "Is my URL stored?",
+      answer:
+        "Requests are processed to extract colors and are rate-limited. Do not submit credentials or private links.",
+    },
+  ],
+  "svg-color-editor": [
+    {
+      question: "Are uploaded SVGs safe?",
+      answer:
+        "Scripts, javascript: URLs, and foreignObject blocks are stripped before preview and export. Prefer trusted files.",
+    },
+    {
+      question: "Can I recolor gradients?",
+      answer:
+        "stop-color values are detected and can be replaced. Complex paint servers may need manual SVG edits.",
+    },
+  ],
+  "image-recolor": [
+    {
+      question: "Is this the same as the palette extractor?",
+      answer:
+        "No. Palette tools sample colors; this studio rewrites image pixels for selective recolor and duotone.",
+    },
+    {
+      question: "Where is processing done?",
+      answer:
+        "In your browser on a scaled canvas (max 4 MB upload, longest edge capped). Nothing is uploaded to ColorBase servers.",
+    },
+  ],
+  "css-color-audit": [
+    {
+      question: "Does the auditor prove WCAG contrast for my site?",
+      answer:
+        "No. It inventories stylesheet literals. Real contrast depends on which rules win in the cascade and how they are used in HTML.",
+    },
+    {
+      question: "Will token replace break intentional near-colors?",
+      answer:
+        "Near-duplicates are flagged for review. Always diff the preview before shipping automatic replacements.",
+    },
+  ],
+  "animated-gradient-generator": [
+    {
+      question: "How is this different from the gradient generator?",
+      answer:
+        "Classic tools emit linear/radial/conic CSS. This builds soft multi-blob mesh layers with optional drift animation and reduced-motion fallbacks.",
+    },
+    {
+      question: "Does WebM export always work?",
+      answer:
+        "Only in browsers that support canvas captureStream and MediaRecorder for WebM. PNG, SVG, and CSS are the reliable exports.",
+    },
+  ],
   "ai-color-copilot": [
     {
       question: "Does ColorBase AI invent hex math?",

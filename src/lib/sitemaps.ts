@@ -97,3 +97,8 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       return [];
   }
 }
+
+/** Single flat inventory for `/sitemap.xml` (under the 50k URL protocol limit). */
+export function allSitemapEntries(): MetadataRoute.Sitemap {
+  return SITEMAP_IDS.flatMap((id) => sitemapForId(id));
+}

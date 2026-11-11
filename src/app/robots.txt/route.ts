@@ -1,15 +1,9 @@
 import { SITE_URL } from "@/lib/site-config";
-import { SITEMAP_IDS } from "@/lib/sitemaps";
 
 export const runtime = "nodejs";
 export const dynamic = "force-static";
 
 export function GET() {
-  const sitemaps = [
-    `${SITE_URL}/sitemap.xml`,
-    ...SITEMAP_IDS.map((_, index) => `${SITE_URL}/sitemap/${index}.xml`),
-  ];
-
   const body = `# ColorBase robots.txt
 # Content Signals: https://contentsignals.org/
 # search = indexing / link results
@@ -50,7 +44,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 
 Host: ${SITE_URL}
-${sitemaps.map((url) => `Sitemap: ${url}`).join("\n")}
+Sitemap: ${SITE_URL}/sitemap.xml
 `;
 
   return new Response(body, {
