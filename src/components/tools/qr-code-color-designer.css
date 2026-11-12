@@ -1,0 +1,305 @@
+.qr-studio {
+  display: grid;
+  gap: 1rem;
+}
+
+.qr-shell {
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 24px;
+  background:
+    radial-gradient(110% 80% at 0% 0%, color-mix(in oklab, #e11d48 10%, transparent), transparent 52%),
+    linear-gradient(180deg, color-mix(in oklab, var(--card) 94%, white), var(--card));
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.qr-shell-head {
+  padding: 1.15rem 1.2rem 1rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+}
+
+.qr-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #be123c;
+}
+
+.qr-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  margin-top: 0.15rem;
+}
+
+.qr-muted {
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.qr-layout {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+@media (min-width: 980px) {
+  .qr-layout {
+    grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.qr-panel {
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 20px;
+  background: color-mix(in oklab, var(--background) 55%, var(--card));
+  padding: 1rem;
+}
+
+.qr-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: 0.55rem;
+}
+
+.qr-textarea {
+  width: 100%;
+  min-height: 110px;
+  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+  border-radius: 16px;
+  background: color-mix(in oklab, var(--background) 80%, transparent);
+  color: var(--foreground);
+  padding: 0.85rem 0.95rem;
+  font-size: 14px;
+  line-height: 1.45;
+  resize: vertical;
+}
+
+.qr-textarea:focus {
+  outline: 2px solid color-mix(in oklab, #e11d48 40%, transparent);
+  outline-offset: 1px;
+}
+
+.qr-chip-scroll {
+  display: flex;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding-bottom: 0.1rem;
+  scrollbar-width: thin;
+}
+
+.qr-chip {
+  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+  background: color-mix(in oklab, var(--muted) 28%, transparent);
+  color: var(--foreground);
+  border-radius: 999px;
+  padding: 0.4rem 0.75rem;
+  font-size: 11.5px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.qr-chip:hover {
+  background: color-mix(in oklab, var(--muted) 55%, transparent);
+}
+
+.qr-chip.is-active {
+  background: #e11d48;
+  border-color: #e11d48;
+  color: #fff;
+}
+
+.qr-preset {
+  flex: 0 0 auto;
+  min-width: 118px;
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 14px;
+  background: var(--card);
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+}
+
+.qr-preset:hover {
+  border-color: color-mix(in oklab, #e11d48 35%, var(--border));
+}
+
+.qr-preset.is-active {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 1px #e11d48 inset;
+}
+
+.qr-preset .pair {
+  display: flex;
+  height: 18px;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 0.4rem;
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+}
+
+.qr-preset .pair i {
+  flex: 1;
+}
+
+.qr-preset .name {
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.qr-preset .meta {
+  font-size: 10.5px;
+  color: var(--muted-foreground);
+}
+
+.qr-color-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.qr-color-field {
+  display: grid;
+  gap: 0.35rem;
+  font-size: 12px;
+  color: var(--muted-foreground);
+}
+
+.qr-color-field .row {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.qr-color-field input[type="color"] {
+  width: 2.6rem;
+  height: 2.35rem;
+  padding: 0;
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  border-radius: 10px;
+  background: transparent;
+}
+
+.qr-color-field input[type="text"] {
+  flex: 1;
+  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+  border-radius: 10px;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 0.5rem 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.qr-select,
+.qr-range-wrap input[type="range"] {
+  width: 100%;
+}
+
+.qr-select {
+  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+  border-radius: 12px;
+  background: var(--background);
+  color: var(--foreground);
+  padding: 0.55rem 0.7rem;
+  font-size: 13px;
+}
+
+.qr-field {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.qr-stage {
+  border-radius: 22px;
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  background:
+    radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.06) 1px, transparent 0) 0 0 / 18px 18px,
+    linear-gradient(180deg, #f8fafc, #eef2f7);
+  padding: 1.25rem;
+  display: grid;
+  place-items: center;
+  min-height: 360px;
+}
+
+.qr-stage.is-dark {
+  background:
+    radial-gradient(circle at 1px 1px, rgba(248, 250, 252, 0.08) 1px, transparent 0) 0 0 / 18px 18px,
+    linear-gradient(180deg, #0b1220, #111827);
+}
+
+.qr-frame {
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.qr-frame img {
+  display: block;
+  width: min(100%, 320px);
+  height: auto;
+  border-radius: 8px;
+}
+
+.qr-status {
+  display: grid;
+  gap: 0.55rem;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+.qr-stat {
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  border-radius: 14px;
+  padding: 0.7rem 0.75rem;
+  background: var(--card);
+}
+
+.qr-stat .label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.qr-stat .value {
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+.qr-stat.is-ok .value {
+  color: #15803d;
+}
+
+.qr-stat.is-warn .value {
+  color: #b45309;
+}
+
+.qr-stat.is-bad .value {
+  color: #b91c1c;
+}
+
+.qr-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.qr-hint {
+  border-radius: 14px;
+  background: color-mix(in oklab, #e11d48 7%, transparent);
+  border: 1px solid color-mix(in oklab, #e11d48 16%, var(--border));
+  padding: 0.7rem 0.8rem;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}

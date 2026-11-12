@@ -1,3 +1,4 @@
+import DOMPurify from "isomorphic-dompurify";
 import { rgbToHex } from "@/lib/colors/convert";
 
 export const IMAGE_STUDIO_MODES = [
@@ -246,12 +247,11 @@ export function fitCover(srcW: number, srcH: number, boxW: number, boxH: number)
 }
 
 export function sanitizeSvgMarkup(raw: string) {
-  return raw
-    .replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, "")
-    .replace(/<foreignObject[\s\S]*?>[\s\S]*?<\/foreignObject>/gi, "")
-    .replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, "")
-    .replace(/href\s*=\s*("|')\s*javascript:[^"']*\1/gi, 'href="#"')
-    .replace(/xlink:href\s*=\s*("|')\s*javascript:[^"']*\1/gi, 'xlink:href="#"');
+  return DOMPurify.sanitize(raw, {
+    USE_PROFILES: { svg: true, svgFilters: true },
+    FORBID_TAGS: ["script", "foreignObject", "iframe", "object", "embed"],
+    FORBID_ATTR: ["onerror", "onload", "onclick", "onmouseover"],
+  });
 }
 
 export function optimizeSvgMarkup(raw: string) {

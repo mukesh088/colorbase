@@ -147,6 +147,9 @@ const MapColorScaleGenerator = dynamic(() =>
 const PresentationThemeGenerator = dynamic(() =>
   import("@/components/tools/presentation-theme-generator").then((m) => m.PresentationThemeGenerator)
 );
+const FontGenerator = dynamic(() =>
+  import("@/components/tools/font-generator").then((m) => m.FontGenerator)
+);
 const CssBlendModeGenerator = dynamic(() =>
   import("@/components/tools/css-blend-mode-generator").then((m) => m.CssBlendModeGenerator)
 );
@@ -299,6 +302,9 @@ export function ToolContent({ slug }: { slug: string }) {
       return <MapColorScaleGenerator />;
     case "presentation-theme-generator":
       return <PresentationThemeGenerator />;
+    case "font-generator":
+    case "fancy-text-generator":
+      return <FontGenerator />;
     case "css-blend-mode-generator":
       return <CssBlendModeGenerator />;
     case "brand-color-consistency-checker":

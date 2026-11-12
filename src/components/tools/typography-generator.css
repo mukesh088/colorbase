@@ -1,0 +1,270 @@
+.type-studio {
+  display: grid;
+  gap: 1rem;
+}
+
+.type-studio-shell {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 1100px) {
+  .type-studio-shell {
+    grid-template-columns: minmax(300px, 360px) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.type-studio-panel {
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 22px;
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--card) 92%, white), var(--card));
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
+.type-studio-panel-head {
+  padding: 1.05rem 1.15rem 0.95rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+  background:
+    radial-gradient(120% 80% at 0% 0%, color-mix(in oklab, #e11d48 12%, transparent), transparent 55%),
+    linear-gradient(180deg, color-mix(in oklab, var(--muted) 35%, transparent), transparent);
+}
+
+.type-studio-panel-body {
+  padding: 1rem 1.1rem 1.2rem;
+  display: grid;
+  gap: 1.15rem;
+  max-height: min(78vh, 56rem);
+  overflow: auto;
+}
+
+.type-studio-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #be123c;
+}
+
+.type-studio-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  margin-top: 0.15rem;
+}
+
+.type-studio-muted {
+  color: var(--muted-foreground);
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+.type-studio-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: 0.55rem;
+}
+
+.type-studio-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.type-studio-chip {
+  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+  background: color-mix(in oklab, var(--muted) 35%, transparent);
+  color: var(--foreground);
+  border-radius: 999px;
+  padding: 0.38rem 0.72rem;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.type-studio-chip:hover {
+  background: color-mix(in oklab, var(--muted) 70%, transparent);
+}
+
+.type-studio-chip.is-active {
+  background: #e11d48;
+  border-color: #e11d48;
+  color: #fff;
+}
+
+.type-studio-font-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+}
+
+.type-studio-font-card {
+  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--background) 70%, transparent);
+  padding: 0.65rem 0.7rem 0.7rem;
+  text-align: left;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.type-studio-font-card:hover {
+  border-color: color-mix(in oklab, #e11d48 35%, var(--border));
+  transform: translateY(-1px);
+}
+
+.type-studio-font-card.is-active {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 1px #e11d48 inset;
+  background: color-mix(in oklab, #e11d48 6%, var(--background));
+}
+
+.type-studio-font-card .sample {
+  font-size: 1.35rem;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.type-studio-font-card .name {
+  margin-top: 0.35rem;
+  font-size: 11px;
+  color: var(--muted-foreground);
+}
+
+.type-studio-stage {
+  position: relative;
+  min-height: 360px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1.25rem, 4vw, 3rem);
+}
+
+.type-studio-stage.is-light {
+  background:
+    radial-gradient(90% 70% at 10% 0%, rgba(225, 29, 72, 0.06), transparent 50%),
+    linear-gradient(180deg, #fbfbfc, #f3f4f6);
+  color: #0f172a;
+}
+
+.type-studio-stage.is-paper {
+  background:
+    radial-gradient(80% 60% at 100% 0%, rgba(180, 83, 9, 0.08), transparent 45%),
+    linear-gradient(180deg, #f8f1e3, #efe4d2);
+  color: #1c1917;
+}
+
+.type-studio-stage.is-dark {
+  background:
+    radial-gradient(90% 70% at 0% 0%, rgba(225, 29, 72, 0.18), transparent 50%),
+    linear-gradient(180deg, #0b1020, #111827);
+  color: #f8fafc;
+}
+
+.type-studio-stage-copy {
+  width: 100%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.type-studio-metrics {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+@media (min-width: 640px) {
+  .type-studio-metrics {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.type-studio-metric {
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  border-radius: 14px;
+  background: color-mix(in oklab, var(--muted) 25%, transparent);
+  padding: 0.7rem 0.75rem;
+}
+
+.type-studio-metric .label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.type-studio-metric .value {
+  margin-top: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  font-weight: 650;
+}
+
+.type-studio-ladder {
+  display: grid;
+  gap: 0.75rem;
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  border-radius: 18px;
+  padding: 1rem;
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+}
+
+.type-studio-ladder-row {
+  display: grid;
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 0.75rem;
+  align-items: baseline;
+  padding-bottom: 0.65rem;
+  border-bottom: 1px dashed color-mix(in oklab, var(--border) 70%, transparent);
+}
+
+.type-studio-ladder-row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.type-studio-ladder-row .tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.type-studio-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.type-studio-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.type-studio-links a {
+  border: 1px solid color-mix(in oklab, var(--border) 90%, transparent);
+  border-radius: 999px;
+  padding: 0.35rem 0.7rem;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+  background: color-mix(in oklab, var(--muted) 30%, transparent);
+}
+
+.type-studio-links a:hover {
+  background: color-mix(in oklab, var(--muted) 60%, transparent);
+}

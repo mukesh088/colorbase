@@ -3,6 +3,7 @@ import { homepageMarkdown, llmsTxt, mcpServerCard } from "@/lib/agent/content";
 import { SITE_URL } from "@/lib/site-config";
 import { getNamedColor, searchNamedColors } from "@/lib/data/color-names";
 import { isValidHex, normalizeHex } from "@/lib/colors/convert";
+import { allowRequest, clientIpFromHeaders } from "@/lib/security/rate-limit-memory";
 import { TOOLS } from "@/lib/tools-registry";
 
 export const runtime = "nodejs";
@@ -146,6 +147,14 @@ export async function OPTIONS() {
 }
 
 export async function POST(request: Request) {
+  const ip = clientIpFromHeaders(request.headers);
+  if (!allowRequest(`mcp:${ip}`, { windowMs: 60_000, max: 60 })) {
+    return NextResponse.json(
+      { jsonrpc: "2.0", id: null, error: { code: -32000, message: "Rate limit exceeded" } },
+      { status: 429 }
+    );
+  }
+
   let body: JsonRpc;
   try {
     body = (await request.json()) as JsonRpc;

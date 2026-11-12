@@ -1,0 +1,222 @@
+.pdf-studio {
+  display: grid;
+  gap: 1rem;
+}
+
+.pdf-shell {
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 24px;
+  background:
+    radial-gradient(110% 80% at 0% 0%, color-mix(in oklab, #e11d48 10%, transparent), transparent 52%),
+    linear-gradient(180deg, color-mix(in oklab, var(--card) 94%, white), var(--card));
+  box-shadow: 0 20px 44px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}
+
+.pdf-shell-head {
+  padding: 1.15rem 1.2rem 1rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+}
+
+.pdf-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #be123c;
+}
+
+.pdf-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.55rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  margin-top: 0.15rem;
+}
+
+.pdf-muted {
+  color: var(--muted-foreground);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.pdf-body {
+  padding: 1rem 1.1rem 1.2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.pdf-panel {
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 20px;
+  background: color-mix(in oklab, var(--background) 55%, var(--card));
+  padding: 1rem;
+}
+
+.pdf-section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin-bottom: 0.55rem;
+}
+
+.pdf-upload {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.pdf-file-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 999px;
+  background: #e11d48;
+  color: #fff;
+  padding: 0.55rem 1rem;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.pdf-file-btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.pdf-progress {
+  height: 8px;
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--muted) 55%, transparent);
+  overflow: hidden;
+}
+
+.pdf-progress > span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #e11d48, #fb7185);
+  transition: width 0.2s ease;
+}
+
+.pdf-grid {
+  display: grid;
+  gap: 0.85rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.pdf-page-card {
+  border: 1px solid color-mix(in oklab, var(--border) 88%, transparent);
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.pdf-page-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  object-position: top;
+  background: #f8fafc;
+}
+
+.pdf-page-body {
+  padding: 0.8rem;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pdf-swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.pdf-swatch {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  position: relative;
+}
+
+.pdf-swatch.is-selected {
+  outline: 2px solid #e11d48;
+  outline-offset: 1px;
+}
+
+.pdf-palette {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: 0.55rem;
+}
+
+.pdf-palette-item {
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--card);
+  text-align: left;
+}
+
+.pdf-palette-item .chip {
+  height: 42px;
+}
+
+.pdf-palette-item .meta {
+  padding: 0.45rem 0.55rem 0.55rem;
+  font-size: 11px;
+}
+
+.pdf-palette-item .meta .hex {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+.pdf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.pdf-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0.55rem;
+}
+
+.pdf-stat {
+  border: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+  border-radius: 14px;
+  padding: 0.65rem 0.75rem;
+  background: var(--card);
+}
+
+.pdf-stat .label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+.pdf-stat .value {
+  margin-top: 0.15rem;
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.pdf-hint {
+  border-radius: 14px;
+  background: color-mix(in oklab, #e11d48 7%, transparent);
+  border: 1px solid color-mix(in oklab, #e11d48 16%, var(--border));
+  padding: 0.7rem 0.8rem;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--muted-foreground);
+}

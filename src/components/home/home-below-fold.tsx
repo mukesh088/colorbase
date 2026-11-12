@@ -70,6 +70,16 @@ export function HomeBelowFold() {
               blurb: "PPTX-ready slide palettes",
             },
             {
+              href: "/font-generator",
+              title: "Font generator",
+              blurb: "Cursive + stylish Unicode fonts",
+            },
+            {
+              href: "/fancy-text-generator",
+              title: "Fancy text",
+              blurb: "fancyText with emoji frames",
+            },
+            {
               href: "/map-color-scale-generator",
               title: "Map scales",
               blurb: "Choropleth ramps + CVD",
@@ -93,6 +103,11 @@ export function HomeBelowFold() {
               href: "/brand-color-consistency-checker",
               title: "Brand audit",
               blurb: "Screenshot vs approved palette",
+            },
+            {
+              href: "/image-recolor",
+              title: "Image recolor",
+              blurb: "Selective recolor & duotone",
             },
           ].map((item) => (
             <Link

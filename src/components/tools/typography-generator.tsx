@@ -1,10 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type CSSProperties, type ReactNode } from "react";
 import Link from "next/link";
-import { Copy, RotateCcw, Sparkles, Wand2 } from "lucide-react";
+import { AlignCenter, AlignJustify, AlignLeft, AlignRight, Copy, RotateCcw, Sparkles } from "lucide-react";
 import { toast } from "sonner";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,6 +12,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { CodeOutput } from "@/components/tools/suite/code-output";
 import { PrimaryButton } from "@/components/tools/suite/workbench";
 import { cn } from "@/lib/utils";
+import "./typography-generator.css";
 
 type TypeState = {
   fontFamily: string;
@@ -32,13 +32,13 @@ type TypeState = {
 };
 
 const DEFAULT: TypeState = {
-  fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
-  googleFont: null,
-  fontSize: 18,
+  fontFamily: '"DM Sans", system-ui, sans-serif',
+  googleFont: "DM Sans",
+  fontSize: 40,
   sizeUnit: "px",
-  fontWeight: 400,
-  lineHeight: 1.6,
-  letterSpacing: 0,
+  fontWeight: 700,
+  lineHeight: 1.15,
+  letterSpacing: -0.6,
   wordSpacing: 0,
   textTransform: "none",
   textAlign: "left",
@@ -62,6 +62,7 @@ const PRESETS: Preset[] = [
       googleFont: "Fraunces",
       fontFamily: "Fraunces, Georgia, serif",
       color: "#0f172a",
+      paragraphWidth: 28,
     },
     sample: "Make it unforgettable",
   },
@@ -99,8 +100,8 @@ const PRESETS: Preset[] = [
       fontWeight: 600,
       lineHeight: 1.3,
       letterSpacing: -0.1,
-      googleFont: "Inter",
-      fontFamily: "Inter, system-ui, sans-serif",
+      googleFont: "Outfit",
+      fontFamily: "Outfit, system-ui, sans-serif",
     },
     sample: "Section label with presence",
   },
@@ -167,14 +168,14 @@ const PRESETS: Preset[] = [
     id: "quote",
     label: "Quote",
     state: {
-      fontSize: 24,
+      fontSize: 26,
       fontWeight: 500,
-      lineHeight: 1.45,
+      lineHeight: 1.4,
       letterSpacing: -0.2,
       fontStyle: "italic",
       googleFont: "Playfair Display",
       fontFamily: '"Playfair Display", Georgia, serif',
-      paragraphWidth: 48,
+      paragraphWidth: 42,
     },
     sample: "“Good typography is invisible until it isn’t — then it becomes the entire experience.”",
   },
@@ -189,6 +190,7 @@ const PRESETS: Preset[] = [
       fontFamily: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
       googleFont: null,
       color: "#0f172a",
+      paragraphWidth: 70,
     },
     sample: "const size = clamp(1rem, 2.5vw, 2rem);",
   },
@@ -208,6 +210,21 @@ const PRESETS: Preset[] = [
       "Serif text invites slower reading. Pair generous line-height with a measured measure for long articles and essays.",
   },
   {
+    id: "editorial",
+    label: "Editorial",
+    state: {
+      fontSize: 48,
+      fontWeight: 600,
+      lineHeight: 1.08,
+      letterSpacing: -1.4,
+      googleFont: "Instrument Serif",
+      fontFamily: '"Instrument Serif", Georgia, serif',
+      color: "#111827",
+      paragraphWidth: 24,
+    },
+    sample: "Quiet confidence on every line",
+  },
+  {
     id: "friendly",
     label: "Friendly",
     state: {
@@ -223,46 +240,79 @@ const PRESETS: Preset[] = [
   },
 ];
 
-const FONT_OPTIONS: { id: string; label: string; family: string; google: string | null }[] = [
-  { id: "system", label: "System", family: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif", google: null },
-  { id: "dm", label: "DM Sans", family: '"DM Sans", system-ui, sans-serif', google: "DM Sans" },
-  { id: "inter", label: "Inter", family: "Inter, system-ui, sans-serif", google: "Inter" },
-  { id: "poppins", label: "Poppins", family: "Poppins, system-ui, sans-serif", google: "Poppins" },
-  { id: "space", label: "Space Grotesk", family: '"Space Grotesk", system-ui, sans-serif', google: "Space Grotesk" },
-  { id: "nunito", label: "Nunito", family: "Nunito, system-ui, sans-serif", google: "Nunito" },
-  { id: "fraunces", label: "Fraunces", family: "Fraunces, Georgia, serif", google: "Fraunces" },
-  { id: "playfair", label: "Playfair", family: '"Playfair Display", Georgia, serif', google: "Playfair Display" },
-  { id: "libre", label: "Libre Baskerville", family: '"Libre Baskerville", Georgia, serif', google: "Libre Baskerville" },
-  { id: "georgia", label: "Georgia", family: "Georgia, 'Times New Roman', serif", google: null },
-  { id: "mono", label: "Mono", family: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", google: null },
+const FONT_OPTIONS: { id: string; label: string; family: string; google: string | null; sample: string }[] = [
+  { id: "system", label: "System", family: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif", google: null, sample: "Aa" },
+  { id: "dm", label: "DM Sans", family: '"DM Sans", system-ui, sans-serif', google: "DM Sans", sample: "Aa" },
+  { id: "inter", label: "Inter", family: "Inter, system-ui, sans-serif", google: "Inter", sample: "Aa" },
+  { id: "outfit", label: "Outfit", family: "Outfit, system-ui, sans-serif", google: "Outfit", sample: "Aa" },
+  { id: "poppins", label: "Poppins", family: "Poppins, system-ui, sans-serif", google: "Poppins", sample: "Aa" },
+  { id: "space", label: "Space Grotesk", family: '"Space Grotesk", system-ui, sans-serif', google: "Space Grotesk", sample: "Aa" },
+  { id: "nunito", label: "Nunito", family: "Nunito, system-ui, sans-serif", google: "Nunito", sample: "Aa" },
+  { id: "syne", label: "Syne", family: "Syne, system-ui, sans-serif", google: "Syne", sample: "Aa" },
+  { id: "fraunces", label: "Fraunces", family: "Fraunces, Georgia, serif", google: "Fraunces", sample: "Aa" },
+  { id: "instrument", label: "Instrument", family: '"Instrument Serif", Georgia, serif', google: "Instrument Serif", sample: "Aa" },
+  { id: "playfair", label: "Playfair", family: '"Playfair Display", Georgia, serif', google: "Playfair Display", sample: "Aa" },
+  { id: "libre", label: "Libre Baskerville", family: '"Libre Baskerville", Georgia, serif', google: "Libre Baskerville", sample: "Aa" },
+  { id: "georgia", label: "Georgia", family: "Georgia, 'Times New Roman', serif", google: null, sample: "Aa" },
+  { id: "mono", label: "Mono", family: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace", google: null, sample: "Aa" },
 ];
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="space-y-1.5">
-      <Label className="text-xs sm:text-sm">{label}</Label>
+      <Label className="text-xs text-muted-foreground">{label}</Label>
       {children}
     </div>
   );
 }
 
+function Chip({
+  active,
+  onClick,
+  children,
+  className,
+}: {
+  active?: boolean;
+  onClick: () => void;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <button type="button" onClick={onClick} className={cn("type-studio-chip", active && "is-active", className)}>
+      {children}
+    </button>
+  );
+}
+
 export function TypographyGeneratorTool() {
-  const [state, setState] = useState<TypeState>({
-    ...DEFAULT,
-    ...PRESETS[1].state,
-  });
+  const [state, setState] = useState<TypeState>({ ...DEFAULT });
   const [activePreset, setActivePreset] = useState("h1");
   const [sample, setSample] = useState(PRESETS[1].sample ?? "");
   const [className, setClassName] = useState("type");
   const [extraCss, setExtraCss] = useState("");
   const [asVariable, setAsVariable] = useState(false);
   const [previewBg, setPreviewBg] = useState<"light" | "dark" | "paper">("light");
-  const [specimen, setSpecimen] = useState<"sample" | "alphabet" | "paragraph">("sample");
+  const [specimen, setSpecimen] = useState<"sample" | "alphabet" | "paragraph" | "scale">("sample");
 
   const patch = <K extends keyof TypeState>(key: K, value: TypeState[K]) => {
     setActivePreset("custom");
     setState((prev) => ({ ...prev, [key]: value }));
   };
+
+  useEffect(() => {
+    const fonts = new Set(
+      [...FONT_OPTIONS.map((f) => f.google), ...PRESETS.map((p) => p.state.googleFont)].filter(Boolean) as string[]
+    );
+    fonts.forEach((font) => {
+      const id = `cb-type-font-${font.replace(/\s+/g, "-")}`;
+      if (document.getElementById(id)) return;
+      const link = document.createElement("link");
+      link.id = id;
+      link.rel = "stylesheet";
+      link.href = `https://fonts.googleapis.com/css2?family=${encodeURIComponent(font).replace(/%20/g, "+")}:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap`;
+      document.head.appendChild(link);
+    });
+  }, []);
 
   useEffect(() => {
     if (!state.googleFont) return;
@@ -322,7 +372,12 @@ export function TypographyGeneratorTool() {
     return lines.join("\n");
   }, [asVariable, className, extraCss, sizeValue, state, tracking, wordSpace]);
 
-  const previewStyle: React.CSSProperties = {
+  const previewColor =
+    previewBg === "dark" && (state.color === "#0f172a" || state.color === "#334155" || state.color === "#111827")
+      ? "#f8fafc"
+      : state.color;
+
+  const previewStyle: CSSProperties = {
     fontFamily: state.fontFamily,
     fontSize: sizeValue,
     fontWeight: state.fontWeight,
@@ -333,7 +388,7 @@ export function TypographyGeneratorTool() {
     textAlign: state.textAlign,
     fontStyle: state.fontStyle,
     textDecoration: state.textDecoration,
-    color: previewBg === "dark" ? (state.color === "#0f172a" || state.color === "#334155" ? "#f8fafc" : state.color) : state.color,
+    color: previewColor,
     maxWidth: `${state.paragraphWidth}ch`,
     width: "100%",
   };
@@ -347,8 +402,11 @@ export function TypographyGeneratorTool() {
 
   const reset = () => {
     setActivePreset("h1");
-    setState({ ...DEFAULT, ...PRESETS[1].state });
+    setState({ ...DEFAULT });
     setSample(PRESETS[1].sample ?? "");
+    setExtraCss("");
+    setAsVariable(false);
+    setClassName("type");
   };
 
   const setFont = (opt: (typeof FONT_OPTIONS)[number]) => {
@@ -365,137 +423,83 @@ export function TypographyGeneratorTool() {
     }
   };
 
-  const stageClass =
-    previewBg === "dark"
-      ? "bg-slate-900 text-slate-50"
-      : previewBg === "paper"
-        ? "bg-[#f7f3eb] text-slate-900"
-        : "bg-muted/30";
-
   const displayText =
     specimen === "alphabet"
-      ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789"
+      ? "ABCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n0123456789 !?&@"
       : specimen === "paragraph"
         ? "Typography is the craft of arranging type so language is clear, inviting, and alive. Adjust size, weight, leading, and tracking until the rhythm of each line feels inevitable."
         : sample;
 
+  const ladder = [
+    { tag: "Display", size: Math.round(state.fontSize * (state.sizeUnit === "rem" ? 1.4 : 1.35)), weight: Math.min(800, state.fontWeight + 100) },
+    { tag: "H1", size: state.fontSize, weight: state.fontWeight },
+    { tag: "H2", size: Math.max(12, Math.round(state.fontSize * 0.72)), weight: Math.max(500, state.fontWeight - 100) },
+    { tag: "Body", size: state.sizeUnit === "rem" ? 1.05 : 17, weight: 400 },
+    { tag: "Caption", size: state.sizeUnit === "rem" ? 0.8 : 13, weight: 500 },
+  ];
+
   return (
-    <div className="space-y-4 sm:space-y-5">
-      <div className="grid gap-4 xl:grid-cols-[minmax(0,22rem)_minmax(0,1fr)] xl:items-start">
-        <div className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
-          <div className="border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-fuchsia-500/5 to-transparent px-3 py-3 sm:px-5">
-            <div className="flex flex-wrap items-start justify-between gap-2">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                  Workspace
-                </p>
-                <h2 className="font-display text-base font-semibold tracking-tight sm:text-lg">
-                  Typography
-                </h2>
-                <p className="mt-0.5 text-xs text-muted-foreground">
-                  Fonts, scale, leading, tracking, and export-ready CSS.
-                </p>
-              </div>
-              <Badge variant="secondary" className="rounded-full">
-                <Wand2 className="mr-1 h-3.5 w-3.5" />
-                Live
-              </Badge>
+    <div className="type-studio">
+      <div className="type-studio-shell">
+        <aside className="type-studio-panel">
+          <div className="type-studio-panel-head">
+            <p className="type-studio-kicker">Type studio</p>
+            <h2 className="type-studio-title">Typography generator</h2>
+            <p className="type-studio-muted mt-1">
+              Specimens, scale, and export-ready CSS — tuned for product UI and editorial work.
+            </p>
+            <div className="type-studio-links mt-3">
+              <Link href="/font-generator">Fancy fonts</Link>
+              <Link href="/css-clamp-generator">Fluid clamp</Link>
+              <Link href="/text-shadow-generator">Text shadow</Link>
+              <button type="button" className="type-studio-chip" onClick={reset}>
+                <RotateCcw className="mr-1 inline h-3 w-3" />
+                Reset
+              </button>
             </div>
           </div>
 
-          <div className="max-h-[min(70vh,52rem)] space-y-5 overflow-y-auto p-3 sm:p-5">
-            <div className="flex flex-wrap gap-2">
-              <Link
-                href="/css-clamp-generator"
-                className="rounded-full border border-border/60 px-3 py-1.5 text-xs font-medium hover:bg-muted/50"
-              >
-                Fluid clamp
-              </Link>
-              <Link
-                href="/text-shadow-generator"
-                className="rounded-full border border-border/60 px-3 py-1.5 text-xs font-medium hover:bg-muted/50"
-              >
-                Text shadow
-              </Link>
-              <Button type="button" size="sm" variant="ghost" className="h-8 rounded-full" onClick={reset}>
-                <RotateCcw className="h-3.5 w-3.5" />
-                Reset
-              </Button>
-            </div>
-
-            <section className="space-y-2">
-              <div className="flex items-center justify-between gap-2">
-                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                  Type presets
-                </p>
-                {activePreset === "custom" && (
-                  <Badge variant="outline" className="rounded-full text-[10px]">
-                    Custom
-                  </Badge>
-                )}
+          <div className="type-studio-panel-body">
+            <section>
+              <div className="mb-2 flex items-center justify-between gap-2">
+                <p className="type-studio-section-label mb-0">Presets</p>
+                {activePreset === "custom" && <span className="type-studio-muted text-[11px]">Custom</span>}
               </div>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="type-studio-chip-row">
                 {PRESETS.map((preset) => (
-                  <button
-                    key={preset.id}
-                    type="button"
-                    onClick={() => applyPreset(preset)}
-                    className={cn(
-                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium transition-colors",
-                      activePreset === preset.id
-                        ? "border-rose-500/50 bg-rose-500 text-white"
-                        : "border-border/60 bg-muted/30 hover:bg-muted/60"
-                    )}
-                  >
+                  <Chip key={preset.id} active={activePreset === preset.id} onClick={() => applyPreset(preset)}>
                     {preset.label}
-                  </button>
+                  </Chip>
                 ))}
               </div>
             </section>
 
-            <section className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                Font
-              </p>
-              <div className="flex flex-wrap gap-1.5">
+            <section>
+              <p className="type-studio-section-label">Font family</p>
+              <div className="type-studio-font-grid">
                 {FONT_OPTIONS.map((opt) => (
                   <button
                     key={opt.id}
                     type="button"
                     onClick={() => setFont(opt)}
-                    className={cn(
-                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium",
-                      state.fontFamily === opt.family
-                        ? "border-rose-500/50 bg-rose-500 text-white"
-                        : "border-border/60 bg-muted/30 hover:bg-muted/60"
-                    )}
-                    style={{ fontFamily: opt.family }}
+                    className={cn("type-studio-font-card", state.fontFamily === opt.family && "is-active")}
                   >
-                    {opt.label}
+                    <div className="sample" style={{ fontFamily: opt.family }}>
+                      {opt.sample}
+                    </div>
+                    <div className="name">{opt.label}</div>
                   </button>
                 ))}
               </div>
             </section>
 
             <section className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                Scale & rhythm
-              </p>
-              <div className="flex flex-wrap gap-1.5">
+              <p className="type-studio-section-label">Scale & rhythm</p>
+              <div className="type-studio-chip-row">
                 {(["px", "rem"] as const).map((u) => (
-                  <button
-                    key={u}
-                    type="button"
-                    onClick={() => patch("sizeUnit", u)}
-                    className={cn(
-                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium",
-                      state.sizeUnit === u
-                        ? "border-rose-500/50 bg-rose-500 text-white"
-                        : "border-border/60 bg-muted/30"
-                    )}
-                  >
+                  <Chip key={u} active={state.sizeUnit === u} onClick={() => patch("sizeUnit", u)}>
                     {u}
-                  </button>
+                  </Chip>
                 ))}
               </div>
               <Field label={`Size · ${state.fontSize}${state.sizeUnit}`}>
@@ -508,13 +512,7 @@ export function TypographyGeneratorTool() {
                 />
               </Field>
               <Field label={`Weight · ${state.fontWeight}`}>
-                <Slider
-                  min={100}
-                  max={900}
-                  step={100}
-                  value={[state.fontWeight]}
-                  onValueChange={([n]) => patch("fontWeight", n)}
-                />
+                <Slider min={100} max={900} step={100} value={[state.fontWeight]} onValueChange={([n]) => patch("fontWeight", n)} />
               </Field>
               <Field label={`Line height · ${state.lineHeight}`}>
                 <Slider
@@ -544,23 +542,29 @@ export function TypographyGeneratorTool() {
                 />
               </Field>
               <Field label={`Measure · ${state.paragraphWidth}ch`}>
-                <Slider
-                  min={28}
-                  max={80}
-                  value={[state.paragraphWidth]}
-                  onValueChange={([n]) => patch("paragraphWidth", n)}
-                />
+                <Slider min={28} max={80} value={[state.paragraphWidth]} onValueChange={([n]) => patch("paragraphWidth", n)} />
               </Field>
             </section>
 
             <section className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                Style
-              </p>
+              <p className="type-studio-section-label">Style</p>
               <Field label="Color">
-                <Input type="color" value={state.color.startsWith("#") ? state.color : "#0f172a"} onChange={(e) => patch("color", e.target.value)} className="h-10 w-full max-w-[8rem] p-1" />
+                <div className="flex items-center gap-2">
+                  <Input
+                    type="color"
+                    value={state.color.startsWith("#") ? state.color : "#0f172a"}
+                    onChange={(e) => patch("color", e.target.value)}
+                    className="h-10 w-14 p-1"
+                  />
+                  <Input
+                    value={state.color}
+                    onChange={(e) => patch("color", e.target.value)}
+                    className="font-mono text-sm uppercase"
+                    spellCheck={false}
+                  />
+                </div>
               </Field>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="type-studio-chip-row">
                 {(
                   [
                     ["none", "Aa"],
@@ -569,93 +573,49 @@ export function TypographyGeneratorTool() {
                     ["capitalize", "Title"],
                   ] as const
                 ).map(([id, name]) => (
-                  <button
-                    key={id}
-                    type="button"
-                    onClick={() => patch("textTransform", id)}
-                    className={cn(
-                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium",
-                      state.textTransform === id
-                        ? "border-rose-500/50 bg-rose-500 text-white"
-                        : "border-border/60 bg-muted/30"
-                    )}
-                  >
+                  <Chip key={id} active={state.textTransform === id} onClick={() => patch("textTransform", id)}>
                     {name}
-                  </button>
+                  </Chip>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="type-studio-chip-row">
                 {(
                   [
-                    ["left", "Left"],
-                    ["center", "Center"],
-                    ["right", "Right"],
-                    ["justify", "Justify"],
+                    ["left", <AlignLeft key="l" className="h-3.5 w-3.5" />],
+                    ["center", <AlignCenter key="c" className="h-3.5 w-3.5" />],
+                    ["right", <AlignRight key="r" className="h-3.5 w-3.5" />],
+                    ["justify", <AlignJustify key="j" className="h-3.5 w-3.5" />],
                   ] as const
-                ).map(([id, name]) => (
-                  <button
-                    key={id}
-                    type="button"
-                    onClick={() => patch("textAlign", id)}
-                    className={cn(
-                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium",
-                      state.textAlign === id
-                        ? "border-rose-500/50 bg-rose-500 text-white"
-                        : "border-border/60 bg-muted/30"
-                    )}
-                  >
-                    {name}
-                  </button>
+                ).map(([id, icon]) => (
+                  <Chip key={id} active={state.textAlign === id} onClick={() => patch("textAlign", id)}>
+                    {icon}
+                  </Chip>
                 ))}
-              </div>
-              <div className="flex flex-wrap gap-1.5">
-                <button
-                  type="button"
+                <Chip
+                  active={state.fontStyle === "italic"}
                   onClick={() => patch("fontStyle", state.fontStyle === "italic" ? "normal" : "italic")}
-                  className={cn(
-                    "rounded-full border px-2.5 py-1.5 text-[11px] font-medium italic",
-                    state.fontStyle === "italic"
-                      ? "border-rose-500/50 bg-rose-500 text-white"
-                      : "border-border/60 bg-muted/30"
-                  )}
+                  className="italic"
                 >
                   Italic
-                </button>
+                </Chip>
                 {(
                   [
-                    ["none", "None"],
+                    ["none", "Plain"],
                     ["underline", "Underline"],
                     ["line-through", "Strike"],
                   ] as const
                 ).map(([id, name]) => (
-                  <button
-                    key={id}
-                    type="button"
-                    onClick={() => patch("textDecoration", id)}
-                    className={cn(
-                      "rounded-full border px-2.5 py-1.5 text-[11px] font-medium",
-                      state.textDecoration === id
-                        ? "border-rose-500/50 bg-rose-500 text-white"
-                        : "border-border/60 bg-muted/30"
-                    )}
-                  >
+                  <Chip key={id} active={state.textDecoration === id} onClick={() => patch("textDecoration", id)}>
                     {name}
-                  </button>
+                  </Chip>
                 ))}
               </div>
             </section>
 
             <section className="space-y-3">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                Content & output
-              </p>
+              <p className="type-studio-section-label">Content & export</p>
               <Field label="Sample text">
-                <Textarea
-                  value={sample}
-                  onChange={(e) => setSample(e.target.value)}
-                  rows={3}
-                  className="rounded-xl text-sm"
-                />
+                <Textarea value={sample} onChange={(e) => setSample(e.target.value)} rows={3} className="rounded-xl text-sm" />
               </Field>
               <Field label="Class name">
                 <Input
@@ -684,55 +644,44 @@ export function TypographyGeneratorTool() {
                   spellCheck={false}
                 />
               </Field>
+              <div className="flex flex-wrap gap-2">
+                <PrimaryButton type="button" onClick={() => void copyStack()}>
+                  <Copy className="h-4 w-4" />
+                  Copy font stack
+                </PrimaryButton>
+                <Button type="button" variant="outline" className="rounded-full" onClick={() => applyPreset(PRESETS[0])}>
+                  <Sparkles className="h-3.5 w-3.5" />
+                  Display look
+                </Button>
+              </div>
             </section>
-
-            <div className="flex flex-wrap gap-2">
-              <PrimaryButton type="button" onClick={() => void copyStack()}>
-                <Copy className="h-4 w-4" />
-                Copy font stack
-              </PrimaryButton>
-              <Button type="button" variant="outline" className="rounded-full" onClick={() => applyPreset(PRESETS[0])}>
-                <Sparkles className="h-3.5 w-3.5" />
-                Display
-              </Button>
-            </div>
           </div>
-        </div>
+        </aside>
 
         <div className="space-y-4">
-          <div className="overflow-hidden rounded-2xl border border-border/50 bg-background/70 shadow-sm sm:rounded-3xl">
-            <div className="border-b border-border/40 bg-gradient-to-r from-rose-500/10 via-fuchsia-500/5 to-transparent px-3 py-3 sm:px-5">
-              <div className="flex flex-wrap items-center justify-between gap-2">
+          <div className="type-studio-panel">
+            <div className="type-studio-panel-head">
+              <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.14em] text-rose-600 dark:text-rose-400">
-                    Preview
-                  </p>
-                  <p className="text-sm font-semibold">Type specimen</p>
-                  <p className="mt-0.5 font-mono text-[11px] text-muted-foreground">
+                  <p className="type-studio-kicker">Specimen</p>
+                  <h3 className="type-studio-title">Live type stage</h3>
+                  <p className="type-studio-muted mt-1 font-mono">
                     {sizeValue} · {state.fontWeight} · lh {state.lineHeight} · {state.paragraphWidth}ch
+                    {state.googleFont ? ` · ${state.googleFont}` : ""}
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="type-studio-toolbar">
                   {(
                     [
                       ["sample", "Sample"],
                       ["alphabet", "Alphabet"],
                       ["paragraph", "Paragraph"],
+                      ["scale", "Scale"],
                     ] as const
                   ).map(([id, name]) => (
-                    <button
-                      key={id}
-                      type="button"
-                      onClick={() => setSpecimen(id)}
-                      className={cn(
-                        "rounded-full border px-2.5 py-1 text-[11px] font-medium",
-                        specimen === id
-                          ? "border-rose-500/50 bg-rose-500 text-white"
-                          : "border-border/60 bg-muted/30"
-                      )}
-                    >
+                    <Chip key={id} active={specimen === id} onClick={() => setSpecimen(id)}>
                       {name}
-                    </button>
+                    </Chip>
                   ))}
                   {(
                     [
@@ -741,39 +690,56 @@ export function TypographyGeneratorTool() {
                       ["dark", "Dark"],
                     ] as const
                   ).map(([id, name]) => (
-                    <button
-                      key={id}
-                      type="button"
-                      onClick={() => setPreviewBg(id)}
-                      className={cn(
-                        "rounded-full border px-2.5 py-1 text-[11px] font-medium",
-                        previewBg === id
-                          ? "border-rose-500/50 bg-rose-500 text-white"
-                          : "border-border/60 bg-muted/30"
-                      )}
-                    >
+                    <Chip key={id} active={previewBg === id} onClick={() => setPreviewBg(id)}>
                       {name}
-                    </button>
+                    </Chip>
                   ))}
                 </div>
               </div>
             </div>
-            <div className="p-3 sm:p-5">
-              <div className={cn("flex min-h-[280px] items-center justify-center rounded-2xl p-6 sm:min-h-[360px] sm:p-10", stageClass)}>
-                <p style={previewStyle} className="whitespace-pre-wrap break-words">
-                  {displayText}
-                </p>
-              </div>
-              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-4">
+
+            <div className="space-y-4 p-4 sm:p-5">
+              {specimen === "scale" ? (
+                <div className="type-studio-ladder">
+                  {ladder.map((row) => (
+                    <div key={row.tag} className="type-studio-ladder-row">
+                      <span className="tag">{row.tag}</span>
+                      <p
+                        style={{
+                          fontFamily: state.fontFamily,
+                          fontSize: `${row.size}${state.sizeUnit}`,
+                          fontWeight: row.weight,
+                          letterSpacing: tracking,
+                          lineHeight: state.lineHeight,
+                          color: previewBg === "dark" ? "#f8fafc" : state.color,
+                          margin: 0,
+                        }}
+                      >
+                        {row.tag === "Body" || row.tag === "Caption"
+                          ? "The quick brown fox jumps over the lazy dog."
+                          : sample.split("\n")[0] || "Typography"}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className={cn("type-studio-stage", `is-${previewBg}`)}>
+                  <p style={previewStyle} className="type-studio-stage-copy">
+                    {displayText}
+                  </p>
+                </div>
+              )}
+
+              <div className="type-studio-metrics">
                 {[
                   ["Size", sizeValue],
                   ["Weight", String(state.fontWeight)],
                   ["Leading", String(state.lineHeight)],
                   ["Tracking", tracking],
                 ].map(([k, v]) => (
-                  <div key={k} className="rounded-xl border border-border/50 bg-muted/20 px-3 py-2 text-center">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">{k}</p>
-                    <p className="font-mono text-sm font-semibold">{v}</p>
+                  <div key={k} className="type-studio-metric">
+                    <p className="label">{k}</p>
+                    <p className="value">{v}</p>
                   </div>
                 ))}
               </div>
@@ -786,7 +752,7 @@ export function TypographyGeneratorTool() {
             language="css"
             title="CSS output"
             eyebrow="Copy · Download"
-            rows={16}
+            rows={14}
           />
         </div>
       </div>

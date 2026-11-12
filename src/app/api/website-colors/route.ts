@@ -1,32 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { allowRequest, clientIpFromHeaders } from "@/lib/security/rate-limit-memory";
 import { analyzeWebsiteMarkup, stylesheetHrefs } from "@/lib/website/extract-colors";
 import { fetchPublicText, validatePublicHttpUrl } from "@/lib/website/fetch-safe";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const WINDOW_MS = 60_000;
-const MAX_PER_WINDOW = 8;
-const hits = new Map<string, { count: number; reset: number }>();
-
-function rateLimit(key: string) {
-  const now = Date.now();
-  const row = hits.get(key);
-  if (!row || row.reset < now) {
-    hits.set(key, { count: 1, reset: now + WINDOW_MS });
-    return true;
-  }
-  if (row.count >= MAX_PER_WINDOW) return false;
-  row.count += 1;
-  return true;
-}
-
 export async function POST(request: NextRequest) {
-  const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    request.headers.get("x-real-ip") ||
-    "anonymous";
-  if (!rateLimit(ip)) {
+  const ip = clientIpFromHeaders(request.headers);
+  if (!allowRequest(`website-colors:${ip}`, { windowMs: 60_000, max: 8 })) {
     return NextResponse.json(
       { error: "Rate limit exceeded. Try again in a minute." },
       { status: 429, headers: { "Cache-Control": "no-store" } }
@@ -49,7 +31,7 @@ export async function POST(request: NextRequest) {
     const page = await fetchPublicText(validated.url.toString(), {
       accept: "text/html,application/xhtml+xml",
     });
-    const hrefs = stylesheetHrefs(page.text, page.url);
+    const hrefs = stylesheetHrefs(page.text, page.url).slice(0, 12);
     const sheets: { url: string; css: string }[] = [];
     for (const href of hrefs) {
       try {
@@ -80,6 +62,9 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     const message = error instanceof Error ? error.message : "Failed to analyze website.";
-    return NextResponse.json({ error: message }, { status: 502, headers: { "Cache-Control": "no-store" } });
+    return NextResponse.json(
+      { error: message },
+      { status: 502, headers: { "Cache-Control": "no-store" } }
+    );
   }
 }

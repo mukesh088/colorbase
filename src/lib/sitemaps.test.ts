@@ -25,6 +25,16 @@ describe("published sitemap inventory", () => {
       "image-color-picker",
       "image-palette-extractor",
       "gradient-generator",
+      "pdf-color-extractor",
+      "css-blend-mode-generator",
+      "brand-color-consistency-checker",
+      "image-recolor",
+      "map-color-scale-generator",
+      "qr-code-color-designer",
+      "presentation-theme-generator",
+      "font-generator",
+      "fancy-text-generator",
+      "typography-generator",
     ])
       expect(paths.has(`/${route}`), route).toBe(true);
     expect(paths.has("/css-gradient-generator")).toBe(false);

@@ -1,14 +1,14 @@
 /** SSRF-hardened URL validation and fetch helpers for public website analysis. */
 
+import dns from "node:dns/promises";
+import net from "node:net";
+
 const BLOCKED_HOSTS = new Set([
   "localhost",
   "metadata.google.internal",
   "metadata",
   "0.0.0.0",
 ]);
-
-const PRIVATE_IPV4 =
-  /^(10\.|127\.|169\.254\.|192\.168\.|0\.|100\.(6[4-9]|[7-9]\d|1[0-1]\d)\.|172\.(1[6-9]|2\d|3[0-1])\.)/;
 
 const MAX_REDIRECTS = 3;
 const DEFAULT_TIMEOUT_MS = 8_000;
@@ -17,6 +17,40 @@ const MAX_BYTES = 1_500_000;
 export type SafeUrlResult =
   | { ok: true; url: URL }
   | { ok: false; error: string };
+
+function normalizeHost(hostname: string) {
+  return hostname.toLowerCase().replace(/\.$/, "").replace(/^\[|\]$/g, "");
+}
+
+/** True for private, loopback, link-local, CGNAT, and other non-public targets. */
+export function isBlockedIp(address: string): boolean {
+  const ip = normalizeHost(address);
+  if (!net.isIP(ip)) return true;
+
+  if (net.isIPv4(ip)) {
+    const parts = ip.split(".").map(Number);
+    const [a, b] = parts;
+    if (a === undefined || b === undefined) return true;
+    if (a === 0 || a === 10 || a === 127) return true;
+    if (a === 169 && b === 254) return true;
+    if (a === 172 && b >= 16 && b <= 31) return true;
+    if (a === 192 && b === 168) return true;
+    if (a === 100 && b >= 64 && b <= 127) return true; // CGNAT
+    if (a === 255) return true;
+    return false;
+  }
+
+  // IPv6
+  const h = ip.toLowerCase();
+  if (h === "::1" || h === "::") return true;
+  if (h.startsWith("fc") || h.startsWith("fd")) return true; // ULA
+  if (h.startsWith("fe80")) return true; // link-local
+  if (h.startsWith("::ffff:")) {
+    const v4 = h.slice("::ffff:".length);
+    if (net.isIPv4(v4)) return isBlockedIp(v4);
+  }
+  return false;
+}
 
 export function validatePublicHttpUrl(input: string): SafeUrlResult {
   let parsed: URL;
@@ -31,25 +65,36 @@ export function validatePublicHttpUrl(input: string): SafeUrlResult {
   if (parsed.username || parsed.password) {
     return { ok: false, error: "URLs with credentials are not allowed." };
   }
-  const host = parsed.hostname.toLowerCase().replace(/\.$/, "");
+  const host = normalizeHost(parsed.hostname);
   if (BLOCKED_HOSTS.has(host) || host.endsWith(".localhost") || host.endsWith(".local")) {
     return { ok: false, error: "That host is not allowed." };
   }
-  if (host === "::1" || host === "[::1]") {
-    return { ok: false, error: "Loopback addresses are not allowed." };
-  }
-  // Literal IPv4
-  if (/^\d{1,3}(\.\d{1,3}){3}$/.test(host) && PRIVATE_IPV4.test(host)) {
+  if (net.isIP(host) && isBlockedIp(host)) {
     return { ok: false, error: "Private or reserved IP addresses are not allowed." };
   }
-  // IPv6 private / link-local rough block
-  if (host.includes(":")) {
-    const h = host.replace(/^\[|\]$/g, "").toLowerCase();
-    if (h === "::1" || h.startsWith("fc") || h.startsWith("fd") || h.startsWith("fe80")) {
-      return { ok: false, error: "Private IPv6 addresses are not allowed." };
+  return { ok: true, url: parsed };
+}
+
+/** Resolve hostname and reject if any address is non-public (DNS rebinding defense). */
+export async function assertPublicHostname(hostname: string): Promise<void> {
+  const host = normalizeHost(hostname);
+  if (net.isIP(host)) {
+    if (isBlockedIp(host)) throw new Error("Private or reserved IP addresses are not allowed.");
+    return;
+  }
+
+  let records: Array<{ address: string; family: number }>;
+  try {
+    records = await dns.lookup(host, { all: true, verbatim: true });
+  } catch {
+    throw new Error("Could not resolve that hostname.");
+  }
+  if (!records.length) throw new Error("Could not resolve that hostname.");
+  for (const record of records) {
+    if (isBlockedIp(record.address)) {
+      throw new Error("That host resolves to a private or reserved address.");
     }
   }
-  return { ok: true, url: parsed };
 }
 
 export async function fetchPublicText(
@@ -63,6 +108,8 @@ export async function fetchPublicText(
 
   let response: Response | null = null;
   for (let i = 0; i <= MAX_REDIRECTS; i++) {
+    await assertPublicHostname(current.url.hostname);
+
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {

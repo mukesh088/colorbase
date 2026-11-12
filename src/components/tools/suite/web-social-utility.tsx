@@ -148,9 +148,16 @@ function CssLivePreview({
     );
   }
 
+  // Templates only — still strip obvious CSS XSS vectors before injecting.
+  const safeCss = css
+    .replace(/@import\b[^;]*;?/gi, "")
+    .replace(/expression\s*\(/gi, "invalid(")
+    .replace(/-moz-binding\s*:/gi, "invalid:")
+    .replace(/behavior\s*:/gi, "invalid:");
+
   return (
     <div className={cn("flex items-center justify-center", minHeightClass, className)}>
-      <style dangerouslySetInnerHTML={{ __html: css }} />
+      <style dangerouslySetInnerHTML={{ __html: safeCss }} />
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </div>
   );

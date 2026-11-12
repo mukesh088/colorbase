@@ -49,7 +49,17 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     {
       question: "Are PDF colors exact?",
       answer:
-        "Sampled colors come from rendered pixels. Explicit operators are best-effort. Confirm you may analyze the document locally.",
+        "Solid fills usually come from DeviceRGB, Gray, or CMYK paint operators. Photos and gradients are sampled from rendered pixels. Soft-proof / ICC print conversions can still shift HEX slightly.",
+    },
+    {
+      question: "Does anything leave my browser?",
+      answer:
+        "No. The PDF is decoded and rendered locally with pdf.js. Confirm you are allowed to analyze the file before uploading.",
+    },
+    {
+      question: "Why might some colors be missing?",
+      answer:
+        "Very large docs only analyze the first 24 pages. Spot colors, patterns, and heavily compressed images can under-represent rare accents — toggle page swatches into the consolidated palette as needed.",
     },
   ],
   "email-dark-mode-tester": [
@@ -76,32 +86,134 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
   "qr-code-color-designer": [
     {
       question: "If the decoder succeeds, will every phone scan it?",
-      answer: "Not guaranteed. Lighting, print, and camera quality still matter.",
+      answer:
+        "Not guaranteed. Lighting, print stock, gloss, and camera quality still matter — always test on a real device before print.",
+    },
+    {
+      question: "What contrast should I aim for?",
+      answer:
+        "Treat about 3:1 as a practical floor for module vs background. Darker modules on a light field remain the safest pattern.",
+    },
+    {
+      question: "Which error correction level should I use?",
+      answer:
+        "M is a good default. Use Q or H if the code will be small, partially covered, or printed on rough surfaces.",
     },
   ],
   "map-color-scale-generator": [
     {
       question: "Are the districts real maps?",
-      answer: "No. They are synthetic shapes for choropleth demos with suitable illustrative licensing.",
+      answer: "No. They are synthetic shapes for choropleth demos — useful for judging class breaks and CVD, not geography.",
+    },
+    {
+      question: "Sequential vs diverging vs categorical?",
+      answer:
+        "Sequential is for low→high magnitudes. Diverging is for values around a midpoint. Categorical is for named groups without order.",
+    },
+    {
+      question: "Equal interval vs quantile?",
+      answer:
+        "Equal interval splits the value range into even widths. Quantile puts roughly the same number of districts into each class — better when data is skewed.",
+    },
+    {
+      question: "Does CVD preview change downloads?",
+      answer:
+        "No. Color-vision simulation is preview-only so you can spot risky ramps. Exported CSS/JSON/Mapbox/CSV keep the measured palette.",
+    },
+  ],
+  "font-generator": [
+    {
+      question: "Is this like fancyText / Coolors Font Generator?",
+      answer:
+        "Yes. Type plain text and browse 500+ cursive, stylish, and emoji-wrapped Unicode fonts you can copy into Instagram, TikTok, Discord, and more. It is not a webfont installer.",
+    },
+    {
+      question: "Why are there so many styles?",
+      answer:
+        "We combine core Unicode letter styles (cursive, bold, gothic, bubble, etc.) with emoji and decorative frames — the same approach popular fancyText sites use to offer hundreds of looks.",
+    },
+    {
+      question: "How do emoji frames work?",
+      answer:
+        "Open fancyText builder, pick a base font (cursive/bold/etc.), choose a frame, then tap emojis for both sides. Click Copy fancyText to paste the result.",
+    },
+    {
+      question: "Will every app show these fonts?",
+      answer:
+        "Most modern apps render Mathematical Alphanumeric Symbols and emoji, but support varies. If a style looks broken, try Bold, Cursive, or Small caps.",
+    },
+    {
+      question: "Can I use these on a website?",
+      answer:
+        "You can paste Unicode into HTML, but for production UI prefer real fonts via the Typography Generator (Google Fonts + CSS).",
+    },
+  ],
+  "fancy-text-generator": [
+    {
+      question: "What is fancy text?",
+      answer:
+        "Stylish Unicode letterforms (cursive, bold math symbols, bubbles) plus optional emoji frames that travel with the characters — no special font install needed in most apps.",
+    },
+    {
+      question: "Is this the same as Font Generator?",
+      answer:
+        "Yes — same studio. Fancy Text Generator is the SEO-friendly slug for people searching fancyText / cursive / emoji text tools.",
     },
   ],
   "presentation-theme-generator": [
     {
       question: "Does the PPTX open in PowerPoint?",
-      answer: "Yes — files are generated with PptxGenJS using the same role colors shown in the previews.",
+      answer:
+        "Yes. Files are generated with PptxGenJS using the same role colors as the stage. It is a multi-slide sample deck, not a native PowerPoint .thmx theme package.",
+    },
+    {
+      question: "What do the theme roles mean?",
+      answer:
+        "Surface and alt surface are slide backgrounds. Ink and muted are title/body text. Accent and on-accent power CTAs. Support hues and five chart colors cover diagrams. Success/warning/danger are status accents.",
+    },
+    {
+      question: "Does color vision simulation change the download?",
+      answer:
+        "No. CVD modes only affect the on-screen preview so you can spot risky chart pairs. Exported PPTX, JSON, CSS, and CSV keep the measured theme colors.",
+    },
+    {
+      question: "Why can accent-on-surface show AA Large instead of AA?",
+      answer:
+        "Filled accents and chart bars are treated as UI graphics (3:1). Body and title text still need 4.5:1 on the slide surface.",
     },
   ],
   "css-blend-mode-generator": [
     {
       question: "Do all blend modes look identical in every browser?",
-      answer: "Mostly for common modes; hue/saturation/color/luminosity can differ slightly by engine.",
+      answer:
+        "Common modes (multiply, screen, overlay) are very close. Hue, saturation, color, and luminosity can differ slightly by engine — always spot-check in your target browsers.",
+    },
+    {
+      question: "When should I use isolation?",
+      answer:
+        "Turn on isolation when a blended layer should not mix with content behind the stage (headers over photos, cards with brand washes). It creates a new stacking context for mix-blend-mode.",
+    },
+    {
+      question: "mix-blend-mode vs background-blend-mode?",
+      answer:
+        "mix-blend-mode blends an element with whatever is behind it. background-blend-mode blends multiple background layers on the same element. Use background when you control both layers as CSS backgrounds.",
     },
   ],
   "brand-color-consistency-checker": [
     {
       question: "Why are anti-aliased edges flagged?",
       answer:
-        "Mixed edge pixels are not brand fills. Raise tolerance or ignore near-white/near-black photo noise.",
+        "Mixed edge pixels are not brand fills. Raise tolerance, enable Ignore neutrals, or treat soft “near” flags as review notes rather than hard fails.",
+    },
+    {
+      question: "What does the score mean?",
+      answer:
+        "Matches count fully and near matches at 50%. Off-brand samples pull the score down. It is a triage signal for design review, not a legal brand compliance certificate.",
+    },
+    {
+      question: "Are screenshots uploaded to a server?",
+      answer:
+        "No. Images are decoded and sampled in your browser. Export CSV/JSON only if you choose to save a report locally.",
     },
   ],
   "website-color-extractor": [
@@ -142,7 +254,17 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     {
       question: "Where is processing done?",
       answer:
-        "In your browser on a scaled canvas (max 4 MB upload, longest edge capped). Nothing is uploaded to ColorBase servers.",
+        "In your browser on a scaled canvas (max 8 MB upload, longest edge capped at 1600px). Nothing is uploaded to ColorBase servers.",
+    },
+    {
+      question: "Why didn’t my color change?",
+      answer:
+        "Raise tolerance, enable flat RGB matching, or eyedrop the exact source pixel. Near-gray pixels are skipped unless the source is also low-saturation. Strength below 1 only partially mixes.",
+    },
+    {
+      question: "Does Apply stack edits?",
+      answer:
+        "Yes. The stage shows a live preview from the current undo step. Apply commits that preview into the stack so you can undo/redo. Reset returns to the original upload.",
     },
   ],
   "css-color-audit": [
@@ -710,12 +832,17 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
     {
       question: "What presets are available?",
       answer:
-        "Display, Heading 1–3, Body, Lead, Caption, UI label, Quote, Code, Serif body, and Friendly — each sets font, size, weight, leading, and tracking.",
+        "Display, Editorial, Heading 1–3, Body, Lead, Caption, UI label, Quote, Code, Serif body, and Friendly — each sets font, size, weight, leading, and tracking.",
     },
     {
       question: "Can I use Google Fonts?",
       answer:
-        "Yes. Choosing DM Sans, Inter, Poppins, Space Grotesk, Nunito, Fraunces, Playfair, or Libre Baskerville loads the font in preview and adds an @import to the CSS output.",
+        "Yes. Families like DM Sans, Inter, Outfit, Syne, Fraunces, Instrument Serif, Playfair, and Libre Baskerville load in the specimen and add an @import to the CSS output.",
+    },
+    {
+      question: "What does the Scale view show?",
+      answer:
+        "A ladder of related sizes (display → caption) derived from your current settings, so you can judge hierarchy before exporting CSS.",
     },
     {
       question: "What does measure (ch) control?",

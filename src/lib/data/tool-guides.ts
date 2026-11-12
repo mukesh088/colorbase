@@ -603,10 +603,20 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     relatedReading: [{ href: "/image-palette-extractor", title: "Image palette extractor" }],
   },
   "pdf-color-extractor": {
-    intro: "Render PDF pages locally and consolidate sampled plus explicit-ish colors.",
-    steps: ["Consent to local analysis", "Upload PDF", "Review page thumbs", "Export palette"],
-    why: "Brand books and one-pagers hide HEX in print layouts.",
-    relatedReading: [{ href: "/brand-color-consistency-checker", title: "Brand consistency checker" }],
+    intro:
+      "Professional PDF palette studio: local page rendering, DeviceRGB/Gray/CMYK operator extraction, dense pixel accent sampling, and CSS/JSON/Tailwind export.",
+    steps: [
+      "Consent to local analysis (nothing is uploaded).",
+      "Upload a brand PDF (up to 24 pages / 16 MB).",
+      "Review operator + pixel swatches per page; toggle colors in the consolidated palette.",
+      "Copy HEX or export CSS, JSON, or Tailwind tokens.",
+    ],
+    why: "Brand books and one-pagers hide HEX in print layouts — operators catch solids; pixel sampling recovers photos and gradients.",
+    relatedReading: [
+      { href: "/brand-color-consistency-checker", title: "Brand consistency checker" },
+      { href: "/image-palette-extractor", title: "Image palette extractor" },
+      { href: "/palette-export", title: "Palette export" },
+    ],
   },
   "email-dark-mode-tester": {
     intro: "Sanitize email HTML and stress-test contrast under a dark simulation.",
@@ -627,34 +637,113 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     relatedReading: [{ href: "/contrast-checker", title: "Contrast checker" }],
   },
   "qr-code-color-designer": {
-    intro: "Brand a QR without sacrificing scanability; validate with an in-browser decoder.",
-    steps: ["Enter URL/text", "Set colors & ECC", "Check decoder", "Export SVG/PNG"],
-    why: "Pretty QR codes that fail under fluorescent light are expensive.",
-    relatedReading: [{ href: "/contrast-checker", title: "Contrast checker" }],
+    intro:
+      "Professional branded QR studio: payload presets, safe color pairs, contrast health, ECC/quiet-zone controls, in-browser decode validation, and PNG/SVG export.",
+    steps: [
+      "Choose a payload preset or paste your URL/text.",
+      "Pick a scannable color preset or set custom HEX.",
+      "Tune ECC, quiet zone, and export size; watch the health meters.",
+      "Confirm decoder pass, then download PNG/SVG.",
+    ],
+    why: "Pretty QR codes that fail under fluorescent light are expensive — contrast and quiet zone matter as much as brand color.",
+    relatedReading: [
+      { href: "/contrast-checker", title: "Contrast checker" },
+      { href: "/brand-color-consistency-checker", title: "Brand consistency checker" },
+    ],
   },
   "map-color-scale-generator": {
-    intro: "Choropleth scales with CVD preview and map-style exports.",
-    steps: ["Pick scale kind", "Set classes", "Preview districts", "Export CSS/JSON"],
-    why: "Chart categorical tools are not classed map ramps.",
-    relatedReading: [{ href: "/chart-palette-generator", title: "Chart palette generator" }],
+    intro:
+      "Professional choropleth studio: sequential, diverging, and categorical map ramps with presets, class breaks, CVD preview, and CSS/JSON/Mapbox/CSV export.",
+    steps: [
+      "Choose sequential, diverging, or categorical.",
+      "Pick a preset or set low/mid/high colors and class count.",
+      "Compare equal vs quantile breaks on the sample map.",
+      "Export CSS variables, JSON, Mapbox expression, or CSV legend.",
+    ],
+    why: "Chart categorical tools are not classed map ramps — choropleths need readable classed legends and CVD checks.",
+    relatedReading: [
+      { href: "/chart-palette-generator", title: "Chart palette generator" },
+      { href: "/color-blind-simulator", title: "Color blind simulator" },
+    ],
+  },
+  "font-generator": {
+    intro:
+      "fancyText-style stylish fonts: cursive, bold, gothic, bubble, plus emoji frames. Browse the gallery or build a custom mix.",
+    steps: [
+      "Type a name, bio, or caption (up to 280 characters).",
+      "Use Style gallery for instant Unicode fonts, or open fancyText builder.",
+      "In the builder: pick cursive/base font, frame, and emojis.",
+      "Copy one style or download all as TXT.",
+    ],
+    why: "Social apps rarely let you pick a real font. Unicode letterforms and emoji travel with the text itself.",
+    relatedReading: [
+      { href: "/fancy-text-generator", title: "Fancy text generator" },
+      { href: "/typography-generator", title: "Typography CSS generator" },
+      { href: "/text-shadow-generator", title: "Text shadow generator" },
+    ],
+  },
+  "fancy-text-generator": {
+    intro:
+      "Build stylish fancyText with cursive fonts, emoji wrappers, and decorative frames — same studio as Font Generator, tuned for social bios.",
+    steps: [
+      "Enter your text.",
+      "Open fancyText builder for cursive + emoji frames, or browse the style gallery.",
+      "Click copy on any result.",
+      "Paste into Instagram, TikTok, Discord, WhatsApp, or Notion.",
+    ],
+    why: "People search for fancy text / cursive generators specifically for social profiles and captions.",
+    relatedReading: [
+      { href: "/font-generator", title: "Font generator" },
+      { href: "/typography-generator", title: "Typography CSS generator" },
+    ],
   },
   "presentation-theme-generator": {
-    intro: "Slide roles with live previews and a downloadable PPTX.",
-    steps: ["Set brand colors", "Toggle light/dark", "Review slides", "Download PPTX"],
-    why: "Decks need readable body ink, not just a logo HEX.",
-    relatedReading: [{ href: "/theme-builder", title: "Theme builder" }],
+    intro:
+      "Build a full presentation color system — presets, harmony, light/dark roles, CVD preview, contrast audit, and a multi-slide PPTX plus CSS/JSON tokens.",
+    steps: [
+      "Pick a preset or set primary/secondary HEX.",
+      "Choose harmony, aspect ratio, and light or dark slides.",
+      "Review the eight slide layouts and the contrast audit.",
+      "Download PPTX, or export CSS variables / JSON / CSV for handoff.",
+    ],
+    why: "Decks fail when logo color becomes body ink. Roles, audit, and real PPTX export keep stakeholder slides readable.",
+    relatedReading: [
+      { href: "/theme-builder", title: "Theme builder" },
+      { href: "/chart-palette-generator", title: "Chart palette generator" },
+      { href: "/contrast-checker", title: "Contrast checker" },
+    ],
   },
   "css-blend-mode-generator": {
-    intro: "Compare mix and background blend modes and copy CSS that matches the preview.",
-    steps: ["Choose mode family", "Pick colors", "Compare gallery", "Copy CSS"],
-    why: "Blend modes are hard to reason about without a live stage.",
-    relatedReading: [{ href: "/animated-gradient-generator", title: "Mesh gradient" }],
+    intro:
+      "Professional blend studio: mix vs background modes, scene stages, layer shapes, isolation, grouped mode gallery, and production CSS export.",
+    steps: [
+      "Pick mix-blend-mode or background-blend-mode.",
+      "Start from a preset or set brand colors and a scene (mesh, photo, type).",
+      "Browse the grouped gallery or compare-all grid to choose a mode.",
+      "Copy or download CSS with optional isolation.",
+    ],
+    why: "Blend modes are hard to reason about without a live stage — presets and compare views turn guesswork into a deliberate brand wash.",
+    relatedReading: [
+      { href: "/animated-gradient-generator", title: "Mesh gradient" },
+      { href: "/css-filter-generator", title: "CSS filter generator" },
+      { href: "/gradient-generator", title: "Gradient generator" },
+    ],
   },
   "brand-color-consistency-checker": {
-    intro: "Diff screenshots against an approved palette with distance tolerances.",
-    steps: ["Enter approved HEX list", "Upload screenshots", "Review flags", "Export CSV/JSON"],
-    why: "Off-brand drifts show up in marketing screenshots first.",
-    relatedReading: [{ href: "/website-color-extractor", title: "Website color extractor" }],
+    intro:
+      "Professional brand audit studio: approved palette presets, screenshot sampling, match/near/off scoring, filters, and CSV/JSON export.",
+    steps: [
+      "Load a palette preset or paste approved HEX colors.",
+      "Tune distance tolerance and optionally ignore neutral noise.",
+      "Upload UI or marketing screenshots (processed locally).",
+      "Filter off-brand flags, then export CSV/JSON for review.",
+    ],
+    why: "Off-brand drifts show up in marketing screenshots first — a scored audit catches them before launch.",
+    relatedReading: [
+      { href: "/website-color-extractor", title: "Website color extractor" },
+      { href: "/image-palette-extractor", title: "Image palette extractor" },
+      { href: "/pdf-color-extractor", title: "PDF color extractor" },
+    ],
   },
   "website-color-extractor": {
     intro:
@@ -686,16 +775,19 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
   },
   "image-recolor": {
-    intro: "Change actual pixels: selective recolor or duotone, with undo and browser-only processing.",
+    intro:
+      "Professional pixel studio: live selective recolor, duotone presets, eyedropper sampling, before/after compare, undo/redo, and PNG/JPEG/WebP export — all in-browser.",
     steps: [
-      "Upload PNG/JPEG/WebP under 4 MB.",
-      "Pick a source color from the image palette or presets.",
-      "Adjust tolerance, apply, compare with the before/after slider, export.",
+      "Upload PNG/JPEG/WebP (up to 8 MB).",
+      "Choose selective recolor or duotone; pick a preset or eyedrop the source color.",
+      "Tune tolerance, strength, and luminance; preview updates live on the split stage.",
+      "Apply to commit, undo if needed, then export PNG/JPEG/WebP.",
     ],
     why: "Sampling a palette does not recolor a photo. Pixel remapping is the job when marketing assets must match a new brand hue.",
     relatedReading: [
       { href: "/image-palette-extractor", title: "Image palette extractor" },
       { href: "/svg-color-editor", title: "SVG recolor editor" },
+      { href: "/css-blend-mode-generator", title: "CSS blend modes" },
     ],
   },
   "css-color-audit": {
