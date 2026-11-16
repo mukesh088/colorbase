@@ -10,6 +10,7 @@ export interface NamedColorStory {
 /** Hand-written first-screen copy for named colors that already attract search. */
 export const NAMED_COLOR_STORIES: Record<string, NamedColorStory> = {
   "hot-fudge": {
+    slug: "hot-fudge",
     metaTitle: "Hot Fudge Color Hex Code #5E2912",
     metaDescription:
       "Hot Fudge is a dark chocolate brown: HEX #5E2912, RGB 94, 41, 18. Copy HEX, RGB, RGBA, and CSS. Not a CSS keyword — use the hex in stylesheets.",
