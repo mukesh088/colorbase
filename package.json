@@ -17,7 +17,8 @@
     "db:migrate": "node scripts/db-migrate.js",
     "test": "vitest run",
     "seo:flags": "node scripts/seo-quality-flags.mjs",
-    "seo:check": "node scripts/check-seo.mjs"
+    "seo:check": "node scripts/check-seo.mjs",
+    "keywords:inventory": "node scripts/generate-keyword-inventory.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",

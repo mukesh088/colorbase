@@ -99,7 +99,7 @@ export function modeHint(mode: ImageStudioMode) {
     "rotate-image": "Rotate by free angle or snap to 90° / 180° / 270°.",
     "flip-image": "Mirror horizontally or vertically in one click.",
     "dominant-color-extractor": "Extract the strongest colors from any photo.",
-    "color-palette-from-image": "Build a shareable palette from image colors.",
+    "color-palette-from-image": "Color palette from image — swatches, HEX, CSS, JSON, and Tailwind export on one screen.",
     "image-to-base64": "Encode images as data URLs with CSS/HTML snippets.",
   };
   return map[mode];

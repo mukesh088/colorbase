@@ -291,6 +291,7 @@ export function ColorWorkbench({
   const values = [
     { label: "HEX", value: hex.toUpperCase() },
     { label: "RGB", value: formatRgb(rgb) },
+    { label: "RGBA", value: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 1)` },
     { label: "HSL", value: formatHsl(selection.hsl) },
     { label: "OKLCH", value: shortOklch(hex) },
   ];
@@ -360,12 +361,13 @@ export function ColorWorkbench({
                 <Redo2 />
               </Button>
               <Button
-                size="icon"
                 variant="ghost"
-                aria-label="Random color"
+                aria-label="Randomize color"
+                title="Randomize a new opaque HEX"
                 onClick={() => applyHex(randomHex())}
               >
                 <Shuffle />
+                <span className="hidden sm:inline">Randomize</span>
               </Button>
             </div>
           </div>
@@ -435,7 +437,7 @@ export function ColorWorkbench({
             )}
             <div className="cw-color-entry">
               <label htmlFor="cw-color-input">
-                Paste a color value <span>HEX · RGB · HSL</span>
+                Paste a color value <span>HEX · RGB · RGBA · HSL</span>
               </label>
               <div>
                 <label className="cw-native-input">
@@ -480,8 +482,8 @@ export function ColorWorkbench({
               </div>
               {invalid && (
                 <p id="cw-color-error" role="alert">
-                  Use 3 or 6 HEX digits, rgb(255, 128, 0), or hsl(30, 100%, 50%). Alpha colors are
-                  not supported here.
+                  Use HEX, rgb(), rgba(), or hsl(). RGBA alpha is ignored for the painted swatch;
+                  copy RGBA from the bar for overlays.
                 </p>
               )}
             </div>

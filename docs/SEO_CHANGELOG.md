@@ -1,3 +1,13 @@
+# SEO Changelog — 2026-11-17 content refresh
+
+- `/brands/opencode` and `/color-names/hot-fudge`: unique titles, first-screen briefs, HEX/RGB/RGBA/HSL/CSS copy stack.
+- Image palette: first-screen swatches + HEX/CSS/JSON/Tailwind export on `/image-color-picker`, `/image-palette-extractor`, and `/color-palette-from-image`. No new landing URLs.
+- `/color-picker`: Randomize label, paste HEX/RGB/RGBA/HSL, RGBA copy (opaque paint).
+- GSC: compare clicks/CTR on the two hubs after 2+ weeks.
+- Keyword shortlist chosen 2026-11-17 (AdSense reported approved): `docs/RANK_TRACKING.csv` — picker, hex, palette, gradient, AI tools, color-family hubs + OpenCode / Hot Fudge. No HEX×AI doorway pages.
+- US/EU organic: OG locale `en_US`, hreflang `en`/`x-default`, schema areaServed Worldwide, rank tracker US/GB/DE. Playbook: `docs/ORGANIC_US_EU.md`. Do not geotarget GSC to India.
+- `SITE_CONTENT_UPDATED` → 2026-11-17.
+
 # SEO Changelog — AdSense / Quality Wave 1
 
 Date: 2026-11-11  

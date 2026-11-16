@@ -21,6 +21,7 @@ import { BrandLogo } from "@/components/library/brand-logo";
 import { BrandPaletteDownload } from "@/components/library/brand-palette-download";
 import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { BrandHexChip } from "@/components/library/brand-hex-chip";
+import { ColorCodeStack } from "@/components/library/color-code-stack";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { BrandReferenceSource } from "@/components/library/brand-reference-source";
 
@@ -137,13 +138,14 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
               {brand.category}
             </p>
             <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-5xl">
-              {brand.name} Hex Colors
+              {brand.name} Hex Color{colors.length === 1 ? "" : "s"} {colors[0]?.toUpperCase()}
             </h1>
             <p className="text-muted-foreground mt-3 max-w-3xl text-sm leading-relaxed sm:text-base">
               {brand.overview} Commonly published {brand.name} hex values: {colors.join(", ")}.
               These are curated reference swatches, not a substitute for the brand&apos;s official
               guidelines.
             </p>
+            {colors[0] ? <ColorCodeStack hex={colors[0]} /> : null}
             {brand.websiteUrl ? (
               <a
                 href={brand.websiteUrl}

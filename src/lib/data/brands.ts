@@ -2,6 +2,7 @@ import { FOOTBALL_BRANDS } from "@/lib/data/football-brands";
 import { FOOD_BRANDS } from "@/lib/data/food-brands";
 import { IMPORTED_BRANDS } from "@/lib/data/imported-brands";
 import { EXPANDED_BRANDS } from "@/lib/data/expanded-brands";
+import { applyBrandStories } from "@/lib/data/brand-stories";
 import { normalizeHex } from "@/lib/colors/convert";
 
 export interface BrandPalette {
@@ -24,7 +25,7 @@ export interface BrandPalette {
   guidelinesUrl?: string;
 }
 
-export const BRANDS: BrandPalette[] = [
+const BRAND_RECORDS: BrandPalette[] = [
   {
     slug: "meta",
     name: "Meta",
@@ -899,6 +900,8 @@ export const BRANDS: BrandPalette[] = [
   ...IMPORTED_BRANDS,
   ...EXPANDED_BRANDS,
 ];
+
+export const BRANDS: BrandPalette[] = applyBrandStories(BRAND_RECORDS);
 
 const brandsBySlug = new Map(BRANDS.map((brand) => [brand.slug, brand]));
 

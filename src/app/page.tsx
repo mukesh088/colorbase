@@ -8,7 +8,7 @@ import { COLOR_CODE_FAQS } from "@/lib/data/color-code-guide";
 export const metadata = createPageMetadata({
   title: "Color Picker, HEX Color Codes & Palettes",
   description:
-    "Find HEX color codes, pick colors from images, build palettes, and check contrast. Explore CSS color names, RGB values, gradients, and free color tools.",
+    "Find HEX color codes, pick colors from images, build palettes, and check WCAG contrast. Free color picker, CSS names, RGB, and gradients for web designers and developers.",
   path: "/",
 });
 

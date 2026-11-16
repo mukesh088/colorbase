@@ -47,3 +47,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Generated 256k query inventory (rebuild with npm run keywords:inventory)
+/data/keyword-inventory-256k.csv

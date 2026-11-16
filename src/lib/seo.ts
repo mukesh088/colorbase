@@ -64,10 +64,17 @@ export function createPageMetadata({
       address: false,
     },
     category: "design",
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        en: url,
+        "x-default": url,
+      },
+    },
     openGraph: {
       type: "website",
-      locale: "en_IN",
+      locale: "en_US",
+      alternateLocale: ["en_GB", "en_IN"],
       url,
       siteName: SITE_NAME,
       title: fullTitle,
@@ -135,13 +142,14 @@ export function organizationJsonLd() {
       addressRegion: BUSINESS_ADDRESS.region,
       addressCountry: "IN",
     },
+    areaServed: { "@type": "Place", name: "Worldwide" },
     contactPoint: {
       "@type": "ContactPoint",
       telephone: ORGANIZATION.telephone,
       email: ORGANIZATION.email,
       contactType: "customer support",
-      areaServed: "IN",
-      availableLanguage: ["en", "hi"],
+      areaServed: "Worldwide",
+      availableLanguage: ["English"],
       url: `${SITE_URL}/contact`,
     },
     sameAs: ORGANIZATION.sameAs,
@@ -157,7 +165,7 @@ export function websiteJsonLd() {
     alternateName: ["ColorBase", "colorbase"],
     url: SITE_URL.endsWith("/") ? SITE_URL : `${SITE_URL}/`,
     description: SITE_DESCRIPTION,
-    inLanguage: "en",
+    inLanguage: "en-US",
     publisher: {
       "@id": `${SITE_URL}/#organization`,
     },
@@ -209,10 +217,16 @@ export function softwareAppJsonLd(tool: ToolDefinition) {
     operatingSystem: "Web",
     url: absoluteUrl(`/${tool.slug}`),
     description: tool.description,
+    inLanguage: "en",
+    audience: {
+      "@type": "Audience",
+      geographicArea: { "@type": "Place", name: "Worldwide" },
+    },
     offers: {
       "@type": "Offer",
       price: "0",
       priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
     },
   };
 }

@@ -11,14 +11,14 @@ import {
 import { rgbToHex, hsvToRgb } from "@/lib/colors/convert";
 
 describe("color workbench", () => {
-  it("accepts opaque HEX, RGB, and HSL with channel validation", () => {
+  it("accepts opaque HEX, RGB, RGBA, and HSL with channel validation", () => {
     expect(parseWorkbenchColor("#f80")?.hex).toBe("#ff8800");
     expect(parseWorkbenchColor("rgb(255, 128, 0)")?.hex).toBe("#ff8000");
+    expect(parseWorkbenchColor("rgba(1, 2, 3, 0.5)")?.hex).toBe("#010203");
     expect(parseWorkbenchColor("hsl(120 100% 50%)")?.hex).toBe("#00ff00");
     for (const input of [
       "#nope",
       "#123456ff",
-      "rgba(1,2,3,.5)",
       "rgb(256,0,0)",
       "rgb(30%,20%,0%)",
       "hsl(10, 101%, 50%)",

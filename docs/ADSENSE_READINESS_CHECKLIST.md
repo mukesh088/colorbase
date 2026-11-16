@@ -1,8 +1,7 @@
 # AdSense Readiness Checklist
 
-Status date: 2026-11-11. This checklist does **not** guarantee Google AdSense
-approval. It records evidence of publisher-quality work and outstanding manual
-steps.
+Status date: 2026-11-17. Publisher reported **AdSense approved**. This checklist
+still records evidence of publisher-quality work; it is not a rank forecast.
 
 Publisher ID in repo: `ca-pub-9077025320968455` (`public/ads.txt`, site-config).
 

@@ -93,7 +93,7 @@ export function selectChannels(
   return next;
 }
 
-/** Opaque sRGB input only. Invalid, out-of-range, and alpha syntax stay uncommitted. */
+/** Opaque sRGB paint. HEX, rgb(), rgba(), hsl(), and hsla() parse; alpha is ignored. */
 export function parseWorkbenchColor(
   input: string,
   previous?: ColorSelection
@@ -102,9 +102,12 @@ export function parseWorkbenchColor(
   if (direct) return direct;
   const match = input
     .trim()
-    .match(/^(rgb|hsl)\(\s*([\d.]+)[,\s]+([\d.]+)(%?)[,\s]+([\d.]+)(%?)\s*\)$/i);
+    .match(
+      /^(rgba?|hsla?)\(\s*([\d.]+)[,\s]+([\d.]+)(%?)[,\s]+([\d.]+)(%?)(?:\s*,\s*([\d.]+))?\s*\)$/i
+    );
   if (!match) return null;
-  const mode = match[1].toLowerCase() as "rgb" | "hsl";
+  const fn = match[1].toLowerCase();
+  const mode = fn.startsWith("hsl") ? "hsl" : "rgb";
   if (mode === "rgb" && (match[4] || match[6])) return null;
   if (mode === "hsl" && (!match[4] || !match[6])) return null;
   const values: Record<string, number> =

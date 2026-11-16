@@ -31,7 +31,12 @@ const TOOL_NAVIGATION = [
     href: "/image-color-picker",
     title: "Image colors",
     icon: Image,
-    slugs: ["image-color-picker", "image-palette-extractor", "palette-from-image"],
+    slugs: [
+      "image-color-picker",
+      "image-palette-extractor",
+      "palette-from-image",
+      "color-palette-from-image",
+    ],
   },
   { href: "/color-wheel", title: "Color wheel", icon: Palette, slugs: ["color-wheel"] },
   {

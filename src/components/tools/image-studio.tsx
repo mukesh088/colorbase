@@ -43,7 +43,7 @@ import {
   modeTitle,
   savingsPercent,
 } from "@/lib/image-studio";
-import { cn } from "@/lib/utils";
+import { cn, downloadText } from "@/lib/utils";
 
 type FitMode = "stretch" | "contain" | "cover";
 type CompareMode = "after" | "before" | "split";
@@ -66,6 +66,17 @@ function hexToRgb(hex: string) {
     g: parseInt(full.slice(2, 4), 16) || 0,
     b: parseInt(full.slice(4, 6), 16) || 0,
   };
+}
+
+const EXAMPLE_PALETTE = ["#1C1917", "#B45309", "#F5EDE6", "#44403C"];
+
+function paletteSnippets(colors: string[]) {
+  const css = `:root {\n${colors.map((hex, i) => `  --image-color-${i + 1}: ${hex};`).join("\n")}\n}`;
+  const json = JSON.stringify({ name: "Image palette", colors }, null, 2);
+  const tailwind = `module.exports = {\n  theme: {\n    extend: {\n      colors: {\n${colors
+    .map((hex, i) => `        image${i + 1}: "${hex}"`)
+    .join(",\n")}\n      }\n    }\n  }\n};`;
+  return { css, json, tailwind };
 }
 
 export function ImageStudioTool({ mode }: { mode: ImageStudioMode }) {
@@ -900,7 +911,18 @@ function ImageStudioRaster({
           </div>
 
           <div className="space-y-4 p-3 sm:p-5">
-            {!previewUrl && !colors.length && !base64 ? (
+            {showPalette && (
+              <StudioPaletteOutput
+                colors={colors.length ? colors : EXAMPLE_PALETTE}
+                live={colors.length > 0}
+                heading={
+                  mode === "dominant-color-extractor"
+                    ? "Dominant colors"
+                    : "Color palette from image"
+                }
+              />
+            )}
+            {!previewUrl && !colors.length && !base64 && !showPalette ? (
               <div className="flex min-h-48 flex-col items-center justify-center rounded-2xl border border-dashed border-border/60 px-4 text-center text-sm text-muted-foreground">
                 {sourceUrl ? "Press Process to generate output" : "Upload an image to begin"}
               </div>
@@ -923,31 +945,6 @@ function ImageStudioRaster({
                         className="mx-auto max-h-80 rounded-xl object-contain shadow-lg shadow-rose-500/10"
                       />
                     )}
-                  </div>
-                )}
-
-                {showPalette && colors.length > 0 && (
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between gap-2">
-                      <p className="text-sm font-semibold">
-                        {mode === "dominant-color-extractor" ? "Dominant colors" : "Palette"}
-                      </p>
-                      <CopyButton value={colors.join(", ")} label="Copy all" className="h-8 rounded-full" />
-                    </div>
-                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-                      {colors.map((c, i) => (
-                        <div
-                          key={`${c}-${i}`}
-                          className="overflow-hidden rounded-2xl border border-border/50 bg-muted/20"
-                        >
-                          <div className="h-16 w-full" style={{ backgroundColor: c }} />
-                          <div className="flex items-center justify-between gap-1 px-2.5 py-2">
-                            <p className="font-mono text-[11px] font-medium">{c}</p>
-                            <CopyButton value={c} label="Copy" className="h-7 rounded-full px-2 text-[10px]" />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
                   </div>
                 )}
 
@@ -989,6 +986,73 @@ function ImageStudioRaster({
         </div>
       </div>
       <canvas ref={canvasRef} className="hidden" aria-hidden />
+    </div>
+  );
+}
+
+function StudioPaletteOutput({
+  colors,
+  live,
+  heading,
+}: {
+  colors: string[];
+  live: boolean;
+  heading: string;
+}) {
+  const { css, json, tailwind } = paletteSnippets(colors);
+  return (
+    <div className="space-y-3">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <div>
+          <p className="text-sm font-semibold">{heading}</p>
+          <p className="text-muted-foreground text-xs">
+            {live
+              ? "Copy HEX, CSS variables, JSON, or Tailwind from this result."
+              : "Example output. Upload an image and press Process to replace these swatches."}
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <CopyButton value={colors.join("\n")} label="HEX" className="h-8 rounded-full" />
+          <CopyButton value={css} label="CSS" className="h-8 rounded-full" />
+          <CopyButton value={json} label="JSON" className="h-8 rounded-full" />
+          <CopyButton value={tailwind} label="Tailwind" className="h-8 rounded-full" />
+          {live ? (
+            <>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="h-8 rounded-full"
+                onClick={() => downloadText(css, "image-palette.css", "text/css")}
+              >
+                <Download className="h-3.5 w-3.5" />
+                CSS
+              </Button>
+              <Button
+                type="button"
+                size="sm"
+                variant="outline"
+                className="h-8 rounded-full"
+                onClick={() => downloadText(json, "image-palette.json", "application/json")}
+              >
+                <Download className="h-3.5 w-3.5" />
+                JSON
+              </Button>
+            </>
+          ) : null}
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        {colors.map((c, i) => (
+          <div key={`${c}-${i}`} className="overflow-hidden rounded-2xl border border-border/50 bg-muted/20">
+            <div className="h-16 w-full" style={{ backgroundColor: c }} />
+            <div className="flex items-center justify-between gap-1 px-2.5 py-2">
+              <p className="font-mono text-[11px] font-medium">{c}</p>
+              <CopyButton value={c} label="Copy" className="h-7 rounded-full px-2 text-[10px]" />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

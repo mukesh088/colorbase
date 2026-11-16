@@ -15,6 +15,7 @@ import { FAMILY_LABELS, type ColorFamily } from "@/lib/data/families";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { ColorCatalogBrief } from "@/components/library/color-catalog-brief";
+import { ColorCodeStack } from "@/components/library/color-code-stack";
 import { ColorSwatchImage } from "@/components/library/color-swatch-image";
 import { COLOR_AUTHORITY_LINKS } from "@/lib/seo/color-brief";
 
@@ -36,8 +37,10 @@ export async function generateMetadata({
   const label = color.displayName;
   const hex = color.hex.toUpperCase();
   return createPageMetadata({
-    title: `${label} Color Hex Code ${hex}`,
-    description: `${label} color hex code is ${hex}. Copy HEX, RGB, HSL, and CSS. ${color.source === "css" ? `CSS keyword: ${color.name.toLowerCase()}.` : "Attributed color-name reference with preview, shades, harmonies, and contrast."}`,
+    title: color.metaTitle ?? `${label} Color Hex Code ${hex}`,
+    description:
+      color.metaDescription ??
+      `${label} color hex code is ${hex}. Copy HEX, RGB, HSL, and CSS. ${color.source === "css" ? `CSS keyword: ${color.name.toLowerCase()}.` : "Attributed color-name reference with preview, shades, harmonies, and contrast."}`,
     path: `/color-names/${color.slug}`,
     keywords: [
       `${label} color`,
@@ -101,60 +104,65 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
       />
       <Breadcrumbs items={crumbs} />
 
-      <header className="mb-8 max-w-3xl">
-        <p className="text-xs font-semibold tracking-[0.16em] text-rose-600 uppercase dark:text-rose-400">
-          {FAMILY_LABELS[color.family as ColorFamily] ?? color.family}
-          {color.source === "css"
-            ? " · CSS named color"
-            : color.source === "community"
-              ? " · Community color name"
-              : " · Inspiration name"}
-        </p>
-        <h1 className="font-display mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
-          {label} Color
-        </h1>
-        <p className="text-muted-foreground mt-3">
-          {label} color hex code is{" "}
-          <span className="text-foreground font-mono font-semibold">{hexUpper}</span>
-          {" · "}
-          {rgbLabel}.{" "}
-          {color.source === "css" ? (
-            <>
-              CSS keyword <span className="font-mono">{color.name.toLowerCase()}</span>.
-            </>
-          ) : (
-            "Use its HEX value in CSS; this name is a catalog label."
-          )}
-        </p>
+      <header className="border-border/50 mb-8 overflow-hidden rounded-[1.75rem] border bg-white shadow-sm dark:bg-card">
+        <div className="grid gap-6 p-4 sm:p-6 lg:grid-cols-[11rem_1fr] lg:items-start">
+          <ColorSwatchImage
+            hex={color.hex}
+            name={`${label} color`}
+            width={176}
+            height={176}
+            className="border-border mx-auto h-40 w-40 rounded-3xl border sm:h-44 sm:w-44"
+            priority
+          />
+          <div className="min-w-0">
+            <p className="text-xs font-semibold tracking-[0.16em] text-rose-600 uppercase dark:text-rose-400">
+              {FAMILY_LABELS[color.family as ColorFamily] ?? color.family}
+              {color.source === "css"
+                ? " · CSS named color"
+                : color.source === "community"
+                  ? " · Community color name"
+                  : " · Inspiration name"}
+            </p>
+            <h1 className="font-display mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">
+              {label} Color {hexUpper}
+            </h1>
+            <p className="text-muted-foreground mt-3">
+              {label} color hex code is{" "}
+              <span className="text-foreground font-mono font-semibold">{hexUpper}</span>
+              {" · "}
+              {rgbLabel}.{" "}
+              {color.source === "css" ? (
+                <>
+                  CSS keyword <span className="font-mono">{color.name.toLowerCase()}</span>.
+                </>
+              ) : (
+                "Use its HEX value in CSS; this name is a catalog label, not a CSS keyword."
+              )}
+            </p>
+            <ColorCodeStack
+              hex={color.hex}
+              cssKeyword={color.source === "css" ? color.name.toLowerCase() : undefined}
+            />
+            <p className="text-muted-foreground mt-4 text-sm leading-relaxed">
+              Specs:{" "}
+              {COLOR_AUTHORITY_LINKS.slice(0, 2).map((link, index) => (
+                <span key={link.href}>
+                  {index > 0 ? " · " : null}
+                  <a
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-primary underline-offset-4 hover:underline"
+                  >
+                    {link.label}
+                  </a>
+                </span>
+              ))}
+              .
+            </p>
+          </div>
+        </div>
       </header>
-
-      <div className="mb-6 flex items-center gap-4">
-        <ColorSwatchImage
-          hex={color.hex}
-          name={`${label} color`}
-          width={72}
-          height={72}
-          className="border-border h-[72px] w-[72px] rounded-2xl border"
-          priority
-        />
-        <p className="text-muted-foreground max-w-2xl text-sm leading-relaxed">
-          Specs:{" "}
-          {COLOR_AUTHORITY_LINKS.slice(0, 2).map((link, index) => (
-            <span key={link.href}>
-              {index > 0 ? " · " : null}
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary underline-offset-4 hover:underline"
-              >
-                {link.label}
-              </a>
-            </span>
-          ))}
-          .
-        </p>
-      </div>
 
       <ColorCatalogBrief
         name={`${label} color`}

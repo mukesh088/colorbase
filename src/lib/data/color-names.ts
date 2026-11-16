@@ -4,6 +4,7 @@ import { CSS_NAMED_COLORS } from "@/lib/colors/palettes";
 import { normalizeHex } from "@/lib/colors/convert";
 import { slugify } from "@/lib/utils";
 import COMMUNITY_COLOR_NAMES from "./expanded-color-names.json";
+import { NAMED_COLOR_STORIES } from "./named-color-stories";
 
 const ADJECTIVES = [
   "Soft",
@@ -92,6 +93,8 @@ export interface NamedColorEntry {
   family: string;
   source: "css" | "community" | "catalog";
   sourceUrl?: string;
+  metaTitle?: string;
+  metaDescription?: string;
 }
 
 export function displayColorName(name: string) {
@@ -121,6 +124,7 @@ function buildNamedColors(): NamedColorEntry[] {
 
   const published: NamedColorEntry[] = COMMUNITY_COLOR_NAMES.map((record) => {
     const family = familyFromHex(record.hex);
+    const story = NAMED_COLOR_STORIES[record.slug];
     return {
       slug: record.slug,
       name: record.name,
@@ -129,9 +133,17 @@ function buildNamedColors(): NamedColorEntry[] {
       family,
       source: "community",
       sourceUrl: "https://github.com/meodai/color-names/blob/main/src/colornames.csv",
-      meaning: `${record.name} is mapped to ${record.hex.toUpperCase()} in the Color Names community dataset. Its calculated color family is ${family}; this name is a descriptive catalog label, not a CSS keyword.`,
-      history: `This name and HEX pairing comes from David Aerne's Color Names project, distributed under the MIT license. Other catalogs may associate a similar name with a different HEX.`,
-      usage: `Use ${record.hex} in CSS, for example color: ${record.hex}; or background-color: ${record.hex};. The name ${record.name} is not a browser-supported CSS color keyword. Check the exact foreground/background pair before using it for text.`,
+      meaning:
+        story?.meaning ??
+        `${record.name} is mapped to ${record.hex.toUpperCase()} in the Color Names community dataset. Its calculated color family is ${family}; this name is a descriptive catalog label, not a CSS keyword.`,
+      history:
+        story?.history ??
+        `This name and HEX pairing comes from David Aerne's Color Names project, distributed under the MIT license. Other catalogs may associate a similar name with a different HEX.`,
+      usage:
+        story?.usage ??
+        `Use ${record.hex} in CSS, for example color: ${record.hex}; or background-color: ${record.hex};. The name ${record.name} is not a browser-supported CSS color keyword. Check the exact foreground/background pair before using it for text.`,
+      metaTitle: story?.metaTitle,
+      metaDescription: story?.metaDescription,
     };
   });
   const generated: NamedColorEntry[] = [];

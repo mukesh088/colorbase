@@ -935,16 +935,47 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         "AA Large means the contrast passes WCAG AA for large text (18pt+ or 14pt bold) with a minimum ratio of 3:1, but may fail for normal body text.",
     },
   ],
+  "image-color-picker": [
+    {
+      question: "Can I get a color palette from an image here?",
+      answer:
+        "Yes. Switch to Image palette on this page. Swatches, CSS variables, JSON, and Tailwind export sit above the canvas so you do not need a second landing URL.",
+    },
+  ],
+  "image-palette-extractor": [
+    {
+      question: "What can I export from a color palette from image?",
+      answer:
+        "HEX list, CSS custom properties, JSON, and Tailwind theme colors. Copy or download them on this page after you drop a photo.",
+    },
+    {
+      question: "Why not a new page for this keyword?",
+      answer:
+        "The extractor and image picker already answer “color palette from image.” Extra doorway URLs would split the same output.",
+    },
+  ],
+  "color-palette-from-image": [
+    {
+      question: "Where is the palette output?",
+      answer:
+        "On the first screen after Process: swatches, then copy/download for HEX, CSS, JSON, and Tailwind. The advanced extractor adds pixel sampling if you need it.",
+    },
+  ],
   "color-picker": [
     {
       question: "Which formats can I copy?",
       answer:
-        "You can copy HEX, RGB, RGBA, HSL, HSLA, HSV, and CMYK values with one click from the advanced color picker.",
+        "HEX, RGB, RGBA (same channels with alpha 1), HSL, HSV, OKLCH, and CMYK. Use RGBA when CSS needs an overlay; keep HEX as the source of truth for opaque fills.",
+    },
+    {
+      question: "What does Randomize do?",
+      answer:
+        "Randomize (the shuffle control) replaces the current swatch with a new opaque HEX. It does not change your saved favorites. Tune hue afterward, then copy RGBA if you need a matching overlay.",
     },
     {
       question: "How should I use the picker in a real project?",
       answer:
-        "Sample or set the hue, check contrast on the same panel, then copy HEX for design tools or HSL/RGB for CSS. There is a written walkthrough under the tool on this page.",
+        "Sample, randomize, or paste a value, check contrast on the same panel, then copy HEX for design tools or RGB/RGBA/HSL for CSS. There is a written walkthrough under the tool on this page.",
     },
   ],
   "hex-to-rgb": [

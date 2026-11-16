@@ -9,14 +9,14 @@ export interface ToolGuide {
 export const TOOL_GUIDES: Record<string, ToolGuide> = {
   "color-picker": {
     intro:
-      "Use this picker when you already have a hue in mind — a brand rose, a screenshot, or a CSS token — and need every format plus a contrast sanity check before you paste it into code.",
+      "Use this picker when you already have a hue in mind — a brand rose, a screenshot, or a CSS token — and need HEX, RGB, RGBA, and a contrast check before you paste it into code.",
     steps: [
-      "Click the large swatch or use EyeDropper (Chrome/Edge) to sample a pixel from a mockup or live site.",
-      "Fine-tune with HSV first (hue around the wheel, then saturation and value). Switch to HSL if you are writing CSS variables.",
-      "Read the contrast pair on the panel. If body text would sit on this fill, open the contrast checker with the same hex.",
-      "Copy HEX for design tools, RGB/HSL for CSS, or CMYK only when a print partner asked for it.",
+      "Click Randomize (shuffle) for a new opaque HEX when you need a starting swatch, or use EyeDropper (Chrome/Edge) to sample a pixel.",
+      "Fine-tune with HSV first. Switch the RGB tab when you think in 0–255 channels. RGBA copy uses the same RGB with alpha 1 until you overlay it in CSS.",
+      "Paste HEX, rgb(), or rgba() in the value field. Alpha in rgba() is kept for copy; the painted swatch is opaque sRGB.",
+      "Read the contrast pair on the panel. Copy HEX for design tools, RGBA for overlays, HSL for CSS variables, or CMYK only when a print partner asked for it.",
     ],
-    why: "A picker that only dumps HEX still leaves you converting later. This one keeps harmonies, tints, and WCAG next to the value so you do not ship a pretty color that fails on buttons.",
+    why: "Randomize is for exploration, not a brand lock. RGBA is the overlay format of the same swatch. Harmonies, tints, and WCAG stay next to the value so you do not ship a pretty color that fails on buttons.",
     relatedReading: [
       { href: "/blog/how-color-psychology-shapes-conversion-rates", title: "How color psychology shapes conversion rates" },
       { href: "/learning", title: "Color formats and contrast lessons" },
@@ -337,25 +337,44 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
   },
   "image-color-picker": {
     intro:
-      "Eyedrop a photo when the brief is a screenshot or a product shot. Sample the brand region, not the average of the whole JPEG.",
+      "Eyedrop a photo when the brief is a screenshot or a product shot. Switch to Image palette on the same page when you need a color palette from the image, not a single pixel.",
     steps: [
       "Upload a PNG if you can — JPEG compression muddies single pixels.",
-      "Click the logo or the dominant garment, then copy HEX. Ignore one-pixel highlights.",
-      "Clean the hex in the color picker and check contrast before it becomes a theme.",
+      "Click the logo or the dominant garment, then copy HEX, RGB, or HSL from the inspector.",
+      "Open Image palette to extract 3–10 dominant colors and export CSS or JSON without another page.",
+      "Clean a locked hex in the color picker and check contrast before it becomes a theme.",
     ],
-    why: "Photos lie. A sunset is not “the logo orange.” This picker plus a histogram (image tools) is closer to a designer’s keep-list.",
-    relatedReading: [{ href: "/image-tools", title: "Image color tools" }],
+    why: "Photos lie. A sunset is not “the logo orange.” Pixel pick plus a short exported palette is closer to a designer’s keep-list.",
+    relatedReading: [
+      { href: "/image-palette-extractor", title: "Color palette from image" },
+      { href: "/image-tools", title: "Image color tools" },
+    ],
   },
   "image-palette-extractor": {
     intro:
-      "Extract a short palette from a photo when you need starting tokens, not when you need a brand system. Dominant swatches beat a 12-color dump.",
+      "This is the color-palette-from-image workflow: photo in, short HEX list out, CSS and JSON on the same screen. Dominant swatches beat a 12-color dump.",
     steps: [
-      "Drop the image. Keep the two or three hexes with the highest share; drop outliers from compression.",
-      "Promote one to primary. The rest become surfaces or accents.",
-      "Run those hexes through contrast and the palette generator before export.",
+      "Drop a PNG of the product or art, not a busy full-page screenshot.",
+      "Set palette size (3–10). The strip and export actions (HEX list, CSS variables, JSON) appear as soon as colors are found.",
+      "Promote one hex to primary. Discard compression outliers.",
+      "Export CSS or JSON here, or continue in the theme builder — do not add extra landing pages for the same job.",
     ],
-    why: "Extractors that return 16 muddy midtones train you to ship brown. Dominance + a human lock is the useful path.",
-    relatedReading: [{ href: "/palette-from-image", title: "Palette from image" }],
+    why: "Extractors that return 16 muddy midtones train you to ship brown. Dominance + export on this page is the useful path.",
+    relatedReading: [
+      { href: "/image-color-picker", title: "Image color picker" },
+      { href: "/color-palette-from-image", title: "Studio: palette from image" },
+    ],
+  },
+  "color-palette-from-image": {
+    intro:
+      "Same job as the extractor, in the image studio: build a color palette from an image, then copy HEX, CSS, JSON, or Tailwind without opening a new URL.",
+    steps: [
+      "Upload the photo. Press Process if extraction does not start on its own.",
+      "Tune color count. The result panel lists swatches first, then export snippets.",
+      "Copy CSS variables or JSON. Open the advanced extractor only if you need pixel sampling too.",
+    ],
+    why: "Searchers asking for a color palette from an image need output and export on the first screen, not another doorway page.",
+    relatedReading: [{ href: "/image-palette-extractor", title: "Image palette extractor" }],
   },
   "palette-from-url": {
     intro:

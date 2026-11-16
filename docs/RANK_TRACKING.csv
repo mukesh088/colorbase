@@ -1,0 +1,61 @@
+keyword,locale,device,priority,canonical_url,group,track
+color picker,US,desktop,P1,/color-picker,picker,yes
+html color picker,US,desktop,P1,/color-picker,picker,yes
+hex color picker,US,desktop,P1,/color-picker,picker,yes
+rgba color picker,US,desktop,P2,/color-picker,picker,yes
+random color picker,US,desktop,P2,/color-picker,picker,yes
+eyedropper color picker,US,desktop,P2,/color-picker,picker,yes
+hex color,US,desktop,P1,/color-codes,hex,yes
+hex color code,US,desktop,P1,/color-codes,hex,yes
+hex to rgb,US,desktop,P1,/hex-to-rgb,hex,yes
+rgb to hex,US,desktop,P1,/rgb-to-hex,hex,yes
+color palette,US,desktop,P1,/palette-generator,palette,yes
+palette generator,US,desktop,P1,/palette-generator,palette,yes
+color palette from image,US,desktop,P1,/image-palette-extractor,palette,yes
+image palette,US,desktop,P2,/image-palette-extractor,palette,yes
+css gradient generator,US,desktop,P1,/gradient-generator,gradient,yes
+linear gradient generator,US,desktop,P2,/linear-gradient-generator,gradient,yes
+radial gradient generator,US,desktop,P2,/radial-gradient-generator,gradient,yes
+opencode hex color,US,desktop,P2,/brands/opencode,ctr-hubs,yes
+hot fudge color,US,desktop,P2,/color-names/hot-fudge,ctr-hubs,yes
+ai color generator,US,desktop,P1,/ai-color-copilot,ai,yes
+ai color palette,US,desktop,P1,/ai-color-palette-generator,ai,yes
+ai color palette generator,US,desktop,P1,/ai-color-palette-generator,ai,yes
+ai color copilot,US,desktop,P1,/ai-color-copilot,ai,yes
+ai accessible color palette,US,desktop,P2,/ai-accessible-color-palette,ai,yes
+ai tailwind color generator,US,desktop,P2,/ai-tailwind-color-generator,ai,yes
+ai color system,US,desktop,P2,/ai-color-copilot,ai,yes
+red colors,US,desktop,P2,/colors/family/red,color-family,yes
+pink colors,US,desktop,P2,/colors/family/pink,color-family,yes
+purple colors,US,desktop,P2,/colors/family/purple,color-family,yes
+blue colors,US,desktop,P2,/colors/family/blue,color-family,yes
+green colors,US,desktop,P2,/colors/family/green,color-family,yes
+yellow colors,US,desktop,P2,/colors/family/yellow,color-family,yes
+orange colors,US,desktop,P2,/colors/family/orange,color-family,yes
+brown colors,US,desktop,P2,/colors/family/brown,color-family,yes
+black colors,US,desktop,P2,/colors/family/black,color-family,yes
+white colors,US,desktop,P2,/colors/family/white,color-family,yes
+pastel colors,US,desktop,P2,/colors/pastel-colors,color-hub,yes
+shades of purple,US,desktop,P2,/colors/shades-of-purple,color-hub,yes
+complementary colors,US,desktop,P2,/complementary-colors,color-hub,yes
+tailwind colors,US,desktop,P2,/colors/tailwind,color-hub,yes
+material colors,US,desktop,P2,/colors/material,color-hub,yes
+css named colors,US,desktop,P2,/css-named-colors,color-hub,yes
+color picker,GB,desktop,P1,/color-picker,picker,yes
+html color picker,GB,desktop,P1,/color-picker,picker,yes
+hex color picker,GB,desktop,P1,/color-picker,picker,yes
+hex color,GB,desktop,P1,/color-codes,hex,yes
+hex color code,GB,desktop,P1,/color-codes,hex,yes
+hex to rgb,GB,desktop,P1,/hex-to-rgb,hex,yes
+rgb to hex,GB,desktop,P1,/rgb-to-hex,hex,yes
+color palette,GB,desktop,P1,/palette-generator,palette,yes
+palette generator,GB,desktop,P1,/palette-generator,palette,yes
+color palette from image,GB,desktop,P1,/image-palette-extractor,palette,yes
+css gradient generator,GB,desktop,P1,/gradient-generator,gradient,yes
+ai color generator,GB,desktop,P1,/ai-color-copilot,ai,yes
+ai color palette generator,GB,desktop,P1,/ai-color-palette-generator,ai,yes
+color picker,DE,desktop,P1,/color-picker,picker,yes
+hex color,DE,desktop,P1,/color-codes,hex,yes
+color palette,DE,desktop,P1,/palette-generator,palette,yes
+css gradient generator,DE,desktop,P1,/gradient-generator,gradient,yes
+ai color generator,DE,desktop,P1,/ai-color-copilot,ai,yes

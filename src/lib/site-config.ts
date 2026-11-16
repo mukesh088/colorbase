@@ -4,7 +4,7 @@ export const SITE_TAGLINE = "Free Color Picker, Palette Generator & Contrast Che
 export const SITE_PROMISE =
   "Pick a color, build a palette, check contrast, and copy CSS or Tailwind tokens. Free to use, with no account required.";
 export const SITE_DESCRIPTION =
-  "Free color picker, palette generator, and WCAG contrast checker. Explore HEX colors, build palettes, and export CSS or Tailwind tokens with ColorBase.";
+  "Free color picker, palette generator, and WCAG contrast checker for web teams. Explore HEX colors, build palettes, and export CSS or Tailwind tokens — no account required.";
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in";
 
@@ -14,7 +14,7 @@ export const SUPPORT_PHONE =
   process.env.NEXT_PUBLIC_SUPPORT_PHONE?.trim() || "+91-651-310-2200";
 
 /** Content revision date for sitemaps / agents (ISO date). Bump when shipping major content. */
-export const SITE_CONTENT_UPDATED = "2026-11-15";
+export const SITE_CONTENT_UPDATED = "2026-11-17";
 
 export const BUSINESS_ADDRESS = {
   street: "Lalpur",

@@ -1,6 +1,23 @@
 # Post-Launch Monitoring (Wave 1)
 
-Use this checklist after deploy. Nothing here predicts AdSense approval.
+Use this checklist after deploy. AdSense was reported approved (2026-11-17); still do not invent GSC positions.
+
+## Week 3–6 — CTR A/B on refreshed hubs
+
+After titles and first-screen copy shipped (2026-11-17), wait **at least two full weeks** of Search Console data, then compare **clicks and CTR** (not impressions alone):
+
+| Page | What changed | Compare |
+| --- | --- | --- |
+| `/brands/opencode` | Title, overview, HEX/RGB/RGBA/CSS stack | 14–28 days after deploy vs prior 28 days |
+| `/color-names/hot-fudge` | Title, meaning/usage, same code stack | Same windows |
+
+Flags, not automatic “wins”:
+
+- CTR up with clicks flat → snippet improved, demand unchanged.
+- Clicks up, CTR down → more impressions (query mix), not necessarily a worse page.
+- Both down on only these URLs → recrawl/title experiment; do not mass-noindex `/brands/` or `/color-names/`.
+
+Export the two URLs from GSC Performance → Pages. Rank-tracking queries for those hubs are `opencode hex color` and `hot fudge color` in `docs/RANK_TRACKING.csv`.
 
 ## Week 1 — Search Console
 

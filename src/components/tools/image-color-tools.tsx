@@ -227,6 +227,19 @@ export function ImageColorTools({ mode }: { mode: "picker" | "palette" }) {
           }}
         />
       </header>
+      {view === "palette" ? (
+        <ImagePaletteExport
+          palette={palette}
+          paletteCount={paletteCount}
+          onCount={changeCount}
+          loading={state === "loading"}
+          onPick={(hex) => {
+            setPicked(hex);
+            setSource("Palette color");
+            setError("");
+          }}
+        />
+      ) : null}
       <div className="iw-layout">
         <div className="iw-image-area">
           {state === "ready" && (
@@ -328,9 +341,9 @@ export function ImageColorTools({ mode }: { mode: "picker" | "palette" }) {
         </div>
         <aside className="iw-inspector">
           <p className="iw-eyebrow">
-            {view === "picker" ? "THE DETAILS IN A SINGLE PIXEL" : "A PALETTE WORTH EXPLORING"}
+            {view === "picker" ? "THE DETAILS IN A SINGLE PIXEL" : "COLOR PALETTE FROM IMAGE"}
           </p>
-          <h2>{view === "picker" ? "A closer look at color." : "From image to inspiration."}</h2>
+          <h2>{view === "picker" ? "A closer look at color." : "Swatches, then export."}</h2>
           {picked ? (
             <>
               <div className="iw-picked" style={{ background: picked, color: readableInk(picked) }}>
@@ -403,8 +416,16 @@ export function ImageColorTools({ mode }: { mode: "picker" | "palette" }) {
           ) : (
             <div className="iw-empty-inspector">
               <Pipette size={24} />
-              <p>Your selected color will appear here.</p>
-              <span>Start with an image, then explore the details.</span>
+              <p>
+                {view === "palette"
+                  ? "HEX swatches, CSS variables, and JSON appear here after you drop an image."
+                  : "Your selected color will appear here."}
+              </p>
+              <span>
+                {view === "palette"
+                  ? "Output and export stay on this page — no extra landing URLs."
+                  : "Start with an image, then explore the details."}
+              </span>
             </div>
           )}
         </aside>
@@ -435,101 +456,140 @@ export function ImageColorTools({ mode }: { mode: "picker" | "palette" }) {
           </div>
         </section>
       )}
-      <section className="iw-palette">
+      {view === "picker" ? (
+        <ImagePaletteExport
+          palette={palette}
+          paletteCount={paletteCount}
+          onCount={changeCount}
+          loading={state === "loading"}
+          onPick={(hex) => {
+            setPicked(hex);
+            setSource("Palette color");
+            setError("");
+          }}
+        />
+      ) : null}
+    </section>
+  );
+}
+
+function ImagePaletteExport({
+  palette,
+  paletteCount,
+  onCount,
+  loading,
+  onPick,
+}: {
+  palette: string[];
+  paletteCount: number;
+  onCount: (count: number) => void;
+  loading: boolean;
+  onPick?: (hex: string) => void;
+}) {
+  const css = `:root {\n${palette.map((hex, i) => `  --image-color-${i + 1}: ${hex};`).join("\n")}\n}`;
+  const json = JSON.stringify({ name: "Image palette", colors: palette }, null, 2);
+  const tailwind = `module.exports = {\n  theme: {\n    extend: {\n      colors: {\n${palette
+    .map((hex, i) => `        image${i + 1}: "${hex}"`)
+    .join(",\n")}\n      }\n    }\n  }\n};`;
+  const example = ["#1C1917", "#B45309", "#F5EDE6"];
+
+  return (
+    <section className="iw-palette">
+      <div>
         <div>
-          <div>
-            <p className="iw-eyebrow">THE BIGGER PICTURE</p>
-            <h2>Colors, together.</h2>
-          </div>
-          <label className="iw-count">
-            Palette size
-            <select
-              aria-label="Image palette size"
-              value={paletteCount}
-              disabled={state === "loading"}
-              onChange={(e) => changeCount(Number(e.target.value))}
+          <p className="iw-eyebrow">COLOR PALETTE FROM IMAGE</p>
+          <h2>Swatches, CSS, JSON, Tailwind.</h2>
+        </div>
+        <label className="iw-count">
+          Palette size
+          <select
+            aria-label="Image palette size"
+            value={paletteCount}
+            disabled={loading}
+            onChange={(e) => onCount(Number(e.target.value))}
+          >
+            {[3, 4, 5, 6, 7, 8, 9, 10].map((count) => (
+              <option key={count} value={count}>
+                {count} colors
+              </option>
+            ))}
+          </select>
+        </label>
+        {palette.length > 0 && (
+          <Link
+            href={`/theme-builder?colors=${palette
+              .slice(0, 3)
+              .map((hex) => hex.slice(1))
+              .join("-")}`}
+          >
+            Build a UI theme <ArrowRight size={13} />
+          </Link>
+        )}
+      </div>
+      {palette.length > 0 ? (
+        <div className="iw-palette-swatches">
+          {palette.map((hex) => (
+            <button
+              key={hex}
+              type="button"
+              aria-label={`Explore image color ${hex}`}
+              onClick={() => onPick?.(hex)}
             >
-              {[3, 4, 5, 6, 7, 8, 9, 10].map((count) => (
-                <option key={count} value={count}>
-                  {count} colors
-                </option>
-              ))}
-            </select>
-          </label>
-          {palette.length > 0 && (
-            <Link
-              href={`/theme-builder?colors=${palette
-                .slice(0, 3)
-                .map((hex) => hex.slice(1))
-                .join("-")}`}
-            >
-              Build a UI theme <ArrowRight size={13} />
+              <span style={{ background: hex }} />
+              <code>{hex.toUpperCase()}</code>
+            </button>
+          ))}
+        </div>
+      ) : (
+        <div className="iw-palette-swatches" aria-hidden>
+          {example.map((hex) => (
+            <button key={hex} type="button" disabled>
+              <span style={{ background: hex }} />
+              <code>{hex}</code>
+            </button>
+          ))}
+        </div>
+      )}
+      {palette.length > 0 ? (
+        <div className="iw-export-actions">
+          <CopyButton value={palette.join("\n")} label="palette HEX" />
+          <CopyButton value={css} label="CSS variables" />
+          <CopyButton value={json} label="JSON" />
+          <CopyButton value={tailwind} label="Tailwind" />
+          <button
+            type="button"
+            onClick={() => downloadText(json, "image-palette.json", "application/json")}
+          >
+            <Download size={14} />
+            JSON
+          </button>
+          <button type="button" onClick={() => downloadText(css, "image-palette.css", "text/css")}>
+            <Download size={14} />
+            CSS
+          </button>
+          <button
+            type="button"
+            onClick={() => downloadText(tailwind, "image-palette.tailwind.js", "text/javascript")}
+          >
+            <Download size={14} />
+            Tailwind
+          </button>
+          {palette.length > 1 && (
+            <Link href={colorToolLinks(palette[0], palette).palette}>
+              Edit palette <ArrowRight size={13} />
             </Link>
           )}
-        </div>
-        {palette.length > 0 ? (
-          <div className="iw-palette-swatches">
-            {palette.map((hex) => (
-              <button
-                key={hex}
-                aria-label={`Explore image color ${hex}`}
-                onClick={() => {
-                  setPicked(hex);
-                  setSource("Palette color");
-                  setError("");
-                }}
-              >
-                <span style={{ background: hex }} />
-                <code>{hex.toUpperCase()}</code>
-              </button>
-            ))}
-          </div>
-        ) : (
-          <p className="iw-note">
-            Dominant colors from your image will appear here, ready to use in a palette or UI theme.
+          <p>
+            {palette.length} distinct colors found. Some images have fewer colors than the requested
+            size.
           </p>
-        )}
-        {palette.length > 0 && (
-          <div className="iw-export-actions">
-            <CopyButton value={palette.join("\n")} label="palette HEX" />
-            <button
-              type="button"
-              onClick={() =>
-                downloadText(
-                  JSON.stringify({ name: "Image palette", colors: palette }, null, 2),
-                  "image-palette.json",
-                  "application/json"
-                )
-              }
-            >
-              <Download size={14} />
-              JSON
-            </button>
-            <button
-              type="button"
-              onClick={() =>
-                downloadText(
-                  `:root {\n${palette.map((hex, i) => `  --image-color-${i + 1}: ${hex};`).join("\n")}\n}`,
-                  "image-palette.css",
-                  "text/css"
-                )
-              }
-            >
-              <Download size={14} />
-              CSS
-            </button>
-            {palette.length > 1 && (
-              <Link href={colorToolLinks(palette[0], palette).palette}>
-                Edit palette <ArrowRight size={13} />
-              </Link>
-            )}
-            <p>
-              {palette.length} distinct colors found. Some images have fewer colors than the
-              requested size.
-            </p>
-          </div>
-        )}
-      </section>
+        </div>
+      ) : (
+        <p className="iw-note">
+          Example output only. Drop an image to replace these swatches, then copy HEX, CSS
+          variables, JSON, or Tailwind from this page.
+        </p>
+      )}
     </section>
   );
 }
