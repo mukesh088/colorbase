@@ -33,6 +33,19 @@ export const ADSENSE_CLIENT_ID =
   process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "ca-pub-9077025320968455";
 export const ADSENSE_PUB_ID = ADSENSE_CLIENT_ID.replace(/^ca-/, "");
 
+/**
+ * Canonical social profile URLs (no tracking query params).
+ * Used for Organization JSON-LD `sameAs` and the public social dock/footer.
+ */
+export const SOCIAL_PROFILES = {
+  facebook: "https://www.facebook.com/profile.php?id=61596824064739",
+  instagram: "https://www.instagram.com/colorfullworld5142",
+  github: "https://github.com/mukesh088/colorbase",
+  x: "https://x.com/colorbase_in",
+  pinterest: "https://pin.it/6903eoV8M",
+  medium: "https://medium.com/@colorbase",
+} as const;
+
 export const ORGANIZATION = {
   name: SITE_NAME,
   url: SITE_URL,
@@ -40,51 +53,51 @@ export const ORGANIZATION = {
   email: SUPPORT_EMAIL,
   telephone: SUPPORT_PHONE,
   sameAs: [
-    "https://twitter.com/colorbase",
-    "https://github.com/colorbase",
-    "https://www.facebook.com/colorbase",
-    "https://www.instagram.com/colorbase",
-    "https://www.linkedin.com/company/colorbase",
-    "https://www.youtube.com/@colorbase",
+    SOCIAL_PROFILES.x,
+    SOCIAL_PROFILES.facebook,
+    SOCIAL_PROFILES.instagram,
+    SOCIAL_PROFILES.github,
+    SOCIAL_PROFILES.pinterest,
+    SOCIAL_PROFILES.medium,
   ],
 };
 
-/** Social profiles for the floating dock (right side). */
+/** Social profiles for the floating dock (right side) and footer. */
 export const SOCIAL_LINKS = [
   {
     id: "x",
     label: "X (Twitter)",
-    href: "https://twitter.com/colorbase",
+    href: SOCIAL_PROFILES.x,
     color: "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white",
   },
   {
     id: "facebook",
     label: "Facebook",
-    href: "https://www.facebook.com/colorbase",
+    href: SOCIAL_PROFILES.facebook,
     color: "bg-[#1877F2] text-white hover:bg-[#166fe5]",
   },
   {
     id: "instagram",
     label: "Instagram",
-    href: "https://www.instagram.com/colorbase",
+    href: SOCIAL_PROFILES.instagram,
     color: "bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af] text-white hover:opacity-95",
   },
   {
-    id: "linkedin",
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/company/colorbase",
-    color: "bg-[#0A66C2] text-white hover:bg-[#0958a8]",
+    id: "pinterest",
+    label: "Pinterest",
+    href: SOCIAL_PROFILES.pinterest,
+    color: "bg-[#E60023] text-white hover:bg-[#cc001f]",
   },
   {
-    id: "youtube",
-    label: "YouTube",
-    href: "https://www.youtube.com/@colorbase",
-    color: "bg-[#FF0000] text-white hover:bg-[#e60000]",
+    id: "medium",
+    label: "Medium",
+    href: SOCIAL_PROFILES.medium,
+    color: "bg-zinc-900 text-white hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-white",
   },
   {
     id: "github",
     label: "GitHub",
-    href: "https://github.com/colorbase",
+    href: SOCIAL_PROFILES.github,
     color: "bg-zinc-800 text-white hover:bg-zinc-700 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-white",
   },
 ] as const;

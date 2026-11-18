@@ -83,7 +83,7 @@ export function Footer() {
                 key={item.id}
                 href={item.href}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener me"
                 className="inline-flex min-h-11 items-center transition-colors hover:text-white"
               >
                 {item.label}
