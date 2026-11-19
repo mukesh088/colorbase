@@ -1,7 +1,9 @@
 import { allSitemapEntries } from "@/lib/sitemaps";
+import { SITE_URL } from "@/lib/site-config";
+import { listPublishedInteriorSitemap } from "@/lib/db/interior";
 
 export const runtime = "nodejs";
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 function xmlEscape(value: string) {
   return value
@@ -19,8 +21,17 @@ function formatLastmod(value: Date | string | undefined) {
   return date.toISOString();
 }
 
-export function GET() {
-  const entries = allSitemapEntries();
+export async function GET() {
+  const entries = [...allSitemapEntries()];
+  const published = await listPublishedInteriorSitemap();
+  for (const item of published) {
+    entries.push({
+      url: `${SITE_URL}/interior-colors/${item.slug}`,
+      lastModified: item.lastModified,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    });
+  }
   const body = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${entries

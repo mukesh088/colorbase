@@ -37,6 +37,7 @@ import {
   GitCompare,
   Globe,
   Hash,
+  Home,
   Image,
   Images,
   KeyRound,
@@ -92,6 +93,7 @@ export const LIBRARY_LINKS = [
   { href: "/color-names", title: "Names", fullTitle: "Color Names", icon: Type },
   { href: "/gradient-library", title: "Gradients", fullTitle: "Gradient Library", icon: Blend },
   { href: "/palette-library", title: "Palettes", fullTitle: "Palette Library", icon: SwatchBook },
+  { href: "/interior-colors", title: "Interiors", fullTitle: "Interior Color Inspiration", icon: Home },
   { href: "/image-tools", title: "Images", fullTitle: "Image Tools", icon: Image },
   { href: "/developers", title: "Dev", fullTitle: "Developers", icon: Terminal },
   { href: "/blog", title: "Blog", fullTitle: "Blog", icon: BookOpen },
@@ -113,6 +115,7 @@ export const COLOR_CODE_NAV = [
 export const PRIMARY_NAV = [
   { href: "/color-picker", title: "Color Picker" },
   { href: "/image-color-picker", title: "Image Picker" },
+  { href: "/interior-colors", title: "Interior" },
   { href: "/theme-builder", title: "UI Theme" },
   {
     href: "/gradient-library",
@@ -137,6 +140,8 @@ export const PRIMARY_NAV = [
       { href: "/contrast-checker", title: "Contrast Checker" },
       { href: "/chart-palette-generator", title: "Chart Palettes" },
       { href: "/palette-library", title: "Palette Library" },
+      { href: "/interior-colors", title: "Interior colors" },
+      { href: "/house-color-combinations", title: "House color combinations" },
       { href: "/tools", title: "All tools" },
     ],
   },
@@ -154,6 +159,7 @@ export const SECONDARY_NAV = [
   { href: "/developers", title: "Developer" },
   { href: "/color-names", title: "Color Names" },
   { href: "/palette-library", title: "Palettes" },
+  { href: "/interior-colors", title: "Interiors" },
   { href: "/gradient-library", title: "Gradients" },
 ] as const;
 

@@ -41,6 +41,7 @@ NODE_ENV=production
 DATABASE_URL=
 USER_COOKIE_SECRET=
 CRON_SECRET=
+ADMIN_SECRET=
 OPENAI_API_KEY=
 OPENAI_MODEL=gpt-4o-mini
 ```
@@ -144,3 +145,11 @@ After the first deploy with `DATABASE_URL` set:
 1. Migrations run automatically on the first persist API request (and via `npm run db:migrate` if you have SSH).
 2. Add a Hostinger cron (daily) that GETs `https://colorbase.in/api/cron/cleanup` with header `Authorization: Bearer $CRON_SECRET`.
 3. Do not store user tables, palettes, or exports as files under `public/` or `/tmp` — they belong in Postgres JSON.
+
+## Interior Color Inspiration
+
+- Public: `/interior-colors` and `/interior-colors/[slug]` (published entries only).
+- Admin: `/admin/login` then `/admin/interior-palettes`. Set `ADMIN_SECRET` (long random string). Sign-in sets an HTTP-only cookie.
+- Storage is files, not Postgres: `public/assets/interior-colors/catalog.json` (compact metadata; HEX only, RGB/HSL derived at read) plus one optimized `{id}.webp` (JPEG/PNG fallback). Do not duplicate the same photo.
+- HEX values come from server-side quantization (`jpeg-js` / `pngjs`, optional `sharp` for WebP). `OPENAI_API_KEY` may suggest titles/descriptions only.
+- `DATABASE_URL` is not required for this feature. Commit new assets after publishing if Hostinger deploys from Git.

@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { getPool, isDbConfigured } from "./pool";
 import { INIT_MIGRATION_ID, INIT_SQL } from "./init-sql";
+import { INTERIOR_MIGRATION_ID, INTERIOR_SQL } from "./interior-sql";
 
 let migratePromise: Promise<void> | null = null;
 
@@ -47,10 +48,12 @@ export async function runMigrations() {
   `);
 
   await applySql(INIT_MIGRATION_ID, INIT_SQL);
+  await applySql(INTERIOR_MIGRATION_ID, INTERIOR_SQL);
 
   const dir = migrationsDir();
   if (!dir) return;
 
+  const bundled = new Set([INIT_MIGRATION_ID, INTERIOR_MIGRATION_ID]);
   const files = fs
     .readdirSync(dir)
     .filter((f) => f.endsWith(".sql"))
@@ -58,7 +61,7 @@ export async function runMigrations() {
 
   for (const file of files) {
     const id = file.replace(/\.sql$/, "");
-    if (id === INIT_MIGRATION_ID) continue;
+    if (bundled.has(id)) continue;
     const sql = fs.readFileSync(path.join(dir, file), "utf8");
     await applySql(id, sql);
   }

@@ -1055,6 +1055,11 @@ export const STATIC_PAGES = [
   { slug: "color-names", title: "Color Names", description: "Wheat, salmon, tomato, and every CSS named color with hex codes." },
   { slug: "gradient-library", title: "Gradient Library", description: "Premade CSS gradient library." },
   { slug: "palette-library", title: "Palette Library", description: "Curated UI and brand palettes." },
+  {
+    slug: "interior-colors",
+    title: "Interior Color Inspiration",
+    description: "Room palettes sampled from photographs, with exact HEX values from image analysis.",
+  },
   { slug: "developers", title: "Developer Resources", description: "Export colors to CSS, Tailwind, Flutter, and more." },
   { slug: "blog", title: "Blog", description: "Original colorBase articles on contrast, tokens, Tailwind, and palettes." },
   { slug: "image-tools", title: "Image Color Tools", description: "Extract palettes and histograms from images." },

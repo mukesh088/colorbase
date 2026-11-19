@@ -14,6 +14,7 @@ User-agent: *
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 Disallow: /api/
+Disallow: /admin/
 
 User-agent: GPTBot
 Content-Signal: search=yes, ai-input=yes, ai-train=no

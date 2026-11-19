@@ -9,6 +9,7 @@ const FOOTER_GROUPS = [
       { href: "/color-names", label: "Color names" },
       { href: "/colors/family/blue", label: "Families" },
       { href: "/palette-library", label: "Palettes" },
+      { href: "/interior-colors", label: "Interior colors" },
       { href: "/explore-colors", label: "Explore HEX" },
     ],
   },

@@ -72,7 +72,11 @@ export default function HouseColorCombinationsPage() {
           House Color Combinations &amp; Home Paint Palettes
         </h1>
         <p className="mt-3 max-w-3xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          Plan cohesive color schemes for every room in your home. Harmonize walls, trim, ceilings, and architectural accents with designer-tested palettes and practical paint sheen advice.
+          Plan cohesive color schemes for every room in your home. Harmonize walls, trim, ceilings, and architectural accents with designer-tested palettes and practical paint sheen advice. For palettes sampled from real room photos, see{" "}
+          <Link href="/interior-colors" className="font-medium text-primary underline-offset-4 hover:underline">
+            Interior Color Inspiration
+          </Link>
+          .
         </p>
       </header>
 

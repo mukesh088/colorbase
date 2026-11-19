@@ -34,7 +34,7 @@ const nextConfig = {
   poweredByHeader: false,
   compress: true,
   productionBrowserSourceMaps: false,
-  serverExternalPackages: ["pg"],
+  serverExternalPackages: ["pg", "jpeg-js", "pngjs", "sharp"],
   compiler: {
     removeConsole: { exclude: ["error", "warn"] },
   },

@@ -35,6 +35,7 @@ describe("published sitemap inventory", () => {
       "font-generator",
       "fancy-text-generator",
       "typography-generator",
+      "interior-colors",
     ])
       expect(paths.has(`/${route}`), route).toBe(true);
     expect(paths.has("/css-gradient-generator")).toBe(false);

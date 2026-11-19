@@ -55,6 +55,12 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) {
+    const response = NextResponse.next();
+    response.headers.set("Cache-Control", "private, no-store");
+    return response;
+  }
+
   if (
     pathname.startsWith("/_next/static") ||
     pathname.startsWith("/_next/image") ||
