@@ -1110,11 +1110,6 @@ export const STATIC_PAGES = [
     description: "Browse color, CSS, palette, and accessibility tools by menu.",
   },
   {
-    slug: "color-palette-generator",
-    title: "Color Palette Generator",
-    description: "Generate and export harmonious color palettes with one click.",
-  },
-  {
     slug: "color-theory",
     title: "Color Theory Guide",
     description: "Complete guide to the color wheel, primary/secondary/tertiary colors, harmonies, and psychology.",

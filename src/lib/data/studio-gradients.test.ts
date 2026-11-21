@@ -37,7 +37,7 @@ describe("named studio gradients", () => {
   });
 
   it("makes every new recipe discoverable by name, category, route and sitemap", () => {
-    const paths = new Set(sitemapForId("libraries").map((entry) => new URL(entry.url).pathname));
+    const paths = new Set(sitemapForId("gradients").map((entry) => new URL(entry.url).pathname));
     for (const gradient of getStudioGradients()) {
       expect(searchGradients(gradient.name)).toContain(gradient);
       expect(getGradient(gradient.slug)).toBe(gradient);

@@ -7,6 +7,7 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
+    "prebuild": "node scripts/generate-content-dates.mjs",
     "build": "next build && node scripts/hostinger-postbuild.js",
     "start": "node .next/standalone/server.js",
     "postbuild:check": "node scripts/hostinger-postbuild.js",
@@ -18,6 +19,8 @@
     "test": "vitest run",
     "seo:flags": "node scripts/seo-quality-flags.mjs",
     "seo:check": "node scripts/check-seo.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs",
+    "seo:dates": "node scripts/generate-content-dates.mjs",
     "keywords:inventory": "node scripts/generate-keyword-inventory.mjs"
   },
   "dependencies": {

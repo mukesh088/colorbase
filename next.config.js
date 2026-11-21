@@ -33,6 +33,10 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   compress: true,
+  // Next 15 streams generateMetadata output into <body> for every UA not on its
+  // "HTML-limited bot" list (Googlebot and AI crawlers included). Google ignores a
+  // canonical found in <body>, so always resolve metadata into <head>.
+  htmlLimitedBots: /.*/,
   productionBrowserSourceMaps: false,
   serverExternalPackages: ["pg", "jpeg-js", "pngjs", "sharp"],
   compiler: {
@@ -165,11 +169,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/sitemap/:id(\\d+).xml",
-        destination: "/sitemap.xml",
-        permanent: true,
-      },
-      {
         source: "/tools/table-generator",
         destination: "/tools",
         permanent: true,
@@ -222,6 +221,12 @@ const nextConfig = {
       {
         source: "/css-gradient-generator",
         destination: "/gradient-generator",
+        permanent: true,
+      },
+      {
+        // Was listed as a page but never had its own tool (served a soft 404).
+        source: "/color-palette-generator",
+        destination: "/palette-generator",
         permanent: true,
       },
       {

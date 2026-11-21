@@ -1,84 +1,10 @@
-import { SITE_URL } from "@/lib/site-config";
+import { robotsTxt } from "@/lib/robots";
 
 export const runtime = "nodejs";
 export const dynamic = "force-static";
 
 export function GET() {
-  const body = `# ColorBase robots.txt
-# Content Signals: https://contentsignals.org/
-# search = indexing / link results
-# ai-input = grounding / RAG / agent retrieval
-# ai-train = model training / fine-tuning
-
-User-agent: *
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-User-agent: GPTBot
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-User-agent: ChatGPT-User
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-User-agent: ClaudeBot
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-User-agent: Claude-User
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-User-agent: Google-Extended
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-User-agent: PerplexityBot
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-User-agent: Applebot-Extended
-Content-Signal: search=yes, ai-input=yes, ai-train=no
-Allow: /
-Disallow: /api/
-Disallow: /admin/
-Disallow: /search?
-Disallow: /*?*utm_
-
-Host: ${SITE_URL}
-Sitemap: ${SITE_URL}/sitemap.xml
-`;
-
-  return new Response(body, {
+  return new Response(robotsTxt(), {
     headers: {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "public, max-age=3600, s-maxage=3600",

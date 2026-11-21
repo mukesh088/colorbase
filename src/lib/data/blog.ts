@@ -27,6 +27,8 @@ export interface BlogPost {
   description: string;
   category: BlogCategory;
   publishedAt: string;
+  /** ISO date of the last substantive edit; falls back to publishedAt. */
+  updatedAt?: string;
   readingTime: string;
   keywords: string[];
   body: string;

@@ -169,7 +169,7 @@ export async function listPublishedInteriorSitemap() {
   const items = await listPublishedInteriorPalettes();
   return items.map((item) => ({
     slug: item.slug,
-    lastModified: new Date(item.publishedAt ?? item.updatedAt),
+    lastModified: new Date(item.updatedAt ?? item.publishedAt),
   }));
 }
 

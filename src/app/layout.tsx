@@ -36,20 +36,30 @@ const mono = JetBrains_Mono({
   preload: false,
 });
 
-export const metadata: Metadata = createPageMetadata({
-  title: SITE_TAGLINE,
-  description: SITE_DESCRIPTION,
-  path: "/",
-  keywords: [
-    "colorbase",
-    "color library",
-    "oklch",
-    "tailwind colors",
-    "wcag contrast",
-    "palette generator",
-    "design tokens",
-  ],
-});
+const searchConsoleVerification = process.env.GSC_VERIFICATION?.trim();
+const bingVerification = process.env.BING_VERIFICATION?.trim();
+
+export const metadata: Metadata = {
+  ...createPageMetadata({
+    title: SITE_TAGLINE,
+    description: SITE_DESCRIPTION,
+    path: "/",
+    keywords: [
+      "colorbase",
+      "color library",
+      "oklch",
+      "tailwind colors",
+      "wcag contrast",
+      "palette generator",
+      "design tokens",
+    ],
+  }),
+  // Set GSC_VERIFICATION / BING_VERIFICATION at build time (static pages bake them in).
+  verification: {
+    ...(searchConsoleVerification ? { google: searchConsoleVerification } : {}),
+    ...(bingVerification ? { other: { "msvalidate.01": bingVerification } } : {}),
+  },
+};
 
 export const viewport: Viewport = {
   themeColor: [
@@ -65,7 +75,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${display.variable} ${body.variable} ${mono.variable}`}
+    >
       <head>
         {/* Explicit head tags so AdSense crawler can verify without running JS */}
         <meta name="google-adsense-account" content={ADSENSE_CLIENT_ID} />
@@ -78,13 +92,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Providers>
           <a
             href="#main-content"
-            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+            className="focus:bg-primary focus:text-primary-foreground sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:rounded-lg focus:px-4 focus:py-2"
           >
             Skip to main content
           </a>
           <div className="flex min-h-dvh flex-col">
             <Header />
-            <main id="main-content" className="mx-auto w-full min-w-0 max-w-[1600px] flex-1 overflow-x-clip">
+            <main
+              id="main-content"
+              className="mx-auto w-full max-w-[1600px] min-w-0 flex-1 overflow-x-clip"
+            >
               {children}
             </main>
             <Footer />

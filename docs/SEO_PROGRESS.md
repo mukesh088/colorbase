@@ -4,7 +4,9 @@ Plan: [`SEO_GEO_PLAN.md`](../SEO_GEO_PLAN.md) (repo root). Rules: [`CLAUDE.md`](
 Tick a task only when it is built, the build passes and it is committed.
 
 ## Handoff note (read first)
-- **Status:** Phase 0 done. Next: Phase 1 (start with P1 in `docs/seo-audit.md`: metadata streamed into `<body>` on 12,187 URLs).
+- **Status:** Phases 0–1 done. Next: Phase 2 (titles ≤ 60 chars, descriptions 140–155, duplicate titles, breadcrumbs, OG images, schema).
+- Branches are stacked: `seo/phase-0-audit` → `seo/phase-1-crawling` → … Merge them into `main` in order (or merge the last one).
+- Non-color tools: keep current URLs, group them as "More tools" (your answer, 2026-11-21). No `/extras/` move.
 - Run vitest from an upper-case drive path (`D:\projects\colorbase`). From `d:\…` every suite fails with "Vitest failed to find the current suite" (Windows drive-letter case makes vitest load twice).
 
 ---
@@ -17,13 +19,13 @@ Tick a task only when it is built, the build passes and it is committed.
 - [x] Check robots.txt, sitemap, JSON-LD, OG tags, meta keywords, duplicate/generic links, soft 404s.
 - [x] Main content is server-rendered (Next.js App Router, not an SPA), so no pre-render decision is needed.
 
-## Phase 1 — Crawling & indexing
-- [ ] Main text, title, meta, H1 and FAQ in server HTML on every indexable page.
-- [ ] robots.txt: allow public, disallow `/api/` + admin/auth, Sitemap line, explicitly allow Googlebot, Bingbot, Google-Extended, GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot, Claude-User, Applebot-Extended.
-- [ ] Sitemap index `/sitemap.xml` → tools, colors-N, brands, palettes, gradients, blog (+ new sections); real lastmod; only indexable 200 URLs.
-- [ ] Canonical on every page; www→non-www and http→https 301; HEX URL normalization.
-- [ ] Invalid slugs return a real HTTP 404.
-- [ ] GSC + Bing verification meta tags via `GSC_VERIFICATION` / `BING_VERIFICATION` env vars.
+## Phase 1 — Crawling & indexing ✅
+- [x] Main text, title, meta, H1 and FAQ in server HTML on every indexable page (`htmlLimitedBots: /.*/` stops Next 15 streaming metadata into `<body>`).
+- [x] robots.txt: allow public, disallow `/api/`, `/admin/`, `/search?`, utm URLs; Sitemap line; one explicit group each for Googlebot, Bingbot, Google-Extended, GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot, Claude-User, Applebot, Applebot-Extended. Dropped the non-standard `Host:` line.
+- [x] Sitemap index `/sitemap.xml` → `/sitemaps/{tools,blog,brands,color-names,colors-1,palettes,gradients,interior}.xml`; lastmod from git history per route/section (`scripts/generate-content-dates.mjs`, runs as `prebuild`) or post dates; only indexable 200 URLs.
+- [x] Canonical on every page (self-referencing on all 16,098 sitemap URLs). www→non-www 308 already in `next.config.js`; HEX normalization already works. http→https is a hosting setting (see manual tasks).
+- [x] Invalid slugs return a real HTTP 404, **except** `/interior-colors/<unknown>` (see "Needs your decision").
+- [x] GSC + Bing verification meta via `GSC_VERIFICATION` / `BING_VERIFICATION` (set at **build** time).
 
 ## Phase 2 — Metadata, headings, schema
 - [ ] Central SEO helper (title, description, canonical, OG, Twitter, JSON-LD) on every page; no `meta keywords`.
@@ -103,3 +105,16 @@ Tick a task only when it is built, the build passes and it is committed.
 - Findings: see "Prioritized problems" in `docs/seo-audit.md`. Biggest: P1 (streamed metadata), P2/P3 (soft 404s), P7/P8 (title/description lengths), P11 (thin pages).
 - Baseline: `tsc` clean, `eslint` 0 errors / 65 warnings, vitest 32 files / 131 tests pass, `next build` passes.
 - For you: the working tree had uncommitted changes from earlier work (37 modified + several untracked files). Phase 0 commits only its own files.
+
+### Phase 1 — 2026-11-21
+- Before the phase: committed your earlier uncommitted SEO work as `chore: commit in-progress SEO work…` (your choice).
+- Files: `next.config.js` (htmlLimitedBots, `/color-palette-generator` → `/palette-generator` 308, removed a duplicated redirect), `src/lib/robots.ts`, `src/app/robots.txt/route.ts`, `src/lib/sitemaps.ts`, `src/lib/sitemap-xml.ts`, `src/app/sitemap.xml/route.ts`, `src/app/sitemaps/[file]/route.ts`, `src/lib/data/content-dates.json`, `scripts/generate-content-dates.mjs`, `package.json` (prebuild, `seo:audit`, `seo:dates`), `src/app/layout.tsx` (verification), `.env.example`, `src/lib/tools-registry.ts` (removed the broken static-page entry), `src/app/color-palette-generator/page.tsx` (redirect), 4 pages linking to it, `src/lib/data/blog.ts` (`updatedAt`), `src/lib/interior/store.ts` (lastmod = updatedAt), `src/middleware.ts`, tests.
+- Verified on a production build: full crawl of all 16,098 sitemap URLs → 0 non-200, 0 metadata outside `<head>` (was 12,187), 0 soft 404s, 0 noindex, 1 H1 each, self canonicals. Tests 134/134, tsc clean, lint 0 errors.
+- **For you:**
+  - Set `GSC_VERIFICATION` and `BING_VERIFICATION` in Hostinger **before the build** (static pages bake the tags in), then redeploy.
+  - Turn on "Force HTTPS" for colorbase.in in hPanel (http→https lives in hosting, not the app), then check `curl -I http://colorbase.in/` and `curl -I https://www.colorbase.in/` both 301/308 to `https://colorbase.in/`.
+  - Resubmit `https://colorbase.in/sitemap.xml` in Search Console (it is now a sitemap index).
+
+## Needs your decision
+- **`/interior-colors/<unknown-slug>` returns HTTP 200** (with `noindex` + the not-found page, so it won't be indexed). Cause: the global `src/app/loading.tsx` Suspense boundary flushes a 200 before the page calls `notFound()`. A true 404 needs either removing the global loading screen or moving `src/middleware.ts` to the Node.js runtime so it can check the interior catalog. Both change rendering, so I left it.
+- Mixed-case non-HEX paths (e.g. `/Color-Picker`) 404 instead of redirecting to lowercase. Blog category URLs use capitals (`/blog/category/Color%20Psychology`), so a blanket lowercase redirect would change existing URLs. Left as is.

@@ -168,7 +168,7 @@ export default function ComplementaryColorsPage() {
             Color Theory Principles <ArrowRight className="h-3 w-3" />
           </Link>
           <Link
-            href="/color-palette-generator"
+            href="/palette-generator"
             className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium hover:border-primary/50 hover:text-primary transition-colors"
           >
             Color Palette Generator <ArrowRight className="h-3 w-3" />

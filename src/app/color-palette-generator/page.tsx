@@ -1,24 +1,6 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { ToolPageShell } from "@/components/layout/tool-page-shell";
-import { ToolContent } from "@/components/tools/tool-content";
-import { getToolBySlug } from "@/lib/tools-registry";
-import { toolMetadata } from "@/lib/seo";
+import { permanentRedirect } from "next/navigation";
 
-const slug = "color-palette-generator";
-
-export function generateMetadata(): Metadata {
-  const tool = getToolBySlug(slug);
-  if (!tool) return {};
-  return toolMetadata(tool);
-}
-
+/** Duplicate of /palette-generator; next.config.js 308s here first. */
 export default function Page() {
-  const tool = getToolBySlug(slug);
-  if (!tool) notFound();
-  return (
-    <ToolPageShell tool={tool}>
-      <ToolContent slug={slug} />
-    </ToolPageShell>
-  );
+  permanentRedirect("/palette-generator");
 }

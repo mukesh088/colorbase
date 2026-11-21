@@ -116,7 +116,7 @@ export default function ColorTheoryPage() {
             Complementary Colors Tool
           </Link>
           <Link
-            href="/color-palette-generator"
+            href="/palette-generator"
             className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-muted/50 transition-colors"
           >
             Palette Generator

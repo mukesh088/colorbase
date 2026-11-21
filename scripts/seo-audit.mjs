@@ -143,6 +143,7 @@ function problems(p) {
   if (!p.description) list.push("no description");
   else if (!noindex && (p.description.length < 120 || p.description.length > 160)) list.push(`desc ${p.description.length} chars`);
   if (!p.canonical) list.push("no canonical");
+  else if (!p.metaInHead) list.push("metadata not in <head>");
   if (p.h1.length !== 1) list.push(`${p.h1.length} H1`);
   if (!noindex && p.words < 250) list.push(`thin (${p.words} words)`);
   if (p.jsonLd.includes("INVALID")) list.push("invalid JSON-LD");
