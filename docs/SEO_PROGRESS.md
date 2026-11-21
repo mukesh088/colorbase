@@ -4,7 +4,8 @@ Plan: [`SEO_GEO_PLAN.md`](../SEO_GEO_PLAN.md) (repo root). Rules: [`CLAUDE.md`](
 Tick a task only when it is built, the build passes and it is committed.
 
 ## Handoff note (read first)
-- **Status:** Phases 0–3 done. Next: Phase 4 (upgrade `/color/[hex]`, brand/palette/gradient/family pages, hub pagination). Thin pages still to fix are listed under Phase 3 in the log.
+- **Status:** Phases 0–4 done and committed. Next: Phase 5 (new page groups). Phase 5 needs sourced color data; groups whose data is not in the repo need your sources first (see "Needs your decision").
+- Workflow notes: build with `npm run build` from `D:\projects\colorbase` (PowerShell), serve with `npx next start -p 3123`, scan with `node scripts/seo-audit.mjs --base-url http://localhost:3123`.
 - Branches are stacked: `seo/phase-0-audit` → `seo/phase-1-crawling` → … Merge them into `main` in order (or merge the last one).
 - Non-color tools: keep current URLs, group them as "More tools" (your answer, 2026-11-21). No `/extras/` move.
 - Run vitest from an upper-case drive path (`D:\projects\colorbase`). From `d:\…` every suite fails with "Vitest failed to find the current suite" (Windows drive-letter case makes vitest load twice).
@@ -45,11 +46,12 @@ Tick a task only when it is built, the build passes and it is committed.
 - [x] "Last updated <date>" (from git history via `src/lib/content-dates.ts`) + "Maintained by the ColorBase team" linking `/about`.
 - [x] Non-color tools: kept at their URLs (your decision) and grouped under "More tools: CSS layout, type & time" in a new server-rendered index on `/tools` (`src/components/tools/tools-index.tsx`, `/tools#more-tools`), plus a nav link. `/tools` went from 107 to 1,600 words of crawlable text with a real link to every tool.
 
-## Phase 4 — Upgrade existing programmatic pages
-- [ ] `/color/[hex]` full upgrade (answer sentence, formats, shades/tints, harmonies, contrast, CVD previews, snippets, nearest names, palettes, varied description).
-- [ ] Index only curated HEX set; others `noindex,follow`.
-- [ ] Brand / palette / gradient / family pages: unique intros, snippets, related links, schema.
-- [ ] Hub pages with crawlable pagination.
+## Phase 4 — Upgrade existing programmatic pages ✅ (one item waits on you)
+- [x] `/color/[hex]`: new server-rendered `HexQuickFacts` block under the H1: answer sentence ("#E11D48 is a vivid pink-red. RGB …; HSL …"), computed usage sentences that vary by temperature and measured contrast, CMYK, WCAG table on white/black (AA, AA large, AAA), color-blindness previews (protan/deutan/tritan/achromat), CSS/SCSS/Tailwind snippet, nearest CSS keyword and Tailwind token, and library palettes/gradients containing the exact HEX. Existing page already had all formats incl. LAB/OKLCH, 50–950 scale, tints/shades/tones and five harmonies. Same block on `/colors/[slug]`, `/color-names/[slug]` and verified brand-HEX pages. Median `/color/*` page ≈ 1,000 words.
+- [x] Indexing stays curated (CSS named colors, design-system colors, verified brand HEXes, hand-written references); other HEX values render with `noindex,follow` (existing `src/lib/hex-indexing.ts`, which plays the role of the plan's `popular-colors.json`).
+- [x] Brand, palette, gradient and family pages: brand-HEX pages 190 → 309+ words; palette pages get a computed intro (each color named, pairs passing 4.5:1, strongest pair) replacing identical boilerplate; gradient pages get an "About" section (type, angle, stops, safest text color + ratio), linked color stops, 3 computed FAQs + FAQPage schema and 8 related gradients (35 → ~220 words); `/developers/[format]` shows real generated output for a sample palette and links all formats.
+- [x] Hub pages with crawlable links: gradient category pages listed **0** gradient links in server HTML (client gallery); they now list every gradient in the category. Family pages showed only the first 120 colors; the remaining curated colors are now linked. Brand and color-name hubs already linked every item; palette categories already did.
+- [ ] Near-duplicate pairs (`/colors/<kit>` vs tool pages, `white-smoke` vs `whitesmoke`): waiting for your decision (see "Needs your decision").
 
 ## Phase 5 — New page groups
 - [ ] 5.1 Colors that go with X
@@ -130,3 +132,8 @@ Tick a task only when it is built, the build passes and it is committed.
 - Verified on a production build: tool pages gained ~120–220 words of server-rendered text each; `/tools` 107 → 1,600 words; `/color-atlas` 6 → 115; `/explore-colors` 6 → 105. Tests 143/143, tsc clean, lint 0 errors.
 - Still under 250 words (Phase 4 / hubs): `/gradient-library/[slug]` (~35), `/developers/[format]` (~40), `/blog/category/*` (~36), `/colors/bootstrap` (46), `/colors/radix` (70), `/interior-colors` (82), brand-HEX pages (~190), some palette pages (~230), `/contact` (44).
 - For you: review the 82 answers in `src/lib/data/tool-answers.ts`. They are written from each tool's existing copy and standard references (WCAG 2.2, CSS specs, color math); anything that misdescribes a tool is easiest to fix there.
+
+### Phase 4 — 2026-11-22
+- Files: `src/components/library/hex-quick-facts.tsx` (new), `src/lib/colors/describe.ts` (`contrastVerdict`, `hexUsageSentences`), `src/app/color/[hex]/page.tsx`, `src/app/colors/[slug]/page.tsx`, `src/app/color-names/[slug]/page.tsx`, `src/app/brands/[slug]/[hex]/page.tsx`, `src/app/gradient-library/[slug]/page.tsx`, `src/app/gradient-library/category/[category]/page.tsx`, `src/app/palette-library/[slug]/page.tsx`, `src/app/colors/family/[family]/page.tsx`, `src/app/developers/[format]/page.tsx`.
+- Verified on a production build: full crawl of 16,098 sitemap URLs still clean (200, metadata in head, self canonical, 1 H1, titles ≤ 60, descriptions 140–155, unique); 0 invalid JSON-LD in a 448-page sample. Tests 143/143, tsc clean, lint 0 errors.
+- Still thin (< 250 words): `/contact` (44), `/colors/bootstrap` (46), `/colors/radix` (70), `/interior-colors` (82), `/blog/category/*` with one post, a few palettes (~240). `/colors/bootstrap` and `/colors/radix` depend on the duplicate-page decision.

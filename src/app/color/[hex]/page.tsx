@@ -15,6 +15,7 @@ import { getHexReference } from "@/lib/data/hex-references";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { ColorCatalogBrief } from "@/components/library/color-catalog-brief";
 import { buildColorBrief } from "@/lib/seo/color-brief";
+import { HexQuickFacts } from "@/components/library/hex-quick-facts";
 
 // All RGB colors share this page. Never prebuild or persist HTML/RSC per HEX,
 // including when PREBUILD_LIBRARY_PAGES is enabled for the finite catalogs.
@@ -90,6 +91,7 @@ export default async function HexColorPage({ params }: { params: Promise<{ hex: 
       <Breadcrumbs items={crumbs} />
       <div className="mt-4">
         <ColorCatalogBrief name={name} hex={value} family={family} path={path} />
+        <HexQuickFacts hex={value} name={known?.name ?? reference?.name} />
         <ColorDetailView
           name={name}
           hex={value}

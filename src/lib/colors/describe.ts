@@ -92,3 +92,50 @@ export function hexAnswerSentence(input: string) {
   const d = describeHex(input);
   return `${d.hex} is ${d.article} ${d.phrase}. RGB ${d.rgb.r}, ${d.rgb.g}, ${d.rgb.b}; HSL ${d.hsl.h}°, ${d.hsl.s}%, ${d.hsl.l}%.`;
 }
+
+export type ContrastVerdict = {
+  ratio: number;
+  aaNormal: boolean;
+  aaLarge: boolean;
+  aaaNormal: boolean;
+  aaaLarge: boolean;
+};
+
+/** WCAG 2.x thresholds for a ratio (normal text 4.5 / 7, large text 3 / 4.5). */
+export function contrastVerdict(ratio: number): ContrastVerdict {
+  const r = Math.round(ratio * 100) / 100;
+  return { ratio: r, aaNormal: r >= 4.5, aaLarge: r >= 3, aaaNormal: r >= 7, aaaLarge: r >= 4.5 };
+}
+
+/**
+ * Computed sentences that vary with temperature and measured contrast,
+ * used as the intro under the answer sentence on color pages.
+ */
+export function hexUsageSentences(input: string, onWhite: number, onBlack: number) {
+  const d = describeHex(input);
+  const sentences: string[] = [];
+  if (d.temperature === "warm") sentences.push("It is a warm color, so it reads as energetic and draws attention.");
+  else if (d.temperature === "cool") sentences.push("It is a cool color, so it reads as calm and steady.");
+  else sentences.push("It is a neutral, so it suits surfaces, borders and text without competing with accents.");
+
+  const white = contrastVerdict(onWhite);
+  const black = contrastVerdict(onBlack);
+  if (white.aaNormal) {
+    sentences.push(
+      `As text on white it reaches ${white.ratio}:1, which passes WCAG AA${white.aaaNormal ? " and AAA" : ""} for body copy, and white labels on it are just as readable.`
+    );
+  } else if (black.aaNormal && white.aaLarge) {
+    sentences.push(
+      `Black text on it reaches ${black.ratio}:1 (AA); as text on white it reaches ${white.ratio}:1, enough for large headings but not body text.`
+    );
+  } else if (black.aaNormal) {
+    sentences.push(
+      `It is light, so pair it with dark text: black on it reaches ${black.ratio}:1, while it fails as text on white at ${white.ratio}:1.`
+    );
+  } else {
+    sentences.push(
+      `Neither black (${black.ratio}:1) nor white (${white.ratio}:1) text reaches 4.5:1 on it, so use it for fills and accents rather than behind body text.`
+    );
+  }
+  return sentences;
+}

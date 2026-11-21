@@ -19,6 +19,7 @@ import { ColorCatalogBrief } from "@/components/library/color-catalog-brief";
 import { ColorCodeStack } from "@/components/library/color-code-stack";
 import { ColorSwatchImage } from "@/components/library/color-swatch-image";
 import { COLOR_AUTHORITY_LINKS } from "@/lib/seo/color-brief";
+import { HexQuickFacts } from "@/components/library/hex-quick-facts";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -176,6 +177,7 @@ export default async function NamedColorPage({ params }: { params: Promise<{ slu
         family={color.family}
         path={`/color-names/${color.slug}`}
       />
+      <HexQuickFacts hex={color.hex} name={label} />
 
       <div className="card-lift border-border/50 mb-8 overflow-hidden rounded-[1.75rem] border">
         <PaletteStrip colors={[color.hex, ...relatedShades.slice(0, 5)]} height="lg" />

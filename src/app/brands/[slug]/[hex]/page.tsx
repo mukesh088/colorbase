@@ -23,6 +23,7 @@ import { BrandPaletteDownload } from "@/components/library/brand-palette-downloa
 import { BrandScaleRow } from "@/components/library/brand-scale-row";
 import { Card, CardContent } from "@/components/ui/card";
 import { BrandReferenceSource } from "@/components/library/brand-reference-source";
+import { HexQuickFacts } from "@/components/library/hex-quick-facts";
 
 // Catalog size must not create a prebuilt/ISR file for each entry.
 export const dynamic = "force-dynamic";
@@ -194,6 +195,8 @@ export default async function BrandHexPage({
           </Card>
         ))}
       </div>
+
+      {!unverified && <HexQuickFacts hex={entry.hex} name={`${brand.name} ${role}`} />}
 
       <section className="border-border/50 dark:bg-card mt-10 space-y-5 rounded-[1.5rem] border bg-white p-5 sm:p-6">
         <h2 className="font-display text-xl font-semibold tracking-tight">

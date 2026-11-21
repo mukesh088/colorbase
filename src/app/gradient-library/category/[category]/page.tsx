@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
@@ -68,6 +69,31 @@ export default async function GradientCategoryPage({
           pageSize={200}
         />
       </div>
+      <section className="mt-12" aria-labelledby="all-gradients">
+        <h2 id="all-gradients" className="font-display text-xl font-semibold tracking-tight">
+          All {items.length} {category} gradients
+        </h2>
+        <ul className="mt-4 columns-2 gap-6 text-sm sm:columns-3 lg:columns-4">
+          {items.map((g) => (
+            <li key={g.slug} className="mb-1.5 break-inside-avoid">
+              <Link href={`/gradient-library/${g.slug}`} className="text-primary underline-offset-4 hover:underline">
+                {g.name} gradient
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-sm text-muted-foreground">
+          Other categories:{" "}
+          {GRADIENT_CATEGORIES.filter((c) => c !== category).map((c, i) => (
+            <span key={c}>
+              {i > 0 ? " · " : ""}
+              <Link href={`/gradient-library/category/${c}`} className="text-primary underline-offset-4 hover:underline">
+                {c} gradients
+              </Link>
+            </span>
+          ))}
+        </p>
+      </section>
     </div>
   );
 }

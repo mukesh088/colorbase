@@ -16,6 +16,8 @@ import { PaletteHeart } from "@/components/library/palette-heart";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { maybeStaticParams } from "@/lib/static-params";
 import { PaletteContrastTable } from "@/components/library/palette-contrast-table";
+import { describeHex } from "@/lib/colors/describe";
+import { getContrastRatio } from "@/lib/colors/convert";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -46,6 +48,11 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
   const p = getPalette(slug);
   if (!p) notFound();
   const related = getRelatedPalettes(p);
+  const pairs = p.colors.flatMap((a, i) =>
+    p.colors.slice(i + 1).map((b) => ({ a, b, ratio: Math.round(getContrastRatio(a, b) * 100) / 100 }))
+  );
+  const passing = pairs.filter((pair) => pair.ratio >= 4.5);
+  const strongest = [...pairs].sort((x, y) => y.ratio - x.ratio)[0];
   const crumbs = [
     { name: "Home", href: "/" },
     { name: "Palette Library", href: "/palette-library" },
@@ -73,10 +80,17 @@ export default async function PaletteDetailPage({ params }: { params: Promise<{ 
         </div>
       </div>
 
+      <p className="mb-2 max-w-3xl leading-relaxed">
+        {p.name} is {/^[aeiou]/.test(p.category) ? "an" : "a"} {p.category} palette of {p.colors.length} colors:{" "}
+        {p.colors.map((c) => `${c.toUpperCase()} (${describeHex(c).phrase})`).join(", ")}.
+      </p>
       <p className="mb-5 max-w-3xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-        This generated palette is a starting point for your theme. The percentage above counts
-        pairs with at least 3:1 contrast. Check the table below for combinations that meet
-        normal-text requirements, then export your colors as reusable tokens.
+        {passing.length} of {pairs.length} color pairs reach 4.5:1, enough for body text under WCAG AA.
+        {strongest
+          ? ` The strongest pair is ${strongest.a.toUpperCase()} on ${strongest.b.toUpperCase()} at ${strongest.ratio}:1.`
+          : ""}{" "}
+        The badge above counts pairs with at least 3:1 contrast, the minimum for large text and UI parts. Check the
+        table below, then export the colors as tokens.
       </p>
       <ToolCtaRow hex={p.colors[0]} colors={p.colors} className="mb-8 flex flex-wrap gap-2" />
 

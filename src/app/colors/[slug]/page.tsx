@@ -13,6 +13,7 @@ import { maybeStaticParams } from "@/lib/static-params";
 import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 import { ColorCatalogBrief } from "@/components/library/color-catalog-brief";
 import { buildColorBrief } from "@/lib/seo/color-brief";
+import { HexQuickFacts } from "@/components/library/hex-quick-facts";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -96,6 +97,7 @@ export default async function ColorSlugPage({ params }: { params: Promise<{ slug
           family={color.family}
           path={path}
         />
+        <HexQuickFacts hex={color.hex} name={color.name} />
         <ColorDetailView
           name={color.name}
           hex={color.hex}

@@ -17,12 +17,19 @@ import { PaletteStrip } from "@/components/library/palette-strip";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { mixColors } from "@/lib/colors/convert";
 import { HEX_REFERENCES } from "@/lib/data/hex-references";
+import { isCuratedLibraryColor } from "@/lib/hex-indexing";
 
 export function generateStaticParams() {
   return COLOR_FAMILIES.map((family) => ({ family }));
 }
 
 export const dynamic = "force-static";
+
+/** Colors the page lists: the first 120, plus curated ones beyond that. */
+function shownFamilyColorCount(family: string) {
+  const all = getColorsByFamily(family);
+  return Math.min(all.length, 120) + all.slice(120).filter(isCuratedLibraryColor).length;
+}
 
 export async function generateMetadata({
   params,
@@ -35,7 +42,7 @@ export async function generateMetadata({
   return createPageMetadata({
     title: `${label} Colors`,
     description: fitDescription(
-      `Browse ${getColorsByFamily(family).length} ${label.toLowerCase()} colors with HEX, RGB, HSL and OKLCH codes.`,
+      `Browse ${shownFamilyColorCount(family)} ${label.toLowerCase()} colors with HEX, RGB, HSL and OKLCH codes.`,
       "Each swatch links to a page with its shades and contrast.",
       "Copy any code for CSS or design tools."
     ),
@@ -47,7 +54,9 @@ export async function generateMetadata({
 export default async function FamilyPage({ params }: { params: Promise<{ family: string }> }) {
   const { family } = await params;
   if (!COLOR_FAMILIES.includes(family as ColorFamily)) notFound();
-  const colors = getColorsByFamily(family).slice(0, 120);
+  const allColors = getColorsByFamily(family);
+  const colors = allColors.slice(0, 120);
+  const moreColors = allColors.slice(120).filter(isCuratedLibraryColor);
   const references = HEX_REFERENCES.filter((reference) => reference.family === family);
   const label = FAMILY_LABELS[family as ColorFamily];
   const base = FAMILY_SWATCH[family as ColorFamily];
@@ -115,6 +124,22 @@ export default async function FamilyPage({ params }: { params: Promise<{ family:
           </div>
         ))}
       </div>
+      {moreColors.length > 0 && (
+        <section className="mt-10" aria-labelledby="more-family-colors">
+          <h2 id="more-family-colors" className="font-display text-xl font-semibold tracking-tight">
+            More {label.toLowerCase()} colors
+          </h2>
+          <ul className="mt-4 columns-2 gap-6 text-sm sm:columns-3 lg:columns-4">
+            {moreColors.map((c) => (
+              <li key={c.slug} className="mb-1.5 break-inside-avoid">
+                <Link href={`/colors/${c.slug}`} className="text-primary underline-offset-4 hover:underline">
+                  {c.name} ({c.hex.toUpperCase()})
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
     </div>
   );
 }
