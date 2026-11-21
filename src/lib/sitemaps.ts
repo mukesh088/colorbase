@@ -1,5 +1,4 @@
 import type { MetadataRoute } from "next";
-import { SITE_CONTENT_UPDATED } from "@/lib/site-config";
 import { STATIC_PAGES, TOOLS } from "@/lib/tools-registry";
 import {
   BRANDS,
@@ -18,7 +17,7 @@ import { CODE_FORMATS } from "@/lib/codegen";
 import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
 import { getIndexableHexSlugs, isCuratedLibraryColor } from "@/lib/hex-indexing";
 import { absoluteUrl } from "@/lib/utils";
-import contentDates from "@/lib/data/content-dates.json";
+import { isoToDate as toDate, latestIso as latest, routeLastModified, sectionLastModified } from "@/lib/content-dates";
 import retiredToolSlugs from "../../retired-tools";
 
 /** Sitemap sections. Each becomes one or more `/sitemaps/<file>.xml` files. */
@@ -39,27 +38,8 @@ const NUMBERED_SECTIONS = new Set<SitemapId>(["colors"]);
 export const SITEMAP_CHUNK_SIZE = 10_000;
 
 type Entry = MetadataRoute.Sitemap[number];
-type ContentDates = { sections: Record<string, string | undefined>; routes: Record<string, string | undefined> };
-const DATES = contentDates as ContentDates;
 
-function toDate(iso: string | undefined) {
-  return new Date(`${iso ?? SITE_CONTENT_UPDATED}T00:00:00.000Z`);
-}
-
-function latest(...isos: (string | undefined)[]) {
-  return isos.filter(Boolean).sort().at(-1);
-}
-
-/** Last commit touching a section's data files (see scripts/generate-content-dates.mjs). */
-export function sectionLastModified(section: string) {
-  return toDate(DATES.sections[section]);
-}
-
-/** Last change to a static route: its own files or the shared section content it renders. */
-function routeLastModified(path: string, section?: string) {
-  return toDate(latest(DATES.routes[path], section ? DATES.sections[section] : undefined));
-}
-
+export { routeLastModified, sectionLastModified };
 /** Redirects and retired tools stay out of the sitemap. */
 const SITEMAP_EXCLUDED_TOOL_SLUGS = new Set<string>([
   "css-gradient-generator",

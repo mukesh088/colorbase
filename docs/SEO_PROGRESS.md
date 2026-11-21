@@ -4,7 +4,7 @@ Plan: [`SEO_GEO_PLAN.md`](../SEO_GEO_PLAN.md) (repo root). Rules: [`CLAUDE.md`](
 Tick a task only when it is built, the build passes and it is committed.
 
 ## Handoff note (read first)
-- **Status:** Phases 0–2 done. Next: Phase 3 (answer-first `<ToolContent>` sections on every tool page; group non-color tools as "More tools").
+- **Status:** Phases 0–3 done. Next: Phase 4 (upgrade `/color/[hex]`, brand/palette/gradient/family pages, hub pagination). Thin pages still to fix are listed under Phase 3 in the log.
 - Branches are stacked: `seo/phase-0-audit` → `seo/phase-1-crawling` → … Merge them into `main` in order (or merge the last one).
 - Non-color tools: keep current URLs, group them as "More tools" (your answer, 2026-11-21). No `/extras/` move.
 - Run vitest from an upper-case drive path (`D:\projects\colorbase`). From `d:\…` every suite fails with "Vitest failed to find the current suite" (Windows drive-letter case makes vitest load twice).
@@ -35,15 +35,15 @@ Tick a task only when it is built, the build passes and it is committed.
 - [x] JSON-LD: Organization (+ Play Store in `sameAs`) + WebSite on every page; tools now `WebApplication` (free, `DesignApplication`, publisher); FAQPage; BreadcrumbList; BlogPosting with `dateModified`, author/publisher `@id`. `Dataset` is deferred to the Phase 6 research report (the only data-report page).
 - [x] Visible breadcrumbs on inner pages; added BreadcrumbList to `/color-meaning`, `/contact`, `/learning`, `/search` and the 4 legal pages (`<Breadcrumbs withJsonLd>`).
 
-## Phase 3 — Answer-first content on tool pages
-- [ ] Reusable server-rendered `<ToolContent>` section.
-- [ ] Answer box (40–60 words) first.
-- [ ] How-to (3–5 steps).
-- [ ] Explainer with table/code where useful.
-- [ ] 4–6 question-style FAQs.
-- [ ] 3–5 related tool links.
-- [ ] "Last updated" + maintainer line.
-- [ ] Applied to every tool on `/tools`; ask about moving non-color tools to `/extras/`.
+## Phase 3 — Answer-first content on tool pages ✅
+- [x] Reusable server-rendered section: `<ToolAnswerSection>` (`src/components/content/tool-answer.tsx`), rendered by `ToolPageShell` directly under every tool, before the existing guide, related tools and FAQs. (Named `ToolAnswerSection` because `ToolContent` already renders the widgets.) Content lives in `src/lib/data/tool-answers.ts` (typed TS data, same pattern as the existing guides; no MDX dependency added).
+- [x] Answer box first: question-style H2 + 40–60 word answer for all 76 live tools + 6 tool-like pages (AI generators, Color Atlas, Color Explorer, Image Tools). Word counts enforced by `tool-answers.test.ts`.
+- [x] How-to: 3–5 numbered steps for every live tool (filled the 10 CSS studios that had none).
+- [x] Explainer: table or CSS/HTML sample on 45 tools (conversion tables, WCAG thresholds, CVD types, CSS syntax for every generator) plus 3 "Key facts" on every tool (also covers Phase 7's key-facts task for tool pages).
+- [x] 4–6 question-style FAQs on every live tool (existing; enforced by test).
+- [x] 3–5 related tools per tool, never a redirected tool (fixed Font Generator's link to the retired fancy-text page; enforced by test).
+- [x] "Last updated <date>" (from git history via `src/lib/content-dates.ts`) + "Maintained by the ColorBase team" linking `/about`.
+- [x] Non-color tools: kept at their URLs (your decision) and grouped under "More tools: CSS layout, type & time" in a new server-rendered index on `/tools` (`src/components/tools/tools-index.tsx`, `/tools#more-tools`), plus a nav link. `/tools` went from 107 to 1,600 words of crawlable text with a real link to every tool.
 
 ## Phase 4 — Upgrade existing programmatic pages
 - [ ] `/color/[hex]` full upgrade (answer sentence, formats, shades/tints, harmonies, contrast, CVD previews, snippets, nearest names, palettes, varied description).
@@ -124,3 +124,9 @@ Tick a task only when it is built, the build passes and it is committed.
 - Files: `src/lib/seo.ts` (`documentTitle`, `fitTitle`, `fitDescription`, `clampDescription`, `ogImage`, WebApplication schema), `src/lib/data/meta-descriptions.ts` (new: 90 descriptions + 7 titles), `src/lib/colors/describe.ts` (new: computed color phrase / answer sentence), `src/lib/site-config.ts` (Play Store in `sameAs`), `src/components/layout/breadcrumbs.tsx` (`withJsonLd`), `src/components/layout/legal-page.tsx`, 21 page titles, 15 dynamic templates (`color/[hex]`, `brands/*`, `color-names`, `colors/*`, gradient/palette/blog/developer/Roblox/interior), `src/app/blog/[slug]/page.tsx` (BlogPosting + visible "Updated"), `src/app/gradient-library/[slug]/opengraph-image.tsx` (new), `src/lib/catalog-routes.ts`, tests.
 - Verified on a production build, all 16,098 sitemap URLs: 0 titles > 60 chars (was ~3,700), 16,098/16,098 descriptions 140–155 (was ~10%), 0 duplicate descriptions, 1 H1 each; OG images return `image/png`. Tests 140/140, tsc clean, lint 0 errors.
 - Remaining duplicate title: `/color-names/whitesmoke` and `/color-names/white-smoke` are two pages for #F5F5F5 (CSS keyword + catalog name). Consolidating them is a Phase 4 item (see "Needs your decision").
+
+### Phase 3 — 2026-11-22
+- Files: `src/lib/data/tool-answers.ts` (new), `src/lib/data/tool-answers.test.ts` (new), `src/components/content/tool-answer.tsx` (new), `src/components/tools/tools-index.tsx` (new), `src/lib/content-dates.ts` (new; shared by sitemaps and bylines), `src/components/layout/tool-page-shell.tsx`, `src/components/layout/tool-pages.css`, `src/lib/data/tool-guides.ts` (guides for 10 CSS studios), `src/lib/tools-registry.ts` (`NON_COLOR_TOOL_SLUGS`, `REDIRECTED_TOOL_SLUGS`), `src/lib/nav.ts`, `src/app/tools/page.tsx`, 6 tool-like pages, `src/lib/sitemaps.ts`.
+- Verified on a production build: tool pages gained ~120–220 words of server-rendered text each; `/tools` 107 → 1,600 words; `/color-atlas` 6 → 115; `/explore-colors` 6 → 105. Tests 143/143, tsc clean, lint 0 errors.
+- Still under 250 words (Phase 4 / hubs): `/gradient-library/[slug]` (~35), `/developers/[format]` (~40), `/blog/category/*` (~36), `/colors/bootstrap` (46), `/colors/radix` (70), `/interior-colors` (82), brand-HEX pages (~190), some palette pages (~230), `/contact` (44).
+- For you: review the 82 answers in `src/lib/data/tool-answers.ts`. They are written from each tool's existing copy and standard references (WCAG 2.2, CSS specs, color math); anything that misdescribes a tool is easiest to fix there.

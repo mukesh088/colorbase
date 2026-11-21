@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { ToolAnswerSection } from "@/components/content/tool-answer";
 
 export const metadata: Metadata = createPageMetadata({
   title: "AI Tailwind Color Generator – 50–950 Scales",
@@ -54,6 +55,7 @@ export default function Page() {
         </Link>
         .
       </p>
+      <ToolAnswerSection slug="ai-tailwind-color-generator" />
     </div>
   );
 }

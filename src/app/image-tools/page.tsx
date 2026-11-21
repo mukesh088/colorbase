@@ -5,6 +5,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { ImageToolsClient } from "@/components/tools/image-tools-client";
 import { LibraryHero } from "@/components/library/library-hero";
 import { LibraryInsight } from "@/components/library/library-insight";
+import { ToolAnswerSection } from "@/components/content/tool-answer";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Image Color Tools",
@@ -31,7 +32,7 @@ export default function ImageToolsPage() {
         swatches={["#E11D48", "#fb7185", "#0ea5e9", "#111827", "#f59e0b"]}
         actions={[
           { href: "/image-color-picker", label: "Eyedrop a photo", primary: true },
-          { href: "/palette-from-image", label: "Palette from image" },
+          { href: "/image-palette-extractor", label: "Palette from image" },
         ]}
       />
       <div className="mt-8">
@@ -40,6 +41,7 @@ export default function ImageToolsPage() {
       <div className="mt-8">
         <ImageToolsClient />
       </div>
+      <ToolAnswerSection slug="image-tools" />
     </div>
   );
 }

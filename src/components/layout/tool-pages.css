@@ -464,3 +464,14 @@
     transition: none;
   }
 }
+
+/* Answer-first block: the answer reads as body text, not muted guide copy. */
+.tool-answer > p.tool-answer-lead {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--foreground);
+}
+.tool-answer li {
+  font-size: 13px;
+  line-height: 1.7;
+}

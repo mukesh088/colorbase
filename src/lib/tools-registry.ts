@@ -163,7 +163,7 @@ export const TOOLS: ToolDefinition[] = [
     icon: "Type",
     featured: true,
     popular: true,
-    related: ["fancy-text-generator", "typography-generator", "text-shadow-generator"],
+    related: ["typography-generator", "text-shadow-generator", "typography-color-pairing"],
   },
   {
     slug: "fancy-text-generator",
@@ -917,6 +917,35 @@ export const TOOLS: ToolDefinition[] = [
   ...SUITE_TOOLS,
 ];
 
+/**
+ * Tools that are not about color (layout, type, time). They keep their URLs and
+ * are listed under "More tools" on /tools (owner decision, 2026-11-21).
+ */
+export const NON_COLOR_TOOL_SLUGS = new Set<string>([
+  "font-generator",
+  "typography-generator",
+  "unix-timestamp-converter",
+  "cursor-generator",
+  "flexbox-playground",
+  "css-grid-generator",
+  "css-clamp-generator",
+  "css-transform-generator",
+  "css-transition-generator",
+  "css-animation-generator",
+  "border-generator",
+  "outline-generator",
+  "css-border-radius-generator",
+  "scrollbar-generator",
+]);
+
+/** Tool slugs that redirect to another URL and should not be linked. */
+export const REDIRECTED_TOOL_SLUGS = new Set<string>([
+  "css-gradient-generator",
+  "palette-from-image",
+  "fancy-text-generator",
+  "timestamp-converter",
+]);
+
 export function getToolBySlug(slug: string) {
   return TOOLS.find((t) => t.slug === slug);
 }
@@ -933,12 +962,7 @@ export function getPopularTools() {
   return TOOLS.filter((t) => t.popular);
 }
 
-const RELATED_SKIP = new Set([
-  "css-gradient-generator",
-  "palette-from-image",
-  "fancy-text-generator",
-  "timestamp-converter",
-]);
+const RELATED_SKIP = REDIRECTED_TOOL_SLUGS;
 
 export function getRelatedTools(slug: string) {
   const tool = getToolBySlug(slug);

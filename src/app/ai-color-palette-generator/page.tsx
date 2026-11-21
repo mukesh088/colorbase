@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { ToolAnswerSection } from "@/components/content/tool-answer";
 
 export const metadata: Metadata = createPageMetadata({
   title: "AI Color Palette Generator – Palettes from Text",
@@ -56,6 +57,7 @@ export default function Page() {
           Accessible palettes
         </Link>
       </p>
+      <ToolAnswerSection slug="ai-color-palette-generator" />
     </div>
   );
 }

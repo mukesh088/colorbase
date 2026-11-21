@@ -142,6 +142,7 @@ export const PRIMARY_NAV = [
       { href: "/palette-library", title: "Palette Library" },
       { href: "/interior-colors", title: "Interior colors" },
       { href: "/house-color-combinations", title: "House color combinations" },
+      { href: "/tools#more-tools", title: "More tools: CSS layout, type & time" },
       { href: "/tools", title: "All tools" },
     ],
   },

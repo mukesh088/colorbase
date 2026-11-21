@@ -3,6 +3,7 @@ import { Suspense } from "react";
 import { createPageMetadata } from "@/lib/seo";
 import { ColorCodePageShell, RelatedCodeLinks, AdReserve } from "@/components/color-codes/page-shell";
 import { ColorExplorerClient } from "@/components/color-codes/color-explorer-client";
+import { ToolAnswerSection } from "@/components/content/tool-answer";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Color Explorer – Browse 16.7 Million Colors",
@@ -38,6 +39,7 @@ export default function ExploreColorsPage() {
         <ColorExplorerClient />
       </Suspense>
       <AdReserve />
+      <ToolAnswerSection slug="explore-colors" />
     </ColorCodePageShell>
   );
 }

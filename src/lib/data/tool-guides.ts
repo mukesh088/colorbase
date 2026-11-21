@@ -841,8 +841,113 @@ export function guideWordCount(guide: ToolGuide) {
     .filter(Boolean).length;
 }
 
+
+/** Guides for the CSS studios that only had supplement copy. */
+const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
+  "text-shadow-generator": {
+    intro: "Build a text-shadow for a heading or label: one soft lift over a photo, or a stack of layers for glow, neon and outline effects.",
+    steps: [
+      "Type your own text in the preview, or start from a glow, neon or outline preset.",
+      "Adjust each layer's x and y offset, blur and color. Add layers to stack effects.",
+      "Check the preview at the real font size and on the background you will use.",
+      "Copy the text-shadow declaration into your stylesheet.",
+    ],
+    why: "Shadows are easy to overdo. Previewing the stack at the real size keeps the letters readable instead of fuzzy.",
+  },
+  "flexbox-playground": {
+    intro: "Use the playground to see how each Flexbox property moves real items before you write the CSS.",
+    steps: [
+      "Set the container's direction, wrap, justify-content, align-items and gap, or load a preset layout.",
+      "Select an item to change its grow, shrink, basis, align-self or order.",
+      "Drag items to reorder them and watch how the layout responds.",
+      "Copy the generated CSS and HTML.",
+    ],
+    why: "Flexbox bugs usually come from mixing up the main and cross axis. Changing one property at a time makes the axis obvious.",
+  },
+  "css-grid-generator": {
+    intro: "Design a grid by editing its tracks and placing items, then copy CSS that matches what you see.",
+    steps: [
+      "Set the number of columns and rows and the size of each track (fr, px or minmax).",
+      "Adjust the column and row gap and the alignment of items in their cells.",
+      "Select an item to set where it starts and how many columns or rows it spans.",
+      "Copy the CSS and HTML, or start again from a preset layout.",
+    ],
+    why: "Grid line numbers are hard to picture in your head. A visual editor shows each span before it ships.",
+  },
+  "css-transition-generator": {
+    intro: "Build smooth hover and focus transitions by choosing which properties animate, for how long and with what easing.",
+    steps: [
+      "Add a layer for each property you want to animate, such as transform or background-color.",
+      "Set the duration, delay and easing for each layer, or pick an easing preset.",
+      "Hover the preview to see the transition run.",
+      "Copy the shorthand or longhand CSS.",
+    ],
+    why: "transition: all animates things you did not intend. Listing each property keeps motion deliberate and fast.",
+  },
+  "css-filter-generator": {
+    intro: "Stack CSS filter functions on an image and compare the result with the original before you copy the code.",
+    steps: [
+      "Load the sample image or your own.",
+      "Adjust blur, brightness, contrast, saturate, hue-rotate, grayscale, sepia, invert, opacity and drop-shadow.",
+      "Compare before and after, and reorder filters if the result looks wrong.",
+      "Copy the filter declaration.",
+    ],
+    why: "Filters apply in order, so the same functions in a different order give a different image. Seeing both versions avoids surprises.",
+  },
+  "backdrop-filter-generator": {
+    intro: "Design a frosted panel by blurring what sits behind it, then copy CSS that works across browsers.",
+    steps: [
+      "Pick a background scene so there is something behind the panel to blur.",
+      "Set blur, saturation and brightness, plus the panel's tint and opacity.",
+      "Add a border and shadow, or start from a preset.",
+      "Copy the CSS, which includes the -webkit- prefix.",
+    ],
+    why: "backdrop-filter only shows on a translucent element over a busy background. Testing on a real scene shows whether the effect is visible and the text stays readable.",
+  },
+  "border-generator": {
+    intro: "Set a border's width, style and color for each side, round the corners, and copy clean CSS.",
+    steps: [
+      "Choose a style such as solid, dashed or double, then set the width and color.",
+      "Unlink the sides to give the top, right, bottom and left their own values.",
+      "Link or split the corner radii.",
+      "Copy the border and border-radius CSS.",
+    ],
+    why: "Per-side borders produce long, error-prone CSS. Generating it from a preview keeps the shorthand correct.",
+  },
+  "scrollbar-generator": {
+    intro: "Style scrollbars for both WebKit browsers and Firefox from one set of controls.",
+    steps: [
+      "Pick a preset or set the thumb and track colors.",
+      "Adjust width, radius, border and the thumb's hover color.",
+      "Check the vertical and horizontal previews.",
+      "Copy the CSS, which includes scrollbar-color and ::-webkit-scrollbar rules.",
+    ],
+    why: "Browsers use two different scrollbar APIs. Writing both by hand is where styles fall out of sync.",
+  },
+  "typography-generator": {
+    intro: "Choose fonts, a size scale and line heights, preview them on real text, and export the CSS.",
+    steps: [
+      "Pick a font pairing from the font cards.",
+      "Set the base size and scale ratio, and check the heading ladder.",
+      "Preview on light, paper and dark stages with editorial sample text.",
+      "Copy the CSS, with optional custom properties for each step.",
+    ],
+    why: "Type looks different on paper, light and dark backgrounds. Previewing all three catches thin weights that disappear.",
+  },
+  "css-clamp-generator": {
+    intro: "Calculate a fluid clamp() value that scales smoothly between a minimum and maximum size.",
+    steps: [
+      "Choose the property, such as font-size or padding, or a preset.",
+      "Enter the minimum and maximum size and the viewport widths where each applies.",
+      "Check the live size chart to see how the value grows.",
+      "Copy the clamp() value or the CSS variable.",
+    ],
+    why: "The middle value of clamp() needs a slope and an intercept. Calculating it by hand is where fluid type breaks.",
+  },
+};
+
 export function getToolGuide(slug: string): ToolGuide | undefined {
-  const base = TOOL_GUIDES[slug];
+  const base = TOOL_GUIDES[slug] ?? TOOL_GUIDE_FILL[slug];
   const extra = TOOL_SUPPLEMENTS[slug];
   if (!base && !extra) return undefined;
   return {

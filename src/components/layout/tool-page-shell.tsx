@@ -9,6 +9,7 @@ import { breadcrumbJsonLd, faqJsonLd, pageSeo, softwareAppJsonLd } from "@/lib/s
 import { faqsForTool } from "@/lib/data/tool-supplements";
 import { getRelatedTools } from "@/lib/tools-registry";
 import { ToolGuideSection } from "@/components/content/tool-guide";
+import { ToolAnswerSection } from "@/components/content/tool-answer";
 import { ArrowRight, Blend, Contrast, Image, Palette, Pipette, RefreshCw } from "lucide-react";
 import "./tool-pages.css";
 
@@ -119,6 +120,7 @@ export function ToolPageShell({
         </nav>
       )}
       <div className="min-w-0">{children}</div>
+      <ToolAnswerSection slug={tool.slug} />
       <ToolGuideSection slug={tool.slug} />
       <RelatedTools tools={related} />
       {faqs.length > 0 && <ToolFaqs faqs={faqs} />}

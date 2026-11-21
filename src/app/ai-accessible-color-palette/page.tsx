@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { ToolAnswerSection } from "@/components/content/tool-answer";
 
 export const metadata: Metadata = createPageMetadata({
   title: "AI Accessible Color Palette – WCAG AA & AAA",
@@ -57,6 +58,7 @@ export default function Page() {
         </Link>{" "}
         for any two hex values.
       </p>
+      <ToolAnswerSection slug="ai-accessible-color-palette" />
     </div>
   );
 }

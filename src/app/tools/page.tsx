@@ -3,6 +3,7 @@ import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ToolsDirectory } from "@/components/tools/tools-directory";
+import { ToolsIndex } from "@/components/tools/tools-index";
 import { CATEGORY_LABELS } from "@/lib/tools-registry";
 import type { ToolCategory } from "@/types/tools";
 
@@ -46,6 +47,7 @@ export default async function ToolsPage({
       <div className="mt-4 sm:mt-6">
         <ToolsDirectory initialCategory={validCategory} />
       </div>
+      <ToolsIndex />
     </div>
   );
 }
