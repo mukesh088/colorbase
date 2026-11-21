@@ -61,6 +61,12 @@ export function middleware(request: NextRequest) {
     return response;
   }
 
+  if (pathname.length > 1 && pathname.endsWith("/")) {
+    const destination = new URL(request.url);
+    destination.pathname = pathname.replace(/\/+$/, "");
+    return NextResponse.redirect(destination.href, 308);
+  }
+
   if (
     pathname.startsWith("/_next/static") ||
     pathname.startsWith("/_next/image") ||

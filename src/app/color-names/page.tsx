@@ -39,15 +39,15 @@ export default function ColorNamesPage() {
   const total = getAllNamedColors().length;
   const cssColors = getCssNamedColors();
   const publishedColors = getIndexableNamedColors();
-  const featuredForLd = publishedColors.slice(0, 24);
   const listLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "CSS named colors hex codes",
-    description: "Index of CSS named colors with hex codes, including wheat, salmon, and tomato.",
+    name: "Color names and hex codes",
+    description:
+      "Index of CSS named colors and attributed community color names with hex codes, including wheat, salmon, and tomato.",
     url: `${SITE_URL}/color-names`,
     numberOfItems: publishedColors.length,
-    itemListElement: featuredForLd.map((c, index) => ({
+    itemListElement: publishedColors.map((c, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: `${c.displayName} color ${c.hex.toUpperCase()}`,
@@ -104,13 +104,13 @@ export default function ColorNamesPage() {
         className="mt-16 rounded-[1.35rem] border border-border/50 bg-background/70 p-5 sm:rounded-[1.75rem] sm:p-7"
       >
         <h2 className="font-display text-xl font-semibold tracking-tight">
-          CSS named color index
+          Color name index
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Every CSS keyword with its hex code — wheat, salmon, tomato, and the rest of the named set.
+          Every CSS keyword and attributed community color name with its hex code — wheat, salmon, tomato, and the published name set.
         </p>
         <ul className="mt-6 columns-1 gap-x-8 text-sm sm:columns-2 lg:columns-3">
-          {cssColors.map((c) => (
+          {publishedColors.map((c) => (
             <li key={c.slug} className="mb-1.5 break-inside-avoid">
               <Link
                 href={`/color-names/${c.slug}`}

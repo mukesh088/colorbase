@@ -5,8 +5,8 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { RelatedTools } from "@/components/layout/related-tools";
 import { ToolFaqs } from "@/components/layout/tool-faqs";
 import { JsonLd } from "@/components/seo/json-ld";
-import { breadcrumbJsonLd, faqJsonLd, softwareAppJsonLd } from "@/lib/seo";
-import { TOOL_FAQS } from "@/lib/faqs";
+import { breadcrumbJsonLd, faqJsonLd, pageSeo, softwareAppJsonLd } from "@/lib/seo";
+import { faqsForTool } from "@/lib/data/tool-supplements";
 import { getRelatedTools } from "@/lib/tools-registry";
 import { ToolGuideSection } from "@/components/content/tool-guide";
 import { ArrowRight, Blend, Contrast, Image, Palette, Pipette, RefreshCw } from "lucide-react";
@@ -74,8 +74,9 @@ export function ToolPageShell({
     { name: CATEGORY_LABELS[tool.category], href: `/tools?category=${tool.category}` },
     { name: tool.title, href: `/${tool.slug}` },
   ];
-  const faqs = TOOL_FAQS[tool.slug] ?? [];
+  const faqs = faqsForTool(tool.slug);
   const related = getRelatedTools(tool.slug);
+  const heading = pageSeo(tool.slug)?.h1 ?? tool.title;
 
   return (
     <div className="tool-page-shell">
@@ -88,14 +89,14 @@ export function ToolPageShell({
       />
       <Breadcrumbs items={breadcrumbs} />
       {hideHeader ? (
-        <h1 className="sr-only">{tool.title}</h1>
+        <h1 className="sr-only">{heading}</h1>
       ) : (
         <header className="tool-page-header">
           <div>
             <Link href={`/tools?category=${tool.category}`} className="tool-page-category">
               {CATEGORY_LABELS[tool.category]}
             </Link>
-            <h1>{tool.title}</h1>
+            <h1>{heading}</h1>
             <p>{tool.description}</p>
           </div>
           <Link href="/theme-builder" className="tool-page-studio-link">

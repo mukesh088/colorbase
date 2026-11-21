@@ -15,34 +15,64 @@ Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
 Disallow: /api/
 Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 User-agent: GPTBot
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 User-agent: ChatGPT-User
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 User-agent: ClaudeBot
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 User-agent: Claude-User
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 User-agent: Google-Extended
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 User-agent: PerplexityBot
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 User-agent: Applebot-Extended
 Content-Signal: search=yes, ai-input=yes, ai-train=no
 Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /search?
+Disallow: /*?*utm_
 
 Host: ${SITE_URL}
 Sitemap: ${SITE_URL}/sitemap.xml

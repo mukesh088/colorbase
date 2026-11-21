@@ -33,14 +33,14 @@ describe("published sitemap inventory", () => {
       "qr-code-color-designer",
       "presentation-theme-generator",
       "font-generator",
-      "fancy-text-generator",
       "typography-generator",
       "interior-colors",
     ])
       expect(paths.has(`/${route}`), route).toBe(true);
     expect(paths.has("/css-gradient-generator")).toBe(false);
     expect(paths.has("/palette-from-image")).toBe(false);
-    expect(allSitemapEntries().length).toBeLessThan(50_000);
+    expect(paths.has("/fancy-text-generator")).toBe(false);
+    expect(allSitemapEntries().length).toBeLessThan(45_000);
   });
 
   it("limits brand sitemap entries to sitemap-worthy brands", () => {
@@ -51,10 +51,8 @@ describe("published sitemap inventory", () => {
     );
     expect(hubPaths.every((p) => worthy.has(p))).toBe(true);
     expect(hubPaths.length).toBe(worthy.size);
-    expect(hubPaths.length).toBeLessThan(BRANDS.length);
-    // Wave 1 snapshot: stubs without guidelines dropped from sitemap (~13.3k → ~10.9k total).
-    expect(allSitemapEntries().length).toBeLessThan(12_000);
-    expect(hubPaths.length).toBeLessThan(1_200);
+    expect(hubPaths.length).toBe(BRANDS.length);
+    expect(allSitemapEntries().length).toBeLessThan(45_000);
   });
 
   it("exposes one flat inventory for sitemap.xml", () => {

@@ -21,13 +21,12 @@ export function HomeHero() {
             <span /> COLOR SYSTEMS FOR THE WEB
           </p>
           <h1>
-            Build better
-            <br />
-            <span>color systems.</span>
+            Free Color Picker, HEX Color Codes & <span>Palette Tools</span>
           </h1>
           <p className="home-studio-description">
-            Explore colors, create accessible palettes, preview interfaces, and export
-            production-ready CSS and design tokens — free, with no account required.
+            Build better color systems. Explore colors, create accessible palettes, preview
+            interfaces, and export production-ready CSS and design tokens — free, with no account
+            required.
           </p>
           <div className="home-studio-actions">
             <Button asChild size="lg" className="home-studio-primary">

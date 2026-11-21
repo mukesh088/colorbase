@@ -188,6 +188,21 @@ export default async function BrandPage({ params }: { params: Promise<{ slug: st
           every surface with the brand fill.
         </p>
         <ToolCtaRow hex={brand.primary[0] ?? colors[0]} className="mt-5 flex flex-wrap gap-2" />
+        {colors[0] ? (
+          <div className="mt-6">
+            <p className="text-muted-foreground mb-3 text-xs">
+              Working UI palette from {colors[0]} (derived tints and shades, not extra official brand colors).
+            </p>
+            <CodeExportPanel
+              colors={uniqueColors([
+                colors[0],
+                ...getTints(colors[0], 4),
+                ...[...getShades(colors[0], 4)].reverse(),
+              ]).slice(0, 9)}
+              name={`${brand.slug}-ui-ramp`}
+            />
+          </div>
+        ) : null}
       </section>
 
       <section className="mt-12 space-y-10">

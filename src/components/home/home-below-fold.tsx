@@ -126,7 +126,7 @@ export function HomeBelowFold() {
       </HomeSection>
 
       <HomeSection
-        title="A fresh take on gradients"
+        title="CSS Gradient Generators"
         href="/gradient-library#new-gradients"
         description="100 new named blends. Find a background you love and take the CSS with you."
       >

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SITE_URL } from "@/lib/site-config";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -24,10 +25,24 @@ export default function PaletteLibraryPage() {
   ];
 
   const palettes = getAllPalettes();
+  const paletteListLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Color palette library",
+    description: "Generated color palettes by category with HEX values and contrast checks.",
+    url: `${SITE_URL}/palette-library`,
+    numberOfItems: palettes.length,
+    itemListElement: PALETTE_CATEGORIES.map((category, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: `${category} palettes`,
+      url: `${SITE_URL}/palette-library/category/${category}`,
+    })),
+  };
 
   return (
     <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
-      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      <JsonLd data={[breadcrumbJsonLd(crumbs), paletteListLd]} />
       <Breadcrumbs items={crumbs} />
       <LibraryHero
         eyebrow="Color combinations"

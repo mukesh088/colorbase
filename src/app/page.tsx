@@ -2,13 +2,14 @@ import Link from "next/link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { HomeHero } from "@/components/home/home-hero";
 import { HomeBelowFold } from "@/components/home/home-below-fold";
-import { createPageMetadata, faqJsonLd } from "@/lib/seo";
+import { createPageMetadata, faqJsonLd, pageSeo } from "@/lib/seo";
 import { COLOR_CODE_FAQS } from "@/lib/data/color-code-guide";
 
+const homeSeo = pageSeo("/")!;
+
 export const metadata = createPageMetadata({
-  title: "Color Picker, HEX Color Codes & Palettes",
-  description:
-    "Find HEX color codes, pick colors from images, build palettes, and check WCAG contrast. Free color picker, CSS names, RGB, and gradients for web designers and developers.",
+  title: homeSeo.title,
+  description: homeSeo.description,
   path: "/",
 });
 

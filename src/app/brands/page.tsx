@@ -54,7 +54,8 @@ export default function BrandsPage() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "Brand hex color codes",
-    description: "Index of company brand palettes. Estimated swatches are labeled and left out of the sitemap.",
+    description:
+      "Index of company brand palettes with official HEX values. Estimated swatches are labeled Est. and left out of the sitemap.",
     url: `${SITE_URL}/brands`,
     numberOfItems: BRANDS.length,
     itemListElement: BRANDS.map((brand, index) => ({
@@ -72,7 +73,7 @@ export default function BrandsPage() {
       <LibraryHero
         eyebrow="Popular brands"
         title="Brand Hex Color Codes"
-        description={`${BRANDS.length} palettes with logos and hex values for food apps, clubs, tech marks, and newer reference sets. Open a brand for primary and secondary roles. Swatches marked Est. are not official guideline colors.`}
+        description={`${BRANDS.length} company palettes with logos, official HEX, RGB/CSS export, and derived tints and shades for UI. Open a brand for the full working palette. Swatches marked Est. are not official guideline colors.`}
         stats={[
           { label: "Brands", value: String(BRANDS.length) },
           { label: "Categories", value: String(categories.length) },
@@ -92,6 +93,28 @@ export default function BrandsPage() {
       <div className="mt-8">
         <BrandsExplorer brands={catalog} categories={categories} />
       </div>
+
+      <nav
+        aria-label="All brand palette pages"
+        className="mt-16 rounded-[1.35rem] border border-border/50 bg-background/70 p-5 sm:rounded-[1.75rem] sm:p-7"
+      >
+        <h2 className="font-display text-xl font-semibold tracking-tight">All brand palettes</h2>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Every company palette page with official HEX, RGB, and CSS export.
+        </p>
+        <ul className="mt-6 columns-1 gap-x-8 text-sm sm:columns-2 lg:columns-3">
+          {BRANDS.map((brand) => (
+            <li key={brand.slug} className="mb-1.5 break-inside-avoid">
+              <Link
+                href={`/brands/${brand.slug}`}
+                className="text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+              >
+                {brand.name} hex colors
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <nav
         aria-label="All brand hex color pages"

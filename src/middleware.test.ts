@@ -13,6 +13,12 @@ describe("public page and private API caching", () => {
     expect(response.headers.get("cache-control")).toMatch(/^public/);
   });
 
+  it("sends trailing-slash paths to the slash-free canonical", () => {
+    const response = middleware(new NextRequest("https://colorbase.in/color-picker/"));
+    expect(response.status).toBe(308);
+    expect(response.headers.get("location")).toBe("https://colorbase.in/color-picker");
+  });
+
   it.each(["/api/me/preferences", "/api/me/palettes", "/api/me/tables/example"]) (
     "never shares a private persistence response at %s, even for returning visitors",
     (path) => {

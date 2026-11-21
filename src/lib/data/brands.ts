@@ -937,14 +937,11 @@ export function isUnverifiedBrandHex(brand: BrandPalette, hex: string) {
 }
 
 /**
- * Sitemap inclusion for brand hubs. Core curated brands stay listed.
- * Simple Icons stubs only enter the sitemap when a guidelines URL exists
- * (stronger source signal). Stub pages remain live and indexable for now —
- * they are simply not pushed via sitemap until manual review.
+ * Sitemap inclusion for unique brand hub pages (company name + official HEX).
+ * Unverified estimated swatches stay off the sitemap via isUnverifiedBrandHex.
  */
 export function isSitemapWorthyBrand(brand: BrandPalette) {
-  if (brand.sourceName !== "Simple Icons") return true;
-  return Boolean(brand.guidelinesUrl);
+  return Boolean(brand.slug && brand.name && brandAllColors(brand).length > 0);
 }
 
 export function getBrandCategories() {

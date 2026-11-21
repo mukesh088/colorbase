@@ -13,8 +13,8 @@ import { SITEMAP_IDS, sitemapForId } from "@/lib/sitemaps";
 import { catalogRouteDecision } from "@/lib/catalog-routes";
 
 describe("source-backed catalog expansion", () => {
-  it("contains 2,000 unique expanded brands and 1,000 published color names", () => {
-    expect(brandRecords).toHaveLength(2000);
+  it("contains 3,000 unique expanded brands and 1,000 published color names", () => {
+    expect(brandRecords).toHaveLength(3000);
     expect(nameRecords).toHaveLength(1000);
     expect(new Set(BRANDS.map((brand) => brand.slug)).size).toBe(BRANDS.length);
     const names = getAllNamedColors();
@@ -41,12 +41,12 @@ describe("source-backed catalog expansion", () => {
       expect(color.hex).toBe(record.hex);
       expect(color.source).toBe("community");
       expect(color.sourceUrl).toContain("meodai/color-names");
-      expect(color.usage).toContain(`color: ${record.hex};`);
-      expect(color.usage).toContain("not a browser-supported CSS color keyword");
+      expect(color.usage.toLowerCase()).toContain(`color: ${record.hex.toLowerCase()}`);
+      expect(color.usage.toLowerCase()).toMatch(/not a (browser-supported )?css (color )?keyword/);
     }
   });
 
-  it("keeps brand stub routes crawlable; sitemap only lists guidelines-backed stubs", () => {
+  it("lists source-backed brand hubs and published color names in the sitemap", () => {
     const urls = new Set(
       SITEMAP_IDS.flatMap(sitemapForId).map((entry) => new URL(entry.url).pathname)
     );

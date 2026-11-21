@@ -32,7 +32,7 @@ export function RelatedTools({ tools }: { tools: ToolDefinition[] }) {
               <h3>{tool.title}</h3>
               <p>{tool.description}</p>
               <span className="tool-related-action">
-                Open tool <span>↗</span>
+                Open {tool.title} <span>↗</span>
               </span>
             </Link>
           );

@@ -114,7 +114,7 @@ export function ChartPaletteBuilder() {
           <p className="tb-kicker">
             <span /> COLOR FOR A CLEARER STORY
           </p>
-          <h1>Make your data make sense.</h1>
+          <p className="tb-display">Make your data make sense.</p>
           <p>Build a chart palette. See the differences. Export colors with purpose.</p>
         </div>
         <Link href="/theme-builder" className="tb-text-link">

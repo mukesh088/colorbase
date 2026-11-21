@@ -50,6 +50,18 @@ export default async function InteriorColorsPage({
             description:
               "Published interior palettes extracted from room photographs with exact HEX values.",
           },
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Published interior palettes",
+            numberOfItems: items.length,
+            itemListElement: items.map((item, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: item.title,
+              url: `${SITE_URL}/interior-colors/${item.slug}`,
+            })),
+          },
         ]}
       />
       <Breadcrumbs items={crumbs} />

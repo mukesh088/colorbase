@@ -43,7 +43,7 @@ describe("hex indexing quality", () => {
     const slugs = getIndexableHexSlugs();
     expect(new Set(slugs).size).toBe(slugs.length);
     expect(slugs.every((slug) => /^[0-9a-f]{6}$/.test(slug))).toBe(true);
-    expect(slugs.length).toBeLessThan(SEARCH_LANDING_HEXES.length + 2500);
+    expect(slugs.length).toBeLessThan(SEARCH_LANDING_HEXES.length + 8_000);
     const hexUrls = sitemapForId("colors").filter((entry) => entry.url.includes("/color/"));
     expect(hexUrls.map((entry) => entry.url.split("/").pop())).toEqual(slugs);
     for (const entry of SITEMAP_IDS.flatMap(sitemapForId)) {

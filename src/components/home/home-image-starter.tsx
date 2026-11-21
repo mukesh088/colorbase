@@ -24,7 +24,7 @@ export function HomeImageStarter() {
       <div className="home-image-intro">
         <div>
           <p className="home-studio-eyebrow">YOUR INSPIRATION, DECODED</p>
-          <h2 id="home-image-heading">Great colors are already around you.</h2>
+          <h2 id="home-image-heading">Pick Colors from Images</h2>
           <p>
             Bring a photo, screenshot, or moodboard. Sample exact pixels, collect a palette, and
             take it straight into your next design.

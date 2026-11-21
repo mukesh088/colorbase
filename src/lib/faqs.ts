@@ -357,11 +357,6 @@ export const TOOL_FAQS: Record<string, FAQItem[]> = {
         "No. Conversion, timezone formatting, JSON mode, and history all run in your browser. History is stored in localStorage on this device only and never sent to colorBase servers.",
     },
     {
-      question: "What can JSON mode accept?",
-      answer:
-        "Paste a JSON array of timestamps, an object with a timestamps array, comma-separated values, or one timestamp per line. Each row returns Unix seconds/ms, ISO 8601, UTC, local, and RFC 2822 so you can clean a log dump without a spreadsheet.",
-    },
-    {
       question: "Will this break in 2038?",
       answer:
         "32-bit Unix seconds overflow on 19 January 2038. This converter uses JavaScript Date (milliseconds as a 64-bit number), so dates after 2038 still convert. Leap seconds are not applied, matching typical web and Node stacks.",

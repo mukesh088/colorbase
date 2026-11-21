@@ -6,36 +6,110 @@ import type { ToolDefinition } from "@/types/tools";
 
 export { SITE_NAME, SITE_DESCRIPTION, SITE_URL, ORGANIZATION };
 
+export type PageSeo = { title: string; description: string; h1: string };
+
+/** Titles and H1s from the SEO plan. Titles are stored without the brand suffix. */
+export const TARGET_PAGE_SEO: Record<string, PageSeo> = {
+  "/": {
+    title: "Free Color Picker, HEX Codes & Palette Generator",
+    description:
+      "Free color picker for HEX codes, palettes, and WCAG contrast. Pick a color, build a palette, and copy CSS or Tailwind without creating an account.",
+    h1: "Free Color Picker, HEX Color Codes & Palette Tools",
+  },
+  "color-picker": {
+    title: "Color Picker – Get HEX, RGB & HSL Codes Online",
+    description:
+      "Use this free color picker to get HEX, RGB, and HSL codes online. Sample a swatch, check contrast, and copy CSS you can paste straight into a stylesheet.",
+    h1: "Online Color Picker",
+  },
+  "image-color-picker": {
+    title: "Image Color Picker – Pick Colors from Any Photo",
+    description:
+      "Pick colors from any photo with the image color picker. Click a pixel to copy HEX and RGB, then build a palette from the colors already in your image.",
+    h1: "Pick Colors from an Image",
+  },
+  "palette-generator": {
+    title: "Color Palette Generator – Create Palettes Free",
+    description:
+      "Create a free color palette with the palette generator. Start from one HEX, get harmonious swatches, and export CSS or Tailwind tokens for your next UI.",
+    h1: "Color Palette Generator",
+  },
+  "contrast-checker": {
+    title: "Contrast Checker – WCAG AA & AAA Color Contrast",
+    description:
+      "Check WCAG AA and AAA color contrast before you ship. Compare text and background, read the ratio, and fix any pairs that fail for small text.",
+    h1: "WCAG Color Contrast Checker",
+  },
+  "gradient-generator": {
+    title: "CSS Gradient Generator – Linear, Radial & Conic",
+    description:
+      "Build a CSS gradient online with linear, radial, or conic styles. Preview the blend, adjust the stops, and copy CSS you can paste into a stylesheet.",
+    h1: "CSS Gradient Generator",
+  },
+  "hex-to-rgb": {
+    title: "HEX to RGB Converter",
+    description:
+      "Convert HEX to RGB instantly and copy the result. Turn a hex code into red, green, and blue channel values you can use in CSS or design tools.",
+    h1: "HEX to RGB Converter",
+  },
+  "tailwind-colors": {
+    title: "Tailwind CSS Colors – Full Palette with HEX Codes",
+    description:
+      "Browse the full Tailwind CSS color palette with HEX codes. Copy any shade from slate to rose and use it in classes, CSS variables, or a design token.",
+    h1: "Tailwind CSS Color Palette",
+  },
+  "brand-colors": {
+    title: "Brand Colors – Official HEX Codes of Top Brands",
+    description:
+      "Look up official HEX codes for top brand colors. Copy logo colors for Google, Spotify, and more, then check contrast before you use them in a UI.",
+    h1: "Brand Color Codes",
+  },
+  "theme-builder": {
+    title: "UI Color Theme Builder – Export CSS & Tailwind Tokens",
+    description:
+      "Build a UI color theme and export CSS and Tailwind tokens. Set backgrounds, text, and accents, then preview the interface before you copy the code.",
+    h1: "UI Color Theme Builder",
+  },
+  "ai-color-copilot": {
+    title: "AI Color Palette Generator – Accessible Color Systems",
+    description:
+      "Generate an accessible AI color palette for your product. Describe the interface, get a color system with contrast checks, and export CSS or Tailwind.",
+    h1: "AI Color Copilot",
+  },
+};
+
+export function pageSeo(slug: string) {
+  return TARGET_PAGE_SEO[slug];
+}
+
+function documentTitle(title: string) {
+  const brand = ` | ${SITE_NAME}`;
+  const trimmed = title.trim();
+  if (trimmed.endsWith(brand) || trimmed.startsWith(`${SITE_NAME} |`)) return trimmed;
+  return `${trimmed}${brand}`;
+}
+
 export function createPageMetadata({
   title,
   description,
   path = "/",
-  keywords = [],
   noIndex = false,
 }: {
   title: string;
   description: string;
   path?: string;
+  /** Accepted so existing callers compile. Not rendered; the keywords meta tag is obsolete. */
   keywords?: string[];
   noIndex?: boolean;
 }): Metadata {
   const url = absoluteUrl(path);
-  const fullTitle = path === "/" ? `${SITE_NAME} | ${title}` : `${title} | ${SITE_NAME}`;
+  const fullTitle = documentTitle(title);
   const ogImage = absoluteUrl("/og-image.png");
 
   return {
     title: fullTitle,
     description,
     applicationName: SITE_NAME,
-    keywords: [
-      "colorbase",
-      "color tools",
-      "hex color",
-      "color picker",
-      "color converter",
-      "css tools",
-      ...keywords,
-    ],
     authors: [{ name: SITE_NAME, url: SITE_URL }],
     creator: SITE_NAME,
     publisher: SITE_NAME,
@@ -112,11 +186,11 @@ export function createPageMetadata({
 }
 
 export function toolMetadata(tool: ToolDefinition): Metadata {
+  const seo = pageSeo(tool.slug);
   return createPageMetadata({
-    title: tool.title,
-    description: tool.description,
+    title: seo?.title ?? tool.title,
+    description: seo?.description ?? tool.description,
     path: `/${tool.slug}`,
-    keywords: tool.keywords,
   });
 }
 
@@ -163,7 +237,7 @@ export function websiteJsonLd() {
     "@id": `${SITE_URL}/#website`,
     name: SITE_NAME,
     alternateName: ["ColorBase", "colorbase"],
-    url: SITE_URL.endsWith("/") ? SITE_URL : `${SITE_URL}/`,
+    url: SITE_URL.replace(/\/$/, ""),
     description: SITE_DESCRIPTION,
     inLanguage: "en-US",
     publisher: {

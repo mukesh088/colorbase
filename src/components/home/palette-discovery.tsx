@@ -58,7 +58,7 @@ export function PaletteDiscovery() {
       <div className="pd-heading">
         <div>
           <p className="home-studio-eyebrow">A LITTLE INSPIRATION GOES A LONG WAY</p>
-          <h2 id="palette-discovery-title">Find a palette. Make it yours.</h2>
+          <h2 id="palette-discovery-title">Color Palette Generator & Library</h2>
           <p>Considered combinations, ready for your next idea. Pick a mood or start exploring.</p>
         </div>
         <Link href="/palette-library">

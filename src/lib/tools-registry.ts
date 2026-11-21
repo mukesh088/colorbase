@@ -933,12 +933,35 @@ export function getPopularTools() {
   return TOOLS.filter((t) => t.popular);
 }
 
+const RELATED_SKIP = new Set([
+  "css-gradient-generator",
+  "palette-from-image",
+  "fancy-text-generator",
+  "timestamp-converter",
+]);
+
 export function getRelatedTools(slug: string) {
   const tool = getToolBySlug(slug);
-  if (!tool?.related) return [];
-  return tool.related
-    .map((s) => getToolBySlug(s))
-    .filter((t): t is ToolDefinition => Boolean(t));
+  if (!tool) return [];
+  const picked: ToolDefinition[] = [];
+  const seen = new Set<string>([slug]);
+  for (const relatedSlug of tool.related ?? []) {
+    if (RELATED_SKIP.has(relatedSlug) || seen.has(relatedSlug)) continue;
+    const match = getToolBySlug(relatedSlug);
+    if (!match) continue;
+    seen.add(match.slug);
+    picked.push(match);
+  }
+  if (picked.length < 3) {
+    for (const candidate of TOOLS) {
+      if (picked.length >= 3) break;
+      if (candidate.category !== tool.category || seen.has(candidate.slug) || RELATED_SKIP.has(candidate.slug))
+        continue;
+      seen.add(candidate.slug);
+      picked.push(candidate);
+    }
+  }
+  return picked.slice(0, 5);
 }
 
 export function searchTools(query: string) {

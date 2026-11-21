@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { SITE_URL } from "@/lib/site-config";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -47,7 +48,24 @@ export default async function PaletteCategoryPage({
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 lg:px-6">
-      <JsonLd data={breadcrumbJsonLd(crumbs)} />
+      <JsonLd
+        data={[
+          breadcrumbJsonLd(crumbs),
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: `${category} palettes`,
+            url: `${SITE_URL}/palette-library/category/${category}`,
+            numberOfItems: items.length,
+            itemListElement: items.map((p, index) => ({
+              "@type": "ListItem",
+              position: index + 1,
+              name: p.name,
+              url: `${SITE_URL}/palette-library/${p.slug}`,
+            })),
+          },
+        ]}
+      />
       <Breadcrumbs items={crumbs} />
       <h1 className="font-display text-4xl font-semibold capitalize tracking-tight">
         {category} Palettes

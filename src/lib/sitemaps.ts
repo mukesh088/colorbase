@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { SITE_CONTENT_UPDATED, SITE_URL } from "@/lib/site-config";
+import { SITE_CONTENT_UPDATED } from "@/lib/site-config";
 import { STATIC_PAGES, TOOLS } from "@/lib/tools-registry";
 import {
   BRANDS,
@@ -13,10 +13,12 @@ import { kitToDesignPath } from "@/lib/data/design-systems";
 import { getIndexableNamedColors } from "@/lib/data/color-names";
 import { GRADIENT_CATEGORIES, getAllGradients } from "@/lib/data/gradient-library";
 import { PALETTE_CATEGORIES, getAllPalettes } from "@/lib/data/palette-library";
-import { getAllPosts, BLOG_CATEGORIES } from "@/lib/data/blog";
+import { BLOG_CATEGORIES, getAllPosts } from "@/lib/data/blog";
 import { CODE_FORMATS } from "@/lib/codegen";
 import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
 import { getIndexableHexSlugs, isCuratedLibraryColor } from "@/lib/hex-indexing";
+import { absoluteUrl } from "@/lib/utils";
+import retiredToolSlugs from "../../retired-tools";
 
 export const SITEMAP_IDS = ["pages", "brands", "color-names", "colors", "libraries"] as const;
 export type SitemapId = (typeof SITEMAP_IDS)[number];
@@ -25,10 +27,12 @@ type Entry = MetadataRoute.Sitemap[number];
 
 const LAST_MODIFIED = new Date(`${SITE_CONTENT_UPDATED}T00:00:00.000Z`);
 
-/** Alias tools that 308 to a canonical slug — keep out of the sitemap. */
-const SITEMAP_EXCLUDED_TOOL_SLUGS = new Set([
+/** Redirects and retired tools stay out of the sitemap. */
+const SITEMAP_EXCLUDED_TOOL_SLUGS = new Set<string>([
   "css-gradient-generator",
   "palette-from-image",
+  "timestamp-converter",
+  ...retiredToolSlugs,
 ]);
 
 function entry(
@@ -37,7 +41,7 @@ function entry(
   changeFrequency: Entry["changeFrequency"] = "weekly"
 ): Entry {
   return {
-    url: `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`,
+    url: absoluteUrl(path),
     lastModified: LAST_MODIFIED,
     changeFrequency,
     priority,
@@ -57,7 +61,10 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
         ),
         ...CODE_FORMATS.map((f) => entry(`/developers/${f.slug}`, 0.7)),
         ...BLOG_CATEGORIES.map((c) => entry(`/blog/category/${encodeURIComponent(c)}`, 0.65)),
-        ...getAllPosts().map((p) => entry(`/blog/${p.slug}`, 0.7)),
+        ...getAllPosts().map((p) => ({
+          ...entry(`/blog/${p.slug}`, 0.7),
+          lastModified: new Date(`${p.publishedAt}T00:00:00.000Z`),
+        })),
       ];
     case "brands":
       return [

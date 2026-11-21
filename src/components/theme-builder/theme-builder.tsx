@@ -310,7 +310,7 @@ export function ThemeBuilder() {
           <p className="tb-kicker">
             <span /> THE COLORBASE STUDIO
           </p>
-          <h1>Good color. Great interfaces.</h1>
+          <p className="tb-display">Good color. Great interfaces.</p>
           <p>Shape your palette into a complete theme. Preview it, refine it, make it yours.</p>
         </div>
         <Link href="/chart-palette-generator" className="tb-text-link">

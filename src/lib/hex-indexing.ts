@@ -1,6 +1,6 @@
 import { isValidHex, normalizeHex } from "@/lib/colors/convert";
 import { getAllLibraryColors, type LibraryColor } from "@/lib/data/color-library";
-import { getAllBrandHexEntries, isUnverifiedBrandHex } from "@/lib/data/brands";
+import { getAllBrandHexEntries, isSitemapWorthyBrand, isUnverifiedBrandHex } from "@/lib/data/brands";
 import { getCssNamedColors } from "@/lib/data/color-names";
 import { HEX_REFERENCES } from "@/lib/data/hex-references";
 
@@ -27,7 +27,9 @@ function getIndexableHexes() {
       indexableHexes.add(normalizeHex(color.hex).slice(1));
     }
     for (const entry of getAllBrandHexEntries()) {
-      if (!isUnverifiedBrandHex(entry.brand, entry.hex)) indexableHexes.add(entry.hexSlug);
+      if (isUnverifiedBrandHex(entry.brand, entry.hex)) continue;
+      if (!isSitemapWorthyBrand(entry.brand)) continue;
+      indexableHexes.add(entry.hexSlug);
     }
   }
   return indexableHexes;

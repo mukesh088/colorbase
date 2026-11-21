@@ -6,9 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function absoluteUrl(path = "") {
-  const base =
-    process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in";
-  return `${base.replace(/\/$/, "")}${path.startsWith("/") ? path : `/${path}`}`;
+  const base = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://colorbase.in").replace(/\/$/, "");
+  if (!path || path === "/") return base;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${normalized.replace(/\/+$/, "")}`;
 }
 
 export function slugify(text: string) {

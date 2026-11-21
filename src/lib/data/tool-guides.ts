@@ -1,3 +1,5 @@
+import { TOOL_SUPPLEMENTS } from "@/lib/data/tool-supplements";
+
 export interface ToolGuide {
   intro: string;
   steps: string[];
@@ -201,12 +203,7 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       {
         heading: "JWT exp, cache headers, and color APIs",
         body:
-          "JSON Web Tokens encode `exp`, `iat`, and `nbf` as Unix seconds. Convert those claims here before you decide a palette share link or Copilot session is “expired”. HTTP `Expires` is an HTTP-date (RFC 822/1123), not epoch — this tool prints that format so you can paste it into a header. Next.js ISR and Hostinger caches also think in UTC. If a color page “won’t update”, convert the epoch in the `Age` / `Date` headers before you blame the CSS.",
-      },
-      {
-        heading: "Year 2038, leap seconds, and what we do not pretend",
-        body:
-          "Signed 32-bit Unix seconds overflow at 2038-01-19 03:14:07 UTC. JavaScript’s `Date` uses a 64-bit millisecond value, so this page will still convert dates past 2038. Leap seconds are not applied — Unix time typically smears or ignores them, same as most web stacks. We do not phone a server; conversion, timezone formatting, JSON mode, and history stay in this browser (history uses localStorage on this device only).",
+          "JSON Web Tokens encode `exp`, `iat`, and `nbf` as Unix seconds. Convert those claims here before you decide a palette share link or Copilot session is “expired”. HTTP `Expires` is an HTTP-date (RFC 822/1123), not epoch — this tool prints that format so you can paste it into a header.",
       },
     ],
     relatedReading: [
@@ -837,6 +834,25 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
   },
 };
 
+export function guideWordCount(guide: ToolGuide) {
+  return [guide.intro, ...guide.steps, guide.why, ...(guide.sections ?? []).flatMap((section) => [section.heading, section.body])]
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+}
+
 export function getToolGuide(slug: string): ToolGuide | undefined {
-  return TOOL_GUIDES[slug];
+  const base = TOOL_GUIDES[slug];
+  const extra = TOOL_SUPPLEMENTS[slug];
+  if (!base && !extra) return undefined;
+  return {
+    intro: base?.intro ?? extra?.intro ?? "",
+    steps: base?.steps?.length ? base.steps : (extra?.steps ?? []),
+    why: base?.why ?? extra?.why ?? "",
+    sections: [
+      ...(base?.sections ?? []),
+      ...(extra ? [{ heading: extra.heading, body: extra.body }] : []),
+    ],
+    relatedReading: base?.relatedReading,
+  };
 }
