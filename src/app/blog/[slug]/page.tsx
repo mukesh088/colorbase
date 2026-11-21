@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getAllPosts, getPost, getPostsByCategory } from "@/lib/data/blog";
@@ -25,7 +25,12 @@ export async function generateMetadata({
   if (!post) notFound();
   return createPageMetadata({
     title: post.title,
-    description: post.description,
+    description: fitDescription(
+      post.description,
+      `${post.readingTime} read: a ${post.category.toLowerCase()} guide from ColorBase.`,
+      `${post.readingTime} read from the ColorBase blog.`,
+      `${post.readingTime} read.`
+    ),
     path: `/blog/${post.slug}`,
     keywords: post.keywords,
   });
@@ -62,8 +67,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             headline: post.title,
             description: post.description,
             datePublished: post.publishedAt,
-            author: { "@type": "Organization", name: "colorBase" },
-            publisher: { "@type": "Organization", name: "colorBase" },
+            dateModified: post.updatedAt ?? post.publishedAt,
+            inLanguage: "en",
+            url: `${SITE_URL}/blog/${post.slug}`,
+            image: `${SITE_URL}/og-image.png`,
+            articleSection: post.category,
+            keywords: post.keywords.join(", "),
+            author: { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "ColorBase", url: SITE_URL },
+            publisher: { "@id": `${SITE_URL}/#organization` },
             mainEntityOfPage: `${SITE_URL}/blog/${post.slug}`,
           },
         ]}
@@ -72,7 +83,9 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <p className="text-xs font-semibold uppercase tracking-wider text-rose-600">{post.category}</p>
       <h1 className="mt-2 font-display text-4xl font-semibold">{post.title}</h1>
       <p className="mt-3 text-sm text-muted-foreground">
-        {formatDate(post.publishedAt)} · {post.readingTime}
+        {formatDate(post.publishedAt)}
+        {post.updatedAt && post.updatedAt !== post.publishedAt ? ` · Updated ${formatDate(post.updatedAt)}` : ""} ·{" "}
+        {post.readingTime}
       </p>
       {toc.length > 2 ? (
         <nav aria-label="On this page" className="mt-8 rounded-2xl border border-border/60 bg-muted/30 p-4">

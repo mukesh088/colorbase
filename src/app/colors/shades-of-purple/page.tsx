@@ -7,7 +7,7 @@ import { CopyButton } from "@/components/color/copy-button";
 import { ArrowRight, Sparkles, HelpCircle, Palette } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Shades of Purple — 20+ Hex Codes, Names, Palettes & Color Meanings",
+  title: "Shades of Purple – HEX Codes, Names & Palettes",
   description:
     "Explore the complete spectrum of shades of purple with exact HEX, RGB, and HSL codes. Discover lavender, lilac, violet, mauve, plum, amethyst, and royal purple for web design, branding, and fashion.",
   path: "/colors/shades-of-purple",

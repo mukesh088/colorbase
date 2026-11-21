@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Ctx): Promise<Metadata> {
   if (!item) notFound();
   const meta = createPageMetadata({
     title: item.title,
-    description: item.description.slice(0, 160),
+    description: item.description,
     path: `/interior-colors/${item.slug}`,
     keywords: [ROOM_LABELS[item.roomType], STYLE_LABELS[item.style], "interior palette"],
     noIndex: item.status !== "published",

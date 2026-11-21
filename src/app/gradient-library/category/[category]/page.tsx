@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -25,7 +25,11 @@ export async function generateMetadata({
   if (!GRADIENT_CATEGORIES.includes(category as GradientCategory)) notFound();
   return createPageMetadata({
     title: `${category[0].toUpperCase()}${category.slice(1)} Gradients`,
-    description: `Browse ${category} CSS gradients with live preview and copy-ready code.`,
+    description: fitDescription(
+      `Browse ${getGradientsByCategory(category).length} ${category} CSS gradients with live previews.`,
+      "Copy the CSS, Tailwind or SCSS code for each one, or download it as a JPG.",
+      "Open any gradient for its color stops and angle."
+    ),
     path: `/gradient-library/category/${category}`,
     keywords: [`${category} gradients`, "css gradient"],
   });

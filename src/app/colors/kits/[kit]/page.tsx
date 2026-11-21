@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { UI_KITS, getColorsBySource } from "@/lib/data/color-library";
@@ -24,7 +24,11 @@ export async function generateMetadata({
   if (!meta) notFound();
   return createPageMetadata({
     title: meta.title,
-    description: `Browse ${meta.title} with HEX values, copy buttons, and detailed color pages.`,
+    description: fitDescription(
+      `Browse ${getColorsBySource(meta.source).length} ${meta.title} as swatches with HEX values and copy buttons.`,
+      "Each color links to its own page with RGB, HSL, OKLCH, shades and WCAG contrast.",
+      "Each color links to a page with shades and contrast."
+    ),
     path: `/colors/kits/${kit}`,
     keywords: [meta.title.toLowerCase(), "color palette", "design system colors"],
   });

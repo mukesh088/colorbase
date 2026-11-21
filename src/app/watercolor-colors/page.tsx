@@ -7,7 +7,7 @@ import { ArtPigmentTool, type ArtPigment } from "@/components/tools/art-pigment-
 import { ArrowRight, Paintbrush, Sparkles, HelpCircle, Palette, Droplet } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Watercolor Colors & Pigment Codes — Artist Paint Palette & Hex Guide",
+  title: "Watercolor Paint Colors – Pigment & HEX Guide",
   description:
     "Explore essential artist watercolor paint colors with exact pigment codes (PB29, PR108, PY43), digital HEX values, lightfastness ratings, granulation, and transparency details for fine art and digital illustration.",
   path: "/watercolor-colors",

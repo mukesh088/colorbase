@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { ArrowRight, Compass, Eye, Layers, Palette, Sparkles, ShieldCheck, HelpCircle } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Color Theory Guide — Principles, Harmonies & Practical Application",
+  title: "Color Theory Guide – Wheel, Harmonies & Use",
   description:
     "Master color theory with our complete visual guide. Learn primary, secondary, and tertiary colors, color harmonies (complementary, analogous, triadic), warm vs cool psychology, and accessible UI design.",
   path: "/color-theory",

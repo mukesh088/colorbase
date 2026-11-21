@@ -2,7 +2,8 @@ import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, namedColorJsonLd } from "@/lib/seo";
+import { hexAnswerSentence } from "@/lib/colors/describe";
+import { fitDescription, createPageMetadata, breadcrumbJsonLd, faqJsonLd, namedColorJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getCssNamedColors, getNamedColor } from "@/lib/data/color-names";
@@ -38,9 +39,14 @@ export async function generateMetadata({
   const hex = color.hex.toUpperCase();
   return createPageMetadata({
     title: color.metaTitle ?? `${label} Color Hex Code ${hex}`,
-    description:
+    description: fitDescription(
       color.metaDescription ??
-      `${label} color hex code is ${hex}. Copy HEX, RGB, HSL, and CSS. ${color.source === "css" ? `CSS keyword: ${color.name.toLowerCase()}.` : "Attributed color-name reference with preview, shades, harmonies, and contrast."}`,
+        `${label} color hex code is ${hex}. ${hexAnswerSentence(hex).split(". ").slice(1).join(". ")}`,
+      !color.metaDescription && color.source === "css" && `CSS keyword: ${color.name.toLowerCase()}.`,
+      "Copy HEX, RGB, HSL or CSS and see its shades, harmonies and contrast.",
+      "Copy HEX, RGB, HSL or CSS.",
+      "See shades and contrast."
+    ),
     path: `/color-names/${color.slug}`,
     keywords: [
       `${label} color`,

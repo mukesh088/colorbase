@@ -7,7 +7,7 @@ import { ComplementaryTool } from "@/components/tools/complementary-tool";
 import { ArrowRight, Compass, Sparkles, HelpCircle, Layers, Palette } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Complementary Colors Finder & Generator — Opposite Color Harmonies",
+  title: "Complementary Colors – Find Opposite Colors",
   description:
     "Find the exact opposite complementary color for any HEX or RGB code. Calculate 180° complements, split-complementary palettes, and check WCAG accessibility contrast.",
   path: "/complementary-colors",

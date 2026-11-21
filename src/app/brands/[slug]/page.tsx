@@ -2,7 +2,7 @@ import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, brandPaletteJsonLd } from "@/lib/seo";
+import { fitDescription, fitTitle, createPageMetadata, breadcrumbJsonLd, faqJsonLd, brandPaletteJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -39,11 +39,23 @@ export async function generateMetadata({
   if (!brand) notFound();
   const colors = brandAllColors(brand);
   return createPageMetadata({
-    title: brand.metaTitle ?? `${brand.name} Hex Colors & Brand Color Codes`,
-    description:
+    title: fitTitle(
+      ...(brand.metaTitle ? [brand.metaTitle] : []),
+      `${brand.name} Hex Colors & Brand Color Codes`,
+      `${brand.name} Brand Colors & HEX Codes`,
+      `${brand.name} Colors & HEX Codes`,
+      `${brand.name} HEX Colors`
+    ),
+    description: fitDescription(
       brand.metaDescription ??
-      `${brand.name} brand hex colors: ${colors.join(", ")}. Copy HEX, RGB, CMYK, CSS variables, and Tailwind classes for the ${brand.name} logo and UI.`,
+        `${brand.name} brand colors: ${colors.slice(0, 6).map((c) => c.toUpperCase()).join(", ")}.`,
+      `Copy the ${brand.name} logo colors as HEX, RGB, CMYK, CSS variables or Tailwind classes.`,
+      "Copy each code as HEX, RGB, CMYK, CSS or Tailwind.",
+      "Check contrast before you use them in UI.",
+      "Each color lists its source."
+    ),
     path: `/brands/${brand.slug}`,
+    ogImage: `/brands/${brand.slug}/opengraph-image`,
     keywords: [
       `${brand.name} colors`,
       `${brand.name} hex`,

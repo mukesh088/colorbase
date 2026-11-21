@@ -14,7 +14,7 @@ export const metadata: Metadata = createPageMetadata({
 export default function ContactPage() {
   return (
     <div className="mx-auto max-w-2xl px-4 py-10 lg:px-6">
-      <Breadcrumbs
+      <Breadcrumbs withJsonLd
         items={[
           { name: "Home", href: "/" },
           { name: "Contact", href: "/contact" },

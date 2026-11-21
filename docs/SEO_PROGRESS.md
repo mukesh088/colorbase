@@ -4,7 +4,7 @@ Plan: [`SEO_GEO_PLAN.md`](../SEO_GEO_PLAN.md) (repo root). Rules: [`CLAUDE.md`](
 Tick a task only when it is built, the build passes and it is committed.
 
 ## Handoff note (read first)
-- **Status:** Phases 0–1 done. Next: Phase 2 (titles ≤ 60 chars, descriptions 140–155, duplicate titles, breadcrumbs, OG images, schema).
+- **Status:** Phases 0–2 done. Next: Phase 3 (answer-first `<ToolContent>` sections on every tool page; group non-color tools as "More tools").
 - Branches are stacked: `seo/phase-0-audit` → `seo/phase-1-crawling` → … Merge them into `main` in order (or merge the last one).
 - Non-color tools: keep current URLs, group them as "More tools" (your answer, 2026-11-21). No `/extras/` move.
 - Run vitest from an upper-case drive path (`D:\projects\colorbase`). From `d:\…` every suite fails with "Vitest failed to find the current suite" (Windows drive-letter case makes vitest load twice).
@@ -27,13 +27,13 @@ Tick a task only when it is built, the build passes and it is committed.
 - [x] Invalid slugs return a real HTTP 404, **except** `/interior-colors/<unknown>` (see "Needs your decision").
 - [x] GSC + Bing verification meta via `GSC_VERIFICATION` / `BING_VERIFICATION` (set at **build** time).
 
-## Phase 2 — Metadata, headings, schema
-- [ ] Central SEO helper (title, description, canonical, OG, Twitter, JSON-LD) on every page; no `meta keywords`.
-- [ ] Title pattern `<Primary keyword> – <benefit> | ColorBase`; unique descriptions.
-- [ ] One descriptive H1 per page; slogan H2s on the homepage renamed.
-- [ ] Generated 1200×630 OG images for color, brand, palette and gradient pages.
-- [ ] JSON-LD: Organization + WebSite (home), WebApplication (tools), FAQPage, BreadcrumbList, BlogPosting, Dataset.
-- [ ] Visible breadcrumbs on inner pages.
+## Phase 2 — Metadata, headings, schema ✅
+- [x] Central SEO helper: `createPageMetadata` (title, description, canonical, OG, Twitter) + JSON-LD helpers in `src/lib/seo.ts`; used by every page. No `meta keywords` (the `keywords` arg is accepted but never rendered).
+- [x] Title pattern `<Keyword> – <benefit> | ColorBase`; every title ≤ 60 chars (`documentTitle` drops the suffix only when it would overflow; `fitTitle` picks the first brand-name variant that fits). Descriptions: `META_DESCRIPTIONS` (90 static pages, 140–155, unique, tested) + `fitDescription` templates for color, brand, brand-HEX, color-name, library color, family, kit, gradient, palette, blog, developer and Roblox pages.
+- [x] One descriptive H1 on every sitemap URL (verified). Homepage H2s were already descriptive.
+- [x] Generated 1200×630 OG images for color, brand (+ brand-HEX), palette and gradient pages. The existing color/brand/palette image routes were never referenced (every page hard-coded `/og-image.png`); `createPageMetadata({ ogImage })` now points `og:image` at them, and the catalog middleware lets `/brands/<slug>/opengraph-image` through.
+- [x] JSON-LD: Organization (+ Play Store in `sameAs`) + WebSite on every page; tools now `WebApplication` (free, `DesignApplication`, publisher); FAQPage; BreadcrumbList; BlogPosting with `dateModified`, author/publisher `@id`. `Dataset` is deferred to the Phase 6 research report (the only data-report page).
+- [x] Visible breadcrumbs on inner pages; added BreadcrumbList to `/color-meaning`, `/contact`, `/learning`, `/search` and the 4 legal pages (`<Breadcrumbs withJsonLd>`).
 
 ## Phase 3 — Answer-first content on tool pages
 - [ ] Reusable server-rendered `<ToolContent>` section.
@@ -116,5 +116,11 @@ Tick a task only when it is built, the build passes and it is committed.
   - Resubmit `https://colorbase.in/sitemap.xml` in Search Console (it is now a sitemap index).
 
 ## Needs your decision
+- **Near-duplicate pages** (Phase 4): `/tailwind-colors` vs `/colors/tailwind`, `/material-colors` vs `/colors/material`, `/bootstrap-colors` vs `/colors/bootstrap`, `/css-named-colors` vs `/colors/css`, `/color-names/whitesmoke` vs `/color-names/white-smoke`. They now have distinct titles and descriptions, but each pair targets the same query. Recommended: canonical the `/colors/<kit>` swatch pages to the tool pages (and `white-smoke` → `whitesmoke`), keeping all URLs live. That removes pages from the index, so I'm waiting for your OK.
 - **`/interior-colors/<unknown-slug>` returns HTTP 200** (with `noindex` + the not-found page, so it won't be indexed). Cause: the global `src/app/loading.tsx` Suspense boundary flushes a 200 before the page calls `notFound()`. A true 404 needs either removing the global loading screen or moving `src/middleware.ts` to the Node.js runtime so it can check the interior catalog. Both change rendering, so I left it.
 - Mixed-case non-HEX paths (e.g. `/Color-Picker`) 404 instead of redirecting to lowercase. Blog category URLs use capitals (`/blog/category/Color%20Psychology`), so a blanket lowercase redirect would change existing URLs. Left as is.
+
+### Phase 2 — 2026-11-22
+- Files: `src/lib/seo.ts` (`documentTitle`, `fitTitle`, `fitDescription`, `clampDescription`, `ogImage`, WebApplication schema), `src/lib/data/meta-descriptions.ts` (new: 90 descriptions + 7 titles), `src/lib/colors/describe.ts` (new: computed color phrase / answer sentence), `src/lib/site-config.ts` (Play Store in `sameAs`), `src/components/layout/breadcrumbs.tsx` (`withJsonLd`), `src/components/layout/legal-page.tsx`, 21 page titles, 15 dynamic templates (`color/[hex]`, `brands/*`, `color-names`, `colors/*`, gradient/palette/blog/developer/Roblox/interior), `src/app/blog/[slug]/page.tsx` (BlogPosting + visible "Updated"), `src/app/gradient-library/[slug]/opengraph-image.tsx` (new), `src/lib/catalog-routes.ts`, tests.
+- Verified on a production build, all 16,098 sitemap URLs: 0 titles > 60 chars (was ~3,700), 16,098/16,098 descriptions 140–155 (was ~10%), 0 duplicate descriptions, 1 H1 each; OG images return `image/png`. Tests 140/140, tsc clean, lint 0 errors.
+- Remaining duplicate title: `/color-names/whitesmoke` and `/color-names/white-smoke` are two pages for #F5F5F5 (CSS keyword + catalog name). Consolidating them is a Phase 4 item (see "Needs your decision").

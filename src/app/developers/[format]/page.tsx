@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { CODE_FORMATS } from "@/lib/codegen";
@@ -22,7 +22,11 @@ export async function generateMetadata({
   if (!meta) notFound();
   return createPageMetadata({
     title: `${meta.title} Color Code Generator`,
-    description: meta.description,
+    description: fitDescription(
+      `${meta.title} color code generator for your palette. Output: ${meta.description}`,
+      "Randomize a palette, pick each swatch or build a harmony from one base color, then copy the code.",
+      "Randomize or build a palette from one base color, then copy the code."
+    ),
     path: `/developers/${meta.slug}`,
     keywords: [`${meta.title} colors`, "design tokens", "color export"],
   });

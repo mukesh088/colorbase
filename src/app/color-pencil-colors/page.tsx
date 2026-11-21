@@ -7,7 +7,7 @@ import { ArtPigmentTool, type ArtPigment } from "@/components/tools/art-pigment-
 import { ArrowRight, Pencil, Sparkles, HelpCircle, Palette } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Colored Pencil Colors & Hex Codes — Artist Palette Reference Guide",
+  title: "Colored Pencil Colors – HEX Codes & Palette",
   description:
     "Explore essential artist colored pencil colors with exact HEX values, wax vs oil core details, lightfastness ratings, and blending notes for traditional sketchers and Procreate illustrators.",
   path: "/color-pencil-colors",

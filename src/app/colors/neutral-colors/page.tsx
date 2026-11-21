@@ -7,7 +7,7 @@ import { CopyButton } from "@/components/color/copy-button";
 import { ArrowRight, Sparkles, HelpCircle, Layers, Home } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Neutral Colors — Hex Codes, Warm & Cool Palettes for Interiors & UI",
+  title: "Neutral Colors – Warm & Cool HEX Codes",
   description:
     "Explore the complete guide to neutral colors with exact HEX, RGB, and HSL codes. Discover beige, taupe, greige, ivory, slate grey, and warm cream palettes for architecture, interior decor, and minimalist web design.",
   path: "/colors/neutral-colors",

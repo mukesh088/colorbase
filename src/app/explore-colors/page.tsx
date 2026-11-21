@@ -5,7 +5,7 @@ import { ColorCodePageShell, RelatedCodeLinks, AdReserve } from "@/components/co
 import { ColorExplorerClient } from "@/components/color-codes/color-explorer-client";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Explore 16.7 Million Colors — Interactive Color-Space Explorer",
+  title: "Color Explorer – Browse 16.7 Million Colors",
   description:
     "Explore the 16,777,216 colors of 24-bit RGB dynamically with HEX, RGB, HSL, OKLCH, nearby colors, and nearest CSS, Tailwind, and Material tokens.",
   path: "/explore-colors",

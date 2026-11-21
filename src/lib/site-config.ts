@@ -44,6 +44,8 @@ export const SOCIAL_PROFILES = {
   x: "https://x.com/colorbase_in",
   pinterest: "https://pin.it/6903eoV8M",
   medium: "https://medium.com/@colorbase",
+  /** Android app listing (from docs/SEO_GEO_PLAN.md). */
+  playStore: "https://play.google.com/store/apps/details?id=com.colorbase.app",
 } as const;
 
 export const ORGANIZATION = {
@@ -59,6 +61,7 @@ export const ORGANIZATION = {
     SOCIAL_PROFILES.github,
     SOCIAL_PROFILES.pinterest,
     SOCIAL_PROFILES.medium,
+    SOCIAL_PROFILES.playStore,
   ],
 };
 

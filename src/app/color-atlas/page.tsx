@@ -5,7 +5,7 @@ import { ColorCodePageShell, RelatedCodeLinks, AdReserve } from "@/components/co
 import { ColorAtlasClient } from "@/components/color-codes/color-atlas-client";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Universal Color Atlas — Design System Color Comparison",
+  title: "Color Atlas – Compare Design System Colors",
   description:
     "Compare official CSS, Tailwind, Material, Bootstrap, Fluent, Apple, Android, Radix, Chakra, Ant Design, PrimeReact, and Flat UI color tokens. Approximations are labeled as nearest matches.",
   path: "/color-atlas",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { fitDescription, createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { hexAnswerSentence } from "@/lib/colors/describe";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ColorDetailView } from "@/components/library/color-detail-view";
@@ -39,16 +40,19 @@ export async function generateMetadata({
   const name = known?.name ?? reference?.name ?? value.toUpperCase();
   const brands = getBrandsUsingHex(value);
   const brandNames = brands.map((b) => b.name).slice(0, 4);
-  const title = `${value.toUpperCase()} Color — RGB, HSL, OKLCH, Shades, Palettes & Code`;
-  const description =
-    reference?.summary ??
-    (brandNames.length
-      ? `${value.toUpperCase()} is a brand hex color used by ${brandNames.join(", ")}. Copy HEX, RGB, HSL, LAB, OKLCH, CMYK, CSS, and nearest Tailwind.`
-      : `Color details for ${value.toUpperCase()}: HEX, RGB, HSL, LAB, OKLCH, CMYK, nearest Tailwind token, CSS variables, tints, shades, and contrast.`);
+  const title = `${value.toUpperCase()} Color Code – RGB, HSL, Shades & Palettes`;
+  const description = fitDescription(
+    reference?.summary ?? hexAnswerSentence(value),
+    !reference?.summary && brandNames.length > 0 && `Used by ${brandNames.join(", ")}.`,
+    "See its shades, tints, harmonies and WCAG contrast.",
+    "Copy HEX, RGB, HSL, CMYK or CSS.",
+    "Copy the code in any format."
+  );
   return createPageMetadata({
     title,
     description,
     path: `/color/${value.slice(1)}`,
+    ogImage: `/color/${value.slice(1)}/opengraph-image`,
     keywords: [value, name, "color hex", "hex color code", ...brandNames.map((n) => `${n} hex`)],
     noIndex: !isIndexableHex(value),
   });

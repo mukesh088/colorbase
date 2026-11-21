@@ -7,7 +7,7 @@ import { HouseColorTool } from "@/components/tools/house-color-tool";
 import { ArrowRight, Home, Sparkles, HelpCircle, AlertCircle, Sun, Paintbrush } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "House Color Combinations — Interior & Exterior Paint Schemes",
+  title: "House Color Combinations – Interior & Exterior",
   description:
     "Explore designer-curated house color combinations for living rooms, bedrooms, kitchens, and home exteriors. Test wall, trim, ceiling, and accent palettes with copyable HEX codes and lighting advice.",
   path: "/house-color-combinations",

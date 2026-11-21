@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "AI Tailwind Color Generator — Semantic Tokens & 50–950 Scales",
+  title: "AI Tailwind Color Generator – 50–950 Scales",
   description:
     "Turn a product description into Tailwind theme colors, CSS variables, and OKLCH 50–950 shade scales you can drop into tailwind.config.",
   path: "/ai-tailwind-color-generator",

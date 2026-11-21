@@ -7,7 +7,7 @@ import { ArtPigmentTool, type ArtPigment } from "@/components/tools/art-pigment-
 import { ArrowRight, Paintbrush, Sparkles, HelpCircle, Palette } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Acrylic Paint Colors & Heavy Body Pigment Index — ColorBase",
+  title: "Acrylic Paint Colors – Pigment Index & HEX",
   description:
     "Explore the essential acrylic paint colors reference guide. Discover pigment codes (PW6, PB15:3, PR254), opacity, lightfastness ratings, and accurate digital HEX swatches for acrylic painters and illustrators.",
   path: "/acrylic-colors",

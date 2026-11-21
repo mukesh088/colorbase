@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "AI Color Palette Generator — Semantic Palettes from a Prompt",
+  title: "AI Color Palette Generator – Palettes from Text",
   description:
     "Describe the product you are building and generate a full UI color palette: primary, surfaces, text, borders, and status colors — not five random swatches.",
   path: "/ai-color-palette-generator",

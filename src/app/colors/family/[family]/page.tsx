@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -34,7 +34,11 @@ export async function generateMetadata({
   const label = FAMILY_LABELS[family as ColorFamily] ?? family;
   return createPageMetadata({
     title: `${label} Colors`,
-    description: `Browse ${label.toLowerCase()} colors with HEX, RGB, HSL, OKLCH, and accessibility details.`,
+    description: fitDescription(
+      `Browse ${getColorsByFamily(family).length} ${label.toLowerCase()} colors with HEX, RGB, HSL and OKLCH codes.`,
+      "Each swatch links to a page with its shades and contrast.",
+      "Copy any code for CSS or design tools."
+    ),
     path: `/colors/family/${family}`,
     keywords: [`${label} colors`, `${family} hex`, `${family} palette`],
   });

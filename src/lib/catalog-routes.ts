@@ -63,6 +63,9 @@ export function catalogRouteDecision(pathname: string): CatalogDecision | null {
     }
   }
   if (segments.length === 3) {
+    if (root === "brands" && detail === "opengraph-image") {
+      return getBrandBySlug(slug) ? null : missing;
+    }
     if (root === "brands") {
       const entry = getBrandHexEntry(slug, detail);
       if (!entry) return missing;

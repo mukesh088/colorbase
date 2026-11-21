@@ -5,7 +5,7 @@ import { ColorCodePageShell, RelatedCodeLinks, AdReserve } from "@/components/co
 import { MarkdownBody } from "@/components/content/markdown-body";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Color Codes Explained — HEX, RGB, HSL, OKLCH & More",
+  title: "Color Codes Explained – HEX, RGB, HSL, OKLCH",
   description:
     "Original developer documentation for HEX, RGB, RGBA, HSL, HSV, CMYK, LAB, LCH, OKLAB, OKLCH, 3-digit HEX, alpha, and how many HEX colors exist.",
   path: "/learn/color-codes",

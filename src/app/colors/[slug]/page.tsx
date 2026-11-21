@@ -2,7 +2,8 @@ import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import { isCuratedLibraryColor } from "@/lib/hex-indexing";
 import { notFound, permanentRedirect } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd, faqJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, fitDescription } from "@/lib/seo";
+import { hexAnswerSentence } from "@/lib/colors/describe";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getColorBySlug, getAllLibraryColors } from "@/lib/data/color-library";
@@ -41,7 +42,12 @@ export async function generateMetadata({
   const color = resolveColor(slug);
   return createPageMetadata({
     title: `${color.name} Color — ${color.hex}`,
-    description: `${color.name} color codes: HEX ${color.hex}, RGB, HSL, LAB, OKLCH, CMYK, nearest Tailwind, CSS variables, tints, shades, and accessibility.`,
+    description: fitDescription(
+      `${color.name} is ${color.hex.toUpperCase()}. ${hexAnswerSentence(color.hex).split(". ").slice(1).join(". ")}`,
+      "Copy HEX, RGB, HSL, LAB, OKLCH, CMYK, CSS variables and the nearest Tailwind class.",
+      "Copy HEX, RGB, HSL, OKLCH, CMYK or CSS.",
+      "See tints, shades and contrast."
+    ),
     path: `/colors/${color.slug}`,
     keywords: [color.name, color.hex, `${color.name} hex`, `${color.family} color`],
     noIndex: !isCuratedLibraryColor(color),

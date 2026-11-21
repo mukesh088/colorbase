@@ -2,7 +2,7 @@ import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { createPageMetadata, faqJsonLd } from "@/lib/seo";
+import { createPageMetadata, faqJsonLd, fitDescription } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/json-ld";
 import { ColorCodePageShell, RelatedCodeLinks, AdReserve } from "@/components/color-codes/page-shell";
 import { ColorDetailView } from "@/components/library/color-detail-view";
@@ -23,7 +23,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   if (!color) notFound();
   return createPageMetadata({
     title: `${color.name} — BrickColor ${color.id}`,
-    description: `Roblox BrickColor ${color.id} (${color.name}) with official RGB (${color.r}, ${color.g}, ${color.b}) and calculated HEX, HSL, and OKLCH.`,
+    description: fitDescription(
+      `Roblox BrickColor ${color.id} (${color.name}) with official RGB (${color.r}, ${color.g}, ${color.b}) and calculated HEX, HSL and OKLCH.`,
+      "Copy the code for Roblox Studio scripts.",
+      "Copy any value."
+    ),
     path: `/color-codes/roblox/${color.id}`,
     keywords: [color.name, `brickcolor ${color.id}`, "roblox color"],
   });

@@ -7,7 +7,7 @@ import { WhiteBackgroundTool } from "@/components/tools/white-background-tool";
 import { ArrowRight, CheckCircle2, Sparkles, HelpCircle, ShieldCheck, ShoppingBag } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "White Background Photo Editor & Background Remover — White, Colors & Gradients",
+  title: "White Background Editor – Clean Product Photos",
   description:
     "Remove backgrounds and replace with pure white (#FFFFFF), transparent PNG, studio gradients, or solid colors. Free, private in-browser tool for Amazon & Shopify product photos, portraits, and graphics.",
   path: "/white-background",

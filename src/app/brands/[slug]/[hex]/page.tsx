@@ -2,7 +2,8 @@ import { ToolFaqs } from "@/components/layout/tool-faqs";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd, faqJsonLd, brandHexJsonLd } from "@/lib/seo";
+import { hexAnswerSentence } from "@/lib/colors/describe";
+import { fitDescription, createPageMetadata, breadcrumbJsonLd, faqJsonLd, brandHexJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -42,8 +43,14 @@ export async function generateMetadata({
     title: `${brand.name} Hex Color ${hexDisplay}`,
     description: unverified
       ? `${brand.name} reference swatch ${hexDisplay} is an unverified estimate, not a published brand guideline color.`
-      : `${brand.name} ${entry.role} brand hex color ${hexDisplay}. Copy the ${brand.name} color code in HEX, RGB, HSL, CMYK, CSS, and Tailwind.`,
+      : fitDescription(
+          `${hexDisplay} is ${/^[aeiou]/i.test(entry.role) ? "an" : "a"} ${entry.role} brand color of ${brand.name}. ${hexAnswerSentence(entry.hex).split(". ").slice(1).join(". ")}`,
+          `Copy the ${brand.name} color code in HEX, RGB, HSL, CMYK, CSS or Tailwind.`,
+          "Copy it as HEX, RGB, HSL, CMYK, CSS or Tailwind.",
+          "See shades and contrast."
+        ),
     path: `/brands/${brand.slug}/${entry.hexSlug}`,
+    ogImage: `/brands/${brand.slug}/opengraph-image`,
     noIndex: unverified,
     keywords: [
       `${brand.name} hex`,

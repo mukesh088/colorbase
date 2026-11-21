@@ -9,6 +9,12 @@ describe("catalog request validation", () => {
     }
   });
 
+  it("lets generated Open Graph images through for real catalog entries only", () => {
+    expect(catalogRouteDecision("/brands/meta/opengraph-image")).toBeNull();
+    expect(catalogRouteDecision("/color/ff5733/opengraph-image")).toBeNull();
+    expect(catalogRouteDecision("/brands/missing-brand/opengraph-image")).toEqual({ status: 404 });
+  });
+
   it("identifies missing resources and invalid categories before rendering", () => {
     for (const path of [
       "/color/not-a-color",

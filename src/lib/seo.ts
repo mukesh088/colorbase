@@ -3,6 +3,7 @@ import { absoluteUrl } from "@/lib/utils";
 import { ADSENSE_CLIENT_ID, BUSINESS_ADDRESS, ORGANIZATION, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site-config";
 import type { BreadcrumbItem, FAQItem } from "@/types/tools";
 import type { ToolDefinition } from "@/types/tools";
+import { META_DESCRIPTIONS, META_TITLES } from "@/lib/data/meta-descriptions";
 
 export { SITE_NAME, SITE_DESCRIPTION, SITE_URL, ORGANIZATION };
 
@@ -53,7 +54,7 @@ export const TARGET_PAGE_SEO: Record<string, PageSeo> = {
     h1: "HEX to RGB Converter",
   },
   "tailwind-colors": {
-    title: "Tailwind CSS Colors – Full Palette with HEX Codes",
+    title: "Tailwind CSS Colors – Full Palette & HEX Codes",
     description:
       "Browse the full Tailwind CSS color palette with HEX codes. Copy any shade from slate to rose and use it in classes, CSS variables, or a design token.",
     h1: "Tailwind CSS Color Palette",
@@ -65,13 +66,13 @@ export const TARGET_PAGE_SEO: Record<string, PageSeo> = {
     h1: "Brand Color Codes",
   },
   "theme-builder": {
-    title: "UI Color Theme Builder – Export CSS & Tailwind Tokens",
+    title: "UI Theme Builder – Export CSS & Tailwind Tokens",
     description:
       "Build a UI color theme and export CSS and Tailwind tokens. Set backgrounds, text, and accents, then preview the interface before you copy the code.",
     h1: "UI Color Theme Builder",
   },
   "ai-color-copilot": {
-    title: "AI Color Palette Generator – Accessible Color Systems",
+    title: "AI Color Copilot – Accessible UI Color Systems",
     description:
       "Generate an accessible AI color palette for your product. Describe the interface, get a color system with contrast checks, and export CSS or Tailwind.",
     h1: "AI Color Copilot",
@@ -82,11 +83,62 @@ export function pageSeo(slug: string) {
   return TARGET_PAGE_SEO[slug];
 }
 
-function documentTitle(title: string) {
+/** Google shows about 60 characters of a title. */
+export const MAX_TITLE_LENGTH = 60;
+
+/**
+ * Appends " | ColorBase" unless that pushes the title past MAX_TITLE_LENGTH,
+ * in which case the page keyword wins and the brand suffix is dropped.
+ */
+export function documentTitle(title: string) {
   const brand = ` | ${SITE_NAME}`;
   const trimmed = title.trim();
   if (trimmed.endsWith(brand) || trimmed.startsWith(`${SITE_NAME} |`)) return trimmed;
-  return `${trimmed}${brand}`;
+  const full = `${trimmed}${brand}`;
+  return full.length <= MAX_TITLE_LENGTH ? full : trimmed;
+}
+
+export const DESCRIPTION_MIN = 140;
+/** True for every ColorBase tool and page; appended only when a description is short. */
+const DESCRIPTION_ENDINGS = ["Free to use, no sign-up needed.", "Free, no sign-up.", "Free to use."];
+export const DESCRIPTION_MAX = 155;
+
+/** Cut to DESCRIPTION_MAX at a sentence end, else a word boundary with an ellipsis. */
+export function clampDescription(text: string, max = DESCRIPTION_MAX) {
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max + 1);
+  const sentenceEnd = Math.max(cut.lastIndexOf(". "), cut.lastIndexOf("! "), cut.lastIndexOf("? "));
+  if (sentenceEnd >= DESCRIPTION_MIN - 20) return cut.slice(0, sentenceEnd + 1);
+  const word = cut.slice(0, max - 1).replace(/[\s,;:–—-]+\S*$/, "");
+  return `${word.replace(/[.,;:]$/, "")}…`;
+}
+
+/**
+ * Builds a meta description from a lead sentence plus optional sentences,
+ * adding each extra only while the total stays within DESCRIPTION_MAX.
+ */
+export function fitDescription(lead: string, ...extras: (string | false | null | undefined)[]) {
+  let out = lead.replace(/\s+/g, " ").trim();
+  for (const extra of extras) {
+    if (!extra || out.length >= DESCRIPTION_MIN) continue;
+    const next = `${out} ${extra.trim()}`;
+    if (next.length <= DESCRIPTION_MAX) out = next;
+  }
+  return clampDescription(out);
+}
+
+/**
+ * First candidate that fits MAX_TITLE_LENGTH with the " | ColorBase" suffix,
+ * else the first that fits without it, else the shortest.
+ */
+export function fitTitle(...candidates: string[]) {
+  const suffix = ` | ${SITE_NAME}`.length;
+  return (
+    candidates.find((c) => c.trim().length + suffix <= MAX_TITLE_LENGTH) ??
+    candidates.find((c) => c.trim().length <= MAX_TITLE_LENGTH) ??
+    [...candidates].sort((a, b) => a.length - b.length)[0]
+  );
 }
 
 export function createPageMetadata({
@@ -94,17 +146,22 @@ export function createPageMetadata({
   description,
   path = "/",
   noIndex = false,
+  ogImage,
 }: {
   title: string;
   description: string;
   path?: string;
+  /** Site-relative path of a generated 1200×630 image (e.g. a route's opengraph-image). */
+  ogImage?: string;
   /** Accepted so existing callers compile. Not rendered; the keywords meta tag is obsolete. */
   keywords?: string[];
   noIndex?: boolean;
 }): Metadata {
   const url = absoluteUrl(path);
-  const fullTitle = documentTitle(title);
-  const ogImage = absoluteUrl("/og-image.png");
+  const key = path === "" ? "/" : path.replace(/\/$/, "") || "/";
+  const fullTitle = documentTitle(META_TITLES[key] ?? title);
+  description = fitDescription(META_DESCRIPTIONS[key] ?? description, ...DESCRIPTION_ENDINGS);
+  const ogImageUrl = absoluteUrl(ogImage ?? "/og-image.png");
 
   return {
     title: fullTitle,
@@ -153,13 +210,13 @@ export function createPageMetadata({
       siteName: SITE_NAME,
       title: fullTitle,
       description,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: ogImageUrl, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: "summary_large_image",
       title: fullTitle,
       description,
-      images: [ogImage],
+      images: [ogImageUrl],
     },
     other: {
       "msapplication-TileColor": "#e11d48",
@@ -282,16 +339,20 @@ export function faqJsonLd(faqs: FAQItem[]) {
   };
 }
 
+/** Free browser tool → schema.org WebApplication (a SoftwareApplication subtype). */
 export function softwareAppJsonLd(tool: ToolDefinition) {
   return {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "WebApplication",
     name: tool.title,
     applicationCategory: "DesignApplication",
-    operatingSystem: "Web",
+    operatingSystem: "Any",
+    browserRequirements: "Requires JavaScript. Works in current Chrome, Edge, Firefox and Safari.",
     url: absoluteUrl(`/${tool.slug}`),
     description: tool.description,
     inLanguage: "en",
+    isAccessibleForFree: true,
+    publisher: { "@id": `${SITE_URL}/#organization` },
     audience: {
       "@type": "Audience",
       geographicArea: { "@type": "Place", name: "Worldwide" },

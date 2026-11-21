@@ -7,7 +7,7 @@ import { CopyButton } from "@/components/color/copy-button";
 import { ArrowRight, Sparkles, HelpCircle, Palette, ShieldAlert } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Pastel Colors — Aesthetic Hex Codes, Palettes & Soft Color Guide",
+  title: "Pastel Colors – HEX Codes & Soft Palettes",
   description:
     "Explore the ultimate collection of aesthetic pastel colors with exact HEX, RGB, and HSL codes. Discover pastel pink, baby blue, mint green, lavender, and gentle pastel color palettes for web UI and branding.",
   path: "/colors/pastel-colors",

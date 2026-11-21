@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { BLOG_CATEGORIES, getPostsByCategory, type BlogCategory } from "@/lib/data/blog";
@@ -23,7 +23,13 @@ export async function generateMetadata({
   if (!BLOG_CATEGORIES.includes(decoded as BlogCategory)) notFound();
   return createPageMetadata({
     title: `${decoded} Articles`,
-    description: `Read ${decoded.toLowerCase()} articles from the colorBase blog.`,
+    description: fitDescription(
+      `${getPostsByCategory(decoded).length === 1 ? "A ColorBase article" : `${getPostsByCategory(decoded).length} ColorBase articles`} on ${decoded}, written for designers and developers.`,
+      ...getPostsByCategory(decoded)
+        .slice(0, 3)
+        .map((post) => `Read “${post.title}”.`),
+      "Each guide links to a free tool you can try."
+    ),
     path: `/blog/category/${category}`,
     keywords: [decoded.toLowerCase(), "color blog"],
   });

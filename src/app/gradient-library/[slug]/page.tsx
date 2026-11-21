@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { getGradient } from "@/lib/data/gradient-library";
@@ -22,8 +22,14 @@ export async function generateMetadata({
   if (!g) notFound();
   return createPageMetadata({
     title: `${g.name} Gradient`,
-    description: `${g.name} CSS gradient with Tailwind and SCSS exports. Category: ${g.category}.`,
+    description: fitDescription(
+      `${g.name} is ${/^[aeiou]/.test(g.category) ? "an" : "a"} ${g.category} CSS gradient at ${g.angle}°, from ${g.colors[0].toUpperCase()} to ${g.colors[g.colors.length - 1].toUpperCase()}.`,
+      "Copy the CSS, Tailwind or SCSS code, download it as a JPG or share the link.",
+      "Copy the CSS, Tailwind or SCSS code in one click.",
+      "Preview it full size."
+    ),
     path: `/gradient-library/${g.slug}`,
+    ogImage: `/gradient-library/${g.slug}/opengraph-image`,
     keywords: [g.name, `${g.category} gradient`, "css linear-gradient"],
   });
 }

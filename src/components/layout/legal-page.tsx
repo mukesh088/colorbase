@@ -15,7 +15,7 @@ export function LegalPage({
 }) {
   return (
     <div className="mx-auto max-w-3xl px-3 py-6 sm:px-4 sm:py-10 lg:px-6">
-      <Breadcrumbs
+      <Breadcrumbs withJsonLd
         items={[
           { name: "Home", href: "/" },
           { name: title, href: path },

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SITE_URL } from "@/lib/site-config";
-import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
+import { createPageMetadata, breadcrumbJsonLd, fitDescription } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
@@ -26,7 +26,11 @@ export async function generateMetadata({
   if (!PALETTE_CATEGORIES.includes(category as PaletteCategory)) notFound();
   return createPageMetadata({
     title: `${category[0].toUpperCase()}${category.slice(1)} Palettes`,
-    description: `Browse ${category} color palettes with contrast comparisons, personal saves, and code exports.`,
+    description: fitDescription(
+      `Browse ${getPalettesByCategory(category).length} ${category} color palettes with HEX codes.`,
+      "Compare WCAG text contrast for every color pair, save favorites and export CSS or Tailwind tokens.",
+      "Open any palette in the theme builder."
+    ),
     path: `/palette-library/category/${category}`,
     keywords: [`${category} palettes`, "color schemes"],
   });

@@ -42,7 +42,7 @@ export default async function SearchPage({
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 lg:px-6">
-      <Breadcrumbs
+      <Breadcrumbs withJsonLd
         items={[
           { name: "Home", href: "/" },
           { name: "Search", href: "/search" },

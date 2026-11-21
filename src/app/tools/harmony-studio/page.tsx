@@ -12,7 +12,7 @@ export function generateMetadata(): Metadata {
   const tool = getToolBySlug(slug);
   if (!tool) return {};
   return createPageMetadata({
-    title: "Color Harmony Generator — Complementary, Triadic & More",
+    title: "Color Harmony Generator – Triadic & Analogous",
     description: tool.description,
     path: "/tools/harmony-studio",
     keywords: tool.keywords,

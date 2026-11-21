@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "AI Accessible Color Palette — WCAG AA & AAA Systems",
+  title: "AI Accessible Color Palette – WCAG AA & AAA",
   description:
     "Generate accessible UI palettes with WCAG contrast checks, automatic text repair, and AA or AAA targets built into the color engine.",
   path: "/ai-accessible-color-palette",

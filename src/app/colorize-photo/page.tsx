@@ -7,7 +7,7 @@ import { ColorizePhotoTool } from "@/components/tools/colorize-photo-tool";
 import { ArrowRight, Palette, Sparkles, HelpCircle, Info } from "lucide-react";
 
 export const metadata: Metadata = createPageMetadata({
-  title: "Colorize Photo Online — Grayscale Tinting & Duotone Photo Wash",
+  title: "Colorize Photo – Sepia, Duotone & Tint Online",
   description:
     "Colorize photos online with historic sepia, cyanotype blueprint tones, and neon duotones. Apply aesthetic chromatic washes to black and white or color pictures with 100% private in-browser processing.",
   path: "/colorize-photo",
