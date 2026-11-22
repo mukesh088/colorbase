@@ -110,6 +110,7 @@ export const COLOR_CODE_NAV = [
   { href: "/color-codes/minecraft", title: "Minecraft" },
   { href: "/color-codes/bukkit", title: "Bukkit" },
   { href: "/color-codes/roblox", title: "Roblox" },
+  { href: "/flags", title: "Flag colors" },
 ] as const;
 
 export const PRIMARY_NAV = [
@@ -142,6 +143,9 @@ export const PRIMARY_NAV = [
       { href: "/palette-library", title: "Palette Library" },
       { href: "/interior-colors", title: "Interior colors" },
       { href: "/house-color-combinations", title: "House color combinations" },
+      { href: "/colors-that-go-with", title: "Colors that go together" },
+      { href: "/color-blind-simulator", title: "Color blindness simulator" },
+      { href: "/discord-color-text-generator", title: "Discord colored text" },
       { href: "/tools#more-tools", title: "More tools: CSS layout, type & time" },
       { href: "/tools", title: "All tools" },
     ],
