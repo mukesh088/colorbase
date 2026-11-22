@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ToolFaqs } from "@/components/layout/tool-faqs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { CopyButton } from "@/components/color/copy-button";
-import { ColorCodeCards, PaletteTrio, cssVariables } from "@/components/library/color-code-cards";
+import { ColorCodeCards, PaletteGuide, PaletteTrio, cssVariables } from "@/components/library/color-code-cards";
 import { flagImage, getAllFlags, getFlag, similarFlags } from "@/lib/data/flags";
 import { breadcrumbJsonLd, createPageMetadata, faqJsonLd, fitDescription, fitTitle } from "@/lib/seo";
 
@@ -138,6 +138,13 @@ export default async function FlagPage({ params }: Ctx) {
           {flag.country} flag color palettes
         </h2>
         <PaletteTrio label={`${flag.country} flag`} hexes={hexes} />
+      </section>
+
+      <section className="mt-12" aria-labelledby="flag-palette-guide">
+        <h2 id="flag-palette-guide" className="font-display text-2xl font-semibold tracking-tight">
+          How to use the {flag.country} flag palette
+        </h2>
+        <PaletteGuide colors={cards} />
       </section>
 
       <section className="mt-12" aria-labelledby="flag-css">

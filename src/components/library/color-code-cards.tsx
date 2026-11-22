@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CopyButton } from "@/components/color/copy-button";
-import { getContrastRatio, hexToRgb, mixColors, rgbToCmyk } from "@/lib/colors/convert";
+import { getContrastRatio, hexToHsl, hexToRgb, mixColors, rgbToCmyk } from "@/lib/colors/convert";
 
 export type CodeCardColor = {
   name: string;
@@ -116,6 +116,74 @@ export function PaletteTrio({ label, hexes }: { label: string; hexes: string[] }
         .
       </p>
     </>
+  );
+}
+
+const ROLE_USE: Record<string, string> = {
+  Primary: "Main brand surface: headers, hero areas and primary buttons.",
+  Secondary: "Supporting color: secondary buttons, highlights and section bands.",
+  Accent: "Small doses: icons, badges, dividers and data highlights.",
+  "Light neutral": "Page and card backgrounds, and text on the darker colors.",
+  "Dark neutral": "Body text, outlines and dark-mode surfaces.",
+};
+
+function ratio(a: string, b: string) {
+  return Math.round(getContrastRatio(a, b) * 100) / 100;
+}
+
+function grade(r: number) {
+  return r >= 7 ? "AAA" : r >= 4.5 ? "AA" : r >= 3 ? "AA large" : "Fail";
+}
+
+/**
+ * How to use each color of a palette: role, suggested use, readable text
+ * color with WCAG ratios, and its strongest pairing inside the palette.
+ */
+export function PaletteGuide({ colors }: { colors: { name: string; hex: string }[] }) {
+  const rows = colors.map((c, i) => {
+    const hex = c.hex.toUpperCase();
+    const { l, s } = hexToHsl(hex);
+    const neutral = s < 12 || l >= 92 || l <= 10;
+    const role = neutral ? (l >= 60 ? "Light neutral" : "Dark neutral") : i === 0 ? "Primary" : i === 1 ? "Secondary" : "Accent";
+    const onWhite = ratio("#ffffff", hex);
+    const onBlack = ratio("#000000", hex);
+    const partner = colors
+      .filter((o) => o.hex.toUpperCase() !== hex)
+      .map((o) => ({ ...o, r: ratio(o.hex, hex) }))
+      .sort((a, b) => b.r - a.r)[0];
+    return { ...c, hex, role, onWhite, onBlack, partner };
+  });
+  return (
+    <ul className="mt-4 grid gap-4 md:grid-cols-2">
+      {rows.map((r) => (
+        <li key={r.hex + r.name} className="border-border/60 bg-card flex gap-4 rounded-2xl border p-4">
+          <div className="grid w-24 shrink-0 grid-rows-2 overflow-hidden rounded-xl border border-border/60" aria-hidden>
+            <span className="flex items-center justify-center text-lg font-semibold" style={{ background: r.hex, color: "#ffffff" }}>
+              Aa
+            </span>
+            <span className="flex items-center justify-center text-lg font-semibold" style={{ background: r.hex, color: "#000000" }}>
+              Aa
+            </span>
+          </div>
+          <div className="min-w-0 text-sm">
+            <p className="font-medium">
+              {r.name} <span className="text-muted-foreground font-mono text-xs">{r.hex}</span>
+            </p>
+            <p className="mt-0.5 text-xs font-semibold tracking-wide text-rose-600 uppercase dark:text-rose-400">{r.role}</p>
+            <p className="text-muted-foreground mt-1.5">{ROLE_USE[r.role]}</p>
+            <p className="mt-2">
+              White text {r.onWhite}:1 <span className="text-muted-foreground">({grade(r.onWhite)})</span> · Black text {r.onBlack}:1{" "}
+              <span className="text-muted-foreground">({grade(r.onBlack)})</span>
+            </p>
+            {r.partner && (
+              <p className="text-muted-foreground mt-1">
+                Strongest pair in this palette: {r.partner.name} ({r.partner.hex.toUpperCase()}) at {r.partner.r}:1 — {grade(r.partner.r)}.
+              </p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 

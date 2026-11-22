@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { CollectionHero } from "@/components/library/collection-hero";
 import { SwatchCardBrowser } from "@/components/library/swatch-card-browser";
-import { LEAGUES, getLeague, getTeamsByLeague, teamPath } from "@/lib/data/teams";
+import { LEAGUES, getLeague, getTeamsByLeague, teamLogo, teamPath } from "@/lib/data/teams";
 import { createPageMetadata, fitDescription } from "@/lib/seo";
 import { letterOf } from "@/lib/utils";
 
@@ -53,7 +53,13 @@ export default async function LeaguePage({ params }: Ctx) {
       <div className="mt-8">
         <SwatchCardBrowser
           placeholder={`Search ${l.name} teams or a HEX code`}
-          items={teams.map((t) => ({ href: teamPath(t), title: t.name, colors: t.colors.map((c) => c.hex), letter: letterOf(t.name) }))}
+          items={teams.map((t) => ({
+            href: teamPath(t),
+            title: t.name,
+            image: teamLogo(t) ? { src: teamLogo(t)!, alt: `${t.name} logo` } : undefined,
+            colors: t.colors.map((c) => c.hex),
+            letter: letterOf(t.name),
+          }))}
         />
       </div>
       <p className="text-muted-foreground mt-10 text-sm">

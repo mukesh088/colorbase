@@ -789,6 +789,16 @@ export const TOOL_ANSWERS: Record<string, ToolAnswer> = {
       "Exports a PPTX deck and CSS/JSON tokens.",
     ],
   },
+  "color-blind-test": {
+    question: "How does a color blindness test work?",
+    answer:
+      "A color blindness test shows plates of colored dots with a number hidden inside. People with typical vision read the number easily, but for someone with a color vision deficiency the number's colors blend into the background. Missing several red-green plates while reading the control plate can point to a red-green deficiency. Only an eye doctor can diagnose it.",
+    keyFacts: [
+      "About 1 in 12 men and 1 in 200 women have a color vision deficiency.",
+      "Red-green deficiencies (protan and deutan) are by far the most common.",
+      "Screen brightness and night modes change online test results.",
+    ],
+  },
   "discord-color-text-generator": {
     question: "How do you make colored text in Discord?",
     answer:

@@ -32,3 +32,14 @@ describe("team color data", () => {
     expect(catalogRouteDecision("/teams/xyz")).toEqual({ status: 404 });
   });
 });
+
+describe("team logos", () => {
+  it("has a logo file for every team that advertises one", async () => {
+    const fs = await import("node:fs");
+    const { teamLogo } = await import("@/lib/data/teams");
+    for (const t of getAllTeams()) {
+      const logo = teamLogo(t);
+      if (logo) expect(fs.existsSync(`public${logo}`), logo).toBe(true);
+    }
+  });
+});

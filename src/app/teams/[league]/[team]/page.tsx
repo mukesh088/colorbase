@@ -5,8 +5,8 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ToolFaqs } from "@/components/layout/tool-faqs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { CopyButton } from "@/components/color/copy-button";
-import { ColorCodeCards, PaletteTrio, cssVariables } from "@/components/library/color-code-cards";
-import { getAllTeams, getLeague, getTeam, getTeamsByLeague, namedTeamColors, teamPath } from "@/lib/data/teams";
+import { ColorCodeCards, PaletteGuide, PaletteTrio, cssVariables } from "@/components/library/color-code-cards";
+import { getAllTeams, getLeague, getTeam, getTeamsByLeague, namedTeamColors, teamLogo, teamPath } from "@/lib/data/teams";
 import { breadcrumbJsonLd, createPageMetadata, faqJsonLd, fitDescription, fitTitle } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -69,6 +69,7 @@ export default async function TeamPage({ params }: Ctx) {
     },
   ];
   const others = getTeamsByLeague(l.id).filter((x) => x.slug !== t.slug);
+  const logo = teamLogo(t);
 
   return (
     <div className="mx-auto max-w-6xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
@@ -76,10 +77,24 @@ export default async function TeamPage({ params }: Ctx) {
       <Breadcrumbs items={crumbs} />
 
       <header className="border-border/60 bg-card mt-2 grid gap-6 overflow-hidden rounded-3xl border p-5 sm:p-8 md:grid-cols-[1fr_1.1fr] md:items-center">
-        <div className="flex aspect-[3/2] overflow-hidden rounded-2xl shadow-inner" aria-hidden>
-          {colors.map((c, i) => (
-            <span key={c.hex + i} style={{ background: c.hex, flex: i === 0 ? 2 : 1 }} />
-          ))}
+        <div className="overflow-hidden rounded-2xl border border-border/60">
+          {logo ? (
+            <div className="flex aspect-[3/2] items-center justify-center bg-white p-6">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={logo} alt={`${t.name} logo`} width={256} height={256} className="h-full max-h-56 w-auto object-contain" />
+            </div>
+          ) : (
+            <div className="flex aspect-[3/2]" aria-hidden>
+              {colors.map((c, i) => (
+                <span key={c.hex + i} style={{ background: c.hex, flex: i === 0 ? 2 : 1 }} />
+              ))}
+            </div>
+          )}
+          <div className="flex h-4" aria-hidden>
+            {colors.map((c, i) => (
+              <span key={c.hex + i} className="flex-1" style={{ background: c.hex }} />
+            ))}
+          </div>
         </div>
         <div>
           <p className="text-xs font-semibold tracking-[0.16em] text-rose-600 uppercase dark:text-rose-400">
@@ -115,6 +130,17 @@ export default async function TeamPage({ params }: Ctx) {
         <PaletteTrio label={t.name} hexes={hexes} />
       </section>
 
+      <section className="mt-12" aria-labelledby="team-palette-guide">
+        <h2 id="team-palette-guide" className="font-display text-2xl font-semibold tracking-tight">
+          How to use the {t.name} palette
+        </h2>
+        <p className="text-muted-foreground mt-2 max-w-3xl text-sm">
+          Each color&apos;s role, where it works best, and which text color stays readable on it (WCAG AA needs 4.5:1 for
+          body text, 3:1 for large text).
+        </p>
+        <PaletteGuide colors={colors} />
+      </section>
+
       <section className="mt-12" aria-labelledby="team-css">
         <h2 id="team-css" className="font-display text-2xl font-semibold tracking-tight">
           CSS variables
@@ -134,11 +160,16 @@ export default async function TeamPage({ params }: Ctx) {
           {others.map((o) => (
             <li key={o.slug}>
               <Link href={teamPath(o)} className="border-border/60 bg-card hover:border-primary/50 flex items-center gap-3 rounded-xl border p-2.5">
-                <span className="flex h-7 w-10 shrink-0 overflow-hidden rounded" aria-hidden>
-                  {o.colors.map((c, i) => (
-                    <span key={c.hex + i} className="flex-1" style={{ background: c.hex }} />
-                  ))}
-                </span>
+                {teamLogo(o) ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={teamLogo(o)} alt="" width={32} height={32} loading="lazy" className="h-8 w-8 shrink-0 object-contain" />
+                ) : (
+                  <span className="flex h-7 w-10 shrink-0 overflow-hidden rounded" aria-hidden>
+                    {o.colors.map((c, i) => (
+                      <span key={c.hex + i} className="flex-1" style={{ background: c.hex }} />
+                    ))}
+                  </span>
+                )}
                 <span className="truncate text-sm">{o.name} colors</span>
               </Link>
             </li>
@@ -151,7 +182,7 @@ export default async function TeamPage({ params }: Ctx) {
         <a href={t.source} className="underline underline-offset-4" rel="noreferrer">
           {t.source}
         </a>
-        . {t.sourceNote} Team names and colors are trademarks of their owners and are shown for reference only. See all{" "}
+        . {t.sourceNote} Team names, logos and colors are trademarks of their owners and are shown for identification only. See all{" "}
         <Link href="/teams" className="underline underline-offset-4">
           team colors
         </Link>

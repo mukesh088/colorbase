@@ -144,6 +144,17 @@ export const TOOLS: ToolDefinition[] = [
     related: ["theme-builder", "chart-palette-generator", "contrast-checker"],
   },
   {
+    slug: "color-blind-test",
+    title: "Color Blindness Test",
+    shortTitle: "Color blind test",
+    description:
+      "Quick online color vision screening with 7 original dot plates for red-green and blue-yellow deficiency, scored instantly. Not a medical diagnosis.",
+    keywords: ["color blind test", "color blindness test", "colour blind test", "ishihara test online", "color vision test"],
+    category: "accessibility",
+    icon: "Eye",
+    related: ["color-blind-simulator", "contrast-checker", "accessibility-checker"],
+  },
+  {
     slug: "discord-color-text-generator",
     title: "Discord Colored Text Generator",
     shortTitle: "Discord text",

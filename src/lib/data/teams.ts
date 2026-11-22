@@ -52,3 +52,11 @@ export function namedTeamColors(team: TeamEntry) {
 export function teamPath(team: Pick<TeamEntry, "league" | "slug">) {
   return `/teams/${team.league}/${team.slug}`;
 }
+
+/** Leagues whose logos are self-hosted under public/team-logos (built by scripts/build-team-logos.mjs). */
+const LOGO_LEAGUES = new Set(["nba", "nfl", "mlb", "nhl", "mls", "epl"]);
+
+/** Team logo (256px WebP), or undefined when none is available (e.g. IPL). */
+export function teamLogo(team: Pick<TeamEntry, "league" | "slug">) {
+  return LOGO_LEAGUES.has(team.league) ? `/team-logos/${team.league}/${team.slug}.webp` : undefined;
+}

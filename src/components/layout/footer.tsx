@@ -21,6 +21,7 @@ const FOOTER_GROUPS = [
       { href: "/palette-generator", label: "Palette generator" },
       { href: "/contrast-checker", label: "Contrast checker" },
       { href: "/tools/harmony-studio", label: "Harmony studio" },
+      { href: "/color-blind-test", label: "Color blindness test" },
       { href: "/color-blind-simulator", label: "Color blindness simulator" },
       { href: "/discord-color-text-generator", label: "Discord colored text" },
       { href: "/tools", label: "All tools" },

@@ -160,3 +160,9 @@ Flip `"verified": true` in the data file once a value is confirmed; the page the
 ### Teams + shared UI — 2026-11-22
 - Header: the "UI Theme" item is now an "Explore" menu (flags, teams by league, colors that go together, color blindness simulator, Discord text, color names A–Z). The theme builder is still under Tools.
 - Shared components (code optimization): `ColorCodeCards`, `PaletteTrio`, `cssVariables` (`src/components/library/color-code-cards.tsx`), `SwatchCardBrowser` (searchable, filterable, A–Z card grid), `CollectionHero`, `letterOf` (utils), `simpleColorName`/`nameSwatches` (describe.ts). Flags, teams and the colors-that-go-with hub all use them; the old `flag-browser.tsx` was removed.
+
+### Team logos, palette guide, color blindness test — 2026-11-22
+- Team logos: 165 logos (NBA, NFL, MLB, NHL, MLS, Premier League) from the teamcolors repo, converted to 256px WebP by `scripts/build-team-logos.mjs` and self-hosted in `public/team-logos/<league>/<slug>.webp` (1.9 MB total). IPL teams have no logo yet (color block fallback). Logos are trademarks of their teams, shown for identification; remove any a team objects to.
+- `PaletteGuide` (shared): per color role (primary/secondary/accent/neutral), suggested use, white/black text samples with WCAG ratios, strongest pair in the palette. On team and flag pages.
+- New tool `/color-blind-test`: 7 original pseudo-isochromatic plates (control, 4 red–green, 2 blue–yellow), instant screening result with a "not a diagnosis" note. In the registry (Accessibility), with answer box, guide and FAQs.
+- Explore menu now also lists the color blindness test and MLB/NHL/MLS teams; the new tools were moved out of the Tools menu.

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { CollectionHero } from "@/components/library/collection-hero";
 import { SwatchCardBrowser } from "@/components/library/swatch-card-browser";
-import { LEAGUES, getAllTeams, getIndexableTeams, getTeamsByLeague, teamPath } from "@/lib/data/teams";
+import { LEAGUES, getAllTeams, getIndexableTeams, getTeamsByLeague, teamLogo, teamPath } from "@/lib/data/teams";
 import { createPageMetadata } from "@/lib/seo";
 import { letterOf } from "@/lib/utils";
 
@@ -50,6 +50,7 @@ export default function TeamsHub() {
             href: teamPath(t),
             title: t.name,
             meta: leagueName[t.league],
+            image: teamLogo(t) ? { src: teamLogo(t)!, alt: `${t.name} logo` } : undefined,
             colors: t.colors.map((c) => c.hex),
             group: t.league,
             letter: letterOf(t.name),

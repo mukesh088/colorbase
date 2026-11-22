@@ -6,6 +6,7 @@ import {
 } from "@/lib/suite-modes";
 import { isImageStudio } from "@/lib/image-studio";
 
+const ColorBlindTest = dynamic(() => import("@/components/tools/color-blind-test").then((m) => m.ColorBlindTest));
 const DiscordColorTextGenerator = dynamic(() =>
   import("@/components/tools/discord-color-text-generator").then((m) => m.DiscordColorTextGenerator)
 );
@@ -305,6 +306,8 @@ export function ToolContent({ slug }: { slug: string }) {
       return <MapColorScaleGenerator />;
     case "presentation-theme-generator":
       return <PresentationThemeGenerator />;
+    case "color-blind-test":
+      return <ColorBlindTest />;
     case "discord-color-text-generator":
       return <DiscordColorTextGenerator />;
     case "font-generator":
