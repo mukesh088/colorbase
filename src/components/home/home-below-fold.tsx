@@ -5,7 +5,7 @@ import { DESIGN_SYSTEM_ROUTES } from "@/lib/data/design-systems";
 import { BRANDS } from "@/lib/data/brands";
 import { POPULAR_UI_COLOR_GROUPS } from "@/lib/colors/palettes";
 import { getFeaturedPosts } from "@/lib/data/blog";
-import { getToolsByCategory } from "@/lib/tools-registry";
+import { getToolMenus, getToolsByCategory } from "@/lib/tools-registry";
 import { getStudioGradients } from "@/lib/data/gradient-library";
 import { HomeImageStarter } from "./home-image-starter";
 import { PaletteDiscovery } from "@/components/home/palette-discovery";
@@ -38,89 +38,39 @@ export function HomeBelowFold() {
       <PaletteDiscovery />
 
       <HomeSection
-        title="New flagship studios"
+        title="All tools by menu"
         href="/tools"
-        description="Website extraction, SVG and image recolor, CSS token audit, and animated mesh gradients."
+        description="Every ColorBase tool, grouped the same way as the tools menu: pickers, converters, palettes, image and PDF extractors, CSS generators and more."
       >
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-          {[
-            {
-              href: "/website-color-extractor",
-              title: "Website colors",
-              blurb: "Public HTML/CSS palette analysis",
-            },
-            {
-              href: "/video-color-extractor",
-              title: "Video colors",
-              blurb: "Frame sampling to palettes",
-            },
-            {
-              href: "/pdf-color-extractor",
-              title: "PDF colors",
-              blurb: "Local page rendering + samples",
-            },
-            {
-              href: "/qr-code-color-designer",
-              title: "Color QR",
-              blurb: "Branded codes with decode check",
-            },
-            {
-              href: "/presentation-theme-generator",
-              title: "Deck theme",
-              blurb: "PPTX-ready slide palettes",
-            },
-            {
-              href: "/font-generator",
-              title: "Font generator",
-              blurb: "Cursive + stylish Unicode fonts",
-            },
-            {
-              href: "/fancy-text-generator",
-              title: "Fancy text",
-              blurb: "fancyText with emoji frames",
-            },
-            {
-              href: "/map-color-scale-generator",
-              title: "Map scales",
-              blurb: "Choropleth ramps + CVD",
-            },
-            {
-              href: "/email-dark-mode-tester",
-              title: "Email dark mode",
-              blurb: "Sanitized HTML contrast sims",
-            },
-            {
-              href: "/image-text-contrast",
-              title: "Image text",
-              blurb: "Readable type on photos",
-            },
-            {
-              href: "/css-blend-mode-generator",
-              title: "Blend modes",
-              blurb: "mix & background blending",
-            },
-            {
-              href: "/brand-color-consistency-checker",
-              title: "Brand audit",
-              blurb: "Screenshot vs approved palette",
-            },
-            {
-              href: "/image-recolor",
-              title: "Image recolor",
-              blurb: "Selective recolor & duotone",
-            },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              prefetch={false}
-              href={item.href}
-              className="card-lift border-border bg-card rounded-[var(--radius-md)] border p-4"
-            >
-              <strong className="font-display block text-sm tracking-[-0.03em]">{item.title}</strong>
-              <span className="text-muted-foreground mt-1 block text-xs leading-relaxed">
-                {item.blurb}
-              </span>
-            </Link>
+        <div className="space-y-8">
+          {getToolMenus().map((menu) => (
+            <div key={menu.id}>
+              <h3 className="font-display mb-3 text-base font-semibold tracking-[-0.02em]">
+                <Link
+                  prefetch={false}
+                  href={menu.id === "more-tools" ? "/tools#more-tools" : `/tools?category=${menu.id}`}
+                  className="hover:underline"
+                >
+                  {menu.label}
+                </Link>
+                <span className="text-muted-foreground ml-2 text-xs font-normal">{menu.tools.length} tools</span>
+              </h3>
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+                {menu.tools.map((tool) => (
+                  <Link
+                    key={tool.slug}
+                    prefetch={false}
+                    href={`/${tool.slug}`}
+                    className="card-lift border-border bg-card rounded-[var(--radius-md)] border p-4"
+                  >
+                    <strong className="font-display block text-sm tracking-[-0.03em]">{tool.title}</strong>
+                    <span className="text-muted-foreground mt-1 line-clamp-2 block text-xs leading-relaxed">
+                      {tool.description}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </HomeSection>

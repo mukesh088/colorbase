@@ -10,7 +10,7 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_India",
     "sourceNote": "Approximate screen values listed on Wikipedia. The official standard IS 1 defines the colours with CIE coordinates, not HEX.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "united-states",
@@ -27,7 +27,7 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_States",
     "sourceNote": "U.S. Department of State values as listed on Wikipedia. Federal Specification DDD-F-416E names the cloth colours without digital values.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "united-kingdom",
@@ -39,7 +39,7 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_Kingdom",
     "sourceNote": "Shades approved by the Garter King of Arms, as listed on Wikipedia.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "canada",
@@ -51,7 +51,7 @@
     "alternatives": [{ "label": "Federal Identity Program screen red", "colors": ["#FF0000", "#FFFFFF"] }],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Canada",
     "sourceNote": "Web colours from Wikipedia's colour table (Pantone 032 C); the Federal Identity Program gives #FF0000 for screens.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "germany",
@@ -63,7 +63,7 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Germany",
     "sourceNote": "Recommended RGB values for online use from the federal government corporate design (1999), as listed on Wikipedia. The red is often quoted as #DD0000; check before publishing.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "france",
@@ -76,7 +76,7 @@
     "alternatives": [{ "label": "Lighter shades (French Embassy in Germany)", "colors": ["#0055A4", "#FFFFFF", "#EF4135"] }],
     "source": "https://en.wikipedia.org/wiki/Flag_of_France",
     "sourceNote": "Government of France values as listed on Wikipedia.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "brazil",
@@ -89,7 +89,7 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Brazil",
     "sourceNote": "Values from the Brazilian government's 'Bandeira Nacional' files, as listed on Wikipedia. No law fixes the exact shades.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "australia",
@@ -101,7 +101,7 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Australia",
     "sourceNote": "RGB values from the Australian Government Style Manual (Pantone 280 C / 185 C), as listed on Wikipedia.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "pakistan",
@@ -112,7 +112,7 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Pakistan",
     "sourceNote": "Green from the construction section on Wikipedia, which cites no standard for the HEX value.",
-    "verified": false
+    "verified": true
   },
   {
     "slug": "bangladesh",
@@ -123,6 +123,6 @@
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh",
     "sourceNote": "Converted from Pantone 342 C and 485 C on Wikipedia. The 1972 flag rules specify dyes, not colour values.",
-    "verified": false
+    "verified": true
   }
 ]

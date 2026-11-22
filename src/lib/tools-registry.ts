@@ -963,6 +963,37 @@ export const REDIRECTED_TOOL_SLUGS = new Set<string>([
   "timestamp-converter",
 ]);
 
+/** Menu order used by /tools and the homepage; color menus first. */
+const MENU_ORDER: ToolCategory[] = [
+  "pickers",
+  "converters",
+  "palettes",
+  "gradients",
+  "accessibility",
+  "image",
+  "libraries",
+  "inspiration",
+  "css-generators",
+  "social-tools",
+  "learning",
+];
+
+export type ToolMenu = { id: string; label: string; tools: ToolDefinition[] };
+
+/** Every live tool grouped by menu, with non-color tools collected under "More tools". */
+export function getToolMenus(): ToolMenu[] {
+  const live = TOOLS.filter((t) => !REDIRECTED_TOOL_SLUGS.has(t.slug));
+  const color = live.filter((t) => !NON_COLOR_TOOL_SLUGS.has(t.slug));
+  const order = [...MENU_ORDER, ...(Object.keys(CATEGORY_LABELS) as ToolCategory[]).filter((c) => !MENU_ORDER.includes(c))];
+  const byTitle = (a: ToolDefinition, b: ToolDefinition) => a.title.localeCompare(b.title);
+  const menus: ToolMenu[] = order
+    .map((c) => ({ id: c, label: CATEGORY_LABELS[c], tools: color.filter((t) => t.category === c).sort(byTitle) }))
+    .filter((m) => m.tools.length > 0);
+  const more = live.filter((t) => NON_COLOR_TOOL_SLUGS.has(t.slug)).sort(byTitle);
+  if (more.length) menus.push({ id: "more-tools", label: "More tools: CSS layout, type and time", tools: more });
+  return menus;
+}
+
 export function getToolBySlug(slug: string) {
   return TOOLS.find((t) => t.slug === slug);
 }
