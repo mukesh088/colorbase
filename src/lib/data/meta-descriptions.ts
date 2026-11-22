@@ -116,6 +116,8 @@ export const META_DESCRIPTIONS: Record<string, string> = {
     "Preview HTML email in light mode and simulated dark mode. Flag text that loses contrast when inverted and copy CSS fixes for Gmail, Apple Mail and Outlook.",
   "/faq":
     "Answers to common color questions: what an HTML color code is, how to convert HEX to RGB, what contrast ratio passes WCAG, and how to export palettes.",
+  "/flags":
+    "Flag colors by country with HEX, RGB and CMYK codes. Each value is listed with its source, plus CSS variables and links to build a matching palette.",
   "/hex-to-hsl":
     "Convert HEX color codes to HSL (hue, saturation, lightness) instantly. Paste a 3- or 6-digit HEX, preview the color and copy the CSS hsl() value to use.",
   "/house-color-combinations":

@@ -18,6 +18,7 @@ import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
 import { getIndexableHexSlugs } from "@/lib/hex-indexing";
 import { absoluteUrl } from "@/lib/utils";
 import { getCombinationBases } from "@/lib/colors/combinations";
+import { getIndexableFlags } from "@/lib/data/flags";
 import { isoToDate as toDate, latestIso as latest, routeLastModified, sectionLastModified } from "@/lib/content-dates";
 import retiredToolSlugs from "../../retired-tools";
 
@@ -31,6 +32,7 @@ export const SITEMAP_IDS = [
   "palettes",
   "gradients",
   "combinations",
+  "flags",
 ] as const;
 export type SitemapId = (typeof SITEMAP_IDS)[number];
 
@@ -143,6 +145,12 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
         ...getCombinationBases().map((b) => entry(`/colors-that-go-with/${b.slug}`, lastModified, 0.7)),
       ];
     }
+    case "flags": {
+      const verified = getIndexableFlags();
+      if (!verified.length) return [];
+      const lastModified = sectionLastModified("flags");
+      return [entry("/flags", lastModified, 0.7), ...verified.map((f) => entry(`/flags/${f.slug}`, lastModified, 0.6))];
+    }
     default:
       return [];
   }
@@ -154,6 +162,7 @@ export type SitemapFile = { name: string; section: SitemapId; entries: MetadataR
 export function sitemapFiles(): SitemapFile[] {
   return SITEMAP_IDS.flatMap((section) => {
     const entries = sitemapForId(section);
+    if (!entries.length) return [];
     const chunks = Math.max(1, Math.ceil(entries.length / SITEMAP_CHUNK_SIZE));
     const numbered = chunks > 1 || NUMBERED_SECTIONS.has(section);
     return Array.from({ length: chunks }, (_, i) => ({

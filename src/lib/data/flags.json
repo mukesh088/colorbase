@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "india",
+    "country": "India",
+    "colors": [
+      { "name": "India saffron", "hex": "#FF671F" },
+      { "name": "White", "hex": "#FFFFFF" },
+      { "name": "India green", "hex": "#046A38" },
+      { "name": "Navy blue (Ashoka Chakra)", "hex": "#06038D" }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_India",
+    "sourceNote": "Approximate screen values listed on Wikipedia. The official standard IS 1 defines the colours with CIE coordinates, not HEX.",
+    "verified": false
+  },
+  {
+    "slug": "united-states",
+    "country": "United States",
+    "colors": [
+      { "name": "Red", "hex": "#BB133E" },
+      { "name": "White", "hex": "#FFFFFF" },
+      { "name": "Blue", "hex": "#002147" }
+    ],
+    "alternatives": [
+      { "label": "U.S. Government Printing Office (PMS 186 C / 288 C)", "colors": ["#C8102E", "#FFFFFF", "#002D72"] },
+      { "label": "Old Glory Red / Old Glory Blue (PMS 193 C / 281 C)", "colors": ["#BF0A30", "#FFFFFF", "#00205B"] },
+      { "label": "State Department ECA brand", "colors": ["#B31942", "#FFFFFF", "#0A3161"] }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_States",
+    "sourceNote": "U.S. Department of State values as listed on Wikipedia. Federal Specification DDD-F-416E names the cloth colours without digital values.",
+    "verified": false
+  },
+  {
+    "slug": "united-kingdom",
+    "country": "United Kingdom",
+    "colors": [
+      { "name": "Blue", "hex": "#012169" },
+      { "name": "Red", "hex": "#C8102E" },
+      { "name": "White", "hex": "#FFFFFF" }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_Kingdom",
+    "sourceNote": "Shades approved by the Garter King of Arms, as listed on Wikipedia.",
+    "verified": false
+  },
+  {
+    "slug": "canada",
+    "country": "Canada",
+    "colors": [
+      { "name": "Red", "hex": "#EF3340" },
+      { "name": "White", "hex": "#FFFFFF" }
+    ],
+    "alternatives": [{ "label": "Federal Identity Program screen red", "colors": ["#FF0000", "#FFFFFF"] }],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Canada",
+    "sourceNote": "Web colours from Wikipedia's colour table (Pantone 032 C); the Federal Identity Program gives #FF0000 for screens.",
+    "verified": false
+  },
+  {
+    "slug": "germany",
+    "country": "Germany",
+    "colors": [
+      { "name": "Black", "hex": "#000000" },
+      { "name": "Red", "hex": "#D00000" },
+      { "name": "Gold", "hex": "#FFCE00" }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Germany",
+    "sourceNote": "Recommended RGB values for online use from the federal government corporate design (1999), as listed on Wikipedia. The red is often quoted as #DD0000; check before publishing.",
+    "verified": false
+  },
+  {
+    "slug": "france",
+    "country": "France",
+    "colors": [
+      { "name": "Blue", "hex": "#000091" },
+      { "name": "White", "hex": "#FFFFFF" },
+      { "name": "Red", "hex": "#E1000F" }
+    ],
+    "alternatives": [{ "label": "Lighter shades (French Embassy in Germany)", "colors": ["#0055A4", "#FFFFFF", "#EF4135"] }],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_France",
+    "sourceNote": "Government of France values as listed on Wikipedia.",
+    "verified": false
+  },
+  {
+    "slug": "brazil",
+    "country": "Brazil",
+    "colors": [
+      { "name": "Green", "hex": "#009440" },
+      { "name": "Yellow", "hex": "#FFCB00" },
+      { "name": "Blue", "hex": "#302681" },
+      { "name": "White", "hex": "#FFFFFF" }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Brazil",
+    "sourceNote": "Values from the Brazilian government's 'Bandeira Nacional' files, as listed on Wikipedia. No law fixes the exact shades.",
+    "verified": false
+  },
+  {
+    "slug": "australia",
+    "country": "Australia",
+    "colors": [
+      { "name": "Blue", "hex": "#001B69" },
+      { "name": "Red", "hex": "#E50027" },
+      { "name": "White", "hex": "#FFFFFF" }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Australia",
+    "sourceNote": "RGB values from the Australian Government Style Manual (Pantone 280 C / 185 C), as listed on Wikipedia.",
+    "verified": false
+  },
+  {
+    "slug": "pakistan",
+    "country": "Pakistan",
+    "colors": [
+      { "name": "Pakistan green", "hex": "#00401A" },
+      { "name": "White", "hex": "#FFFFFF", "note": "No value specified; plain white assumed." }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Pakistan",
+    "sourceNote": "Green from the construction section on Wikipedia, which cites no standard for the HEX value.",
+    "verified": false
+  },
+  {
+    "slug": "bangladesh",
+    "country": "Bangladesh",
+    "colors": [
+      { "name": "Green", "hex": "#006747" },
+      { "name": "Red", "hex": "#DA291C" }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh",
+    "sourceNote": "Converted from Pantone 342 C and 485 C on Wikipedia. The 1972 flag rules specify dyes, not colour values.",
+    "verified": false
+  }
+]

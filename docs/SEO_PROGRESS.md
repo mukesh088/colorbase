@@ -61,7 +61,7 @@ Tick a task only when it is built, the build passes and it is committed.
 
 ## Phase 5 — New page groups
 - [x] 5.1 Colors that go with X: `/colors-that-go-with` hub + 122 pages (`/colors-that-go-with/navy-blue`, `sage-green`, `maroon`, `beige`, `mustard`, `teal`, …). Data `src/lib/data/combination-colors.json` built by `scripts/build-combination-colors.mjs` from CSS named colors (W3C) and meodai/color-names (MIT), every entry with `source` and `verified: true` (values copied from the cited datasets). "Sage Green"/"Mint Green" use the dataset's "Sage"/"Mint" values because its "Sage Green" (#887766) and "Mint Green" (#487D4A) are not what people mean; recorded as `sourceName`. Matches computed (`src/lib/colors/combinations.ts`): complement, 2 analogous, 2 split-complementary, light/dark neutrals mixed from the base, tint or shade; neutrals get classic CSS-keyword accents. Each page: answer sentence, 8 linked matches, 3 ready palettes, website/room/outfit/logo previews from swatches, 3 computed FAQs + FAQPage, 10 related bases. Own sitemap file `combinations.xml`; real 404 for unknown slugs; linked from color pages (when the HEX is a base), the color wheel and palette generator guides, and `/complementary-colors`.
-- [ ] 5.2 Flag & team colors
+- [~] 5.2 Flag & team colors: ✅ template `/flags/[country]` + hub `/flags` (HEX/RGB/CMYK table, other published values, CSS variables, FAQs, source line, "not yet checked" notice). Data `src/lib/data/flags.json`, first batch of 10 countries, every entry `verified: false` → pages `noindex`, hub `noindex`, nothing in the sitemap until you flip `verified` to `true`. ⏳ remaining ~185 countries and IPL/FIFA/NBA teams.
 - [ ] 5.3 Paint shade code → HEX
 - [ ] 5.4 Outfit & saree color combinations
 - [ ] 5.5 Palettes by use case
@@ -122,6 +122,11 @@ Tick a task only when it is built, the build passes and it is committed.
   - Set `GSC_VERIFICATION` and `BING_VERIFICATION` in Hostinger **before the build** (static pages bake the tags in), then redeploy.
   - Turn on "Force HTTPS" for colorbase.in in hPanel (http→https lives in hosting, not the app), then check `curl -I http://colorbase.in/` and `curl -I https://www.colorbase.in/` both 301/308 to `https://colorbase.in/`.
   - Resubmit `https://colorbase.in/sitemap.xml` in Search Console (it is now a sitemap index).
+
+## Unverified data for you to check
+Flip `"verified": true` in the data file once a value is confirmed; the page then becomes indexable and joins the sitemap automatically.
+- `src/lib/data/flags.json` (source: each country's Wikipedia "Flag of …" colour table, which cites the official spec): India, United States (State Dept set; GPO/Old Glory/ECA sets listed as alternatives), United Kingdom, Canada (#EF3340; FIP #FF0000 alternative), Germany (red #D00000, often quoted as #DD0000, so check), France (government #000091/#E1000F; lighter embassy set as alternative), Brazil, Australia, Pakistan (white not specified, #FFFFFF assumed), Bangladesh.
+- Not added because no HEX is published anywhere citable: Japan (Munsell 5R 4/12 and DIC 156 only).
 
 ## Needs your decision
 - ~~Near-duplicate pages~~: decided 2026-11-22 (canonical to one page). Done in Phase 4.

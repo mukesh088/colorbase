@@ -1,5 +1,6 @@
 import { getBrandBySlug, getBrandHexEntry } from "@/lib/data/brands";
 import { getCombinationBase } from "@/lib/colors/combinations";
+import { getFlag } from "@/lib/data/flags";
 import { getColorBySlug, UI_KITS } from "@/lib/data/color-library";
 import { getNamedColor } from "@/lib/data/color-names";
 import { getGradient, GRADIENT_CATEGORIES } from "@/lib/data/gradient-library";
@@ -59,6 +60,8 @@ export function catalogRouteDecision(pathname: string): CatalogDecision | null {
         return getPalette(slug) ? null : missing;
       case "blog":
         return getPost(slug) ? null : missing;
+      case "flags":
+        return getFlag(slug) ? null : missing;
       case "colors-that-go-with":
         return getCombinationBase(slug) ? null : missing;
       case "developers":

@@ -94,7 +94,8 @@ describe("published sitemap inventory", () => {
     expect(files.reduce((n, f) => n + f.entries.length, 0)).toBe(allSitemapEntries().length);
     expect(sitemapFileByName("colors-1")?.section).toBe("colors");
     expect(sitemapFileByName("nope")).toBeUndefined();
-    expect(SITEMAP_IDS.every((id) => files.some((f) => f.section === id))).toBe(true);
+    // Sections with no indexable URLs yet (e.g. unverified flags) produce no file.
+    expect(SITEMAP_IDS.every((id) => files.some((f) => f.section === id) || sitemapForId(id).length === 0)).toBe(true);
   });
 });
 
