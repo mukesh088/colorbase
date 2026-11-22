@@ -10,6 +10,7 @@
     "prebuild": "node scripts/generate-content-dates.mjs",
     "build": "next build && node scripts/hostinger-postbuild.js",
     "start": "node .next/standalone/server.js",
+    "preview": "next build && next start -p 3000",
     "postbuild:check": "node scripts/hostinger-postbuild.js",
     "lint": "eslint .",
     "format": "prettier --write .",

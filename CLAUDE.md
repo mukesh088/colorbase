@@ -37,7 +37,7 @@ The full plan is in `docs/SEO_GEO_PLAN.md`. Progress is tracked in `docs/SEO_PRO
 
 ## Commands
 Stack: Next.js 15 App Router (React 19, TypeScript, Tailwind 4), server components + SSG/ISR, `output: "standalone"` on Hostinger Node.js.
-- dev: `npm run dev` (Turbopack)
+- dev: `npm run dev` (Turbopack; each page compiles on first visit, 10–50 s, so it feels slow). Fast local check: `npm run preview` (production build + `next start` on :3000; pages answer in < 0.3 s).
 - build: `npm run build` (`next build` + Hostinger postbuild). Local prod server: `npx next start -p 3123`
 - lint: `npm run lint` (`eslint .`) · type-check: `npx tsc --noEmit`
 - tests: `npm test` (vitest). On Windows run from an upper-case drive path (`D:\projects\colorbase`); from `d:\…` every suite fails with "failed to find the current suite".

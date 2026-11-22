@@ -201,6 +201,30 @@ export function getIndexableNamedColors() {
   return getAllNamedColors().filter((color) => !NAMED_COLOR_CANONICAL[color.slug]);
 }
 
+/** First character used to group a color name ("0-9" for names starting with a digit). */
+export function colorNameLetter(name: string) {
+  const ch = name.trim().charAt(0).toLowerCase();
+  return /[a-z]/.test(ch) ? ch : "0-9";
+}
+
+/** Letters that have at least one indexable color name, with counts. */
+export function colorNameLetters() {
+  const counts = new Map<string, number>();
+  for (const c of getIndexableNamedColors()) {
+    const l = colorNameLetter(c.displayName);
+    counts.set(l, (counts.get(l) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .sort(([a], [b]) => (a === "0-9" ? -1 : b === "0-9" ? 1 : a.localeCompare(b)))
+    .map(([letter, count]) => ({ letter, count }));
+}
+
+export function getNamedColorsByLetter(letter: string) {
+  return getIndexableNamedColors()
+    .filter((c) => colorNameLetter(c.displayName) === letter)
+    .sort((a, b) => a.displayName.localeCompare(b.displayName));
+}
+
 export function searchNamedColors(query: string) {
   const q = query
     .toLowerCase()

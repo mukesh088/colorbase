@@ -9,7 +9,7 @@ import {
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { UI_KITS, getAllLibraryColors } from "@/lib/data/color-library";
 import { DESIGN_SYSTEM_CANONICAL, kitToDesignPath } from "@/lib/data/design-systems";
-import { getIndexableNamedColors } from "@/lib/data/color-names";
+import { colorNameLetters, getIndexableNamedColors } from "@/lib/data/color-names";
 import { GRADIENT_CATEGORIES, getAllGradients } from "@/lib/data/gradient-library";
 import { PALETTE_CATEGORIES, getAllPalettes } from "@/lib/data/palette-library";
 import { BLOG_CATEGORIES, getAllPosts } from "@/lib/data/blog";
@@ -105,7 +105,10 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
     }
     case "color-names": {
       const lastModified = sectionLastModified("color-names");
-      return getIndexableNamedColors().map((c) => entry(`/color-names/${c.slug}`, lastModified, 0.85));
+      return [
+        ...colorNameLetters().map(({ letter }) => entry(`/color-names/letter/${letter}`, lastModified, 0.6)),
+        ...getIndexableNamedColors().map((c) => entry(`/color-names/${c.slug}`, lastModified, 0.85)),
+      ];
     }
     case "colors": {
       const lastModified = sectionLastModified("colors");

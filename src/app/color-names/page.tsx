@@ -8,6 +8,7 @@ import {
   getAllNamedColors,
   getCssNamedColors,
   getIndexableNamedColors,
+  colorNameLetters,
 } from "@/lib/data/color-names";
 import { ColorNamesExplorer } from "@/components/library/color-names-explorer";
 import { LibraryHero } from "@/components/library/library-hero";
@@ -42,12 +43,12 @@ export default function ColorNamesPage() {
   const listLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Color names and hex codes",
+    name: "CSS named colors and hex codes",
     description:
       "Index of CSS named colors and attributed community color names with hex codes, including wheat, salmon, and tomato.",
     url: `${SITE_URL}/color-names`,
-    numberOfItems: publishedColors.length,
-    itemListElement: publishedColors.map((c, index) => ({
+    numberOfItems: cssColors.length,
+    itemListElement: cssColors.map((c, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: `${c.displayName} color ${c.hex.toUpperCase()}`,
@@ -107,10 +108,25 @@ export default function ColorNamesPage() {
           Color name index
         </h2>
         <p className="mt-1 text-sm text-muted-foreground">
-          Every CSS keyword and attributed community color name with its hex code — wheat, salmon, tomato, and the published name set.
+          {publishedColors.length.toLocaleString("en-US")} color names with hex codes. Browse them by first letter, or
+          jump to any of the {cssColors.length} CSS keywords below.
         </p>
-        <ul className="mt-6 columns-1 gap-x-8 text-sm sm:columns-2 lg:columns-3">
-          {publishedColors.map((c) => (
+        <ul className="mt-5 flex flex-wrap gap-2 text-sm" aria-label="Color names by letter">
+          {colorNameLetters().map(({ letter, count }) => (
+            <li key={letter}>
+              <Link
+                href={`/color-names/letter/${letter}`}
+                className="inline-flex min-w-10 items-center justify-center rounded-lg border border-border px-2.5 py-1.5 font-medium uppercase hover:border-primary/50 hover:text-primary"
+                aria-label={`Color names starting with ${letter.toUpperCase()} (${count})`}
+              >
+                {letter}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <h3 className="font-display mt-6 text-base font-semibold">CSS color keywords</h3>
+        <ul className="mt-3 columns-1 gap-x-8 text-sm sm:columns-2 lg:columns-3">
+          {cssColors.map((c) => (
             <li key={c.slug} className="mb-1.5 break-inside-avoid">
               <Link
                 href={`/color-names/${c.slug}`}
