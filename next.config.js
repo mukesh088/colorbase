@@ -29,6 +29,8 @@ const htmlCacheControl =
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "standalone",
+  // Local verification builds can use a separate folder so they don't clobber a running `next dev`.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   outputFileTracingRoot: projectRoot,
   reactStrictMode: true,
   poweredByHeader: false,

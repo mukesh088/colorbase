@@ -51,7 +51,6 @@ export async function generateMetadata({
     ),
     path: `/colors/${color.slug}`,
     keywords: [color.name, color.hex, `${color.name} hex`, `${color.family} color`],
-    noIndex: !isCuratedLibraryColor(color),
   });
 }
 

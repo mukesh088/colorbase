@@ -15,7 +15,7 @@ import { PALETTE_CATEGORIES, getAllPalettes } from "@/lib/data/palette-library";
 import { BLOG_CATEGORIES, getAllPosts } from "@/lib/data/blog";
 import { CODE_FORMATS } from "@/lib/codegen";
 import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
-import { getIndexableHexSlugs, isCuratedLibraryColor } from "@/lib/hex-indexing";
+import { getIndexableHexSlugs } from "@/lib/hex-indexing";
 import { absoluteUrl } from "@/lib/utils";
 import { getCombinationBases } from "@/lib/colors/combinations";
 import { isoToDate as toDate, latestIso as latest, routeLastModified, sectionLastModified } from "@/lib/content-dates";
@@ -115,7 +115,6 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
         ...[
           ...new Map(
             getAllLibraryColors()
-              .filter(isCuratedLibraryColor)
               .map((c) => [c.slug, c] as const)
           ).values(),
         ].map((c) => entry(`/colors/${c.slug}`, lastModified, 0.65)),

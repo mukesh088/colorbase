@@ -196,8 +196,9 @@ export const NAMED_COLOR_CANONICAL: Partial<Record<string, string>> = {
   "white-smoke": "whitesmoke",
 };
 
+/** Every named color page except canonicalized duplicates (catalog names indexed since 2026-11-22). */
 export function getIndexableNamedColors() {
-  return getAllNamedColors().filter((color) => color.source !== "catalog" && !NAMED_COLOR_CANONICAL[color.slug]);
+  return getAllNamedColors().filter((color) => !NAMED_COLOR_CANONICAL[color.slug]);
 }
 
 export function searchNamedColors(query: string) {

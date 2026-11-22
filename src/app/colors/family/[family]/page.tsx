@@ -17,7 +17,6 @@ import { PaletteStrip } from "@/components/library/palette-strip";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
 import { mixColors } from "@/lib/colors/convert";
 import { HEX_REFERENCES } from "@/lib/data/hex-references";
-import { isCuratedLibraryColor } from "@/lib/hex-indexing";
 
 export function generateStaticParams() {
   return COLOR_FAMILIES.map((family) => ({ family }));
@@ -25,10 +24,10 @@ export function generateStaticParams() {
 
 export const dynamic = "force-static";
 
-/** Colors the page lists: the first 120, plus curated ones beyond that. */
+/** Colors the page lists (first 120 as cards, the rest as links). */
 function shownFamilyColorCount(family: string) {
   const all = getColorsByFamily(family);
-  return Math.min(all.length, 120) + all.slice(120).filter(isCuratedLibraryColor).length;
+  return all.length;
 }
 
 export async function generateMetadata({
@@ -56,7 +55,7 @@ export default async function FamilyPage({ params }: { params: Promise<{ family:
   if (!COLOR_FAMILIES.includes(family as ColorFamily)) notFound();
   const allColors = getColorsByFamily(family);
   const colors = allColors.slice(0, 120);
-  const moreColors = allColors.slice(120).filter(isCuratedLibraryColor);
+  const moreColors = allColors.slice(120);
   const references = HEX_REFERENCES.filter((reference) => reference.family === family);
   const label = FAMILY_LABELS[family as ColorFamily];
   const base = FAMILY_SWATCH[family as ColorFamily];

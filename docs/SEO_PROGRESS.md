@@ -11,6 +11,8 @@ Tick a task only when it is built, the build passes and it is committed.
 - Workflow notes: build with `npm run build` from `D:\projects\colorbase` (PowerShell), serve with `npx next start -p 3123`, scan with `node scripts/seo-audit.mjs --base-url http://localhost:3123`.
 - Branches are stacked: `seo/phase-0-audit` → `seo/phase-1-crawling` → … Merge them into `main` in order (or merge the last one).
 - Non-color tools: keep current URLs, group them as "More tools" (your answer, 2026-11-21). No `/extras/` move.
+- Indexing decision (2026-11-22): the ~900 generated `/colors/[slug]` library colors and 2,000 catalog color names are now indexable and in the sitemap (they carry ~1,000 words of computed content each). Arbitrary `/color/[hex]` values outside the curated 3,534, `/search` and draft interior palettes stay `noindex`.
+- Local builds: `next.config.js` honors `NEXT_DIST_DIR`. Run verification builds with `$env:NEXT_DIST_DIR='.next-verify'; npm run build; npx next start -p 3123` so they don't clobber a running `npm run dev` (which uses `.next`). Production/Hostinger still uses `.next`.
 - Phase 5 decisions (2026-11-22): research flag/team/paint/RAL/game-code data from public official sources, store with `source` + `verified: false`, keep those pages `noindex` until you check; upgrade the color blindness simulator at the existing `/color-blind-simulator` and 308 `/color-blindness-simulator` to it; build `/color-trends-2027` and `/color-of-the-year` now as draft/noindex.
 - Run vitest from an upper-case drive path (`D:\projects\colorbase`). From `d:\…` every suite fails with "Vitest failed to find the current suite" (Windows drive-letter case makes vitest load twice).
 
