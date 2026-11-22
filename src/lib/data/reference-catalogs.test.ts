@@ -1,3 +1,4 @@
+import { NAMED_COLOR_CANONICAL } from "@/lib/data/color-names";
 import { describe, expect, it } from "vitest";
 import brandRecords from "./expanded-brands.json";
 import nameRecords from "./expanded-color-names.json";
@@ -65,7 +66,8 @@ describe("source-backed catalog expansion", () => {
         expect(urls.has(`/brands/${record.slug}/${record.hex.slice(1)}`)).toBe(true);
       }
     }
-    for (const record of nameRecords) expect(urls.has(`/color-names/${record.slug}`)).toBe(true);
+    for (const record of nameRecords)
+      expect(urls.has(`/color-names/${record.slug}`), record.slug).toBe(!NAMED_COLOR_CANONICAL[record.slug]);
     for (const color of getAllNamedColors().filter((c) => c.source === "catalog"))
       expect(urls.has(`/color-names/${color.slug}`)).toBe(false);
     expect(getIndexableNamedColors().length).toBeGreaterThanOrEqual(1100);

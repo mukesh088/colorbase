@@ -51,6 +51,17 @@ export const DESIGN_SYSTEM_ROUTES = [
   },
 ] as const;
 
+/**
+ * Swatch-library pages that duplicate a tool page's query point their
+ * canonical at the tool page and stay out of the sitemap (owner decision 2026-11-22).
+ */
+export const DESIGN_SYSTEM_CANONICAL: Partial<Record<string, string>> = {
+  "/colors/tailwind": "/tailwind-colors",
+  "/colors/material": "/material-colors",
+  "/colors/bootstrap": "/bootstrap-colors",
+  "/colors/css": "/css-named-colors",
+};
+
 export type DesignSystemSlug = (typeof DESIGN_SYSTEM_ROUTES)[number]["slug"];
 
 export function getDesignSystem(slug: string) {

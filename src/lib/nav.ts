@@ -102,10 +102,10 @@ export const LIBRARY_LINKS = [
 export const COLOR_CODE_NAV = [
   { href: "/color-codes", title: "All color codes" },
   { href: "/color-codes/common", title: "Common" },
-  { href: "/colors/css", title: "HTML/CSS" },
+  { href: "/css-named-colors", title: "HTML/CSS" },
   { href: "/colors/web-safe", title: "Web Safe" },
-  { href: "/colors/tailwind", title: "Tailwind" },
-  { href: "/colors/material", title: "Material" },
+  { href: "/tailwind-colors", title: "Tailwind" },
+  { href: "/material-colors", title: "Material" },
   { href: "/colors/flat-ui", title: "Flat UI" },
   { href: "/color-codes/minecraft", title: "Minecraft" },
   { href: "/color-codes/bukkit", title: "Bukkit" },
@@ -154,7 +154,7 @@ export const PRIMARY_NAV = [
 export const HEADER_LIBRARY_LINKS = LIBRARY_LINKS.filter((item) => item.href !== "/blog");
 
 export const SECONDARY_NAV = [
-  { href: "/colors/tailwind", title: "Design Systems" },
+  { href: "/tailwind-colors", title: "Design Systems" },
   { href: "/ai-color-copilot", title: "Color Copilot" },
   { href: "/chart-palette-generator", title: "Chart Palettes" },
   { href: "/developers", title: "Developer" },

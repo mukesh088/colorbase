@@ -8,7 +8,7 @@ import {
 } from "@/lib/data/brands";
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { UI_KITS, getAllLibraryColors } from "@/lib/data/color-library";
-import { kitToDesignPath } from "@/lib/data/design-systems";
+import { DESIGN_SYSTEM_CANONICAL, kitToDesignPath } from "@/lib/data/design-systems";
 import { getIndexableNamedColors } from "@/lib/data/color-names";
 import { GRADIENT_CATEGORIES, getAllGradients } from "@/lib/data/gradient-library";
 import { PALETTE_CATEGORIES, getAllPalettes } from "@/lib/data/palette-library";
@@ -107,7 +107,9 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       const lastModified = sectionLastModified("colors");
       return [
         ...COLOR_FAMILIES.map((f) => entry(`/colors/family/${f}`, lastModified, 0.75)),
-        ...UI_KITS.map((k) => entry(kitToDesignPath(k.slug) ?? `/colors/kits/${k.slug}`, lastModified, 0.75)),
+        ...UI_KITS.map((k) => kitToDesignPath(k.slug) ?? `/colors/kits/${k.slug}`)
+          .filter((path) => !DESIGN_SYSTEM_CANONICAL[path])
+          .map((path) => entry(path, lastModified, 0.75)),
         ...[
           ...new Map(
             getAllLibraryColors()

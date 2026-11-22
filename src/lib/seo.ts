@@ -147,12 +147,15 @@ export function createPageMetadata({
   path = "/",
   noIndex = false,
   ogImage,
+  canonicalPath,
 }: {
   title: string;
   description: string;
   path?: string;
   /** Site-relative path of a generated 1200×630 image (e.g. a route's opengraph-image). */
   ogImage?: string;
+  /** Canonical target when this URL duplicates another page (defaults to `path`). */
+  canonicalPath?: string;
   /** Accepted so existing callers compile. Not rendered; the keywords meta tag is obsolete. */
   keywords?: string[];
   noIndex?: boolean;
@@ -196,7 +199,7 @@ export function createPageMetadata({
     },
     category: "design",
     alternates: {
-      canonical: url,
+      canonical: canonicalPath ? absoluteUrl(canonicalPath) : url,
       languages: {
         en: url,
         "x-default": url,

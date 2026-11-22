@@ -98,6 +98,16 @@ describe("published sitemap inventory", () => {
   });
 });
 
+describe("duplicate consolidation", () => {
+  it("keeps canonicalized duplicates out of the sitemap", () => {
+    const paths = new Set(allSitemapEntries().map((e) => new URL(e.url).pathname));
+    for (const p of ["/colors/tailwind", "/colors/material", "/colors/bootstrap", "/colors/css", "/color-names/white-smoke"])
+      expect(paths.has(p), p).toBe(false);
+    for (const p of ["/tailwind-colors", "/material-colors", "/bootstrap-colors", "/css-named-colors", "/color-names/whitesmoke", "/colors/radix"])
+      expect(paths.has(p), p).toBe(true);
+  });
+});
+
 describe("robots.txt", () => {
   it("welcomes search and AI crawlers with the same rules and lists the sitemap", () => {
     const body = robotsTxt("https://colorbase.in");

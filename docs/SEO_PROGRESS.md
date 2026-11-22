@@ -8,6 +8,7 @@ Tick a task only when it is built, the build passes and it is committed.
 - Workflow notes: build with `npm run build` from `D:\projects\colorbase` (PowerShell), serve with `npx next start -p 3123`, scan with `node scripts/seo-audit.mjs --base-url http://localhost:3123`.
 - Branches are stacked: `seo/phase-0-audit` → `seo/phase-1-crawling` → … Merge them into `main` in order (or merge the last one).
 - Non-color tools: keep current URLs, group them as "More tools" (your answer, 2026-11-21). No `/extras/` move.
+- Phase 5 decisions (2026-11-22): research flag/team/paint/RAL/game-code data from public official sources, store with `source` + `verified: false`, keep those pages `noindex` until you check; upgrade the color blindness simulator at the existing `/color-blind-simulator` and 308 `/color-blindness-simulator` to it; build `/color-trends-2027` and `/color-of-the-year` now as draft/noindex.
 - Run vitest from an upper-case drive path (`D:\projects\colorbase`). From `d:\…` every suite fails with "Vitest failed to find the current suite" (Windows drive-letter case makes vitest load twice).
 
 ---
@@ -51,7 +52,7 @@ Tick a task only when it is built, the build passes and it is committed.
 - [x] Indexing stays curated (CSS named colors, design-system colors, verified brand HEXes, hand-written references); other HEX values render with `noindex,follow` (existing `src/lib/hex-indexing.ts`, which plays the role of the plan's `popular-colors.json`).
 - [x] Brand, palette, gradient and family pages: brand-HEX pages 190 → 309+ words; palette pages get a computed intro (each color named, pairs passing 4.5:1, strongest pair) replacing identical boilerplate; gradient pages get an "About" section (type, angle, stops, safest text color + ratio), linked color stops, 3 computed FAQs + FAQPage schema and 8 related gradients (35 → ~220 words); `/developers/[format]` shows real generated output for a sample palette and links all formats.
 - [x] Hub pages with crawlable links: gradient category pages listed **0** gradient links in server HTML (client gallery); they now list every gradient in the category. Family pages showed only the first 120 colors; the remaining curated colors are now linked. Brand and color-name hubs already linked every item; palette categories already did.
-- [ ] Near-duplicate pairs (`/colors/<kit>` vs tool pages, `white-smoke` vs `whitesmoke`): waiting for your decision (see "Needs your decision").
+- [x] Near-duplicate pairs (your decision, 2026-11-22): `/colors/tailwind|material|bootstrap|css` canonical → `/tailwind-colors`, `/material-colors`, `/bootstrap-colors`, `/css-named-colors`; `/color-names/white-smoke` → `/color-names/whitesmoke`. All URLs stay live; duplicates left the sitemap; nav links point at the canonical pages. (`aqua`/`cyan` and `fuchsia`/`magenta` are both official CSS keywords and stay.)
 
 ## Phase 5 — New page groups
 - [ ] 5.1 Colors that go with X
@@ -118,7 +119,7 @@ Tick a task only when it is built, the build passes and it is committed.
   - Resubmit `https://colorbase.in/sitemap.xml` in Search Console (it is now a sitemap index).
 
 ## Needs your decision
-- **Near-duplicate pages** (Phase 4): `/tailwind-colors` vs `/colors/tailwind`, `/material-colors` vs `/colors/material`, `/bootstrap-colors` vs `/colors/bootstrap`, `/css-named-colors` vs `/colors/css`, `/color-names/whitesmoke` vs `/color-names/white-smoke`. They now have distinct titles and descriptions, but each pair targets the same query. Recommended: canonical the `/colors/<kit>` swatch pages to the tool pages (and `white-smoke` → `whitesmoke`), keeping all URLs live. That removes pages from the index, so I'm waiting for your OK.
+- ~~Near-duplicate pages~~: decided 2026-11-22 (canonical to one page). Done in Phase 4.
 - **`/interior-colors/<unknown-slug>` returns HTTP 200** (with `noindex` + the not-found page, so it won't be indexed). Cause: the global `src/app/loading.tsx` Suspense boundary flushes a 200 before the page calls `notFound()`. A true 404 needs either removing the global loading screen or moving `src/middleware.ts` to the Node.js runtime so it can check the interior catalog. Both change rendering, so I left it.
 - Mixed-case non-HEX paths (e.g. `/Color-Picker`) 404 instead of redirecting to lowercase. Blog category URLs use capitals (`/blog/category/Color%20Psychology`), so a blanket lowercase redirect would change existing URLs. Left as is.
 

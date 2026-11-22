@@ -6,7 +6,7 @@ import { hexAnswerSentence } from "@/lib/colors/describe";
 import { fitDescription, createPageMetadata, breadcrumbJsonLd, faqJsonLd, namedColorJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
-import { getCssNamedColors, getNamedColor } from "@/lib/data/color-names";
+import { NAMED_COLOR_CANONICAL, getCssNamedColors, getNamedColor } from "@/lib/data/color-names";
 import { ColorDetailView } from "@/components/library/color-detail-view";
 import { getTints, getTones, findSimilarColors } from "@/lib/colors/spaces";
 import { formatRgb, hexToRgb } from "@/lib/colors/convert";
@@ -49,6 +49,7 @@ export async function generateMetadata({
       "See shades and contrast."
     ),
     path: `/color-names/${color.slug}`,
+    canonicalPath: NAMED_COLOR_CANONICAL[color.slug] ? `/color-names/${NAMED_COLOR_CANONICAL[color.slug]}` : undefined,
     keywords: [
       `${label} color`,
       `${label.toLowerCase()} color`,

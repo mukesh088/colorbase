@@ -191,8 +191,13 @@ export function getCssNamedColors() {
 }
 
 /** Only published CSS and attributed community records belong in the sitemap. */
+/** Catalog names that duplicate a CSS keyword page (same color, same words). */
+export const NAMED_COLOR_CANONICAL: Partial<Record<string, string>> = {
+  "white-smoke": "whitesmoke",
+};
+
 export function getIndexableNamedColors() {
-  return getAllNamedColors().filter((color) => color.source !== "catalog");
+  return getAllNamedColors().filter((color) => color.source !== "catalog" && !NAMED_COLOR_CANONICAL[color.slug]);
 }
 
 export function searchNamedColors(query: string) {

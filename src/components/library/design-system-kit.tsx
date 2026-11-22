@@ -6,7 +6,7 @@ import { UI_KITS, getColorsBySource } from "@/lib/data/color-library";
 import { LibraryColorCard } from "@/components/library/library-color-card";
 import { PaletteStrip } from "@/components/library/palette-strip";
 import { ToolCtaRow } from "@/components/library/tool-cta-row";
-import { getDesignSystem } from "@/lib/data/design-systems";
+import { DESIGN_SYSTEM_CANONICAL, getDesignSystem } from "@/lib/data/design-systems";
 import type { Metadata } from "next";
 
 export function designSystemMetadata(slug: string): Metadata {
@@ -16,6 +16,7 @@ export function designSystemMetadata(slug: string): Metadata {
     title: system.title,
     description: system.description,
     path: system.path,
+    canonicalPath: DESIGN_SYSTEM_CANONICAL[system.path],
     keywords: [system.title.toLowerCase(), "design system colors", "hex palette"],
   });
 }
