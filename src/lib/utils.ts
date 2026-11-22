@@ -64,3 +64,8 @@ export function debounce<T extends (...args: Parameters<T>) => void>(
     timeout = setTimeout(() => fn(...args), wait);
   };
 }
+
+/** First letter for A–Z grouping, accents removed ("Åland" → "a"). */
+export function letterOf(title: string) {
+  return title.normalize("NFD").replace(/[\u0300-\u036f]/g, "").charAt(0).toLowerCase();
+}

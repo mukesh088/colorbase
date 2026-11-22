@@ -35,6 +35,7 @@ const FOOTER_GROUPS = [
       { href: "/colors/flat-ui", label: "Flat UI" },
       { href: "/color-atlas", label: "Color atlas" },
       { href: "/flags", label: "Flag colors" },
+      { href: "/teams", label: "Team colors" },
     ],
   },
   {

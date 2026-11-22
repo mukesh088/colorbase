@@ -118,7 +118,7 @@ async function measure(svgPath) {
     .slice(0, 6);
 }
 
-const slugify = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const slugify = (s) => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 const codes = JSON.parse(fs.readFileSync(codesPath, "utf8"));
 const outFile = path.join(process.cwd(), "src/lib/data/flags.json");

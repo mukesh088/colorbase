@@ -1,0 +1,3601 @@
+{
+  "leagues": {
+    "nba": {
+      "name": "NBA",
+      "sport": "Basketball"
+    },
+    "nfl": {
+      "name": "NFL",
+      "sport": "American football"
+    },
+    "mlb": {
+      "name": "MLB",
+      "sport": "Baseball"
+    },
+    "nhl": {
+      "name": "NHL",
+      "sport": "Ice hockey"
+    },
+    "mls": {
+      "name": "MLS",
+      "sport": "Soccer"
+    },
+    "epl": {
+      "name": "Premier League",
+      "sport": "Football"
+    },
+    "ipl": {
+      "name": "IPL",
+      "sport": "Cricket"
+    }
+  },
+  "teams": [
+    {
+      "slug": "afc-bournemouth",
+      "name": "AFC Bournemouth",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#E62333"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "arsenal",
+      "name": "Arsenal",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#EF0107"
+        },
+        {
+          "hex": "#023474"
+        },
+        {
+          "hex": "#9C824A"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "brighton-and-hove-albion",
+      "name": "Brighton & Hove Albion",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#0055A9"
+        },
+        {
+          "hex": "#F8BC1B"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "burnley",
+      "name": "Burnley",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#8CCCE5"
+        },
+        {
+          "hex": "#53162F"
+        },
+        {
+          "hex": "#F9EC34"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "chelsea",
+      "name": "Chelsea",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#034694"
+        },
+        {
+          "hex": "#DBA111"
+        },
+        {
+          "hex": "#ED1C24"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "crystal-palace",
+      "name": "Crystal Palace",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#1B458F"
+        },
+        {
+          "hex": "#C4122E"
+        },
+        {
+          "hex": "#A7A5A6"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "everton",
+      "name": "Everton",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#274488"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "huddersfield-town",
+      "name": "Huddersfield Town",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#0073D2"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "leicester-city",
+      "name": "Leicester City",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#FDBE11"
+        },
+        {
+          "hex": "#0053A0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "liverpool",
+      "name": "Liverpool",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#00A398"
+        },
+        {
+          "hex": "#D00027"
+        },
+        {
+          "hex": "#FEF667"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "manchester-city",
+      "name": "Manchester City",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#98C5E9"
+        },
+        {
+          "hex": "#00285E"
+        },
+        {
+          "hex": "#F4BC46"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "manchester-united",
+      "name": "Manchester United",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#DA020E"
+        },
+        {
+          "hex": "#FFE500"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "newcastle-united",
+      "name": "Newcastle United",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#241F20"
+        },
+        {
+          "hex": "#00B8F4"
+        },
+        {
+          "hex": "#C3A572"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "southampton",
+      "name": "Southampton",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#ED1A3B"
+        },
+        {
+          "hex": "#211E1F"
+        },
+        {
+          "hex": "#FFC20E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "stoke-city",
+      "name": "Stoke City",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#E03A3E"
+        },
+        {
+          "hex": "#1B449C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "swansea-city",
+      "name": "Swansea City",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "tottenham-hotspur",
+      "name": "Tottenham Hotspur",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#001C58"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "watford",
+      "name": "Watford",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#FBEE23"
+        },
+        {
+          "hex": "#ED2127"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "west-bromwich-albion",
+      "name": "West Bromwich Albion",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#091453"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "west-ham-united",
+      "name": "West Ham United",
+      "league": "epl",
+      "colors": [
+        {
+          "hex": "#60223B"
+        },
+        {
+          "hex": "#F7C240"
+        },
+        {
+          "hex": "#5299C6"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "arizona-diamondbacks",
+      "name": "Arizona Diamondbacks",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#A71930"
+        },
+        {
+          "hex": "#000000"
+        },
+        {
+          "hex": "#E3D4AD"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "atlanta-braves",
+      "name": "Atlanta Braves",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#CE1141"
+        },
+        {
+          "hex": "#13274F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "baltimore-orioles",
+      "name": "Baltimore Orioles",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#DF4601"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "boston-red-sox",
+      "name": "Boston Red Sox",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#BD3039"
+        },
+        {
+          "hex": "#0D2B56"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "chicago-cubs",
+      "name": "Chicago Cubs",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#CC3433"
+        },
+        {
+          "hex": "#0E3386"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "chicago-white-sox",
+      "name": "Chicago White Sox",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#000000"
+        },
+        {
+          "hex": "#C4CED4"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "cincinnati-reds",
+      "name": "Cincinnati Reds",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#C6011F"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "colorado-rockies",
+      "name": "Colorado Rockies",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#333366"
+        },
+        {
+          "hex": "#231F20"
+        },
+        {
+          "hex": "#C4CED4"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "cleveland-indians",
+      "name": "Cleveland Indians",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#E31937"
+        },
+        {
+          "hex": "#002B5C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "detroit-tigers",
+      "name": "Detroit Tigers",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#0C2C56"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "houston-astros",
+      "name": "Houston Astros",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#002D62"
+        },
+        {
+          "hex": "#EB6E1F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "kansas-city-royals",
+      "name": "Kansas City Royals",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#004687"
+        },
+        {
+          "hex": "#C09A5B"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "los-angeles-angels-of-anaheim",
+      "name": "Los Angeles Angels of Anaheim",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#BA0021"
+        },
+        {
+          "hex": "#003263"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "los-angeles-dodgers",
+      "name": "Los Angeles Dodgers",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#EF3E42"
+        },
+        {
+          "hex": "#005A9C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "miami-marlins",
+      "name": "Miami Marlins",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#FF6600"
+        },
+        {
+          "hex": "#0077C8"
+        },
+        {
+          "hex": "#FFD100"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "milwaukee-brewers",
+      "name": "Milwaukee Brewers",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#0A2351"
+        },
+        {
+          "hex": "#B6922E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "minnesota-twins",
+      "name": "Minnesota Twins",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#002B5C"
+        },
+        {
+          "hex": "#D31145"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-mets",
+      "name": "New York Mets",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#FF5910"
+        },
+        {
+          "hex": "#002D72"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-yankees",
+      "name": "New York Yankees",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#E4002B"
+        },
+        {
+          "hex": "#003087"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "oakland-athletics",
+      "name": "Oakland Athletics",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#003831"
+        },
+        {
+          "hex": "#EFB21E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "philadelphia-phillies",
+      "name": "Philadelphia Phillies",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#284898"
+        },
+        {
+          "hex": "#E81828"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "pittsburgh-pirates",
+      "name": "Pittsburgh Pirates",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#FDB827"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "san-diego-padres",
+      "name": "San Diego Padres",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#002D62"
+        },
+        {
+          "hex": "#FEC325"
+        },
+        {
+          "hex": "#7F411C"
+        },
+        {
+          "hex": "#A0AAB2"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "san-francisco-giants",
+      "name": "San Francisco Giants",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#FD5A1E"
+        },
+        {
+          "hex": "#000000"
+        },
+        {
+          "hex": "#8B6F4E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "seattle-mariners",
+      "name": "Seattle Mariners",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#0C2C56"
+        },
+        {
+          "hex": "#005C5C"
+        },
+        {
+          "hex": "#C4CED4"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "st-louis-cardinals",
+      "name": "St Louis Cardinals",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#C41E3A"
+        },
+        {
+          "hex": "#000066"
+        },
+        {
+          "hex": "#FEDB00"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "tampa-bay-rays",
+      "name": "Tampa Bay Rays",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#092C5C"
+        },
+        {
+          "hex": "#8FBCE6"
+        },
+        {
+          "hex": "#F5D130"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "texas-rangers",
+      "name": "Texas Rangers",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#C0111F"
+        },
+        {
+          "hex": "#003278"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "toronto-blue-jays",
+      "name": "Toronto Blue Jays",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#134A8E"
+        },
+        {
+          "hex": "#1D2D5C"
+        },
+        {
+          "hex": "#E8291C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "washington-nationals",
+      "name": "Washington Nationals",
+      "league": "mlb",
+      "colors": [
+        {
+          "hex": "#AB0003"
+        },
+        {
+          "hex": "#11225B"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "atlanta-united-fc",
+      "name": "Atlanta United FC",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#A29061"
+        },
+        {
+          "hex": "#80000B"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "chicago-fire",
+      "name": "Chicago Fire",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#AF2626"
+        },
+        {
+          "hex": "#0A174A"
+        },
+        {
+          "hex": "#8A8D8F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "colorado-rapids",
+      "name": "Colorado Rapids",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#91022D"
+        },
+        {
+          "hex": "#85B7EA"
+        },
+        {
+          "hex": "#8A8D8F"
+        },
+        {
+          "hex": "#313F49"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "columbus-crew",
+      "name": "Columbus Crew",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#000000"
+        },
+        {
+          "hex": "#FFDB00"
+        },
+        {
+          "hex": "#8A8D8F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "dc-united",
+      "name": "DC United",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#000000"
+        },
+        {
+          "hex": "#DD0000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "fc-dallas",
+      "name": "FC Dallas",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#CF0032"
+        },
+        {
+          "hex": "#07175C"
+        },
+        {
+          "hex": "#8A8D8F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "houston-dynamo",
+      "name": "Houston Dynamo",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#F36600"
+        },
+        {
+          "hex": "#2E2926"
+        },
+        {
+          "hex": "#85B7EA"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "la-galaxy",
+      "name": "LA Galaxy",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#00245D"
+        },
+        {
+          "hex": "#004689"
+        },
+        {
+          "hex": "#F1AA00"
+        },
+        {
+          "hex": "#FFD200"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "minnesota-united-fc",
+      "name": "Minnesota United FC",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#CFD4D8"
+        },
+        {
+          "hex": "#6CADDF"
+        },
+        {
+          "hex": "#000000"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "montreal-impact",
+      "name": "Montreal Impact",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#122089"
+        },
+        {
+          "hex": "#000000"
+        },
+        {
+          "hex": "#7A878F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-england-revolution",
+      "name": "New England Revolution",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#0A2141"
+        },
+        {
+          "hex": "#D80016"
+        },
+        {
+          "hex": "#8A8D8F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-red-bulls",
+      "name": "New York Red Bulls",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#D50031"
+        },
+        {
+          "hex": "#012055"
+        },
+        {
+          "hex": "#FFC800"
+        },
+        {
+          "hex": "#8A8D8F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-city-fc",
+      "name": "New York City FC",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#6CADDF"
+        },
+        {
+          "hex": "#00285E"
+        },
+        {
+          "hex": "#FD4F00"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "orlando-city-sc",
+      "name": "Orlando City SC",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#633492"
+        },
+        {
+          "hex": "#FDE192"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "philadelphia-union",
+      "name": "Philadelphia Union",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#002D55",
+          "cmyk": "100, 46, 0, 70"
+        },
+        {
+          "hex": "#5090CD",
+          "cmyk": "68, 34, 0, 0"
+        },
+        {
+          "hex": "#B38707",
+          "cmyk": "0, 27, 100, 34"
+        },
+        {
+          "hex": "#B49759",
+          "cmyk": "20, 30, 70, 15"
+        },
+        {
+          "hex": "#F4F4F4",
+          "cmyk": "3, 2, 2, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "portland-timbers",
+      "name": "Portland Timbers",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#004812"
+        },
+        {
+          "hex": "#EBE72B"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "real-salt-lake",
+      "name": "Real Salt Lake",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#A50531"
+        },
+        {
+          "hex": "#013474"
+        },
+        {
+          "hex": "#F2D11A"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "san-jose-earthquakes",
+      "name": "San Jose Earthquakes",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#0051BA"
+        },
+        {
+          "hex": "#000000"
+        },
+        {
+          "hex": "#B1B4B2"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "seattle-sounders-fc",
+      "name": "Seattle Sounders FC",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#4F8A10"
+        },
+        {
+          "hex": "#11568C"
+        },
+        {
+          "hex": "#212930"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "sporting-kansas-city",
+      "name": "Sporting Kansas City",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#91B0D5",
+          "pantone": "651",
+          "cmyk": "38, 18, 0, 6"
+        },
+        {
+          "hex": "#002B5C",
+          "pantone": "289",
+          "cmyk": "100, 64, 0, 60"
+        },
+        {
+          "hex": "#9FA1A4",
+          "pantone": "423",
+          "cmyk": "0, 0, 0, 44"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "toronto-fc",
+      "name": "Toronto FC",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#D80016"
+        },
+        {
+          "hex": "#313F49"
+        },
+        {
+          "hex": "#A1AAAD"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "vancouver-whitecaps-fc",
+      "name": "Vancouver Whitecaps FC",
+      "league": "mls",
+      "colors": [
+        {
+          "hex": "#12264C"
+        },
+        {
+          "hex": "#85B7EA"
+        },
+        {
+          "hex": "#838383"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "atlanta-hawks",
+      "name": "Atlanta Hawks",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#E13A3E",
+          "pantone": "186",
+          "cmyk": "0, 91, 76, 6"
+        },
+        {
+          "hex": "#C4D600",
+          "pantone": "382",
+          "cmyk": "29, 2, 100, 0"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "boston-celtics",
+      "name": "Boston Celtics",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#008348",
+          "pantone": "356",
+          "cmyk": "100, 0, 91, 27"
+        },
+        {
+          "hex": "#BB9753",
+          "pantone": "874",
+          "cmyk": "30, 40, 80, 0"
+        },
+        {
+          "hex": "#A73832",
+          "pantone": "174",
+          "cmyk": "40, 95, 100, 0"
+        },
+        {
+          "hex": "#FAB383",
+          "pantone": "472",
+          "cmyk": "0, 35, 50, 0"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "brooklyn-nets",
+      "name": "Brooklyn Nets",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "charlotte-hornets",
+      "name": "Charlotte Hornets",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#1D1160",
+          "pantone": "275",
+          "cmyk": "98, 100, 0, 43"
+        },
+        {
+          "hex": "#008CA8",
+          "pantone": "3145",
+          "cmyk": "100, 0, 19, 23"
+        },
+        {
+          "hex": "#A1A1A4",
+          "pantone": "Cool Gray 8",
+          "cmyk": "0, 1, 0, 43"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "chicago-bulls",
+      "name": "Chicago Bulls",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#CE1141",
+          "pantone": "200",
+          "cmyk": "0, 100, 65, 15"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "cleveland-cavaliers",
+      "name": "Cleveland Cavaliers",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#860038",
+          "pantone": "209",
+          "cmyk": "0, 100, 34, 53"
+        },
+        {
+          "hex": "#FDBB30",
+          "pantone": "1235",
+          "cmyk": "0, 29, 91, 0"
+        },
+        {
+          "hex": "#002D62",
+          "pantone": "282",
+          "cmyk": "100, 68, 54, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "dallas-mavericks",
+      "name": "Dallas Mavericks",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#007DC5",
+          "pantone": "2935",
+          "cmyk": "100, 40, 0, 0"
+        },
+        {
+          "hex": "#C4CED3",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 20"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        },
+        {
+          "hex": "#20385B",
+          "pantone": "289",
+          "cmyk": "94, 79, 36, 32"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "denver-nuggets",
+      "name": "Denver Nuggets",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#4D90CD",
+          "pantone": "279",
+          "cmyk": "69, 34, 0, 0"
+        },
+        {
+          "hex": "#FDB927",
+          "pantone": "123",
+          "cmyk": "0, 30, 94, 0"
+        },
+        {
+          "hex": "#0F586C",
+          "pantone": "282",
+          "cmyk": "100, 72, 56, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "detroit-pistons",
+      "name": "Detroit Pistons",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#ED174C",
+          "pantone": "199",
+          "cmyk": "0, 100, 65, 0"
+        },
+        {
+          "hex": "#006BB6",
+          "pantone": "293",
+          "cmyk": "100, 56, 0, 0"
+        },
+        {
+          "hex": "#0F586C",
+          "pantone": "282",
+          "cmyk": "100, 72, 0, 56"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "golden-state-warriors",
+      "name": "Golden State Warriors",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#FDB927",
+          "pantone": "123",
+          "cmyk": "0, 30, 94, 0"
+        },
+        {
+          "hex": "#006BB6",
+          "pantone": "293",
+          "cmyk": "100, 56, 0, 0"
+        },
+        {
+          "hex": "#26282A",
+          "pantone": "426",
+          "cmyk": "73, 65, 62, 67"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "houston-rockets",
+      "name": "Houston Rockets",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#CE1141",
+          "pantone": "200",
+          "cmyk": "100, 65, 15"
+        },
+        {
+          "hex": "#C4CED3",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 20"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        },
+        {
+          "hex": "#FDB927",
+          "pantone": "123",
+          "cmyk": "0, 30, 94, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "indiana-pacers",
+      "name": "Indiana Pacers",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#FFC633",
+          "pantone": "1235",
+          "cmyk": "0, 23, 90, 0"
+        },
+        {
+          "hex": "#00275D",
+          "pantone": "282",
+          "cmyk": "100, 72, 0, 56"
+        },
+        {
+          "hex": "#BEC0C2",
+          "pantone": "Cool Gray 5",
+          "cmyk": "0, 0, 0, 29"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "los-angeles-clippers",
+      "name": "Los Angeles Clippers",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#ED174C",
+          "pantone": "199",
+          "cmyk": "0, 100, 65, 0"
+        },
+        {
+          "hex": "#006BB6",
+          "pantone": "293",
+          "cmyk": "100, 56, 0, 0"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        },
+        {
+          "hex": "#BEC0C2",
+          "pantone": "Cool Gray 5",
+          "cmyk": "0, 0, 0, 29"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "los-angeles-lakers",
+      "name": "Los Angeles Lakers",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#FDB927",
+          "pantone": "123",
+          "cmyk": "0, 30, 94, 0"
+        },
+        {
+          "hex": "#552582",
+          "pantone": "526",
+          "cmyk": "79, 100, 0, 12"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 100, 0, 0"
+        },
+        {
+          "hex": "#8177B7",
+          "pantone": "265",
+          "cmyk": "54, 56, 0, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "memphis-grizzlies",
+      "name": "Memphis Grizzlies",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#0F586C",
+          "pantone": "289",
+          "cmyk": "100, 72, 0, 56"
+        },
+        {
+          "hex": "#7399C6",
+          "pantone": "652",
+          "cmyk": "50, 25, 0, 10"
+        },
+        {
+          "hex": "#BED4E9",
+          "pantone": "650",
+          "cmyk": "24, 9, 2, 0"
+        },
+        {
+          "hex": "#FDB927",
+          "pantone": "123",
+          "cmyk": "0, 30, 94, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "miami-heat",
+      "name": "Miami Heat",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#98002E",
+          "pantone": "202",
+          "cmyk": "0, 100, 61, 43"
+        },
+        {
+          "hex": "#F9A01B",
+          "pantone": "137",
+          "cmyk": "0, 43, 100, 0"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        },
+        {
+          "hex": "#BCBEC0",
+          "pantone": "877",
+          "cmyk": "40, 0, 0, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "milwaukee-bucks",
+      "name": "Milwaukee Bucks",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#00471B",
+          "pantone": "350",
+          "cmyk": "80, 0, 90, 75"
+        },
+        {
+          "hex": "#F0EBD2",
+          "pantone": "468",
+          "cmyk": "6, 9, 23, 0"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "20, 20, 20, 100"
+        },
+        {
+          "hex": "#007DC5",
+          "pantone": "2935",
+          "cmyk": "100, 45, 0, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "minnesota-timberwolves",
+      "name": "Minnesota Timberwolves",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#005083",
+          "pantone": "647",
+          "cmyk": "95, 45, 0, 40"
+        },
+        {
+          "hex": "#00A94F",
+          "pantone": "355",
+          "cmyk": "94, 0, 100, 0"
+        },
+        {
+          "hex": "#C4CED3",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 20"
+        },
+        {
+          "hex": "#FFE600",
+          "pantone": "012",
+          "cmyk": "0, 5, 100, 0"
+        },
+        {
+          "hex": "#E03A3F",
+          "pantone": "186",
+          "cmyk": "0, 91, 75, 6"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "new-orleans-pelicans",
+      "name": "New Orleans Pelicans",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#002B5C",
+          "pantone": "289",
+          "cmyk": "100, 64, 0, 60"
+        },
+        {
+          "hex": "#E31837",
+          "pantone": "186",
+          "cmyk": "0, 100, 81, 4"
+        },
+        {
+          "hex": "#B4975A",
+          "pantone": "872",
+          "cmyk": "20, 30, 70, 15"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-knicks",
+      "name": "New York Knicks",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#006BB6",
+          "pantone": "293",
+          "cmyk": "100, 56, 0, 0"
+        },
+        {
+          "hex": "#F58426",
+          "pantone": "165",
+          "cmyk": "0, 59, 96, 0"
+        },
+        {
+          "hex": "#BEC0C2",
+          "pantone": "Cool Gray 5",
+          "cmyk": "0, 0, 0, 29"
+        },
+        {
+          "hex": "#231F20",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "oklahoma-city-thunder",
+      "name": "Oklahoma City Thunder",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#007DC3",
+          "pantone": "285C",
+          "cmyk": "89, 43, 0, 0"
+        },
+        {
+          "hex": "#F05133",
+          "pantone": "1788C",
+          "cmyk": "0, 84, 88, 0"
+        },
+        {
+          "hex": "#FDBB30",
+          "pantone": "1235C",
+          "cmyk": "0, 29, 91, 0"
+        },
+        {
+          "hex": "#002D62",
+          "pantone": "282C",
+          "cmyk": "100, 68, 0, 54"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "orlando-magic",
+      "name": "Orlando Magic",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#007DC5",
+          "pantone": "2935",
+          "cmyk": "100, 40, 0, 0"
+        },
+        {
+          "hex": "#C4CED3",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 20"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "philadelphia-76ers",
+      "name": "Philadelphia 76ers",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#ED174C",
+          "pantone": "199",
+          "cmyk": "0, 100, 65, 0"
+        },
+        {
+          "hex": "#006BB6",
+          "pantone": "293",
+          "cmyk": "100, 56, 0, 0"
+        },
+        {
+          "hex": "#002B5C",
+          "pantone": "289",
+          "cmyk": "100, 64, 0, 60"
+        },
+        {
+          "hex": "#C4CED3",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 20"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "phoenix-suns",
+      "name": "Phoenix Suns",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#E56020",
+          "pantone": "159",
+          "cmyk": "0, 75, 100, 5"
+        },
+        {
+          "hex": "#1D1160",
+          "pantone": "275",
+          "cmyk": "98, 100, 0, 43"
+        },
+        {
+          "hex": "#63717A",
+          "pantone": "431",
+          "cmyk": "15, 0, 0, 65"
+        },
+        {
+          "hex": "#F9A01B",
+          "pantone": "137",
+          "cmyk": "0, 43, 100, 0"
+        },
+        {
+          "hex": "#B95915",
+          "pantone": "1675",
+          "cmyk": "0, 67, 100, 28"
+        },
+        {
+          "hex": "#BEC0C2",
+          "pantone": "Cool Gray 5",
+          "cmyk": "0, 0, 0, 29"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "portland-trail-blazers",
+      "name": "Portland Trail Blazers",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#E03A3E",
+          "pantone": "186",
+          "cmyk": "0, 91, 76, 6"
+        },
+        {
+          "hex": "#BAC3C9",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 25"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "sacramento-kings",
+      "name": "Sacramento Kings",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#724C9F",
+          "pantone": "266",
+          "cmyk": "65, 82, 0, 0"
+        },
+        {
+          "hex": "#8E9090",
+          "pantone": "877",
+          "cmyk": "46, 37, 38, 2"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "san-antonio-spurs",
+      "name": "San Antonio Spurs",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#BAC3C9",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 25"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "toronto-raptors",
+      "name": "Toronto Raptors",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#CE1141",
+          "pantone": "200",
+          "cmyk": "0, 100, 65, 15"
+        },
+        {
+          "hex": "#061922",
+          "pantone": "Black",
+          "cmyk": "30, 0, 0, 100"
+        },
+        {
+          "hex": "#A1A1A4",
+          "pantone": "Cool Gray 8",
+          "cmyk": "0, 1, 0, 43"
+        },
+        {
+          "hex": "#B4975A",
+          "pantone": "872",
+          "cmyk": "20, 30, 70, 15"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "utah-jazz",
+      "name": "Utah Jazz",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#002B5C",
+          "pantone": "289",
+          "cmyk": "100, 64, 0, 60"
+        },
+        {
+          "hex": "#F9A01B",
+          "pantone": "137",
+          "cmyk": "0, 43, 100, 0"
+        },
+        {
+          "hex": "#00471B",
+          "pantone": "350",
+          "cmyk": "80, 0, 90, 75"
+        },
+        {
+          "hex": "#BEC0C2",
+          "pantone": "Cool Gray 5",
+          "cmyk": "0, 0, 0, 29"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "washington-wizards",
+      "name": "Washington Wizards",
+      "league": "nba",
+      "colors": [
+        {
+          "hex": "#002B5C",
+          "pantone": "289",
+          "cmyk": "100, 64, 0, 60"
+        },
+        {
+          "hex": "#E31837",
+          "pantone": "186",
+          "cmyk": "0, 100, 81, 4"
+        },
+        {
+          "hex": "#C4CED4",
+          "pantone": "877",
+          "cmyk": "5, 0, 0, 20"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
+      "verified": false
+    },
+    {
+      "slug": "arizona-cardinals",
+      "name": "Arizona Cardinals",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#97233F",
+          "pantone": "194 C",
+          "cmyk": "0, 100, 60, 30"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#FFB612",
+          "pantone": "1235 C",
+          "cmyk": "0, 25, 100, 0"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "atlanta-falcons",
+      "name": "Atlanta Falcons",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#A71930",
+          "pantone": "187 C",
+          "cmyk": "20, 100, 80, 0"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "877 C",
+          "cmyk": "5, 0, 0, 25"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "baltimore-ravens",
+      "name": "Baltimore Ravens",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#241773",
+          "pantone": "273 C",
+          "cmyk": "100, 100, 0, 5"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#9E7C0C",
+          "pantone": "8660 C Metallic",
+          "cmyk": "0, 20, 80, 20"
+        },
+        {
+          "hex": "#C60C30",
+          "pantone": "186 C",
+          "cmyk": "10, 100, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "buffalo-bills",
+      "name": "Buffalo Bills",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#00338D",
+          "pantone": "287 C",
+          "cmyk": "100, 60, 0, 20"
+        },
+        {
+          "hex": "#C60C30",
+          "pantone": "186 C",
+          "cmyk": "10, 100, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "carolina-panthers",
+      "name": "Carolina Panthers",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#0085CA",
+          "pantone": "Process Blue C",
+          "cmyk": "100, 10, 0, 5"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Black 6 C",
+          "cmyk": "100, 40, 0, 100"
+        },
+        {
+          "hex": "#BFC0BF",
+          "pantone": "421 C",
+          "cmyk": "0, 0, 0, 20"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "cincinnati-bengals",
+      "name": "Cincinnati Bengals",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#FB4F14",
+          "pantone": "1655 C",
+          "cmyk": "0, 85, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "cleveland-browns",
+      "name": "Cleveland Browns",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#FB4F14",
+          "pantone": "1655 C",
+          "cmyk": "0, 75, 100, 0"
+        },
+        {
+          "hex": "#22150C",
+          "pantone": "NFL Cleveland Browns",
+          "cmyk": "1, 33, 85, 94"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "dallas-cowboys",
+      "name": "Dallas Cowboys",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002244",
+          "pantone": "289 C",
+          "cmyk": "100, 65, 0, 60"
+        },
+        {
+          "hex": "#B0B7BC",
+          "pantone": "8180 C Metallic",
+          "cmyk": "3, 0, 0, 32"
+        },
+        {
+          "hex": "#ACC0C6",
+          "pantone": "8240 C",
+          "cmyk": "10, 0, 0, 20"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "0, 0, 0, 20"
+        },
+        {
+          "hex": "#00338D",
+          "pantone": "287 C",
+          "cmyk": "100, 60, 0, 20"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black",
+          "cmyk": "70, 50, 50, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "chicago-bears",
+      "name": "Chicago Bears",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#0B162A",
+          "pantone": "5395 C",
+          "cmyk": "100, 60, 0, 80"
+        },
+        {
+          "hex": "#C83803",
+          "pantone": "1665 C",
+          "cmyk": "0, 75, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "denver-broncos",
+      "name": "Denver Broncos",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002244",
+          "pantone": "289 C",
+          "cmyk": "100, 72, 0, 64"
+        },
+        {
+          "hex": "#FB4F14",
+          "pantone": "1655 C",
+          "cmyk": "0, 82, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "detroit-lions",
+      "name": "Detroit Lions",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#005A8B",
+          "pantone": "7462 C",
+          "cmyk": "100, 45, 0, 10"
+        },
+        {
+          "hex": "#B0B7BC",
+          "pantone": "429",
+          "cmyk": "3, 0, 0, 32"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "green-bay-packers",
+      "name": "Green Bay Packers",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#203731",
+          "pantone": "5535 C",
+          "cmyk": "70, 40, 60, 60"
+        },
+        {
+          "hex": "#FFB612",
+          "pantone": "1235 C",
+          "cmyk": "0, 25, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "houston-texans",
+      "name": "Houston Texans",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#03202F",
+          "pantone": "5395 C",
+          "cmyk": "100, 60, 0, 80"
+        },
+        {
+          "hex": "#A71930",
+          "pantone": "187 C",
+          "cmyk": "0, 100, 79, 20"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "indianapolis-colts",
+      "name": "Indianapolis Colts",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002C5F",
+          "pantone": "654 C",
+          "cmyk": "100, 65, 0, 35"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "jacksonville-jaguars",
+      "name": "Jacksonville Jaguars",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#006778",
+          "pantone": "3155 C",
+          "cmyk": "100, 0, 20, 30"
+        },
+        {
+          "hex": "#9F792C",
+          "pantone": "126 C",
+          "cmyk": "34, 48, 100, 13"
+        },
+        {
+          "hex": "#D7A22A",
+          "pantone": "7555 C",
+          "cmyk": "17, 37, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "kansas-city-chiefs",
+      "name": "Kansas City Chiefs",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#E31837",
+          "pantone": "186 C",
+          "cmyk": "0, 100, 81, 4"
+        },
+        {
+          "hex": "#FFB612",
+          "pantone": "1235 C",
+          "cmyk": "0, 25, 100, 0"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "los-angeles-rams",
+      "name": "Los Angeles Rams",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002244",
+          "pantone": "289 C",
+          "cmyk": "100, 65, 0, 60"
+        },
+        {
+          "hex": "#B3995D",
+          "pantone": "465 C",
+          "cmyk": "5, 20, 50, 20"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "miami-dolphins",
+      "name": "Miami Dolphins",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#008E97",
+          "pantone": "321 C",
+          "cmyk": "100, 21, 42, 2"
+        },
+        {
+          "hex": "#F58220",
+          "pantone": "151 C",
+          "cmyk": "0, 60, 100, 0"
+        },
+        {
+          "hex": "#005778",
+          "pantone": "7701 C",
+          "cmyk": "100, 61, 35, 15"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "minnesota-vikings",
+      "name": "Minnesota Vikings",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#4F2683",
+          "pantone": "268 C",
+          "cmyk": "82, 100, 0, 12"
+        },
+        {
+          "hex": "#FFC62F",
+          "pantone": "123 C",
+          "cmyk": "0, 23, 91, 0"
+        },
+        {
+          "hex": "#E9BF9B",
+          "pantone": "720 C",
+          "cmyk": "0, 30, 30, 5"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-england-patriots",
+      "name": "New England Patriots",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002244",
+          "pantone": "289 C",
+          "cmyk": "100, 65, 0, 60"
+        },
+        {
+          "hex": "#C60C30",
+          "pantone": "186 C",
+          "cmyk": "10, 100, 100, 0"
+        },
+        {
+          "hex": "#B0B7BC",
+          "pantone": "429 C",
+          "cmyk": "3, 0, 0, 32"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-orleans-saints",
+      "name": "New Orleans Saints",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#9F8958",
+          "pantone": "8383 C Metallic",
+          "cmyk": "37, 40, 74, 8"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-giants",
+      "name": "New York Giants",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#0B2265",
+          "pantone": "2758 C",
+          "cmyk": "100, 75, 0, 30"
+        },
+        {
+          "hex": "#A71930",
+          "pantone": "187 C",
+          "cmyk": "20, 100, 80, 0"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-jets",
+      "name": "New York Jets",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#203731",
+          "pantone": "5535 C",
+          "cmyk": "70, 40, 60, 60"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "oakland-raiders",
+      "name": "Oakland Raiders",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 25"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "philadelphia-eagles",
+      "name": "Philadelphia Eagles",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#004953",
+          "pantone": "316 C",
+          "cmyk": "100, 0, 30, 70"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 25"
+        },
+        {
+          "hex": "#ACC0C6",
+          "pantone": "8240 C Metallic",
+          "cmyk": "10, 0, 0, 20"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#565A5C",
+          "pantone": "425 C",
+          "cmyk": "0, 0, 0, 80"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "pittsburgh-steelers",
+      "name": "Pittsburgh Steelers",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#FFB612",
+          "pantone": "1235 C",
+          "cmyk": "0, 25, 100, 0"
+        },
+        {
+          "hex": "#C60C30",
+          "pantone": "186 C",
+          "cmyk": "10, 100, 100, 0"
+        },
+        {
+          "hex": "#00539B",
+          "pantone": "287 C",
+          "cmyk": "100, 68, 0, 12"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "los-angeles-chargers",
+      "name": "Los Angeles Chargers",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002244",
+          "pantone": "289 C",
+          "cmyk": "100, 65, 0, 60"
+        },
+        {
+          "hex": "#0073CF",
+          "pantone": "285 C",
+          "cmyk": "90, 40, 0, 0"
+        },
+        {
+          "hex": "#FFB612",
+          "pantone": "1235 C",
+          "cmyk": "0, 25, 100, 0"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "san-francisco-49ers",
+      "name": "San Francisco 49ers",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#AA0000",
+          "pantone": "187C",
+          "cmyk": "0, 100, 59, 26"
+        },
+        {
+          "hex": "#B3995D",
+          "pantone": "465 C",
+          "cmyk": "5, 20, 50, 20"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "seattle-seahawks",
+      "name": "Seattle Seahawks",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002244",
+          "pantone": "289 C",
+          "cmyk": "100, 65, 0, 60"
+        },
+        {
+          "hex": "#69BE28",
+          "pantone": "368 C",
+          "cmyk": "57, 0, 84, 0"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "429 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "tampa-bay-buccaneers",
+      "name": "Tampa Bay Buccaneers",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#D50A0A",
+          "pantone": "186 C",
+          "cmyk": "10, 100, 100, 0"
+        },
+        {
+          "hex": "#34302B",
+          "pantone": "Black 7 C",
+          "cmyk": "64, 61, 65, 64"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#FF7900",
+          "pantone": "151 C",
+          "cmyk": "0, 50, 100, 0"
+        },
+        {
+          "hex": "#B1BABF",
+          "pantone": "421 C",
+          "cmyk": "5, 0, 0, 30"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "tennessee-titans",
+      "name": "Tennessee Titans",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#002244",
+          "pantone": "289 C",
+          "cmyk": "100, 65, 0, 60"
+        },
+        {
+          "hex": "#4B92DB",
+          "pantone": "279 C",
+          "cmyk": "70, 30, 0, 0"
+        },
+        {
+          "hex": "#C60C30",
+          "pantone": "186 C",
+          "cmyk": "10, 100, 100, 0"
+        },
+        {
+          "hex": "#A5ACAF",
+          "pantone": "421 C",
+          "cmyk": "5, 0, 0, 25"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "washington-commanders",
+      "name": "Washington Commanders",
+      "league": "nfl",
+      "colors": [
+        {
+          "hex": "#773141",
+          "pantone": "195 C",
+          "cmyk": "20, 100, 60, 30"
+        },
+        {
+          "hex": "#FFB612",
+          "pantone": "1235 C",
+          "cmyk": "0, 25, 100, 0"
+        },
+        {
+          "hex": "#000000",
+          "pantone": "Process Black C",
+          "cmyk": "70, 50, 50, 100"
+        },
+        {
+          "hex": "#5A1414",
+          "pantone": "4625 C",
+          "cmyk": "0, 27, 27, 65"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "anaheim-ducks",
+      "name": "Anaheim Ducks",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#A2AAAD"
+        },
+        {
+          "hex": "#FC4C02"
+        },
+        {
+          "hex": "#85714D"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "arizona-coyotes",
+      "name": "Arizona Coyotes",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#862633"
+        },
+        {
+          "hex": "#DDCBA4"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "boston-bruins",
+      "name": "Boston Bruins",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#FFB81C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "buffalo-sabres",
+      "name": "Buffalo Sabres",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#041E42"
+        },
+        {
+          "hex": "#A2AAAD"
+        },
+        {
+          "hex": "#FFB81C"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "calgary-flames",
+      "name": "Calgary Flames",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#F1BE48"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "carolina-hurricanes",
+      "name": "Carolina Hurricanes",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#A2AAAD"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "chicago-blackhawks",
+      "name": "Chicago Blackhawks",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#FF671F"
+        },
+        {
+          "hex": "#FFD100"
+        },
+        {
+          "hex": "#001871"
+        },
+        {
+          "hex": "#C8102E"
+        },
+        {
+          "hex": "#00843D"
+        },
+        {
+          "hex": "#CC8A00"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "colorado-avalanche",
+      "name": "Colorado Avalanche",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#236192"
+        },
+        {
+          "hex": "#A4A9AD"
+        },
+        {
+          "hex": "#6F263D"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "columbus-blue-jackets",
+      "name": "Columbus Blue Jackets",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#041E42"
+        },
+        {
+          "hex": "#A4A9AD"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "dallas-stars",
+      "name": "Dallas Stars",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#006341"
+        },
+        {
+          "hex": "#8A8D8F"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "detroit-red-wings",
+      "name": "Detroit Red Wings",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "edmonton-oilers",
+      "name": "Edmonton Oilers",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#00205B"
+        },
+        {
+          "hex": "#CF4520"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "florida-panthers",
+      "name": "Florida Panthers",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#041E42"
+        },
+        {
+          "hex": "#B9975B"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "los-angeles-kings",
+      "name": "Los Angeles Kings",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#A2AAAD"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "minnesota-wild",
+      "name": "Minnesota Wild",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#154734"
+        },
+        {
+          "hex": "#DDCBA4"
+        },
+        {
+          "hex": "#EAAA00"
+        },
+        {
+          "hex": "#A6192E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "montreal-canadiens",
+      "name": "Montreal Canadiens",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#001E62"
+        },
+        {
+          "hex": "#A6192E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "nashville-predators",
+      "name": "Nashville Predators",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#041E42"
+        },
+        {
+          "hex": "#FFB81C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-jersey-devils",
+      "name": "New Jersey Devils",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-islanders",
+      "name": "New York Islanders",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#003087"
+        },
+        {
+          "hex": "#FC4C02"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "new-york-rangers",
+      "name": "New York Rangers",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#0033A0"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "ottawa-senators",
+      "name": "Ottawa Senators",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#C8102E"
+        },
+        {
+          "hex": "#C69214"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "philadelphia-flyers",
+      "name": "Philadelphia Flyers",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#FA4616"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "pittsburgh-penguins",
+      "name": "Pittsburgh Penguins",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#FFB81C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "san-jose-sharks",
+      "name": "San Jose Sharks",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#E57200"
+        },
+        {
+          "hex": "#006272"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "st-louis-blues",
+      "name": "St Louis Blues",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#041E42"
+        },
+        {
+          "hex": "#FFB81C"
+        },
+        {
+          "hex": "#003087"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "tampa-bay-lightning",
+      "name": "Tampa Bay Lightning",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#00205B"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "toronto-maple-leafs",
+      "name": "Toronto Maple Leafs",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#00205B"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "vancouver-canucks",
+      "name": "Vancouver Canucks",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#00205B"
+        },
+        {
+          "hex": "#97999B"
+        },
+        {
+          "hex": "#041C2C"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "vegas-golden-knights",
+      "name": "Vegas Golden Knights",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#010101"
+        },
+        {
+          "hex": "#B4975A"
+        },
+        {
+          "hex": "#333F42"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "washington-capitals",
+      "name": "Washington Capitals",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#041E42"
+        },
+        {
+          "hex": "#A2AAAD"
+        },
+        {
+          "hex": "#782F40"
+        },
+        {
+          "hex": "#A6192E"
+        },
+        {
+          "hex": "#53565A"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "winnipeg-jets",
+      "name": "Winnipeg Jets",
+      "league": "nhl",
+      "colors": [
+        {
+          "hex": "#041E42"
+        },
+        {
+          "hex": "#C8102E"
+        }
+      ],
+      "source": "https://github.com/jimniels/teamcolors",
+      "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
+      "verified": false
+    },
+    {
+      "slug": "chennai-super-kings",
+      "name": "Chennai Super Kings",
+      "league": "ipl",
+      "colors": [
+        {
+          "hex": "#FFFF00"
+        }
+      ],
+      "source": "https://en.wikipedia.org/wiki/Chennai_Super_Kings",
+      "sourceNote": "HEX from the team infobox on Wikipedia.",
+      "verified": false
+    },
+    {
+      "slug": "mumbai-indians",
+      "name": "Mumbai Indians",
+      "league": "ipl",
+      "colors": [
+        {
+          "hex": "#0044AA"
+        },
+        {
+          "hex": "#D1AB3E"
+        }
+      ],
+      "source": "https://en.wikipedia.org/wiki/Mumbai_Indians",
+      "sourceNote": "HEX from the team infobox on Wikipedia.",
+      "verified": false
+    },
+    {
+      "slug": "royal-challengers-bengaluru",
+      "name": "Royal Challengers Bengaluru",
+      "league": "ipl",
+      "colors": [
+        {
+          "hex": "#FF0000"
+        },
+        {
+          "hex": "#0C0C38"
+        }
+      ],
+      "source": "https://en.wikipedia.org/wiki/Royal_Challengers_Bengaluru",
+      "sourceNote": "HEX from the team infobox on Wikipedia (red and black).",
+      "verified": false
+    },
+    {
+      "slug": "kolkata-knight-riders",
+      "name": "Kolkata Knight Riders",
+      "league": "ipl",
+      "colors": [
+        {
+          "hex": "#46155B"
+        },
+        {
+          "hex": "#FFD700"
+        }
+      ],
+      "source": "https://commons.wikimedia.org/wiki/File:Kolkata_Knight_Riders_colours.svg",
+      "sourceNote": "Measured from the team colours SVG on Wikimedia Commons (purple and gold).",
+      "verified": false
+    }
+  ]
+}

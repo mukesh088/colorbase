@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { ToolFaqs } from "@/components/layout/tool-faqs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { CopyButton } from "@/components/color/copy-button";
-import { getContrastRatio, hexToRgb, mixColors, rgbToCmyk } from "@/lib/colors/convert";
+import { ColorCodeCards, PaletteTrio, cssVariables } from "@/components/library/color-code-cards";
 import { flagImage, getAllFlags, getFlag, similarFlags } from "@/lib/data/flags";
 import { breadcrumbJsonLd, createPageMetadata, faqJsonLd, fitDescription, fitTitle } from "@/lib/seo";
 
@@ -19,10 +19,6 @@ type Ctx = { params: Promise<{ country: string }> };
 
 function list(items: string[]) {
   return items.length > 1 ? `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}` : items[0];
-}
-
-function textOn(hex: string) {
-  return getContrastRatio("#ffffff", hex) >= getContrastRatio("#000000", hex) ? "#ffffff" : "#000000";
 }
 
 export async function generateMetadata({ params }: Ctx): Promise<Metadata> {
@@ -53,26 +49,8 @@ export default async function FlagPage({ params }: Ctx) {
     { name: flag.country, href: path },
   ];
   const hexes = flag.colors.map((c) => c.hex.toUpperCase());
-  const cards = flag.colors.map((c) => {
-    const rgb = hexToRgb(c.hex);
-    const cmyk = rgbToCmyk(rgb);
-    return {
-      ...c,
-      hex: c.hex.toUpperCase(),
-      rgb: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`,
-      cmyk: `${cmyk.c}, ${cmyk.m}, ${cmyk.y}, ${cmyk.k}`,
-      ink: textOn(c.hex),
-    };
-  });
-  const token = flag.slug.replace(/-/g, "");
-  const varName = (name: string) =>
-    `--${token}-${name.toLowerCase().replace(/\(.*\)/, "").trim().replace(/[^a-z0-9]+/g, "-")}`;
-  const css = [":root {", ...cards.map((c) => `  ${varName(c.name)}: ${c.hex.toLowerCase()};`), "}"].join("\n");
-  const palettes = [
-    { name: `${flag.country} flag`, note: "The flag's own colors, largest area first.", colors: hexes },
-    { name: `Soft ${flag.country}`, note: "Each flag color mixed 70% with white, for backgrounds and cards.", colors: hexes.map((h) => mixColors(h, "#ffffff", 0.7).toUpperCase()) },
-    { name: `Deep ${flag.country}`, note: "Each flag color mixed 35% with black, for text, borders and dark themes.", colors: hexes.map((h) => mixColors(h, "#000000", 0.35).toUpperCase()) },
-  ];
+  const cards = flag.colors.map((c) => ({ ...c, hex: c.hex.toUpperCase() }));
+  const css = cssVariables(flag.slug.replace(/-/g, ""), cards);
   const measured = flag.colors.some((c) => typeof c.share === "number");
   const faqs = [
     {
@@ -135,38 +113,7 @@ export default async function FlagPage({ params }: Ctx) {
         <h2 id="flag-codes" className="font-display text-2xl font-semibold tracking-tight">
           {flag.country} flag color codes
         </h2>
-        <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {cards.map((c) => (
-            <li key={c.hex + c.name} className="border-border/60 bg-card overflow-hidden rounded-2xl border">
-              <div className="flex h-28 items-end justify-between p-4" style={{ background: c.hex, color: c.ink }}>
-                <span className="font-display text-lg font-semibold">{c.name}</span>
-                {typeof c.share === "number" && <span className="text-xs opacity-80">{c.share}% of flag</span>}
-              </div>
-              <dl className="grid grid-cols-[auto_1fr_auto] items-center gap-x-3 gap-y-2 p-4 text-sm">
-                <dt className="text-muted-foreground">HEX</dt>
-                <dd className="font-mono">
-                  <Link href={`/color/${c.hex.slice(1).toLowerCase()}`} className="underline-offset-4 hover:underline">
-                    {c.hex}
-                  </Link>
-                </dd>
-                <dd>
-                  <CopyButton value={c.hex} label="Copy" />
-                </dd>
-                <dt className="text-muted-foreground">RGB</dt>
-                <dd className="font-mono">{c.rgb}</dd>
-                <dd>
-                  <CopyButton value={c.rgb} label="Copy" />
-                </dd>
-                <dt className="text-muted-foreground">CMYK</dt>
-                <dd className="font-mono" title="Approximate conversion">
-                  {c.cmyk}
-                </dd>
-                <dd />
-              </dl>
-              {c.note && <p className="text-muted-foreground px-4 pb-4 text-xs">{c.note}</p>}
-            </li>
-          ))}
-        </ul>
+        <ColorCodeCards colors={cards} />
         {flag.alternatives && flag.alternatives.length > 0 && (
           <div className="border-border/60 mt-6 rounded-2xl border p-4">
             <h3 className="font-display text-base font-semibold">Other published values</h3>
@@ -190,40 +137,7 @@ export default async function FlagPage({ params }: Ctx) {
         <h2 id="flag-palettes" className="font-display text-2xl font-semibold tracking-tight">
           {flag.country} flag color palettes
         </h2>
-        <div className="mt-4 grid gap-5 md:grid-cols-3">
-          {palettes.map((p) => (
-            <article key={p.name} className="border-border/60 bg-card overflow-hidden rounded-2xl border">
-              <div className="flex h-24">
-                {p.colors.map((h, i) => (
-                  <span key={`${h}-${i}`} className="flex-1" style={{ background: h }} title={h} />
-                ))}
-              </div>
-              <div className="p-4">
-                <h3 className="font-display text-base font-semibold">{p.name} palette</h3>
-                <p className="text-muted-foreground mt-1 text-sm">{p.note}</p>
-                <p className="mt-2 font-mono text-xs">{p.colors.join("  ")}</p>
-                <div className="mt-3">
-                  <CopyButton value={p.colors.join(", ")} label="Copy palette" />
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        <p className="text-muted-foreground mt-3 text-sm">
-          Refine a palette in the{" "}
-          <Link href="/palette-generator" className="text-primary underline-offset-4 hover:underline">
-            palette generator
-          </Link>
-          , preview it on an interface in the{" "}
-          <Link href="/theme-builder" className="text-primary underline-offset-4 hover:underline">
-            UI theme builder
-          </Link>{" "}
-          or check text pairs in the{" "}
-          <Link href="/contrast-checker" className="text-primary underline-offset-4 hover:underline">
-            contrast checker
-          </Link>
-          .
-        </p>
+        <PaletteTrio label={`${flag.country} flag`} hexes={hexes} />
       </section>
 
       <section className="mt-12" aria-labelledby="flag-css">

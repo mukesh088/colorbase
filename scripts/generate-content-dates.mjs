@@ -58,6 +58,7 @@ export const SECTION_SOURCES = {
   palettes: ["src/lib/data/palette-library.ts", "src/lib/data/studio-palettes.ts", "src/app/palette-library"],
   gradients: ["src/lib/data/gradient-library.ts", "src/lib/data/studio-gradients.ts", "src/app/gradient-library"],
   flags: ["src/lib/data/flags.json", "src/app/flags"],
+  teams: ["src/lib/data/teams.json", "src/app/teams"],
   combinations: ["src/lib/data/combination-colors.json", "src/lib/colors/combinations.ts", "src/app/colors-that-go-with"],
 };
 

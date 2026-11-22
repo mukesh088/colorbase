@@ -168,6 +168,8 @@ export const META_DESCRIPTIONS: Record<string, string> = {
     "Search ColorBase for color tools, brand colors, named colors, HEX codes, gradients and palettes. Results appear as you type, with your recent searches.",
   "/svg-color-editor":
     "Recolor SVG files online. Upload or paste an SVG, change fills, strokes and gradients safely, preview the result live and export as SVG or PNG files.",
+  "/teams":
+    "Team colors for IPL, NBA, NFL, MLB, NHL, MLS and Premier League clubs. Copy HEX, RGB, CMYK and Pantone codes, palettes and CSS variables for every team.",
   "/terms":
     "Terms of service for ColorBase: how you may use our free color tools and content, what you own, acceptable use, and the limits of our liability.",
   "/text-shadow-generator":

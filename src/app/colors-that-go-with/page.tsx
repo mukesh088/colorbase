@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { getCombinationBases } from "@/lib/colors/combinations";
+import { colorMatches, getCombinationBases } from "@/lib/colors/combinations";
+import { SwatchCardBrowser } from "@/components/library/swatch-card-browser";
+import { letterOf } from "@/lib/utils";
 import { describeHex } from "@/lib/colors/describe";
 import { createPageMetadata } from "@/lib/seo";
 
@@ -49,31 +50,22 @@ export default function ColorsThatGoWithHub() {
         {bases.length} base colors are covered. Their HEX values come from the CSS named colors or the open color-names
         dataset, and every match comes with a HEX code you can copy and a contrast check you can trust.
       </p>
-      {groups
-        .filter((g) => g.items.length > 0)
-        .map((g) => (
-          <section key={g.label} className="mt-8" aria-labelledby={`group-${g.label}`}>
-            <h2 id={`group-${g.label}`} className="font-display text-xl font-semibold tracking-tight">
-              {g.label}
-            </h2>
-            <ul className="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              {g.items.map((b) => (
-                <li key={b.slug}>
-                  <Link
-                    href={`/colors-that-go-with/${b.slug}`}
-                    className="border-border/60 hover:border-primary/50 flex items-center gap-3 rounded-xl border p-2.5"
-                  >
-                    <span aria-hidden className="border-border h-9 w-9 shrink-0 rounded-lg border" style={{ background: b.hex }} />
-                    <span className="text-sm">
-                      <span className="font-medium">Colors that go with {b.name.toLowerCase()}</span>
-                      <span className="text-muted-foreground block font-mono text-xs">{b.hex.toUpperCase()}</span>
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))}
+      <div className="mt-8">
+        <SwatchCardBrowser
+          placeholder="Search a color or HEX (e.g. navy, #000080)"
+          groups={groups.filter((g) => g.items.length > 0).map((g) => ({ id: g.label, label: g.label }))}
+          items={groups.flatMap((g) =>
+            g.items.map((b) => ({
+              href: `/colors-that-go-with/${b.slug}`,
+              title: `Colors that go with ${b.name.toLowerCase()}`,
+              meta: b.hex.toUpperCase(),
+              colors: [b.hex, ...colorMatches(b.hex).slice(0, 4).map((m) => m.hex)],
+              group: g.label,
+              letter: letterOf(b.name),
+            }))
+          ).sort((a, b) => a.title.localeCompare(b.title))}
+        />
+      </div>
     </div>
   );
 }

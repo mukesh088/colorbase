@@ -110,14 +110,25 @@ export const COLOR_CODE_NAV = [
   { href: "/color-codes/minecraft", title: "Minecraft" },
   { href: "/color-codes/bukkit", title: "Bukkit" },
   { href: "/color-codes/roblox", title: "Roblox" },
-  { href: "/flags", title: "Flag colors" },
 ] as const;
 
 export const PRIMARY_NAV = [
   { href: "/color-picker", title: "Color Picker" },
   { href: "/image-color-picker", title: "Image Picker" },
   { href: "/interior-colors", title: "Interior" },
-  { href: "/theme-builder", title: "UI Theme" },
+  {
+    href: "/flags",
+    title: "Explore",
+    children: [
+      { href: "/flags", title: "Flag colors (256 countries)" },
+      { href: "/teams", title: "Team colors" },
+      { href: "/teams/ipl", title: "IPL team colors" },
+      { href: "/teams/nba", title: "NBA team colors" },
+      { href: "/teams/nfl", title: "NFL team colors" },
+      { href: "/teams/epl", title: "Premier League colors" },
+      { href: "/color-names/letter/a", title: "Color names A–Z" },
+    ],
+  },
   {
     href: "/gradient-library",
     title: "Gradients",

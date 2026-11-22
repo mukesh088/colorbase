@@ -93,6 +93,35 @@ export function hexAnswerSentence(input: string) {
   return `${d.hex} is ${d.article} ${d.phrase}. RGB ${d.rgb.r}, ${d.rgb.g}, ${d.rgb.b}; HSL ${d.hsl.h}°, ${d.hsl.s}%, ${d.hsl.l}%.`;
 }
 
+/** Short title-case name ("Navy blue", "Gold", "Maroon") for labelling swatches. */
+export function simpleColorName(input: string) {
+  const { hsl, isNeutral } = describeHex(input);
+  const { h, s, l } = hsl;
+  if (l >= 95 || (l >= 90 && s < 35)) return "White";
+  if (l <= 10) return "Black";
+  if (isNeutral || s < 12) return l > 60 ? "Light gray" : l > 35 ? "Gray" : "Charcoal";
+  if (h < 12 || h >= 340) return l < 32 ? "Maroon" : "Red";
+  if (h < 40) return l < 40 ? "Brown" : "Orange";
+  if (h < 52) return "Gold";
+  if (h < 66) return "Yellow";
+  if (h < 172) return l < 20 ? "Dark green" : "Green";
+  if (h < 195) return "Teal";
+  if (h < 250) return l < 22 ? "Navy blue" : l > 60 ? "Light blue" : "Blue";
+  if (h < 290) return "Purple";
+  return l < 35 ? "Maroon" : "Pink";
+}
+
+/** Unique names for a list of swatches ("Blue", "Blue 2", …). */
+export function nameSwatches(hexes: string[]) {
+  const seen = new Map<string, number>();
+  return hexes.map((hex) => {
+    const base = simpleColorName(hex);
+    const n = (seen.get(base) ?? 0) + 1;
+    seen.set(base, n);
+    return n > 1 ? `${base} ${n}` : base;
+  });
+}
+
 export type ContrastVerdict = {
   ratio: number;
   aaNormal: boolean;

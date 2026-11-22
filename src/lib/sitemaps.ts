@@ -19,6 +19,7 @@ import { getIndexableHexSlugs } from "@/lib/hex-indexing";
 import { absoluteUrl } from "@/lib/utils";
 import { getCombinationBases } from "@/lib/colors/combinations";
 import { getIndexableFlags } from "@/lib/data/flags";
+import { getIndexableTeams, teamPath } from "@/lib/data/teams";
 import { isoToDate as toDate, latestIso as latest, routeLastModified, sectionLastModified } from "@/lib/content-dates";
 import retiredToolSlugs from "../../retired-tools";
 
@@ -33,6 +34,7 @@ export const SITEMAP_IDS = [
   "gradients",
   "combinations",
   "flags",
+  "teams",
 ] as const;
 export type SitemapId = (typeof SITEMAP_IDS)[number];
 
@@ -153,6 +155,17 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       if (!verified.length) return [];
       const lastModified = sectionLastModified("flags");
       return [entry("/flags", lastModified, 0.7), ...verified.map((f) => entry(`/flags/${f.slug}`, lastModified, 0.6))];
+    }
+    case "teams": {
+      const verified = getIndexableTeams();
+      if (!verified.length) return [];
+      const lastModified = sectionLastModified("teams");
+      const leagues = [...new Set(verified.map((t) => t.league))];
+      return [
+        entry("/teams", lastModified, 0.7),
+        ...leagues.map((l) => entry(`/teams/${l}`, lastModified, 0.65)),
+        ...verified.map((t) => entry(teamPath(t), lastModified, 0.6)),
+      ];
     }
     default:
       return [];

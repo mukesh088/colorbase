@@ -8,6 +8,7 @@
     "colors": "2026-11-22",
     "palettes": "2026-11-22",
     "gradients": "2026-11-22",
+    "flags": "2026-11-22",
     "combinations": "2026-11-22"
   },
   "routes": {
@@ -86,6 +87,7 @@
     "/explore-colors": "2026-11-22",
     "/fancy-text-generator": "2026-11-12",
     "/faq": "2026-10-06",
+    "/flags": "2026-11-22",
     "/flexbox-playground": "2026-07-31",
     "/font-generator": "2026-11-12",
     "/glassmorphism-generator": "2026-07-31",

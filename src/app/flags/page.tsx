@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { FlagBrowser } from "@/components/library/flag-browser";
-import { getAllFlags, getIndexableFlags } from "@/lib/data/flags";
+import { SwatchCardBrowser } from "@/components/library/swatch-card-browser";
+import { CollectionHero } from "@/components/library/collection-hero";
+import { flagImage, getAllFlags, getIndexableFlags } from "@/lib/data/flags";
 import { createPageMetadata } from "@/lib/seo";
+import { letterOf } from "@/lib/utils";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Flag Colors – HEX, RGB & CMYK Codes by Country",
@@ -17,32 +19,29 @@ export default function FlagsHub() {
     { name: "Home", href: "/" },
     { name: "Flag Colors", href: "/flags" },
   ];
-  const cards = flags.map((f) => ({
-    slug: f.slug,
-    code: f.code,
-    country: f.country,
-    colors: f.colors.map((c) => c.hex),
-    letter: f.country.normalize("NFD").replace(/[̀-ͯ]/g, "").charAt(0).toLowerCase(),
-  }));
   return (
     <div className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 lg:px-6">
       <Breadcrumbs items={crumbs} withJsonLd />
-      <header className="border-border/60 bg-card mt-2 overflow-hidden rounded-3xl border p-6 sm:p-8">
-        <p className="text-xs font-semibold tracking-[0.16em] text-rose-600 uppercase dark:text-rose-400">Flag colors</p>
-        <h1 className="font-display mt-2 text-3xl font-semibold tracking-tight sm:text-5xl">Flag Colors by Country</h1>
-        <p className="text-muted-foreground mt-4 max-w-3xl leading-relaxed">
-          HEX, RGB and CMYK codes for {flags.length} national and regional flags, each with a ready color palette. Search by
-          country or paste a HEX code to find flags that use it. National specifications usually define flag colors with
-          Pantone, dyes or CIE values, so every page names the source of its screen values.
-        </p>
-        <div className="mt-5 flex h-3 max-w-xl overflow-hidden rounded-full" aria-hidden>
-          {["#FF671F", "#C8102E", "#012169", "#009440", "#FFCB00", "#000000", "#FFFFFF"].map((c) => (
-            <span key={c} className="flex-1" style={{ background: c }} />
-          ))}
-        </div>
-      </header>
+      <CollectionHero
+        eyebrow="Flag colors"
+        title="Flag Colors by Country"
+        stripe={["#FF671F", "#C8102E", "#012169", "#009440", "#FFCB00", "#000000", "#FFFFFF"]}
+      >
+        HEX, RGB and CMYK codes for {flags.length} national and regional flags, each with a ready color palette. Search by
+        country or paste a HEX code to find flags that use it. National specifications usually define flag colors with
+        Pantone, dyes or CIE values, so every page names the source of its screen values.
+      </CollectionHero>
       <div className="mt-8">
-        <FlagBrowser flags={cards} />
+        <SwatchCardBrowser
+          placeholder="Search a country or HEX (e.g. #FF9933)"
+          items={flags.map((f) => ({
+            href: `/flags/${f.slug}`,
+            title: f.country,
+            image: { src: flagImage(f.code, 320), alt: `Flag of ${f.country}` },
+            colors: f.colors.map((c) => c.hex),
+            letter: letterOf(f.country),
+          }))}
+        />
       </div>
     </div>
   );
