@@ -789,6 +789,33 @@ export const TOOL_ANSWERS: Record<string, ToolAnswer> = {
       "Exports a PPTX deck and CSS/JSON tokens.",
     ],
   },
+  "discord-color-text-generator": {
+    question: "How do you make colored text in Discord?",
+    answer:
+      "Send a code block tagged ansi and put an ANSI escape code before each colored part, such as [31m for red or [1;34m for bold blue. Discord supports eight text colors (30–37), eight backgrounds (40–47), bold (1) and underline (4). This generator builds the block with the invisible escape character included, ready to paste.",
+    keyFacts: [
+      "Colors only render in Discord's desktop and web apps.",
+      "Discord supports 8 text colors and 8 backgrounds, not custom HEX.",
+      "Each code starts with the invisible escape character U+001B.",
+    ],
+    explainer: {
+      heading: "Discord ANSI color codes",
+      caption: "Preview colors as rendered by Discord desktop (community reference, approximate).",
+      table: {
+        columns: ["Code", "Text color", "Code", "Background"],
+        rows: [
+          ["30", "Gray", "40", "Firefly dark blue"],
+          ["31", "Red", "41", "Orange"],
+          ["32", "Green", "42", "Marble blue"],
+          ["33", "Yellow", "43", "Greyish turquoise"],
+          ["34", "Blue", "44", "Gray"],
+          ["35", "Pink", "45", "Indigo"],
+          ["36", "Cyan", "46", "Light gray"],
+          ["37", "White", "47", "White"],
+        ],
+      },
+    },
+  },
   "font-generator": {
     question: "How does a fancy font generator work?",
     answer:

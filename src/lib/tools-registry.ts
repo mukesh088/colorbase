@@ -144,6 +144,23 @@ export const TOOLS: ToolDefinition[] = [
     related: ["theme-builder", "chart-palette-generator", "contrast-checker"],
   },
   {
+    slug: "discord-color-text-generator",
+    title: "Discord Colored Text Generator",
+    shortTitle: "Discord text",
+    description:
+      "Write colored, bold and underlined Discord messages with ANSI code blocks: pick text and background colors, preview them and copy the message.",
+    keywords: [
+      "discord color text generator",
+      "discord colored text",
+      "discord ansi",
+      "discord text color",
+      "ansi color codes discord",
+    ],
+    category: "social-tools",
+    icon: "Hash",
+    related: ["font-generator", "text-shadow-generator", "color-picker"],
+  },
+  {
     slug: "font-generator",
     title: "Font Generator",
     shortTitle: "Fonts",

@@ -6,6 +6,9 @@ import {
 } from "@/lib/suite-modes";
 import { isImageStudio } from "@/lib/image-studio";
 
+const DiscordColorTextGenerator = dynamic(() =>
+  import("@/components/tools/discord-color-text-generator").then((m) => m.DiscordColorTextGenerator)
+);
 const ThemeBuilder = dynamic(() => import("@/components/theme-builder/theme-builder").then((m) => m.ThemeBuilder));
 const ChartPaletteBuilder = dynamic(() => import("@/components/theme-builder/chart-palette-builder").then((m) => m.ChartPaletteBuilder));
 
@@ -302,6 +305,8 @@ export function ToolContent({ slug }: { slug: string }) {
       return <MapColorScaleGenerator />;
     case "presentation-theme-generator":
       return <PresentationThemeGenerator />;
+    case "discord-color-text-generator":
+      return <DiscordColorTextGenerator />;
     case "font-generator":
     case "fancy-text-generator":
       return <FontGenerator />;

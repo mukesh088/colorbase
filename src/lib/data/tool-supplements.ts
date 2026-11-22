@@ -117,6 +117,24 @@ export const TOOL_SUPPLEMENTS: Record<string, ToolSupplement> = {
     ]),
   },
   ...MORE_SUPPLEMENTS,
+  "discord-color-text-generator": {
+    heading: "How Discord colors text",
+    body: "Discord has no color picker for messages. Instead it renders code blocks tagged ansi, and inside them it understands a short list of ANSI escape codes. Each run of text starts with the escape character, an opening bracket, one or more numbers separated by semicolons and the letter m. 0 resets, 1 makes text bold, 4 underlines it, 30 to 37 set one of eight text colors and 40 to 47 set one of eight backgrounds. Anything outside that list is ignored, so you cannot pick an arbitrary HEX color. The escape character is invisible, which is why typing the codes by hand rarely works; this generator inserts the real character when you copy. Colors render in the desktop and web apps; the mobile apps show the plain text inside a code block.",
+    intro: "Build a colored Discord message one segment at a time, preview it, and copy the ansi code block ready to paste.",
+    steps: [
+      "Type the first piece of text, then pick its text color, background, bold or underline.",
+      "Add more segments for each part of the message that needs a different style.",
+      "Check the preview, which uses the colors Discord's desktop app renders.",
+      "Copy the message and paste it into a Discord chat or channel as is.",
+    ],
+    why: "The codes depend on an invisible escape character. Copying from a generator is the only reliable way to get it into a message.",
+    faqs: faqs([
+      ["How do you type colored text in Discord?", "Wrap the text in a code block that starts with three backticks and the word ansi, and put ANSI escape codes before each colored part. This generator writes the codes for you."],
+      ["Which colors can Discord text use?", "Eight text colors (codes 30–37: gray, red, green, yellow, blue, pink, cyan, white) and eight backgrounds (codes 40–47). Custom HEX colors are not supported."],
+      ["Why does my colored text not show on mobile?", "Discord's mobile apps do not render ANSI colors; they show the text as a plain code block. Desktop and web show the colors."],
+      ["Can I make text bold and colored at the same time?", "Yes. Codes combine with semicolons, so 1;31 is bold red. Pick both options on a segment and the generator joins them."],
+    ]),
+  },
 };
 
 export function faqsForTool(slug: string): FAQItem[] {

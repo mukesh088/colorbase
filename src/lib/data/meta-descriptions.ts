@@ -106,6 +106,8 @@ export const META_DESCRIPTIONS: Record<string, string> = {
     "Build CSS transitions with multiple property layers and easing presets. Preview on hover, compare cubic-bezier curves and copy shorthand or longhand CSS.",
   "/cursor-generator":
     "Preview every CSS cursor value, from pointer and grab to zoom-in and not-allowed, on real UI states. Pick the right one for each control and copy the CSS.",
+  "/discord-color-text-generator":
+    "Make colored Discord text with ANSI code blocks. Pick text and background colors, add bold or underline, preview it and copy a message ready to paste.",
   "/disclaimer":
     "Disclaimer for ColorBase: colors on screen are approximations, brand colors are provided for reference only, and some pages show third-party ads.",
   "/dominant-color-extractor":

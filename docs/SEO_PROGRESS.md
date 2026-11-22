@@ -4,7 +4,10 @@ Plan: [`SEO_GEO_PLAN.md`](../SEO_GEO_PLAN.md) (repo root). Rules: [`CLAUDE.md`](
 Tick a task only when it is built, the build passes and it is committed.
 
 ## Handoff note (read first)
-- **Status:** Phases 0–4 done and committed. Next: Phase 5 (new page groups). Phase 5 needs sourced color data; groups whose data is not in the repo need your sources first (see "Needs your decision").
+- **Status:** Phases 0–4 done. Phase 5 in progress on `seo/phase-5-page-groups` (each group committed separately): 5.1 ✅, 5.7 ✅, 5.6 Discord ✅. Remaining, in order:
+  - 5.2 flags/teams, 5.3 paint codes, 5.6 game codes, 5.9 RAL: research public official sources, store with `source` + `verified: false`, pages `noindex` and out of the sitemap until you verify (your decision).
+  - 5.4 outfit/saree and 5.5 palettes-for-use-case: computed from the combinations engine (`src/lib/colors/combinations.ts`); write unique intros so they don't duplicate `/colors-that-go-with`.
+  - 5.8 trends/color of the year: draft + noindex with citations (your decision).
 - Workflow notes: build with `npm run build` from `D:\projects\colorbase` (PowerShell), serve with `npx next start -p 3123`, scan with `node scripts/seo-audit.mjs --base-url http://localhost:3123`.
 - Branches are stacked: `seo/phase-0-audit` → `seo/phase-1-crawling` → … Merge them into `main` in order (or merge the last one).
 - Non-color tools: keep current URLs, group them as "More tools" (your answer, 2026-11-21). No `/extras/` move.
@@ -60,7 +63,7 @@ Tick a task only when it is built, the build passes and it is committed.
 - [ ] 5.3 Paint shade code → HEX
 - [ ] 5.4 Outfit & saree color combinations
 - [ ] 5.5 Palettes by use case
-- [ ] 5.6 Game color tools (Discord ANSI + game codes)
+- [~] 5.6 Game color tools: ✅ Discord ANSI generator at `/discord-color-text-generator` (segments with text color 30–37, background 40–47, bold, underline; live preview; copies a real ```ansi block). Preview colors cite the community reference (`src/lib/discord-ansi.ts`, no official Discord table exists). ⏳ Valorant/BGMI/Free Fire/Fortnite code pages still need sourced data.
 - [x] 5.7 Color blindness simulator: upgraded at the existing `/color-blind-simulator` (your decision) with three modes (HEX palette, image upload processed in the browser, website URL via the existing `/api/website-colors` CSS analysis), a 0–100% severity slider (`simulateColorBlindRgb`, linear blend toward the deficiency matrix) and side-by-side protan/deutan/tritan/achromat previews. `/color-blindness-simulator` 308s to it. Contrast checker and accessibility checker already link to it.
 - [ ] 5.8 Color trends 2027 + color of the year
 - [ ] 5.9 RAL colors
@@ -138,3 +141,8 @@ Tick a task only when it is built, the build passes and it is committed.
 - Files: `src/components/library/hex-quick-facts.tsx` (new), `src/lib/colors/describe.ts` (`contrastVerdict`, `hexUsageSentences`), `src/app/color/[hex]/page.tsx`, `src/app/colors/[slug]/page.tsx`, `src/app/color-names/[slug]/page.tsx`, `src/app/brands/[slug]/[hex]/page.tsx`, `src/app/gradient-library/[slug]/page.tsx`, `src/app/gradient-library/category/[category]/page.tsx`, `src/app/palette-library/[slug]/page.tsx`, `src/app/colors/family/[family]/page.tsx`, `src/app/developers/[format]/page.tsx`.
 - Verified on a production build: full crawl of 16,098 sitemap URLs still clean (200, metadata in head, self canonical, 1 H1, titles ≤ 60, descriptions 140–155, unique); 0 invalid JSON-LD in a 448-page sample. Tests 143/143, tsc clean, lint 0 errors.
 - Still thin (< 250 words): `/contact` (44), `/colors/bootstrap` (46), `/colors/radix` (70), `/interior-colors` (82), `/blog/category/*` with one post, a few palettes (~240). `/colors/bootstrap` and `/colors/radix` depend on the duplicate-page decision.
+
+### Phase 5 (partial) — 2026-11-22
+- 5.1 `/colors-that-go-with` (123 URLs), 5.7 simulator upgrade, 5.6 Discord ANSI tool. Each verified on a production build and committed separately on `seo/phase-5-page-groups`.
+- Files: `scripts/build-combination-colors.mjs`, `src/lib/data/combination-colors.json`, `src/lib/colors/combinations.ts` (+test), `src/app/colors-that-go-with/**`, `src/lib/colors/convert.ts` (`COLOR_BLIND_MATRICES`, `simulateColorBlindRgb`, severity), `src/components/tools/color-blind-simulator.tsx`, `src/lib/discord-ansi.ts` (+test), `src/components/tools/discord-color-text-generator.tsx`, `src/app/discord-color-text-generator/page.tsx`, registry/answers/supplements/meta entries, `src/lib/sitemaps.ts` (`combinations` section), `src/lib/catalog-routes.ts`, `next.config.js`.
+- Tests 152/152, tsc clean, lint 0 errors.
