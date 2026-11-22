@@ -1,128 +1,6679 @@
 [
   {
-    "slug": "india",
-    "country": "India",
+    "slug": "andorra",
+    "code": "ad",
+    "country": "Andorra",
     "colors": [
-      { "name": "India saffron", "hex": "#FF671F" },
-      { "name": "White", "hex": "#FFFFFF" },
-      { "name": "India green", "hex": "#046A38" },
-      { "name": "Navy blue (Ashoka Chakra)", "hex": "#06038D" }
+      {
+        "name": "Blue",
+        "hex": "#10069F",
+        "share": 32
+      },
+      {
+        "name": "Red",
+        "hex": "#D50032",
+        "share": 32
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FEDD00",
+        "share": 26.6
+      },
+      {
+        "name": "Orange",
+        "hex": "#C6AA76",
+        "share": 3
+      },
+      {
+        "name": "Red 2",
+        "hex": "#DA291C",
+        "share": 1.1
+      }
     ],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_India",
-    "sourceNote": "Approximate screen values listed on Wikipedia. The official standard IS 1 defines the colours with CIE coordinates, not HEX.",
-    "verified": true
+    "source": "https://flagcdn.com/ad.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
-    "slug": "united-states",
-    "country": "United States",
+    "slug": "united-arab-emirates",
+    "code": "ae",
+    "country": "United Arab Emirates",
     "colors": [
-      { "name": "Red", "hex": "#BB133E" },
-      { "name": "White", "hex": "#FFFFFF" },
-      { "name": "Blue", "hex": "#002147" }
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 25
+      },
+      {
+        "name": "Green",
+        "hex": "#00843D",
+        "share": 25
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 25
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 25
+      }
     ],
-    "alternatives": [
-      { "label": "U.S. Government Printing Office (PMS 186 C / 288 C)", "colors": ["#C8102E", "#FFFFFF", "#002D72"] },
-      { "label": "Old Glory Red / Old Glory Blue (PMS 193 C / 281 C)", "colors": ["#BF0A30", "#FFFFFF", "#00205B"] },
-      { "label": "State Department ECA brand", "colors": ["#B31942", "#FFFFFF", "#0A3161"] }
-    ],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_States",
-    "sourceNote": "U.S. Department of State values as listed on Wikipedia. Federal Specification DDD-F-416E names the cloth colours without digital values.",
-    "verified": true
+    "source": "https://flagcdn.com/ae.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
-    "slug": "united-kingdom",
-    "country": "United Kingdom",
+    "slug": "afghanistan",
+    "code": "af",
+    "country": "Afghanistan",
     "colors": [
-      { "name": "Blue", "hex": "#012169" },
-      { "name": "Red", "hex": "#C8102E" },
-      { "name": "White", "hex": "#FFFFFF" }
+      {
+        "name": "Green",
+        "hex": "#007A36",
+        "share": 30.7
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 30.7
+      },
+      {
+        "name": "Red",
+        "hex": "#D32011",
+        "share": 20.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFD",
+        "share": 1.8
+      }
     ],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_Kingdom",
-    "sourceNote": "Shades approved by the Garter King of Arms, as listed on Wikipedia.",
-    "verified": true
+    "source": "https://flagcdn.com/af.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
-    "slug": "canada",
-    "country": "Canada",
+    "slug": "antigua-and-barbuda",
+    "code": "ag",
+    "country": "Antigua and Barbuda",
     "colors": [
-      { "name": "Red", "hex": "#EF3340" },
-      { "name": "White", "hex": "#FFFFFF" }
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 49.6
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 25.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#0072C6",
+        "share": 10.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.4
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 5.1
+      }
     ],
-    "alternatives": [{ "label": "Federal Identity Program screen red", "colors": ["#FF0000", "#FFFFFF"] }],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_Canada",
-    "sourceNote": "Web colours from Wikipedia's colour table (Pantone 032 C); the Federal Identity Program gives #FF0000 for screens.",
-    "verified": true
+    "source": "https://flagcdn.com/ag.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
-    "slug": "germany",
-    "country": "Germany",
+    "slug": "anguilla",
+    "code": "ai",
+    "country": "Anguilla",
     "colors": [
-      { "name": "Black", "hex": "#000000" },
-      { "name": "Red", "hex": "#D00000" },
-      { "name": "Gold", "hex": "#FFCE00" }
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 74.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 11.6
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "Orange",
+        "hex": "#FF9900",
+        "share": 1.1
+      },
+      {
+        "name": "Light blue",
+        "hex": "#99CCFF",
+        "share": 1.1
+      }
     ],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_Germany",
-    "sourceNote": "Recommended RGB values for online use from the federal government corporate design (1999), as listed on Wikipedia. The red is often quoted as #DD0000; check before publishing.",
-    "verified": true
+    "source": "https://flagcdn.com/ai.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
-    "slug": "france",
-    "country": "France",
+    "slug": "albania",
+    "code": "al",
+    "country": "Albania",
     "colors": [
-      { "name": "Blue", "hex": "#000091" },
-      { "name": "White", "hex": "#FFFFFF" },
-      { "name": "Red", "hex": "#E1000F" }
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 86.4
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 10.8
+      }
     ],
-    "alternatives": [{ "label": "Lighter shades (French Embassy in Germany)", "colors": ["#0055A4", "#FFFFFF", "#EF4135"] }],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_France",
-    "sourceNote": "Government of France values as listed on Wikipedia.",
-    "verified": true
+    "source": "https://flagcdn.com/al.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
-    "slug": "brazil",
-    "country": "Brazil",
+    "slug": "armenia",
+    "code": "am",
+    "country": "Armenia",
     "colors": [
-      { "name": "Green", "hex": "#009440" },
-      { "name": "Yellow", "hex": "#FFCB00" },
-      { "name": "Blue", "hex": "#302681" },
-      { "name": "White", "hex": "#FFFFFF" }
+      {
+        "name": "Red",
+        "hex": "#D90012",
+        "share": 33.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#0033A0",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#F2A800",
+        "share": 33.3
+      }
     ],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_Brazil",
-    "sourceNote": "Values from the Brazilian government's 'Bandeira Nacional' files, as listed on Wikipedia. No law fixes the exact shades.",
-    "verified": true
+    "source": "https://flagcdn.com/am.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "angola",
+    "code": "ao",
+    "country": "Angola",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CC092F",
+        "share": 48
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 46.9
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCB00",
+        "share": 3.7
+      }
+    ],
+    "source": "https://flagcdn.com/ao.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "antarctica",
+    "code": "aq",
+    "country": "Antarctica",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#009EDB",
+        "share": 67.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 31
+      }
+    ],
+    "source": "https://flagcdn.com/aq.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "argentina",
+    "code": "ar",
+    "country": "Argentina",
+    "colors": [
+      {
+        "name": "Light blue",
+        "hex": "#74ACDF",
+        "share": 66
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 30.1
+      }
+    ],
+    "source": "https://flagcdn.com/ar.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "american-samoa",
+    "code": "as",
+    "country": "American Samoa",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#000066",
+        "share": 49.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 31.2
+      },
+      {
+        "name": "Red",
+        "hex": "#BD1021",
+        "share": 8.8
+      },
+      {
+        "name": "Brown",
+        "hex": "#5A3719",
+        "share": 1.2
+      }
+    ],
+    "source": "https://flagcdn.com/as.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "austria",
+    "code": "at",
+    "country": "Austria",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 66
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33
+      }
+    ],
+    "source": "https://flagcdn.com/at.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
     "slug": "australia",
     "country": "Australia",
     "colors": [
-      { "name": "Blue", "hex": "#001B69" },
-      { "name": "Red", "hex": "#E50027" },
-      { "name": "White", "hex": "#FFFFFF" }
+      {
+        "name": "Blue",
+        "hex": "#001B69"
+      },
+      {
+        "name": "Red",
+        "hex": "#E50027"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Australia",
     "sourceNote": "RGB values from the Australian Government Style Manual (Pantone 280 C / 185 C), as listed on Wikipedia.",
-    "verified": true
+    "verified": true,
+    "code": "au"
   },
   {
-    "slug": "pakistan",
-    "country": "Pakistan",
+    "slug": "aruba",
+    "code": "aw",
+    "country": "Aruba",
     "colors": [
-      { "name": "Pakistan green", "hex": "#00401A" },
-      { "name": "White", "hex": "#FFFFFF", "note": "No value specified; plain white assumed." }
+      {
+        "name": "Blue",
+        "hex": "#418FDE",
+        "share": 86.1
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD100",
+        "share": 10
+      }
     ],
-    "source": "https://en.wikipedia.org/wiki/Flag_of_Pakistan",
-    "sourceNote": "Green from the construction section on Wikipedia, which cites no standard for the HEX value.",
-    "verified": true
+    "source": "https://flagcdn.com/aw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "aland-islands",
+    "code": "ax",
+    "country": "Åland Islands",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0064AD",
+        "share": 56.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD300",
+        "share": 22.8
+      },
+      {
+        "name": "Red",
+        "hex": "#DA0E15",
+        "share": 17.7
+      }
+    ],
+    "source": "https://flagcdn.com/ax.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "azerbaijan",
+    "code": "az",
+    "country": "Azerbaijan",
+    "colors": [
+      {
+        "name": "Teal",
+        "hex": "#00B5E2",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#509E2F",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#EF3340",
+        "share": 31.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.3
+      }
+    ],
+    "source": "https://flagcdn.com/az.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "bosnia-and-herzegovina",
+    "code": "ba",
+    "country": "Bosnia and Herzegovina",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#002395",
+        "share": 69.6
+      },
+      {
+        "name": "Gold",
+        "hex": "#FECB00",
+        "share": 24.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 3.2
+      }
+    ],
+    "source": "https://flagcdn.com/ba.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "barbados",
+    "code": "bb",
+    "country": "Barbados",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#00267F",
+        "share": 66.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC726",
+        "share": 29
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 3.5
+      }
+    ],
+    "source": "https://flagcdn.com/bb.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   },
   {
     "slug": "bangladesh",
     "country": "Bangladesh",
     "colors": [
-      { "name": "Green", "hex": "#006747" },
-      { "name": "Red", "hex": "#DA291C" }
+      {
+        "name": "Green",
+        "hex": "#006747"
+      },
+      {
+        "name": "Red",
+        "hex": "#DA291C"
+      }
     ],
     "source": "https://en.wikipedia.org/wiki/Flag_of_Bangladesh",
     "sourceNote": "Converted from Pantone 342 C and 485 C on Wikipedia. The 1972 flag rules specify dyes, not colour values.",
-    "verified": true
+    "verified": true,
+    "code": "bd"
+  },
+  {
+    "slug": "belgium",
+    "code": "be",
+    "country": "Belgium",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FDDA25",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#EF3340",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/be.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "burkina-faso",
+    "code": "bf",
+    "country": "Burkina Faso",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009E49",
+        "share": 49
+      },
+      {
+        "name": "Red",
+        "hex": "#EF2B2D",
+        "share": 48.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 1.9
+      }
+    ],
+    "source": "https://flagcdn.com/bf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "bulgaria",
+    "code": "bg",
+    "country": "Bulgaria",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#00966E",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#D62612",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/bg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "bahrain",
+    "code": "bh",
+    "country": "Bahrain",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DA291C",
+        "share": 67
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 32
+      }
+    ],
+    "source": "https://flagcdn.com/bh.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "burundi",
+    "code": "bi",
+    "country": "Burundi",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#43B02A",
+        "share": 33.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.4
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 30.2
+      }
+    ],
+    "source": "https://flagcdn.com/bi.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "benin",
+    "code": "bj",
+    "country": "Benin",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#008751",
+        "share": 40
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 30
+      },
+      {
+        "name": "Red",
+        "hex": "#E8112D",
+        "share": 30
+      }
+    ],
+    "source": "https://flagcdn.com/bj.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saint-barthelemy",
+    "code": "bl",
+    "country": "Saint Barthélemy",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 69.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#1353B4",
+        "share": 5.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#EACE24",
+        "share": 4.4
+      },
+      {
+        "name": "Red",
+        "hex": "#CE0F25",
+        "share": 4.2
+      },
+      {
+        "name": "Gold 2",
+        "hex": "#F6E4BE",
+        "share": 2.3
+      },
+      {
+        "name": "White 2",
+        "hex": "#FAF8F0",
+        "share": 1.3
+      }
+    ],
+    "source": "https://flagcdn.com/bl.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "bermuda",
+    "code": "bm",
+    "country": "Bermuda",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 72.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 12.3
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 6.6
+      },
+      {
+        "name": "Green",
+        "hex": "#2F8F22",
+        "share": 1.3
+      }
+    ],
+    "source": "https://flagcdn.com/bm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "brunei",
+    "code": "bn",
+    "country": "Brunei",
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#F7E017",
+        "share": 53.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 20.6
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 16.7
+      },
+      {
+        "name": "Red",
+        "hex": "#CF1126",
+        "share": 3.9
+      }
+    ],
+    "source": "https://flagcdn.com/bn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "bolivia",
+    "code": "bo",
+    "country": "Bolivia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D32011",
+        "share": 33.7
+      },
+      {
+        "name": "Green",
+        "hex": "#00702D",
+        "share": 33.4
+      },
+      {
+        "name": "Yellow",
+        "hex": "#F0E53C",
+        "share": 27.4
+      }
+    ],
+    "source": "https://flagcdn.com/bo.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "caribbean-netherlands",
+    "code": "bq",
+    "country": "Caribbean Netherlands",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#003087",
+        "share": 49.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 35.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD700",
+        "share": 8.5
+      },
+      {
+        "name": "Black",
+        "hex": "#101820",
+        "share": 2.2
+      },
+      {
+        "name": "Red",
+        "hex": "#D50032",
+        "share": 1.7
+      }
+    ],
+    "source": "https://flagcdn.com/bq.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "brazil",
+    "country": "Brazil",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009440"
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFCB00"
+      },
+      {
+        "name": "Blue",
+        "hex": "#302681"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Brazil",
+    "sourceNote": "Values from the Brazilian government's 'Bandeira Nacional' files, as listed on Wikipedia. No law fixes the exact shades.",
+    "verified": true,
+    "code": "br"
+  },
+  {
+    "slug": "bahamas",
+    "code": "bs",
+    "country": "Bahamas",
+    "colors": [
+      {
+        "name": "Teal",
+        "hex": "#00778B",
+        "share": 56.8
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 21.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC72C",
+        "share": 21.2
+      }
+    ],
+    "source": "https://flagcdn.com/bs.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "bhutan",
+    "code": "bt",
+    "country": "Bhutan",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FFCD00",
+        "share": 43.2
+      },
+      {
+        "name": "Orange",
+        "hex": "#FF671F",
+        "share": 39.9
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.7
+      }
+    ],
+    "source": "https://flagcdn.com/bt.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "bouvet-island",
+    "code": "bv",
+    "country": "Bouvet Island",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#BA0C2F",
+        "share": 60.4
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#00205B",
+        "share": 19.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 17.3
+      }
+    ],
+    "source": "https://flagcdn.com/bv.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "botswana",
+    "code": "bw",
+    "country": "Botswana",
+    "colors": [
+      {
+        "name": "Light blue",
+        "hex": "#6DA9D2",
+        "share": 75
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 16
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 8
+      }
+    ],
+    "source": "https://flagcdn.com/bw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "belarus",
+    "code": "by",
+    "country": "Belarus",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1720",
+        "share": 63.6
+      },
+      {
+        "name": "Green",
+        "hex": "#007C30",
+        "share": 29.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 3.1
+      }
+    ],
+    "source": "https://flagcdn.com/by.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "belize",
+    "code": "bz",
+    "country": "Belize",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#171696",
+        "share": 64.5
+      },
+      {
+        "name": "Red",
+        "hex": "#D90F19",
+        "share": 20
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 5.3
+      },
+      {
+        "name": "Green",
+        "hex": "#338A00",
+        "share": 1.2
+      }
+    ],
+    "source": "https://flagcdn.com/bz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "canada",
+    "country": "Canada",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#EF3340"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ],
+    "alternatives": [
+      {
+        "label": "Federal Identity Program screen red",
+        "colors": [
+          "#FF0000",
+          "#FFFFFF"
+        ]
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Canada",
+    "sourceNote": "Web colours from Wikipedia's colour table (Pantone 032 C); the Federal Identity Program gives #FF0000 for screens.",
+    "verified": true,
+    "code": "ca"
+  },
+  {
+    "slug": "cocos-keeling-islands",
+    "code": "cc",
+    "country": "Cocos (Keeling) Islands",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#008000",
+        "share": 88.7
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFE000",
+        "share": 8.6
+      }
+    ],
+    "source": "https://flagcdn.com/cc.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "dr-congo",
+    "code": "cd",
+    "country": "DR Congo",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#007FFF",
+        "share": 66.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1021",
+        "share": 19.6
+      },
+      {
+        "name": "Gold",
+        "hex": "#F7D618",
+        "share": 11.9
+      }
+    ],
+    "source": "https://flagcdn.com/cd.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "central-african-republic",
+    "code": "cf",
+    "country": "Central African Republic",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FFCE00",
+        "share": 21.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 20.8
+      },
+      {
+        "name": "Green",
+        "hex": "#289728",
+        "share": 20.8
+      },
+      {
+        "name": "Blue",
+        "hex": "#003082",
+        "share": 19.8
+      },
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 16.7
+      }
+    ],
+    "source": "https://flagcdn.com/cf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "republic-of-the-congo",
+    "code": "cg",
+    "country": "Republic of the Congo",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009543",
+        "share": 33.2
+      },
+      {
+        "name": "Red",
+        "hex": "#DC241F",
+        "share": 33.2
+      },
+      {
+        "name": "Gold",
+        "hex": "#FBDE4A",
+        "share": 33
+      }
+    ],
+    "source": "https://flagcdn.com/cg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "switzerland",
+    "code": "ch",
+    "country": "Switzerland",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 79.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 19.7
+      }
+    ],
+    "source": "https://flagcdn.com/ch.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cote-d-ivoire-ivory-coast",
+    "code": "ci",
+    "country": "Côte d'Ivoire (Ivory Coast)",
+    "colors": [
+      {
+        "name": "Orange",
+        "hex": "#F77F00",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#009E60",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/ci.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cook-islands",
+    "code": "ck",
+    "country": "Cook Islands",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 75.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 11.1
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      }
+    ],
+    "source": "https://flagcdn.com/ck.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "chile",
+    "code": "cl",
+    "country": "Chile",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DA291C",
+        "share": 50
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 34.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#0032A0",
+        "share": 15.4
+      }
+    ],
+    "source": "https://flagcdn.com/cl.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cameroon",
+    "code": "cm",
+    "country": "Cameroon",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 34.5
+      },
+      {
+        "name": "Green",
+        "hex": "#007A5E",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 31.9
+      }
+    ],
+    "source": "https://flagcdn.com/cm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "china",
+    "code": "cn",
+    "country": "China",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#EE1C25",
+        "share": 97.1
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFFF00",
+        "share": 2.1
+      }
+    ],
+    "source": "https://flagcdn.com/cn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "colombia",
+    "code": "co",
+    "country": "Colombia",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FFCD00",
+        "share": 50
+      },
+      {
+        "name": "Blue",
+        "hex": "#003087",
+        "share": 25
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 25
+      }
+    ],
+    "source": "https://flagcdn.com/co.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "costa-rica",
+    "code": "cr",
+    "country": "Costa Rica",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 34.6
+      },
+      {
+        "name": "Blue",
+        "hex": "#001489",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#DA291C",
+        "share": 29.8
+      }
+    ],
+    "source": "https://flagcdn.com/cr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cuba",
+    "code": "cu",
+    "country": "Cuba",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#002A8F",
+        "share": 48.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 30.8
+      },
+      {
+        "name": "Red",
+        "hex": "#CB1515",
+        "share": 19.6
+      }
+    ],
+    "source": "https://flagcdn.com/cu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cape-verde",
+    "code": "cv",
+    "country": "Cape Verde",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#003893",
+        "share": 74
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 15.1
+      },
+      {
+        "name": "Red",
+        "hex": "#CF2027",
+        "share": 7.9
+      }
+    ],
+    "source": "https://flagcdn.com/cv.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "curacao",
+    "code": "cw",
+    "country": "Curaçao",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#002B7F",
+        "share": 85.9
+      },
+      {
+        "name": "Yellow",
+        "hex": "#F9E814",
+        "share": 12.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.2
+      }
+    ],
+    "source": "https://flagcdn.com/cw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "christmas-island",
+    "code": "cx",
+    "country": "Christmas Island",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 45.5
+      },
+      {
+        "name": "Green",
+        "hex": "#0DB02B",
+        "share": 44.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#F7D116",
+        "share": 6.2
+      }
+    ],
+    "source": "https://flagcdn.com/cx.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cyprus",
+    "code": "cy",
+    "country": "Cyprus",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 85.9
+      },
+      {
+        "name": "Orange",
+        "hex": "#D67900",
+        "share": 10.7
+      },
+      {
+        "name": "Green",
+        "hex": "#4D5B2D",
+        "share": 1.1
+      }
+    ],
+    "source": "https://flagcdn.com/cy.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "czechia",
+    "code": "cz",
+    "country": "Czechia",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 37.3
+      },
+      {
+        "name": "Red",
+        "hex": "#D7141A",
+        "share": 37.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#11457E",
+        "share": 24.7
+      }
+    ],
+    "source": "https://flagcdn.com/cz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "germany",
+    "country": "Germany",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000"
+      },
+      {
+        "name": "Red",
+        "hex": "#D00000"
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCE00"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Germany",
+    "sourceNote": "Recommended RGB values for online use from the federal government corporate design (1999), as listed on Wikipedia. The red is often quoted as #DD0000; check before publishing.",
+    "verified": true,
+    "code": "de"
+  },
+  {
+    "slug": "djibouti",
+    "code": "dj",
+    "country": "Djibouti",
+    "colors": [
+      {
+        "name": "Light blue",
+        "hex": "#6AB2E7",
+        "share": 35.4
+      },
+      {
+        "name": "Green",
+        "hex": "#12AD2B",
+        "share": 35.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 27
+      },
+      {
+        "name": "Red",
+        "hex": "#D7141A",
+        "share": 1.2
+      }
+    ],
+    "source": "https://flagcdn.com/dj.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "denmark",
+    "code": "dk",
+    "country": "Denmark",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 76.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 22.6
+      }
+    ],
+    "source": "https://flagcdn.com/dk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "dominica",
+    "code": "dm",
+    "country": "Dominica",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#046A38",
+        "share": 64.7
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCD00",
+        "share": 7.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.5
+      },
+      {
+        "name": "Red",
+        "hex": "#D50032",
+        "share": 7
+      }
+    ],
+    "source": "https://flagcdn.com/dm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "dominican-republic",
+    "code": "do",
+    "country": "Dominican Republic",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#002D62",
+        "share": 34.8
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 34.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 28.7
+      }
+    ],
+    "source": "https://flagcdn.com/do.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "algeria",
+    "code": "dz",
+    "country": "Algeria",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 47.6
+      },
+      {
+        "name": "Green",
+        "hex": "#006633",
+        "share": 45.8
+      },
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 5.5
+      }
+    ],
+    "source": "https://flagcdn.com/dz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "ecuador",
+    "code": "ec",
+    "country": "Ecuador",
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#FFDD00",
+        "share": 46.6
+      },
+      {
+        "name": "Red",
+        "hex": "#ED1C24",
+        "share": 25.4
+      },
+      {
+        "name": "Blue",
+        "hex": "#034EA2",
+        "share": 21.1
+      }
+    ],
+    "source": "https://flagcdn.com/ec.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "estonia",
+    "code": "ee",
+    "country": "Estonia",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0072CE",
+        "share": 33
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33
+      }
+    ],
+    "source": "https://flagcdn.com/ee.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "egypt",
+    "code": "eg",
+    "country": "Egypt",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 29.8
+      }
+    ],
+    "source": "https://flagcdn.com/eg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "western-sahara",
+    "code": "eh",
+    "country": "Western Sahara",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 29.6
+      },
+      {
+        "name": "Green",
+        "hex": "#007A3D",
+        "share": 29.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 22.5
+      },
+      {
+        "name": "Red",
+        "hex": "#C4111B",
+        "share": 17.4
+      }
+    ],
+    "source": "https://flagcdn.com/eh.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "eritrea",
+    "code": "er",
+    "country": "Eritrea",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#E4002B",
+        "share": 42.5
+      },
+      {
+        "name": "Green",
+        "hex": "#43B02A",
+        "share": 24.7
+      },
+      {
+        "name": "Blue",
+        "hex": "#418FDE",
+        "share": 24.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC72C",
+        "share": 4.2
+      }
+    ],
+    "source": "https://flagcdn.com/er.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "spain",
+    "code": "es",
+    "country": "Spain",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#AD1519",
+        "share": 50
+      },
+      {
+        "name": "Gold",
+        "hex": "#FABD00",
+        "share": 43.6
+      }
+    ],
+    "source": "https://flagcdn.com/es.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "ethiopia",
+    "code": "et",
+    "country": "Ethiopia",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#078930",
+        "share": 29.8
+      },
+      {
+        "name": "Red",
+        "hex": "#DA121A",
+        "share": 29.8
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FCDD09",
+        "share": 24.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#0F47AF",
+        "share": 13.6
+      }
+    ],
+    "source": "https://flagcdn.com/et.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "european-union",
+    "code": "eu",
+    "country": "European Union",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#003399",
+        "share": 96.4
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCC00",
+        "share": 2.1
+      }
+    ],
+    "source": "https://flagcdn.com/eu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "finland",
+    "code": "fi",
+    "country": "Finland",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 59.9
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#002F6C",
+        "share": 38.6
+      }
+    ],
+    "source": "https://flagcdn.com/fi.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "fiji",
+    "code": "fj",
+    "country": "Fiji",
+    "colors": [
+      {
+        "name": "Light blue",
+        "hex": "#62B5E5",
+        "share": 65.1
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 11.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 9.9
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 6.6
+      }
+    ],
+    "source": "https://flagcdn.com/fj.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "falkland-islands",
+    "code": "fk",
+    "country": "Falkland Islands",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 69
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 8.7
+      },
+      {
+        "name": "Blue",
+        "hex": "#2A7FFF",
+        "share": 3.1
+      }
+    ],
+    "source": "https://flagcdn.com/fk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "micronesia",
+    "code": "fm",
+    "country": "Micronesia",
+    "colors": [
+      {
+        "name": "Light blue",
+        "hex": "#75B2DD",
+        "share": 97.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2
+      }
+    ],
+    "source": "https://flagcdn.com/fm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "faroe-islands",
+    "code": "fo",
+    "country": "Faroe Islands",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 60.4
+      },
+      {
+        "name": "Red",
+        "hex": "#EF3340",
+        "share": 19.5
+      },
+      {
+        "name": "Blue",
+        "hex": "#005EB8",
+        "share": 17.3
+      }
+    ],
+    "source": "https://flagcdn.com/fo.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "france",
+    "country": "France",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#000091"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "Red",
+        "hex": "#E1000F"
+      }
+    ],
+    "alternatives": [
+      {
+        "label": "Lighter shades (French Embassy in Germany)",
+        "colors": [
+          "#0055A4",
+          "#FFFFFF",
+          "#EF4135"
+        ]
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_France",
+    "sourceNote": "Government of France values as listed on Wikipedia.",
+    "verified": true,
+    "code": "fr"
+  },
+  {
+    "slug": "gabon",
+    "code": "ga",
+    "country": "Gabon",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009E60",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 33.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#3A75C4",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/ga.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "united-kingdom",
+    "country": "United Kingdom",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#012169"
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_Kingdom",
+    "sourceNote": "Shades approved by the Garter King of Arms, as listed on Wikipedia.",
+    "verified": true,
+    "code": "gb"
+  },
+  {
+    "slug": "england",
+    "code": "gb-eng",
+    "country": "England",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 70.4
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 29.6
+      }
+    ],
+    "source": "https://flagcdn.com/gb-eng.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "northern-ireland",
+    "code": "gb-nir",
+    "country": "Northern Ireland",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 74.2
+      },
+      {
+        "name": "Red",
+        "hex": "#CC0000",
+        "share": 22.5
+      }
+    ],
+    "source": "https://flagcdn.com/gb-nir.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "scotland",
+    "code": "gb-sct",
+    "country": "Scotland",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#005EB8",
+        "share": 57.9
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 40.2
+      }
+    ],
+    "source": "https://flagcdn.com/gb-sct.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "wales",
+    "code": "gb-wls",
+    "country": "Wales",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 32.1
+      },
+      {
+        "name": "Green",
+        "hex": "#00B140",
+        "share": 31.9
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 25.1
+      }
+    ],
+    "source": "https://flagcdn.com/gb-wls.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "grenada",
+    "code": "gd",
+    "country": "Grenada",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 39.4
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 29.6
+      },
+      {
+        "name": "Green",
+        "hex": "#007A5E",
+        "share": 27.3
+      }
+    ],
+    "source": "https://flagcdn.com/gd.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "georgia",
+    "code": "ge",
+    "country": "Georgia",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 63.3
+      },
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 35.7
+      }
+    ],
+    "source": "https://flagcdn.com/ge.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "french-guiana",
+    "code": "gf",
+    "country": "French Guiana",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#078930",
+        "share": 48.7
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FCDD09",
+        "share": 48.6
+      },
+      {
+        "name": "Red",
+        "hex": "#DA121A",
+        "share": 1.9
+      }
+    ],
+    "source": "https://flagcdn.com/gf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "guernsey",
+    "code": "gg",
+    "country": "Guernsey",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 62.5
+      },
+      {
+        "name": "Red",
+        "hex": "#E8112D",
+        "share": 28.6
+      },
+      {
+        "name": "Yellow",
+        "hex": "#F9DD16",
+        "share": 8
+      }
+    ],
+    "source": "https://flagcdn.com/gg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "ghana",
+    "code": "gh",
+    "country": "Ghana",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33
+      },
+      {
+        "name": "Green",
+        "hex": "#006B3F",
+        "share": 33
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 30.3
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 2.3
+      }
+    ],
+    "source": "https://flagcdn.com/gh.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "gibraltar",
+    "code": "gi",
+    "country": "Gibraltar",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 53.6
+      },
+      {
+        "name": "Red",
+        "hex": "#DA000C",
+        "share": 38.4
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 1.9
+      }
+    ],
+    "source": "https://flagcdn.com/gi.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "greenland",
+    "code": "gl",
+    "country": "Greenland",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 49.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 49.7
+      }
+    ],
+    "source": "https://flagcdn.com/gl.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "gambia",
+    "code": "gm",
+    "country": "Gambia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33
+      },
+      {
+        "name": "Green",
+        "hex": "#3A7728",
+        "share": 33
+      },
+      {
+        "name": "Blue",
+        "hex": "#0C1C8C",
+        "share": 22
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 10
+      }
+    ],
+    "source": "https://flagcdn.com/gm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "guinea",
+    "code": "gn",
+    "country": "Guinea",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#009460",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/gn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "guadeloupe",
+    "code": "gp",
+    "country": "Guadeloupe",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 47.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#002488",
+        "share": 27.2
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FCDD09",
+        "share": 17.3
+      },
+      {
+        "name": "Green",
+        "hex": "#008000",
+        "share": 1.8
+      }
+    ],
+    "source": "https://flagcdn.com/gp.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "equatorial-guinea",
+    "code": "gq",
+    "country": "Equatorial Guinea",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#3E9A00",
+        "share": 30.2
+      },
+      {
+        "name": "Red",
+        "hex": "#E32118",
+        "share": 30.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 22.8
+      },
+      {
+        "name": "Blue",
+        "hex": "#0073CE",
+        "share": 12.3
+      },
+      {
+        "name": "Light gray",
+        "hex": "#DDDDDD",
+        "share": 1.4
+      }
+    ],
+    "source": "https://flagcdn.com/gq.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "greece",
+    "code": "gr",
+    "country": "Greece",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0D5EAF",
+        "share": 54.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 41.2
+      }
+    ],
+    "source": "https://flagcdn.com/gr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "south-georgia",
+    "code": "gs",
+    "country": "South Georgia",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 69.4
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.8
+      }
+    ],
+    "source": "https://flagcdn.com/gs.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "guatemala",
+    "code": "gt",
+    "country": "Guatemala",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#4997D0",
+        "share": 66.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 29.2
+      }
+    ],
+    "source": "https://flagcdn.com/gt.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "guam",
+    "code": "gu",
+    "country": "Guam",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#00297B",
+        "share": 78
+      },
+      {
+        "name": "Red",
+        "hex": "#C62139",
+        "share": 14.1
+      },
+      {
+        "name": "Light blue",
+        "hex": "#92DBFC",
+        "share": 2.5
+      }
+    ],
+    "source": "https://flagcdn.com/gu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "guinea-bissau",
+    "code": "gw",
+    "country": "Guinea-Bissau",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#009E49",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 31.6
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 1.4
+      }
+    ],
+    "source": "https://flagcdn.com/gw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "guyana",
+    "code": "gy",
+    "country": "Guyana",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#2A936A",
+        "share": 49.4
+      },
+      {
+        "name": "Red",
+        "hex": "#BE1E2D",
+        "share": 21
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC20E",
+        "share": 17.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 5.4
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 3.2
+      }
+    ],
+    "source": "https://flagcdn.com/gy.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "hong-kong",
+    "code": "hk",
+    "country": "Hong Kong",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#EE1C25",
+        "share": 90.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.9
+      }
+    ],
+    "source": "https://flagcdn.com/hk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "heard-island-and-mcdonald-islands",
+    "code": "hm",
+    "country": "Heard Island and McDonald Islands",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#00008B",
+        "share": 77.9
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 10
+      },
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 8.8
+      }
+    ],
+    "source": "https://flagcdn.com/hm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "honduras",
+    "code": "hn",
+    "country": "Honduras",
+    "colors": [
+      {
+        "name": "Teal",
+        "hex": "#00BCE4",
+        "share": 67.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 32.1
+      }
+    ],
+    "source": "https://flagcdn.com/hn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "croatia",
+    "code": "hr",
+    "country": "Croatia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 33.2
+      },
+      {
+        "name": "Blue",
+        "hex": "#171796",
+        "share": 32.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 29.8
+      }
+    ],
+    "source": "https://flagcdn.com/hr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "haiti",
+    "code": "ht",
+    "country": "Haiti",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#00209F",
+        "share": 42.5
+      },
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 41.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.6
+      },
+      {
+        "name": "Green",
+        "hex": "#016A16",
+        "share": 1.7
+      }
+    ],
+    "source": "https://flagcdn.com/ht.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "hungary",
+    "code": "hu",
+    "country": "Hungary",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE2939",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#477050",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/hu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "indonesia",
+    "code": "id",
+    "country": "Indonesia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 50
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 50
+      }
+    ],
+    "source": "https://flagcdn.com/id.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "ireland",
+    "code": "ie",
+    "country": "Ireland",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#169B62",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Orange",
+        "hex": "#FF883E",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/ie.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "israel",
+    "code": "il",
+    "country": "Israel",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 63.4
+      },
+      {
+        "name": "Blue",
+        "hex": "#0038B8",
+        "share": 33.7
+      }
+    ],
+    "source": "https://flagcdn.com/il.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "isle-of-man",
+    "code": "im",
+    "country": "Isle of Man",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CF142B",
+        "share": 94.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2.4
+      }
+    ],
+    "source": "https://flagcdn.com/im.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "india",
+    "country": "India",
+    "colors": [
+      {
+        "name": "India saffron",
+        "hex": "#FF671F"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "India green",
+        "hex": "#046A38"
+      },
+      {
+        "name": "Navy blue (Ashoka Chakra)",
+        "hex": "#06038D"
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_India",
+    "sourceNote": "Approximate screen values listed on Wikipedia. The official standard IS 1 defines the colours with CIE coordinates, not HEX.",
+    "verified": true,
+    "code": "in"
+  },
+  {
+    "slug": "british-indian-ocean-territory",
+    "code": "io",
+    "country": "British Indian Ocean Territory",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 38.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 37.9
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 9.1
+      },
+      {
+        "name": "Green",
+        "hex": "#006D00",
+        "share": 1.9
+      }
+    ],
+    "source": "https://flagcdn.com/io.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "iraq",
+    "code": "iq",
+    "country": "Iraq",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CD1125",
+        "share": 33
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 30.1
+      },
+      {
+        "name": "Green",
+        "hex": "#017B3D",
+        "share": 2
+      }
+    ],
+    "source": "https://flagcdn.com/iq.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "iran",
+    "code": "ir",
+    "country": "Iran",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 34.2
+      },
+      {
+        "name": "Red",
+        "hex": "#DA0000",
+        "share": 29.4
+      },
+      {
+        "name": "Green",
+        "hex": "#239F40",
+        "share": 28.4
+      }
+    ],
+    "source": "https://flagcdn.com/ir.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "iceland",
+    "code": "is",
+    "country": "Iceland",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#02529C",
+        "share": 65.3
+      },
+      {
+        "name": "Red",
+        "hex": "#DC1E35",
+        "share": 18.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 16.4
+      }
+    ],
+    "source": "https://flagcdn.com/is.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "italy",
+    "code": "it",
+    "country": "Italy",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009246",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE2B37",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/it.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "jersey",
+    "code": "je",
+    "country": "Jersey",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 70.8
+      },
+      {
+        "name": "Red",
+        "hex": "#CF142B",
+        "share": 24.1
+      }
+    ],
+    "source": "https://flagcdn.com/je.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "jamaica",
+    "code": "jm",
+    "country": "Jamaica",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FFB81C",
+        "share": 32.8
+      },
+      {
+        "name": "Green",
+        "hex": "#007749",
+        "share": 32.5
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 32.5
+      }
+    ],
+    "source": "https://flagcdn.com/jm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "jordan",
+    "code": "jo",
+    "country": "Jordan",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 27.7
+      },
+      {
+        "name": "Green",
+        "hex": "#007A3D",
+        "share": 27.7
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 24.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 19.6
+      }
+    ],
+    "source": "https://flagcdn.com/jo.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "japan",
+    "code": "jp",
+    "country": "Japan",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 80.9
+      },
+      {
+        "name": "Red",
+        "hex": "#BC002D",
+        "share": 18.5
+      }
+    ],
+    "source": "https://flagcdn.com/jp.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "kenya",
+    "code": "ke",
+    "country": "Kenya",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 29.9
+      },
+      {
+        "name": "Red",
+        "hex": "#BB0000",
+        "share": 29.4
+      },
+      {
+        "name": "Green",
+        "hex": "#006600",
+        "share": 28.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 10
+      }
+    ],
+    "source": "https://flagcdn.com/ke.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "kyrgyzstan",
+    "code": "kg",
+    "country": "Kyrgyzstan",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 89.7
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFFF00",
+        "share": 5.2
+      }
+    ],
+    "source": "https://flagcdn.com/kg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cambodia",
+    "code": "kh",
+    "country": "Cambodia",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#032EA1",
+        "share": 50
+      },
+      {
+        "name": "Red",
+        "hex": "#E00025",
+        "share": 39.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 3.6
+      }
+    ],
+    "source": "https://flagcdn.com/kh.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "kiribati",
+    "code": "ki",
+    "country": "Kiribati",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#C81010",
+        "share": 43.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 22.6
+      },
+      {
+        "name": "Blue",
+        "hex": "#183070",
+        "share": 21.9
+      },
+      {
+        "name": "Gold",
+        "hex": "#F8D000",
+        "share": 4.8
+      }
+    ],
+    "source": "https://flagcdn.com/ki.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "comoros",
+    "code": "km",
+    "country": "Comoros",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FFD100",
+        "share": 21.8
+      },
+      {
+        "name": "Blue",
+        "hex": "#003DA5",
+        "share": 21.8
+      },
+      {
+        "name": "Green",
+        "hex": "#009639",
+        "share": 20.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 18.6
+      },
+      {
+        "name": "Red",
+        "hex": "#EF3340",
+        "share": 15.6
+      }
+    ],
+    "source": "https://flagcdn.com/km.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saint-kitts-and-nevis",
+    "code": "kn",
+    "country": "Saint Kitts and Nevis",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 29
+      },
+      {
+        "name": "Green",
+        "hex": "#009739",
+        "share": 27.8
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 27.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCD00",
+        "share": 10.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2.6
+      }
+    ],
+    "source": "https://flagcdn.com/kn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "north-korea",
+    "code": "kp",
+    "country": "North Korea",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#EC1D25",
+        "share": 54.4
+      },
+      {
+        "name": "Blue",
+        "hex": "#034DA2",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 10.1
+      }
+    ],
+    "source": "https://flagcdn.com/kp.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "south-korea",
+    "code": "kr",
+    "country": "South Korea",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 77.4
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 6.9
+      },
+      {
+        "name": "Red",
+        "hex": "#CD2E3A",
+        "share": 6.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#0047A0",
+        "share": 6.3
+      }
+    ],
+    "source": "https://flagcdn.com/kr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "kuwait",
+    "code": "kw",
+    "country": "Kuwait",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#007A3D",
+        "share": 29.1
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 29.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 25
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 16.5
+      }
+    ],
+    "source": "https://flagcdn.com/kw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "cayman-islands",
+    "code": "ky",
+    "country": "Cayman Islands",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 71.4
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 9.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 8.8
+      }
+    ],
+    "source": "https://flagcdn.com/ky.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "kazakhstan",
+    "code": "kz",
+    "country": "Kazakhstan",
+    "colors": [
+      {
+        "name": "Teal",
+        "hex": "#00ABC2",
+        "share": 88.5
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFEC2D",
+        "share": 5.6
+      }
+    ],
+    "source": "https://flagcdn.com/kz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "laos",
+    "code": "la",
+    "country": "Laos",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 50
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#002868",
+        "share": 41.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 8.1
+      }
+    ],
+    "source": "https://flagcdn.com/la.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "lebanon",
+    "code": "lb",
+    "country": "Lebanon",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D31624",
+        "share": 50
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 42.4
+      },
+      {
+        "name": "Green",
+        "hex": "#008C3E",
+        "share": 6.1
+      }
+    ],
+    "source": "https://flagcdn.com/lb.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saint-lucia",
+    "code": "lc",
+    "country": "Saint Lucia",
+    "colors": [
+      {
+        "name": "Light blue",
+        "hex": "#66CCFF",
+        "share": 86
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 6.5
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 3.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2.7
+      }
+    ],
+    "source": "https://flagcdn.com/lc.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "liechtenstein",
+    "code": "li",
+    "country": "Liechtenstein",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 50
+      },
+      {
+        "name": "Blue",
+        "hex": "#002B7F",
+        "share": 45.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD83D",
+        "share": 1
+      }
+    ],
+    "source": "https://flagcdn.com/li.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "sri-lanka",
+    "code": "lk",
+    "country": "Sri Lanka",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FFBE29",
+        "share": 42.2
+      },
+      {
+        "name": "Maroon",
+        "hex": "#8D153A",
+        "share": 30.9
+      },
+      {
+        "name": "Teal",
+        "hex": "#00534E",
+        "share": 10.6
+      },
+      {
+        "name": "Orange",
+        "hex": "#EB7400",
+        "share": 10.6
+      }
+    ],
+    "source": "https://flagcdn.com/lk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "liberia",
+    "code": "lr",
+    "country": "Liberia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#BF0A30",
+        "share": 45.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 38.8
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#002868",
+        "share": 9.4
+      }
+    ],
+    "source": "https://flagcdn.com/lr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "lesotho",
+    "code": "ls",
+    "country": "Lesotho",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 36.2
+      },
+      {
+        "name": "Blue",
+        "hex": "#001489",
+        "share": 30
+      },
+      {
+        "name": "Green",
+        "hex": "#009A44",
+        "share": 30
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 2.8
+      }
+    ],
+    "source": "https://flagcdn.com/ls.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "lithuania",
+    "code": "lt",
+    "country": "Lithuania",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FDB913",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#006A44",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#C1272D",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/lt.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "luxembourg",
+    "code": "lu",
+    "country": "Luxembourg",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#ED2939",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#00A1DE",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/lu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "latvia",
+    "code": "lv",
+    "country": "Latvia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#9D2235",
+        "share": 80
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 20
+      }
+    ],
+    "source": "https://flagcdn.com/lv.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "libya",
+    "code": "ly",
+    "country": "Libya",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 47.9
+      },
+      {
+        "name": "Red",
+        "hex": "#E70013",
+        "share": 24.7
+      },
+      {
+        "name": "Green",
+        "hex": "#239E46",
+        "share": 24.7
+      }
+    ],
+    "source": "https://flagcdn.com/ly.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "morocco",
+    "code": "ma",
+    "country": "Morocco",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#C1272D",
+        "share": 96.4
+      },
+      {
+        "name": "Dark Green",
+        "hex": "#006233",
+        "share": 2.5
+      }
+    ],
+    "source": "https://flagcdn.com/ma.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "monaco",
+    "code": "mc",
+    "country": "Monaco",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 50
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 50
+      }
+    ],
+    "source": "https://flagcdn.com/mc.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "moldova",
+    "code": "md",
+    "country": "Moldova",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CC092F",
+        "share": 33.8
+      },
+      {
+        "name": "Blue",
+        "hex": "#0046AE",
+        "share": 33.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD200",
+        "share": 25.8
+      },
+      {
+        "name": "Orange",
+        "hex": "#B07E5B",
+        "share": 1.3
+      }
+    ],
+    "source": "https://flagcdn.com/md.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "montenegro",
+    "code": "me",
+    "country": "Montenegro",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#E30000",
+        "share": 73.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC000",
+        "share": 16.8
+      }
+    ],
+    "source": "https://flagcdn.com/me.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saint-martin",
+    "code": "mf",
+    "country": "Saint Martin",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#002654",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/mf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "madagascar",
+    "code": "mg",
+    "country": "Madagascar",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#FC3D32",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#007E3A",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/mg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "marshall-islands",
+    "code": "mh",
+    "country": "Marshall Islands",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#003893",
+        "share": 72
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 12.8
+      },
+      {
+        "name": "Orange",
+        "hex": "#DD7500",
+        "share": 9.9
+      }
+    ],
+    "source": "https://flagcdn.com/mh.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "north-macedonia",
+    "code": "mk",
+    "country": "North Macedonia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D82126",
+        "share": 65.9
+      },
+      {
+        "name": "Yellow",
+        "hex": "#F8E92E",
+        "share": 30.4
+      }
+    ],
+    "source": "https://flagcdn.com/mk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "mali",
+    "code": "ml",
+    "country": "Mali",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#14B53A",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/ml.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "myanmar",
+    "code": "mm",
+    "country": "Myanmar",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FECB00",
+        "share": 32.4
+      },
+      {
+        "name": "Red",
+        "hex": "#EA2839",
+        "share": 31
+      },
+      {
+        "name": "Green",
+        "hex": "#34B233",
+        "share": 25.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 9.7
+      }
+    ],
+    "source": "https://flagcdn.com/mm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "mongolia",
+    "code": "mn",
+    "country": "Mongolia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DA2031",
+        "share": 59.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#0066B2",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD300",
+        "share": 5.6
+      }
+    ],
+    "source": "https://flagcdn.com/mn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "macau",
+    "code": "mo",
+    "country": "Macau",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#0F7562",
+        "share": 90.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 6
+      }
+    ],
+    "source": "https://flagcdn.com/mo.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "northern-mariana-islands",
+    "code": "mp",
+    "country": "Northern Mariana Islands",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0033A1",
+        "share": 80.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 4.1
+      },
+      {
+        "name": "Light gray",
+        "hex": "#B1B4B3",
+        "share": 2.6
+      }
+    ],
+    "source": "https://flagcdn.com/mp.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "martinique",
+    "code": "mq",
+    "country": "Martinique",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#00A650",
+        "share": 37.3
+      },
+      {
+        "name": "Gray",
+        "hex": "#231F1E",
+        "share": 37.3
+      },
+      {
+        "name": "Red",
+        "hex": "#EF1923",
+        "share": 24.7
+      }
+    ],
+    "source": "https://flagcdn.com/mq.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "mauritania",
+    "code": "mr",
+    "country": "Mauritania",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#00A95C",
+        "share": 54.3
+      },
+      {
+        "name": "Red",
+        "hex": "#D01C1F",
+        "share": 40
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD700",
+        "share": 4.8
+      }
+    ],
+    "source": "https://flagcdn.com/mr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "montserrat",
+    "code": "ms",
+    "country": "Montserrat",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 70.9
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.9
+      },
+      {
+        "name": "Blue",
+        "hex": "#00A2DD",
+        "share": 4.5
+      },
+      {
+        "name": "Brown",
+        "hex": "#A53D08",
+        "share": 1.7
+      }
+    ],
+    "source": "https://flagcdn.com/ms.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "malta",
+    "code": "mt",
+    "country": "Malta",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CF142B",
+        "share": 50
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 48.3
+      }
+    ],
+    "source": "https://flagcdn.com/mt.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "mauritius",
+    "code": "mu",
+    "country": "Mauritius",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#EA2839",
+        "share": 25
+      },
+      {
+        "name": "Blue",
+        "hex": "#1A206D",
+        "share": 25
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD500",
+        "share": 25
+      },
+      {
+        "name": "Green",
+        "hex": "#00A551",
+        "share": 25
+      }
+    ],
+    "source": "https://flagcdn.com/mu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "maldives",
+    "code": "mv",
+    "country": "Maldives",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 66.7
+      },
+      {
+        "name": "Green",
+        "hex": "#007E3A",
+        "share": 31.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.2
+      }
+    ],
+    "source": "https://flagcdn.com/mv.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "malawi",
+    "code": "mw",
+    "country": "Malawi",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 37.4
+      },
+      {
+        "name": "Green",
+        "hex": "#339E35",
+        "share": 33
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 26.4
+      }
+    ],
+    "source": "https://flagcdn.com/mw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "mexico",
+    "code": "mx",
+    "country": "Mexico",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33.3
+      },
+      {
+        "name": "Green",
+        "hex": "#006847",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 27.2
+      }
+    ],
+    "source": "https://flagcdn.com/mx.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "malaysia",
+    "code": "my",
+    "country": "Malaysia",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33
+      },
+      {
+        "name": "Red",
+        "hex": "#CC0000",
+        "share": 32.7
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#000066",
+        "share": 23.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCC00",
+        "share": 3.1
+      }
+    ],
+    "source": "https://flagcdn.com/my.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "mozambique",
+    "code": "mz",
+    "country": "Mozambique",
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#FCE100",
+        "share": 28
+      },
+      {
+        "name": "Teal",
+        "hex": "#007168",
+        "share": 26.7
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 20.4
+      },
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 17.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 4
+      }
+    ],
+    "source": "https://flagcdn.com/mz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "namibia",
+    "code": "na",
+    "country": "Namibia",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009543",
+        "share": 31.7
+      },
+      {
+        "name": "Blue",
+        "hex": "#003580",
+        "share": 28.4
+      },
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 27.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.2
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCE00",
+        "share": 2.4
+      }
+    ],
+    "source": "https://flagcdn.com/na.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "new-caledonia",
+    "code": "nc",
+    "country": "New Caledonia",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0035AD",
+        "share": 29.8
+      },
+      {
+        "name": "Green",
+        "hex": "#009543",
+        "share": 29.8
+      },
+      {
+        "name": "Red",
+        "hex": "#ED4135",
+        "share": 22.6
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FAE600",
+        "share": 13.8
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 2.3
+      }
+    ],
+    "source": "https://flagcdn.com/nc.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "niger",
+    "code": "ne",
+    "country": "Niger",
+    "colors": [
+      {
+        "name": "Orange",
+        "hex": "#E05206",
+        "share": 38.1
+      },
+      {
+        "name": "Green",
+        "hex": "#0DB02B",
+        "share": 33.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 27.3
+      }
+    ],
+    "source": "https://flagcdn.com/ne.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "norfolk-island",
+    "code": "nf",
+    "country": "Norfolk Island",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#007934",
+        "share": 66.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 28.8
+      }
+    ],
+    "source": "https://flagcdn.com/nf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "nigeria",
+    "code": "ng",
+    "country": "Nigeria",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#008751",
+        "share": 66.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/ng.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "nicaragua",
+    "code": "ni",
+    "country": "Nicaragua",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0067C6",
+        "share": 66.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 31.3
+      }
+    ],
+    "source": "https://flagcdn.com/ni.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "netherlands",
+    "code": "nl",
+    "country": "Netherlands",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#AE1C28",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33
+      },
+      {
+        "name": "Blue",
+        "hex": "#21468B",
+        "share": 33
+      }
+    ],
+    "source": "https://flagcdn.com/nl.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "norway",
+    "code": "no",
+    "country": "Norway",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#BA0C2F",
+        "share": 60.4
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#00205B",
+        "share": 19.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 17.3
+      }
+    ],
+    "source": "https://flagcdn.com/no.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "nepal",
+    "code": "np",
+    "country": "Nepal",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DC143C",
+        "share": 61.4
+      },
+      {
+        "name": "Blue",
+        "hex": "#003893",
+        "share": 22.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 13
+      }
+    ],
+    "source": "https://flagcdn.com/np.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "nauru",
+    "code": "nr",
+    "country": "Nauru",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 88.2
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC72C",
+        "share": 8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.8
+      }
+    ],
+    "source": "https://flagcdn.com/nr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "niue",
+    "code": "nu",
+    "country": "Niue",
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#FEDD00",
+        "share": 75.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.6
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 7.1
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 6.8
+      }
+    ],
+    "source": "https://flagcdn.com/nu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "new-zealand",
+    "code": "nz",
+    "country": "New Zealand",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 79.7
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 9.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.9
+      }
+    ],
+    "source": "https://flagcdn.com/nz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "oman",
+    "code": "om",
+    "country": "Oman",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DF1A23",
+        "share": 53.4
+      },
+      {
+        "name": "Green",
+        "hex": "#007E3C",
+        "share": 22.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 22.1
+      }
+    ],
+    "source": "https://flagcdn.com/om.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "panama",
+    "code": "pa",
+    "country": "Panama",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 46.9
+      },
+      {
+        "name": "Red",
+        "hex": "#DA121A",
+        "share": 26.3
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#072357",
+        "share": 26.2
+      }
+    ],
+    "source": "https://flagcdn.com/pa.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "peru",
+    "code": "pe",
+    "country": "Peru",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D91023",
+        "share": 66.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/pe.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "french-polynesia",
+    "code": "pf",
+    "country": "French Polynesia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 51.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 41.8
+      },
+      {
+        "name": "Orange",
+        "hex": "#FF9C10",
+        "share": 2
+      },
+      {
+        "name": "Blue",
+        "hex": "#083D9C",
+        "share": 1.2
+      }
+    ],
+    "source": "https://flagcdn.com/pf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "papua-new-guinea",
+    "code": "pg",
+    "country": "Papua New Guinea",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 47.8
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 43.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 5.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.3
+      }
+    ],
+    "source": "https://flagcdn.com/pg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "philippines",
+    "code": "ph",
+    "country": "Philippines",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0038A8",
+        "share": 39
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 39
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 16.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 2.6
+      }
+    ],
+    "source": "https://flagcdn.com/ph.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "pakistan",
+    "country": "Pakistan",
+    "colors": [
+      {
+        "name": "Pakistan green",
+        "hex": "#00401A"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "note": "No value specified; plain white assumed."
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_Pakistan",
+    "sourceNote": "Green from the construction section on Wikipedia, which cites no standard for the HEX value.",
+    "verified": true,
+    "code": "pk"
+  },
+  {
+    "slug": "poland",
+    "code": "pl",
+    "country": "Poland",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DC143C",
+        "share": 50
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 49.5
+      }
+    ],
+    "source": "https://flagcdn.com/pl.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saint-pierre-and-miquelon",
+    "code": "pm",
+    "country": "Saint Pierre and Miquelon",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0092C8",
+        "share": 28.4
+      },
+      {
+        "name": "Blue 2",
+        "hex": "#0091C8",
+        "share": 14.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCF00",
+        "share": 13.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 11.8
+      },
+      {
+        "name": "Red",
+        "hex": "#CC0000",
+        "share": 7.9
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 3.2
+      }
+    ],
+    "source": "https://flagcdn.com/pm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "pitcairn-islands",
+    "code": "pn",
+    "country": "Pitcairn Islands",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 67.9
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.7
+      },
+      {
+        "name": "Green",
+        "hex": "#337321",
+        "share": 3.6
+      },
+      {
+        "name": "Yellow",
+        "hex": "#F7E017",
+        "share": 2.5
+      },
+      {
+        "name": "Blue",
+        "hex": "#006EC7",
+        "share": 1.6
+      }
+    ],
+    "source": "https://flagcdn.com/pn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "puerto-rico",
+    "code": "pr",
+    "country": "Puerto Rico",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#EE0000",
+        "share": 44.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 27.9
+      },
+      {
+        "name": "Blue",
+        "hex": "#0044FF",
+        "share": 26.2
+      }
+    ],
+    "source": "https://flagcdn.com/pr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "palestine",
+    "code": "ps",
+    "country": "Palestine",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 29.6
+      },
+      {
+        "name": "Green",
+        "hex": "#009639",
+        "share": 29.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 24
+      },
+      {
+        "name": "Red",
+        "hex": "#ED2E38",
+        "share": 16.4
+      }
+    ],
+    "source": "https://flagcdn.com/ps.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "portugal",
+    "code": "pt",
+    "country": "Portugal",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 56.2
+      },
+      {
+        "name": "Green",
+        "hex": "#006600",
+        "share": 34.2
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFFF00",
+        "share": 1.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.4
+      }
+    ],
+    "source": "https://flagcdn.com/pt.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "palau",
+    "code": "pw",
+    "country": "Palau",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0099FF",
+        "share": 82.1
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFFF00",
+        "share": 17.3
+      }
+    ],
+    "source": "https://flagcdn.com/pw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "paraguay",
+    "code": "py",
+    "country": "Paraguay",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D52B1E",
+        "share": 33.3
+      },
+      {
+        "name": "Blue",
+        "hex": "#0038A8",
+        "share": 33.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 31.3
+      }
+    ],
+    "source": "https://flagcdn.com/py.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "qatar",
+    "code": "qa",
+    "country": "Qatar",
+    "colors": [
+      {
+        "name": "Maroon",
+        "hex": "#8A1538",
+        "share": 66.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 32.8
+      }
+    ],
+    "source": "https://flagcdn.com/qa.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "reunion",
+    "code": "re",
+    "country": "Réunion",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#3366FF",
+        "share": 63.3
+      },
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 24.7
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFFF00",
+        "share": 9.1
+      }
+    ],
+    "source": "https://flagcdn.com/re.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "romania",
+    "code": "ro",
+    "country": "Romania",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#002B7F",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/ro.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "serbia",
+    "code": "rs",
+    "country": "Serbia",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.6
+      },
+      {
+        "name": "Red",
+        "hex": "#C6363C",
+        "share": 32.9
+      },
+      {
+        "name": "Blue",
+        "hex": "#0C4076",
+        "share": 24.7
+      }
+    ],
+    "source": "https://flagcdn.com/rs.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "russia",
+    "code": "ru",
+    "country": "Russia",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33
+      },
+      {
+        "name": "Blue",
+        "hex": "#0039A6",
+        "share": 33
+      },
+      {
+        "name": "Red",
+        "hex": "#D52B1E",
+        "share": 33
+      }
+    ],
+    "source": "https://flagcdn.com/ru.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "rwanda",
+    "code": "rw",
+    "country": "Rwanda",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#00A3E0",
+        "share": 47.5
+      },
+      {
+        "name": "Gold",
+        "hex": "#FAD201",
+        "share": 25
+      },
+      {
+        "name": "Green",
+        "hex": "#20603D",
+        "share": 25
+      }
+    ],
+    "source": "https://flagcdn.com/rw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saudi-arabia",
+    "code": "sa",
+    "country": "Saudi Arabia",
+    "colors": [
+      {
+        "name": "Dark Green",
+        "hex": "#005430",
+        "share": 92.9
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2.3
+      }
+    ],
+    "source": "https://flagcdn.com/sa.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "solomon-islands",
+    "code": "sb",
+    "country": "Solomon Islands",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#215B33",
+        "share": 44.8
+      },
+      {
+        "name": "Blue",
+        "hex": "#0051BA",
+        "share": 41.4
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 9.1
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2.3
+      }
+    ],
+    "source": "https://flagcdn.com/sb.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "seychelles",
+    "code": "sc",
+    "country": "Seychelles",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D22730",
+        "share": 32.8
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#002F6C",
+        "share": 16.4
+      },
+      {
+        "name": "Green",
+        "hex": "#007A33",
+        "share": 16.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FED141",
+        "share": 16.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 16
+      }
+    ],
+    "source": "https://flagcdn.com/sc.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "sudan",
+    "code": "sd",
+    "country": "Sudan",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 29.6
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 29.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 24
+      },
+      {
+        "name": "Green",
+        "hex": "#007229",
+        "share": 16.4
+      }
+    ],
+    "source": "https://flagcdn.com/sd.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "sweden",
+    "code": "se",
+    "country": "Sweden",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#005293",
+        "share": 69.4
+      },
+      {
+        "name": "Gold",
+        "hex": "#FECB00",
+        "share": 29
+      }
+    ],
+    "source": "https://flagcdn.com/se.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "singapore",
+    "code": "sg",
+    "country": "Singapore",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 52.4
+      },
+      {
+        "name": "Red",
+        "hex": "#ED2939",
+        "share": 46.7
+      }
+    ],
+    "source": "https://flagcdn.com/sg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saint-helena-ascension-and-tristan-da-cunha",
+    "code": "sh",
+    "country": "Saint Helena, Ascension and Tristan da Cunha",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 75.3
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#F2D049",
+        "share": 1.8
+      }
+    ],
+    "source": "https://flagcdn.com/sh.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "slovenia",
+    "code": "si",
+    "country": "Slovenia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 33.5
+      },
+      {
+        "name": "Blue",
+        "hex": "#0000FF",
+        "share": 33.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 32.1
+      }
+    ],
+    "source": "https://flagcdn.com/si.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "svalbard-and-jan-mayen",
+    "code": "sj",
+    "country": "Svalbard and Jan Mayen",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#BA0C2F",
+        "share": 60.4
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#00205B",
+        "share": 19.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 17.3
+      }
+    ],
+    "source": "https://flagcdn.com/sj.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "slovakia",
+    "code": "sk",
+    "country": "Slovakia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#EE1C25",
+        "share": 38.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33.1
+      },
+      {
+        "name": "Blue",
+        "hex": "#0B4EA2",
+        "share": 26.4
+      }
+    ],
+    "source": "https://flagcdn.com/sk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "sierra-leone",
+    "code": "sl",
+    "country": "Sierra Leone",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#1EB53A",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33
+      },
+      {
+        "name": "Blue",
+        "hex": "#0072C6",
+        "share": 33
+      }
+    ],
+    "source": "https://flagcdn.com/sl.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "san-marino",
+    "code": "sm",
+    "country": "San Marino",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 44.1
+      },
+      {
+        "name": "Light blue",
+        "hex": "#5EB6E4",
+        "share": 43.1
+      },
+      {
+        "name": "Green",
+        "hex": "#658D5C",
+        "share": 1.1
+      }
+    ],
+    "source": "https://flagcdn.com/sm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "senegal",
+    "code": "sn",
+    "country": "Senegal",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#00853F",
+        "share": 35.3
+      },
+      {
+        "name": "Red",
+        "hex": "#E31B23",
+        "share": 33.3
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FDEF42",
+        "share": 31.1
+      }
+    ],
+    "source": "https://flagcdn.com/sn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "somalia",
+    "code": "so",
+    "country": "Somalia",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#418FDE",
+        "share": 95.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 4
+      }
+    ],
+    "source": "https://flagcdn.com/so.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "suriname",
+    "code": "sr",
+    "country": "Suriname",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#377E3F",
+        "share": 40
+      },
+      {
+        "name": "Red",
+        "hex": "#B40A2D",
+        "share": 36.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 20
+      },
+      {
+        "name": "Gold",
+        "hex": "#ECC81D",
+        "share": 2.8
+      }
+    ],
+    "source": "https://flagcdn.com/sr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "south-sudan",
+    "code": "ss",
+    "country": "South Sudan",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#00914C",
+        "share": 25.5
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 25.5
+      },
+      {
+        "name": "Teal",
+        "hex": "#00B6F2",
+        "share": 19.6
+      },
+      {
+        "name": "Red",
+        "hex": "#E22028",
+        "share": 18.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 6.7
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFE51A",
+        "share": 1.3
+      }
+    ],
+    "source": "https://flagcdn.com/ss.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "sao-tome-and-principe",
+    "code": "st",
+    "country": "São Tomé and Príncipe",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009739",
+        "share": 52
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD100",
+        "share": 30.5
+      },
+      {
+        "name": "Red",
+        "hex": "#EF3340",
+        "share": 12.3
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 2.9
+      }
+    ],
+    "source": "https://flagcdn.com/st.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "el-salvador",
+    "code": "sv",
+    "country": "El Salvador",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#0047AB",
+        "share": 65.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 29.4
+      }
+    ],
+    "source": "https://flagcdn.com/sv.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "sint-maarten",
+    "code": "sx",
+    "country": "Sint Maarten",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#BA0C0C",
+        "share": 38.7
+      },
+      {
+        "name": "Blue",
+        "hex": "#173D89",
+        "share": 38.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 15.7
+      },
+      {
+        "name": "Light blue",
+        "hex": "#8FBEE3",
+        "share": 1.6
+      }
+    ],
+    "source": "https://flagcdn.com/sx.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "syria",
+    "code": "sy",
+    "country": "Syria",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#007A3D",
+        "share": 33
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 28.3
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 3.8
+      }
+    ],
+    "source": "https://flagcdn.com/sy.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "eswatini-swaziland",
+    "code": "sz",
+    "country": "Eswatini (Swaziland)",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#3E5EB9",
+        "share": 37
+      },
+      {
+        "name": "Red",
+        "hex": "#B10C0C",
+        "share": 32.2
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD900",
+        "share": 12.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 5.7
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 5.6
+      },
+      {
+        "name": "Blue 2",
+        "hex": "#3D5DA7",
+        "share": 1.5
+      }
+    ],
+    "source": "https://flagcdn.com/sz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "turks-and-caicos-islands",
+    "code": "tc",
+    "country": "Turks and Caicos Islands",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#002868",
+        "share": 74.9
+      },
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 8.1
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 2.9
+      }
+    ],
+    "source": "https://flagcdn.com/tc.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "chad",
+    "code": "td",
+    "country": "Chad",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#002664",
+        "share": 33.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FECB00",
+        "share": 33.3
+      },
+      {
+        "name": "Red",
+        "hex": "#C60C30",
+        "share": 33.3
+      }
+    ],
+    "source": "https://flagcdn.com/td.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "french-southern-and-antarctic-lands",
+    "code": "tf",
+    "country": "French Southern and Antarctic Lands",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#214D9B",
+        "share": 79.5
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 10.6
+      },
+      {
+        "name": "Red",
+        "hex": "#EB2E2E",
+        "share": 7.6
+      }
+    ],
+    "source": "https://flagcdn.com/tf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "togo",
+    "code": "tg",
+    "country": "Togo",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#006A4E",
+        "share": 45.1
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFCE00",
+        "share": 32.3
+      },
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 19.3
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2.3
+      }
+    ],
+    "source": "https://flagcdn.com/tg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "thailand",
+    "code": "th",
+    "country": "Thailand",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#A51931",
+        "share": 33
+      },
+      {
+        "name": "Blue",
+        "hex": "#2D2A4A",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#F4F5F8",
+        "share": 32
+      }
+    ],
+    "source": "https://flagcdn.com/th.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "tajikistan",
+    "code": "tj",
+    "country": "Tajikistan",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 40.8
+      },
+      {
+        "name": "Red",
+        "hex": "#CC0000",
+        "share": 28
+      },
+      {
+        "name": "Green",
+        "hex": "#006600",
+        "share": 28
+      }
+    ],
+    "source": "https://flagcdn.com/tj.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "tokelau",
+    "code": "tk",
+    "country": "Tokelau",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 70.3
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD100",
+        "share": 26.5
+      }
+    ],
+    "source": "https://flagcdn.com/tk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "timor-leste",
+    "code": "tl",
+    "country": "Timor-Leste",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DA291C",
+        "share": 74.7
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 14.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC72C",
+        "share": 7.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.4
+      }
+    ],
+    "source": "https://flagcdn.com/tl.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "turkmenistan",
+    "code": "tm",
+    "country": "Turkmenistan",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#00843D",
+        "share": 81.9
+      },
+      {
+        "name": "Red",
+        "hex": "#D22630",
+        "share": 6.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC72C",
+        "share": 1.1
+      }
+    ],
+    "source": "https://flagcdn.com/tm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "tunisia",
+    "code": "tn",
+    "country": "Tunisia",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#E70013",
+        "share": 90
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 8.7
+      }
+    ],
+    "source": "https://flagcdn.com/tn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "tonga",
+    "code": "to",
+    "country": "Tonga",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#C10000",
+        "share": 82.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 16.8
+      }
+    ],
+    "source": "https://flagcdn.com/to.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "turkey",
+    "code": "tr",
+    "country": "Turkey",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#E30A17",
+        "share": 93.4
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 5.5
+      }
+    ],
+    "source": "https://flagcdn.com/tr.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "trinidad-and-tobago",
+    "code": "tt",
+    "country": "Trinidad and Tobago",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#DA1A35",
+        "share": 68.9
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 19.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 9.1
+      }
+    ],
+    "source": "https://flagcdn.com/tt.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "tuvalu",
+    "code": "tv",
+    "country": "Tuvalu",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#009CDE",
+        "share": 70.2
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 7.7
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 6.6
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FEDD00",
+        "share": 3
+      }
+    ],
+    "source": "https://flagcdn.com/tv.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "taiwan",
+    "code": "tw",
+    "country": "Taiwan",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FE0000",
+        "share": 75
+      },
+      {
+        "name": "Blue",
+        "hex": "#000094",
+        "share": 21.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 2.7
+      }
+    ],
+    "source": "https://flagcdn.com/tw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "tanzania",
+    "code": "tz",
+    "country": "Tanzania",
+    "colors": [
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 29.4
+      },
+      {
+        "name": "Green",
+        "hex": "#1EB53A",
+        "share": 28.9
+      },
+      {
+        "name": "Blue",
+        "hex": "#00A3DD",
+        "share": 28.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 11.1
+      }
+    ],
+    "source": "https://flagcdn.com/tz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "ukraine",
+    "code": "ua",
+    "country": "Ukraine",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#005BBB",
+        "share": 50
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD500",
+        "share": 50
+      }
+    ],
+    "source": "https://flagcdn.com/ua.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "uganda",
+    "code": "ug",
+    "country": "Uganda",
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#FCDC04",
+        "share": 32
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 30.7
+      },
+      {
+        "name": "Red",
+        "hex": "#D90000",
+        "share": 30.6
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 3.5
+      }
+    ],
+    "source": "https://flagcdn.com/ug.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "united-states-minor-outlying-islands",
+    "code": "um",
+    "country": "United States Minor Outlying Islands",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#B31942",
+        "share": 39
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 34.6
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#0A3161",
+        "share": 17.1
+      }
+    ],
+    "source": "https://flagcdn.com/um.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "united-nations",
+    "code": "un",
+    "country": "United Nations",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#009EDB",
+        "share": 90.7
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 3.7
+      }
+    ],
+    "source": "https://flagcdn.com/un.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "united-states",
+    "country": "United States",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#BB133E"
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF"
+      },
+      {
+        "name": "Blue",
+        "hex": "#002147"
+      }
+    ],
+    "alternatives": [
+      {
+        "label": "U.S. Government Printing Office (PMS 186 C / 288 C)",
+        "colors": [
+          "#C8102E",
+          "#FFFFFF",
+          "#002D72"
+        ]
+      },
+      {
+        "label": "Old Glory Red / Old Glory Blue (PMS 193 C / 281 C)",
+        "colors": [
+          "#BF0A30",
+          "#FFFFFF",
+          "#00205B"
+        ]
+      },
+      {
+        "label": "State Department ECA brand",
+        "colors": [
+          "#B31942",
+          "#FFFFFF",
+          "#0A3161"
+        ]
+      }
+    ],
+    "source": "https://en.wikipedia.org/wiki/Flag_of_the_United_States",
+    "sourceNote": "U.S. Department of State values as listed on Wikipedia. Federal Specification DDD-F-416E names the cloth colours without digital values.",
+    "verified": true,
+    "code": "us"
+  },
+  {
+    "slug": "uruguay",
+    "code": "uy",
+    "country": "Uruguay",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 57.2
+      },
+      {
+        "name": "Blue",
+        "hex": "#0038A8",
+        "share": 34.2
+      },
+      {
+        "name": "Gold",
+        "hex": "#FCD116",
+        "share": 1.2
+      },
+      {
+        "name": "Brown",
+        "hex": "#7B3F00",
+        "share": 1.2
+      }
+    ],
+    "source": "https://flagcdn.com/uy.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "uzbekistan",
+    "code": "uz",
+    "country": "Uzbekistan",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 32.5
+      },
+      {
+        "name": "Green",
+        "hex": "#308738",
+        "share": 32
+      },
+      {
+        "name": "Blue",
+        "hex": "#3081F7",
+        "share": 30.7
+      },
+      {
+        "name": "Red",
+        "hex": "#EE162E",
+        "share": 4
+      }
+    ],
+    "source": "https://flagcdn.com/uz.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "vatican-city-holy-see",
+    "code": "va",
+    "country": "Vatican City (Holy See)",
+    "colors": [
+      {
+        "name": "Yellow",
+        "hex": "#FFF200",
+        "share": 50
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 42.3
+      }
+    ],
+    "source": "https://flagcdn.com/va.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "saint-vincent-and-the-grenadines",
+    "code": "vc",
+    "country": "Saint Vincent and the Grenadines",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FCD022",
+        "share": 43.5
+      },
+      {
+        "name": "Green",
+        "hex": "#007C2E",
+        "share": 30.7
+      },
+      {
+        "name": "Blue",
+        "hex": "#002674",
+        "share": 25
+      }
+    ],
+    "source": "https://flagcdn.com/vc.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "venezuela",
+    "code": "ve",
+    "country": "Venezuela",
+    "colors": [
+      {
+        "name": "Gold",
+        "hex": "#FFCC00",
+        "share": 33
+      },
+      {
+        "name": "Red",
+        "hex": "#CF142B",
+        "share": 33
+      },
+      {
+        "name": "Blue",
+        "hex": "#00247D",
+        "share": 31.5
+      }
+    ],
+    "source": "https://flagcdn.com/ve.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "british-virgin-islands",
+    "code": "vg",
+    "country": "British Virgin Islands",
+    "colors": [
+      {
+        "name": "Navy blue",
+        "hex": "#012169",
+        "share": 69
+      },
+      {
+        "name": "Red",
+        "hex": "#C8102E",
+        "share": 8.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 8.6
+      },
+      {
+        "name": "Dark Green",
+        "hex": "#006129",
+        "share": 4.5
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFC72C",
+        "share": 1.1
+      }
+    ],
+    "source": "https://flagcdn.com/vg.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "united-states-virgin-islands",
+    "code": "vi",
+    "country": "United States Virgin Islands",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 67.7
+      },
+      {
+        "name": "Gold",
+        "hex": "#F4C53D",
+        "share": 12.4
+      },
+      {
+        "name": "Blue",
+        "hex": "#162667",
+        "share": 2.5
+      },
+      {
+        "name": "Blue 2",
+        "hex": "#0081C6",
+        "share": 2.3
+      },
+      {
+        "name": "Red",
+        "hex": "#A60032",
+        "share": 1.4
+      }
+    ],
+    "source": "https://flagcdn.com/vi.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "vietnam",
+    "code": "vn",
+    "country": "Vietnam",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#FF0000",
+        "share": 92.9
+      },
+      {
+        "name": "Yellow",
+        "hex": "#FFEB00",
+        "share": 6.4
+      }
+    ],
+    "source": "https://flagcdn.com/vn.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "vanuatu",
+    "code": "vu",
+    "country": "Vanuatu",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#009543",
+        "share": 30.9
+      },
+      {
+        "name": "Red",
+        "hex": "#D21034",
+        "share": 30.8
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 25.6
+      },
+      {
+        "name": "Gold",
+        "hex": "#FDCE12",
+        "share": 9
+      }
+    ],
+    "source": "https://flagcdn.com/vu.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "wallis-and-futuna",
+    "code": "wf",
+    "country": "Wallis and Futuna",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 84.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 9.6
+      },
+      {
+        "name": "Navy blue",
+        "hex": "#002654",
+        "share": 5.3
+      }
+    ],
+    "source": "https://flagcdn.com/wf.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "samoa",
+    "code": "ws",
+    "country": "Samoa",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 75
+      },
+      {
+        "name": "Blue",
+        "hex": "#002B7F",
+        "share": 23.7
+      }
+    ],
+    "source": "https://flagcdn.com/ws.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "kosovo",
+    "code": "xk",
+    "country": "Kosovo",
+    "colors": [
+      {
+        "name": "Blue",
+        "hex": "#244AA5",
+        "share": 87
+      },
+      {
+        "name": "Gold",
+        "hex": "#D0A650",
+        "share": 10.2
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 1.4
+      }
+    ],
+    "source": "https://flagcdn.com/xk.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "yemen",
+    "code": "ye",
+    "country": "Yemen",
+    "colors": [
+      {
+        "name": "Red",
+        "hex": "#CE1126",
+        "share": 33
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 33
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 33
+      }
+    ],
+    "source": "https://flagcdn.com/ye.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "mayotte",
+    "code": "yt",
+    "country": "Mayotte",
+    "colors": [
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 73
+      },
+      {
+        "name": "Light gray",
+        "hex": "#DFDFDF",
+        "share": 7.4
+      },
+      {
+        "name": "Red",
+        "hex": "#D42E12",
+        "share": 5.4
+      },
+      {
+        "name": "Blue",
+        "hex": "#171796",
+        "share": 3.5
+      }
+    ],
+    "source": "https://flagcdn.com/yt.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "south-africa",
+    "code": "za",
+    "country": "South Africa",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#007749",
+        "share": 30.6
+      },
+      {
+        "name": "Red",
+        "hex": "#E03C31",
+        "share": 20.8
+      },
+      {
+        "name": "Blue",
+        "hex": "#001489",
+        "share": 20.8
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 11.5
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 8.8
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFB81C",
+        "share": 5
+      }
+    ],
+    "source": "https://flagcdn.com/za.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "zambia",
+    "code": "zm",
+    "country": "Zambia",
+    "colors": [
+      {
+        "name": "Green",
+        "hex": "#198A00",
+        "share": 74.1
+      },
+      {
+        "name": "Orange",
+        "hex": "#EF7D00",
+        "share": 8.5
+      },
+      {
+        "name": "Red",
+        "hex": "#DE2010",
+        "share": 7.5
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 7.5
+      }
+    ],
+    "source": "https://flagcdn.com/zm.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
+  },
+  {
+    "slug": "zimbabwe",
+    "code": "zw",
+    "country": "Zimbabwe",
+    "colors": [
+      {
+        "name": "Dark Green",
+        "hex": "#006400",
+        "share": 26.1
+      },
+      {
+        "name": "Gold",
+        "hex": "#FFD200",
+        "share": 23
+      },
+      {
+        "name": "Red",
+        "hex": "#D40000",
+        "share": 22
+      },
+      {
+        "name": "White",
+        "hex": "#FFFFFF",
+        "share": 13
+      },
+      {
+        "name": "Black",
+        "hex": "#000000",
+        "share": 10.4
+      }
+    ],
+    "source": "https://flagcdn.com/zw.svg",
+    "sourceNote": "Measured from the flag's SVG artwork (flagcdn.com, based on Wikimedia Commons): declared colors ranked by the share of the flag they cover.",
+    "verified": false
   }
 ]

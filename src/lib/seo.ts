@@ -164,7 +164,7 @@ export function createPageMetadata({
   const key = path === "" ? "/" : path.replace(/\/$/, "") || "/";
   const fullTitle = documentTitle(META_TITLES[key] ?? title);
   description = fitDescription(META_DESCRIPTIONS[key] ?? description, ...DESCRIPTION_ENDINGS);
-  const ogImageUrl = absoluteUrl(ogImage ?? "/og-image.png");
+  const ogImageUrl = ogImage?.startsWith("http") ? ogImage : absoluteUrl(ogImage ?? "/og-image.png");
 
   return {
     title: fullTitle,
