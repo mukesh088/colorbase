@@ -224,6 +224,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/color-blindness-simulator",
+        destination: "/color-blind-simulator",
+        permanent: true,
+      },
+      {
         // Was listed as a page but never had its own tool (served a soft 404).
         source: "/color-palette-generator",
         destination: "/palette-generator",

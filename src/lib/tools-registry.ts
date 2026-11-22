@@ -640,7 +640,7 @@ export const TOOLS: ToolDefinition[] = [
     title: "Color Blind Simulator",
     shortTitle: "Color Blind",
     description:
-      "Simulate how colors appear with protanopia, deuteranopia, tritanopia, and other vision types.",
+      "Simulate colors, images and website palettes with protanopia, deuteranopia, tritanopia and achromatopsia, with a severity slider.",
     keywords: ["color blind simulator", "protanopia", "deuteranopia"],
     category: "accessibility",
     icon: "Eye",

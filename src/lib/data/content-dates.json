@@ -7,7 +7,8 @@
     "color-names": "2026-11-22",
     "colors": "2026-11-22",
     "palettes": "2026-11-22",
-    "gradients": "2026-11-22"
+    "gradients": "2026-11-22",
+    "combinations": "2026-11-22"
   },
   "routes": {
     "/": "2026-11-21",
@@ -46,6 +47,7 @@
     "/color-wheel": "2026-07-31",
     "/colorize-photo": "2026-11-22",
     "/colors": "2026-11-22",
+    "/colors-that-go-with": "2026-11-22",
     "/colors/bootstrap": "2026-10-08",
     "/colors/css": "2026-10-08",
     "/colors/flat-ui": "2026-10-08",

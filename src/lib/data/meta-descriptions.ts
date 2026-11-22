@@ -33,7 +33,7 @@ export const META_DESCRIPTIONS: Record<string, string> = {
   "/color-atlas":
     "Compare color tokens across CSS, Tailwind, Material, Bootstrap, Radix, Ant Design and more. Exact matches are official; the rest are labeled nearest.",
   "/color-blind-simulator":
-    "Preview colors as people with protanopia, deuteranopia, tritanopia or achromatopsia see them, and spot pairs that become hard to tell apart in your UI.",
+    "Simulate color blindness on colors, images or a website URL. Compare protanopia, deuteranopia, tritanopia and achromatopsia with a severity slider.",
   "/color-names":
     "Look up CSS named colors and 1,000+ color names with HEX and RGB codes. Wheat is #F5DEB3, salmon is #FA8072, tomato is #FF6347. Copy any value for CSS.",
   "/color-pencil-colors":

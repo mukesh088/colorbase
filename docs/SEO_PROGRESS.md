@@ -61,7 +61,7 @@ Tick a task only when it is built, the build passes and it is committed.
 - [ ] 5.4 Outfit & saree color combinations
 - [ ] 5.5 Palettes by use case
 - [ ] 5.6 Game color tools (Discord ANSI + game codes)
-- [ ] 5.7 Color blindness simulator
+- [x] 5.7 Color blindness simulator: upgraded at the existing `/color-blind-simulator` (your decision) with three modes (HEX palette, image upload processed in the browser, website URL via the existing `/api/website-colors` CSS analysis), a 0–100% severity slider (`simulateColorBlindRgb`, linear blend toward the deficiency matrix) and side-by-side protan/deutan/tritan/achromat previews. `/color-blindness-simulator` 308s to it. Contrast checker and accessibility checker already link to it.
 - [ ] 5.8 Color trends 2027 + color of the year
 - [ ] 5.9 RAL colors
 

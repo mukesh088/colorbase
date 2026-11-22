@@ -330,56 +330,72 @@ export function generateHarmonyByOffsets(hex: string, offsets: number[]): string
   );
 }
 
-export function simulateColorBlind(
-  hex: string,
-  type: string
-): string {
-  const { r, g, b } = hexToRgb(hex);
-  // Simplified matrices for color-blind simulation (Brettel/Viénot approximations)
-  const matrices: Record<string, number[][]> = {
-    protanopia: [
-      [0.567, 0.433, 0],
-      [0.558, 0.442, 0],
-      [0, 0.242, 0.758],
-    ],
-    deuteranopia: [
-      [0.625, 0.375, 0],
-      [0.7, 0.3, 0],
-      [0, 0.3, 0.7],
-    ],
-    tritanopia: [
-      [0.95, 0.05, 0],
-      [0, 0.433, 0.567],
-      [0, 0.475, 0.525],
-    ],
-    achromatopsia: [
-      [0.299, 0.587, 0.114],
-      [0.299, 0.587, 0.114],
-      [0.299, 0.587, 0.114],
-    ],
-    protanomaly: [
-      [0.817, 0.183, 0],
-      [0.333, 0.667, 0],
-      [0, 0.125, 0.875],
-    ],
-    deuteranomaly: [
-      [0.8, 0.2, 0],
-      [0.258, 0.742, 0],
-      [0, 0.142, 0.858],
-    ],
-    tritanomaly: [
-      [0.967, 0.033, 0],
-      [0, 0.733, 0.267],
-      [0, 0.183, 0.817],
-    ],
-  };
+/** Simplified matrices for color-blind simulation (Brettel/Viénot approximations). */
+export const COLOR_BLIND_MATRICES: Record<string, number[][]> = {
+  protanopia: [
+    [0.567, 0.433, 0],
+    [0.558, 0.442, 0],
+    [0, 0.242, 0.758],
+  ],
+  deuteranopia: [
+    [0.625, 0.375, 0],
+    [0.7, 0.3, 0],
+    [0, 0.3, 0.7],
+  ],
+  tritanopia: [
+    [0.95, 0.05, 0],
+    [0, 0.433, 0.567],
+    [0, 0.475, 0.525],
+  ],
+  achromatopsia: [
+    [0.299, 0.587, 0.114],
+    [0.299, 0.587, 0.114],
+    [0.299, 0.587, 0.114],
+  ],
+  protanomaly: [
+    [0.817, 0.183, 0],
+    [0.333, 0.667, 0],
+    [0, 0.125, 0.875],
+  ],
+  deuteranomaly: [
+    [0.8, 0.2, 0],
+    [0.258, 0.742, 0],
+    [0, 0.142, 0.858],
+  ],
+  tritanomaly: [
+    [0.967, 0.033, 0],
+    [0, 0.733, 0.267],
+    [0, 0.183, 0.817],
+  ],
+};
 
-  const m = matrices[type] ?? matrices.protanopia;
-  return rgbToHex({
-    r: clamp(Math.round(m[0][0] * r + m[0][1] * g + m[0][2] * b), 0, 255),
-    g: clamp(Math.round(m[1][0] * r + m[1][1] * g + m[1][2] * b), 0, 255),
-    b: clamp(Math.round(m[2][0] * r + m[2][1] * g + m[2][2] * b), 0, 255),
-  });
+/**
+ * Simulate one sRGB pixel. `severity` 0–1 blends from normal vision (0) to the
+ * full deficiency (1); partial values approximate anomalous trichromacy.
+ */
+export function simulateColorBlindRgb(
+  r: number,
+  g: number,
+  b: number,
+  type: string,
+  severity = 1
+): [number, number, number] {
+  const m = COLOR_BLIND_MATRICES[type] ?? COLOR_BLIND_MATRICES.protanopia;
+  const k = Math.max(0, Math.min(1, severity));
+  const sr = m[0][0] * r + m[0][1] * g + m[0][2] * b;
+  const sg = m[1][0] * r + m[1][1] * g + m[1][2] * b;
+  const sb = m[2][0] * r + m[2][1] * g + m[2][2] * b;
+  return [
+    clamp(Math.round(r + (sr - r) * k), 0, 255),
+    clamp(Math.round(g + (sg - g) * k), 0, 255),
+    clamp(Math.round(b + (sb - b) * k), 0, 255),
+  ];
+}
+
+export function simulateColorBlind(hex: string, type: string, severity = 1): string {
+  const { r, g, b } = hexToRgb(hex);
+  const [sr, sg, sb] = simulateColorBlindRgb(r, g, b, type, severity);
+  return rgbToHex({ r: sr, g: sg, b: sb });
 }
 
 export function mixColors(a: string, b: string, weight = 0.5): string {

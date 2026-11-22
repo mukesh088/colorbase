@@ -364,7 +364,7 @@ export const TOOL_ANSWERS: Record<string, ToolAnswer> = {
   "color-blind-simulator": {
     question: "What does a color blindness simulator show?",
     answer:
-      "A color blindness simulator shows how colors look to people with color vision deficiency. Protanopia and deuteranopia make reds and greens hard to tell apart, tritanopia affects blues and yellows, and achromatopsia removes color entirely. Preview your palette under each type to catch status colors, charts or links that become indistinguishable, then fix them.",
+      "A color blindness simulator shows how colors look to people with color vision deficiency. Protanopia and deuteranopia blur reds and greens, tritanopia affects blues and yellows, and achromatopsia removes color. Load a palette, an image or a website URL, set the severity, and spot colors that become indistinguishable before you ship.",
     keyFacts: [
       "About 1 in 12 men and 1 in 200 women have a color vision deficiency.",
       "Red–green deficiencies (protan and deutan) are the most common.",
