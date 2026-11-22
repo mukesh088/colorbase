@@ -20,7 +20,10 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     why: "Randomize is for exploration, not a brand lock. RGBA is the overlay format of the same swatch. Harmonies, tints, and WCAG stay next to the value so you do not ship a pretty color that fails on buttons.",
     relatedReading: [
-      { href: "/blog/how-color-psychology-shapes-conversion-rates", title: "How color psychology shapes conversion rates" },
+      {
+        href: "/blog/how-color-psychology-shapes-conversion-rates",
+        title: "How color psychology shapes conversion rates",
+      },
       { href: "/learning", title: "Color formats and contrast lessons" },
     ],
   },
@@ -59,7 +62,9 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "For a muted surface, drop S before you drop L, or the hue will look dirty.",
     ],
     why: "OKLCH is even more uniform, but HSL is everywhere in CSS today. This converter is the bridge from a designer’s HEX to a developer’s `hsl()` token.",
-    relatedReading: [{ href: "/blog/from-hex-to-design-tokens-in-css", title: "From HEX to design tokens in CSS" }],
+    relatedReading: [
+      { href: "/blog/from-hex-to-design-tokens-in-css", title: "From HEX to design tokens in CSS" },
+    ],
   },
   "hsl-to-hex": {
     intro:
@@ -83,7 +88,10 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     why: "We keep this next to the picker because brand rose `#E11D48` looks strong on marketing pages and then fails as small text on white.",
     relatedReading: [
-      { href: "/blog/building-accessible-palettes-that-still-feel-premium", title: "Accessible palettes that still feel premium" },
+      {
+        href: "/blog/building-accessible-palettes-that-still-feel-premium",
+        title: "Accessible palettes that still feel premium",
+      },
       { href: "/color-blind-simulator", title: "Color-blind simulator" },
     ],
   },
@@ -108,7 +116,11 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     why: "A generator is only useful if the output becomes tokens. Pair this with palette export rather than screenshots in Slack.",
     relatedReading: [
-      { href: "/blog/color-theory-basics-for-product-designers", title: "Color theory basics for product designers" },
+      { href: "/colors-that-go-with", title: "Colors that go with any color" },
+      {
+        href: "/blog/color-theory-basics-for-product-designers",
+        title: "Color theory basics for product designers",
+      },
       { href: "/palette-export", title: "Palette export" },
     ],
   },
@@ -121,7 +133,13 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "Copy the HEX stops into the palette generator or export panel.",
     ],
     why: "Wheel tools that only show a rainbow teach hue but not product roles. Ours keeps the chord together so dashboards stay coherent.",
-    relatedReading: [{ href: "/blog/color-theory-basics-for-product-designers", title: "Color theory basics for product designers" }],
+    relatedReading: [
+      { href: "/colors-that-go-with", title: "Colors that go with any color" },
+      {
+        href: "/blog/color-theory-basics-for-product-designers",
+        title: "Color theory basics for product designers",
+      },
+    ],
   },
   "gradient-generator": {
     intro:
@@ -143,7 +161,9 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "Put a heading on the glass and run contrast against the worst-case photo behind it.",
     ],
     why: "Glassmorphism became a cliché because people copied the blur and skipped contrast. This generator exists to make the CSS honest.",
-    relatedReading: [{ href: "/blog/2026-ui-color-trends-worth-using", title: "2026 UI color trends worth using" }],
+    relatedReading: [
+      { href: "/blog/2026-ui-color-trends-worth-using", title: "2026 UI color trends worth using" },
+    ],
   },
   "palette-export": {
     intro:
@@ -154,7 +174,9 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "Name tokens by role (`--color-primary`) not by hue (`--color-rose`) so rebrands do not rewrite every file.",
     ],
     why: "The expensive part of color is not picking it — it is keeping five platforms in sync. Export is that sync step.",
-    relatedReading: [{ href: "/blog/from-hex-to-design-tokens-in-css", title: "From HEX to design tokens in CSS" }],
+    relatedReading: [
+      { href: "/blog/from-hex-to-design-tokens-in-css", title: "From HEX to design tokens in CSS" },
+    ],
   },
   "ai-color-copilot": {
     intro:
@@ -165,7 +187,9 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
       "Export the system and verify primary text pairs in the contrast checker before shipping.",
     ],
     why: "Language models are weak at hex math. We keep contrast deterministic so you can trust the numbers next to the adjectives.",
-    relatedReading: [{ href: "/blog/developer-tips-for-themeable-react-apps", title: "Themeable React apps" }],
+    relatedReading: [
+      { href: "/blog/developer-tips-for-themeable-react-apps", title: "Themeable React apps" },
+    ],
   },
   "color-blind-simulator": {
     intro:
@@ -192,18 +216,15 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     sections: [
       {
         heading: "Seconds, milliseconds, and why JavaScript lies to you",
-        body:
-          "POSIX Unix time is seconds. `Date.now()` in the browser and Node is milliseconds. Python `time.time()` is seconds as a float. Go `time.Now().Unix()` is seconds; `UnixMilli()` is milliseconds. If you store `Date.now()` in a JWT `exp` claim, validators that expect seconds will treat your token as valid until roughly the year 50,000. Count digits: 10 ≈ seconds for dates in this century, 13 ≈ milliseconds, 16 ≈ microseconds, 19 ≈ nanoseconds. This converter labels the unit instead of silently guessing wrong.",
+        body: "POSIX Unix time is seconds. `Date.now()` in the browser and Node is milliseconds. Python `time.time()` is seconds as a float. Go `time.Now().Unix()` is seconds; `UnixMilli()` is milliseconds. If you store `Date.now()` in a JWT `exp` claim, validators that expect seconds will treat your token as valid until roughly the year 50,000. Count digits: 10 ≈ seconds for dates in this century, 13 ≈ milliseconds, 16 ≈ microseconds, 19 ≈ nanoseconds. This converter labels the unit instead of silently guessing wrong.",
       },
       {
         heading: "UTC vs IST vs “local” on a laptop",
-        body:
-          "Unix time has no timezone. Timezones only appear when you format the instant for a wall clock. 1757318400 is the same moment in London and Ranchi; IST will read 5 hours 30 minutes ahead of UTC. “Local” on this page is whatever zone your phone or laptop uses — which is why a screenshot from a US teammate and one from Jharkhand can show different clock faces for the same epoch. When you write `lastmod` in a sitemap or `Expires` on a cache, prefer UTC (the ISO 8601 string ending in Z).",
+        body: "Unix time has no timezone. Timezones only appear when you format the instant for a wall clock. 1757318400 is the same moment in London and Ranchi; IST will read 5 hours 30 minutes ahead of UTC. “Local” on this page is whatever zone your phone or laptop uses — which is why a screenshot from a US teammate and one from Jharkhand can show different clock faces for the same epoch. When you write `lastmod` in a sitemap or `Expires` on a cache, prefer UTC (the ISO 8601 string ending in Z).",
       },
       {
         heading: "JWT exp, cache headers, and color APIs",
-        body:
-          "JSON Web Tokens encode `exp`, `iat`, and `nbf` as Unix seconds. Convert those claims here before you decide a palette share link or Copilot session is “expired”. HTTP `Expires` is an HTTP-date (RFC 822/1123), not epoch — this tool prints that format so you can paste it into a header.",
+        body: "JSON Web Tokens encode `exp`, `iat`, and `nbf` as Unix seconds. Convert those claims here before you decide a palette share link or Copilot session is “expired”. HTTP `Expires` is an HTTP-date (RFC 822/1123), not epoch — this tool prints that format so you can paste it into a header.",
       },
     ],
     relatedReading: [
@@ -560,8 +581,14 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     why: "A pretty palette still fails when text sits on the wrong surface. Previewing roles on UI chrome catches that before production.",
     relatedReading: [
-      { href: "/blog/ship-a-five-role-saas-shell-with-css-variables", title: "Five-role SaaS shell with CSS variables" },
-      { href: "/blog/build-a-dark-mode-surface-stack-with-css-variables", title: "Dark-mode surface stack" },
+      {
+        href: "/blog/ship-a-five-role-saas-shell-with-css-variables",
+        title: "Five-role SaaS shell with CSS variables",
+      },
+      {
+        href: "/blog/build-a-dark-mode-surface-stack-with-css-variables",
+        title: "Dark-mode surface stack",
+      },
       { href: "/contrast-checker", title: "Contrast checker" },
     ],
   },
@@ -576,7 +603,10 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     why: "Dashboard greens and reds that only differ by hue break for many users. Structure and labels matter more than a trendy gradient.",
     relatedReading: [
-      { href: "/blog/choose-chart-colors-people-can-tell-apart", title: "Chart colors people can tell apart" },
+      {
+        href: "/blog/choose-chart-colors-people-can-tell-apart",
+        title: "Chart colors people can tell apart",
+      },
       { href: "/color-blind-simulator", title: "Color-blind simulator" },
     ],
   },
@@ -592,7 +622,10 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     why: "A full wheel looks complete and ships noise. Jobs first, then export.",
     relatedReading: [
       { href: "/color-wheel", title: "Color wheel" },
-      { href: "/blog/name-the-job-of-every-tint-shade-and-tone", title: "Name tint, shade, and tone jobs" },
+      {
+        href: "/blog/name-the-job-of-every-tint-shade-and-tone",
+        title: "Name tint, shade, and tone jobs",
+      },
       { href: "/palette-generator", title: "Palette generator" },
     ],
   },
@@ -607,8 +640,14 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     why: "Equal RGB mixes are not equal brightness. This tool is for job-named steps; OKLCH guides explain perceptual ramps.",
     relatedReading: [
-      { href: "/blog/why-equal-rgb-steps-do-not-look-equally-bright", title: "Why equal RGB steps do not look equally bright" },
-      { href: "/blog/name-the-job-of-every-tint-shade-and-tone", title: "Name tint, shade, and tone jobs" },
+      {
+        href: "/blog/why-equal-rgb-steps-do-not-look-equally-bright",
+        title: "Why equal RGB steps do not look equally bright",
+      },
+      {
+        href: "/blog/name-the-job-of-every-tint-shade-and-tone",
+        title: "Name tint, shade, and tone jobs",
+      },
       { href: "/contrast-checker", title: "Contrast checker" },
     ],
   },
@@ -772,13 +811,17 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
     why: "Manual eyedropping from screenshots invents anti-aliased colors. CSS declarations are closer to what engineering ships — with clear limits for SPAs.",
     relatedReading: [
-      { href: "/blog/extract-colors-from-a-live-website-with-colorbase", title: "Extract colors from a live website" },
+      {
+        href: "/blog/extract-colors-from-a-live-website-with-colorbase",
+        title: "Extract colors from a live website",
+      },
       { href: "/theme-builder", title: "Theme builder" },
       { href: "/css-color-audit", title: "CSS color audit" },
     ],
   },
   "svg-color-editor": {
-    intro: "Sanitize SVG, list fills/strokes, replace colors, and export without executing scripts.",
+    intro:
+      "Sanitize SVG, list fills/strokes, replace colors, and export without executing scripts.",
     steps: [
       "Upload or paste SVG (demo mark included).",
       "Pick a detected swatch and choose a replacement.",
@@ -807,7 +850,8 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
     ],
   },
   "css-color-audit": {
-    intro: "Inventory stylesheet colors, flag duplicates, and draft CSS variables before a token migration.",
+    intro:
+      "Inventory stylesheet colors, flag duplicates, and draft CSS variables before a token migration.",
     steps: [
       "Paste CSS or upload a .css file.",
       "Review inventory, duplicates, and similar pairs.",
@@ -835,17 +879,22 @@ export const TOOL_GUIDES: Record<string, ToolGuide> = {
 };
 
 export function guideWordCount(guide: ToolGuide) {
-  return [guide.intro, ...guide.steps, guide.why, ...(guide.sections ?? []).flatMap((section) => [section.heading, section.body])]
+  return [
+    guide.intro,
+    ...guide.steps,
+    guide.why,
+    ...(guide.sections ?? []).flatMap((section) => [section.heading, section.body]),
+  ]
     .join(" ")
     .split(/\s+/)
     .filter(Boolean).length;
 }
 
-
 /** Guides for the CSS studios that only had supplement copy. */
 const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
   "text-shadow-generator": {
-    intro: "Build a text-shadow for a heading or label: one soft lift over a photo, or a stack of layers for glow, neon and outline effects.",
+    intro:
+      "Build a text-shadow for a heading or label: one soft lift over a photo, or a stack of layers for glow, neon and outline effects.",
     steps: [
       "Type your own text in the preview, or start from a glow, neon or outline preset.",
       "Adjust each layer's x and y offset, blur and color. Add layers to stack effects.",
@@ -855,7 +904,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "Shadows are easy to overdo. Previewing the stack at the real size keeps the letters readable instead of fuzzy.",
   },
   "flexbox-playground": {
-    intro: "Use the playground to see how each Flexbox property moves real items before you write the CSS.",
+    intro:
+      "Use the playground to see how each Flexbox property moves real items before you write the CSS.",
     steps: [
       "Set the container's direction, wrap, justify-content, align-items and gap, or load a preset layout.",
       "Select an item to change its grow, shrink, basis, align-self or order.",
@@ -865,7 +915,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "Flexbox bugs usually come from mixing up the main and cross axis. Changing one property at a time makes the axis obvious.",
   },
   "css-grid-generator": {
-    intro: "Design a grid by editing its tracks and placing items, then copy CSS that matches what you see.",
+    intro:
+      "Design a grid by editing its tracks and placing items, then copy CSS that matches what you see.",
     steps: [
       "Set the number of columns and rows and the size of each track (fr, px or minmax).",
       "Adjust the column and row gap and the alignment of items in their cells.",
@@ -875,7 +926,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "Grid line numbers are hard to picture in your head. A visual editor shows each span before it ships.",
   },
   "css-transition-generator": {
-    intro: "Build smooth hover and focus transitions by choosing which properties animate, for how long and with what easing.",
+    intro:
+      "Build smooth hover and focus transitions by choosing which properties animate, for how long and with what easing.",
     steps: [
       "Add a layer for each property you want to animate, such as transform or background-color.",
       "Set the duration, delay and easing for each layer, or pick an easing preset.",
@@ -885,7 +937,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "transition: all animates things you did not intend. Listing each property keeps motion deliberate and fast.",
   },
   "css-filter-generator": {
-    intro: "Stack CSS filter functions on an image and compare the result with the original before you copy the code.",
+    intro:
+      "Stack CSS filter functions on an image and compare the result with the original before you copy the code.",
     steps: [
       "Load the sample image or your own.",
       "Adjust blur, brightness, contrast, saturate, hue-rotate, grayscale, sepia, invert, opacity and drop-shadow.",
@@ -895,7 +948,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "Filters apply in order, so the same functions in a different order give a different image. Seeing both versions avoids surprises.",
   },
   "backdrop-filter-generator": {
-    intro: "Design a frosted panel by blurring what sits behind it, then copy CSS that works across browsers.",
+    intro:
+      "Design a frosted panel by blurring what sits behind it, then copy CSS that works across browsers.",
     steps: [
       "Pick a background scene so there is something behind the panel to blur.",
       "Set blur, saturation and brightness, plus the panel's tint and opacity.",
@@ -905,7 +959,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "backdrop-filter only shows on a translucent element over a busy background. Testing on a real scene shows whether the effect is visible and the text stays readable.",
   },
   "border-generator": {
-    intro: "Set a border's width, style and color for each side, round the corners, and copy clean CSS.",
+    intro:
+      "Set a border's width, style and color for each side, round the corners, and copy clean CSS.",
     steps: [
       "Choose a style such as solid, dashed or double, then set the width and color.",
       "Unlink the sides to give the top, right, bottom and left their own values.",
@@ -925,7 +980,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "Browsers use two different scrollbar APIs. Writing both by hand is where styles fall out of sync.",
   },
   "typography-generator": {
-    intro: "Choose fonts, a size scale and line heights, preview them on real text, and export the CSS.",
+    intro:
+      "Choose fonts, a size scale and line heights, preview them on real text, and export the CSS.",
     steps: [
       "Pick a font pairing from the font cards.",
       "Set the base size and scale ratio, and check the heading ladder.",
@@ -935,7 +991,8 @@ const TOOL_GUIDE_FILL: Record<string, ToolGuide> = {
     why: "Type looks different on paper, light and dark backgrounds. Previewing all three catches thin weights that disappear.",
   },
   "css-clamp-generator": {
-    intro: "Calculate a fluid clamp() value that scales smoothly between a minimum and maximum size.",
+    intro:
+      "Calculate a fluid clamp() value that scales smoothly between a minimum and maximum size.",
     steps: [
       "Choose the property, such as font-size or padding, or a preset.",
       "Enter the minimum and maximum size and the viewport widths where each applies.",

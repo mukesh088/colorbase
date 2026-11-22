@@ -4,6 +4,7 @@ import { getContrastRatio, rgbToCmyk, simulateColorBlind } from "@/lib/colors/co
 import { nearestCssName, nearestTailwind } from "@/lib/colors/spaces";
 import { getAllPalettes } from "@/lib/data/palette-library";
 import { getAllGradients } from "@/lib/data/gradient-library";
+import { getCombinationBases } from "@/lib/colors/combinations";
 
 const CVD_TYPES = [
   ["protanopia", "Protanopia"],
@@ -51,6 +52,7 @@ export function HexQuickFacts({ hex, name }: { hex: string; name?: string }) {
   const gradients = getAllGradients()
     .filter((g) => g.colors.some((c) => c.toLowerCase() === lower))
     .slice(0, 6);
+  const combination = getCombinationBases().find((b) => b.hex.toLowerCase() === lower);
   const snippet = [
     "/* CSS */",
     `:root { --color-${tokenName}: ${lower}; }`,
@@ -72,6 +74,16 @@ export function HexQuickFacts({ hex, name }: { hex: string; name?: string }) {
       <p className="text-muted-foreground mt-2 max-w-3xl text-sm leading-relaxed">
         {hexUsageSentences(d.hex, onWhite, onBlack).join(" ")} In print it is roughly CMYK {cmyk.c}, {cmyk.m},{" "}
         {cmyk.y}, {cmyk.k}.
+        {combination && (
+          <>
+            {" "}
+            See the{" "}
+            <Link href={`/colors-that-go-with/${combination.slug}`} className="text-primary underline-offset-4 hover:underline">
+              colors that go with {combination.name.toLowerCase()}
+            </Link>
+            .
+          </>
+        )}
       </p>
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">

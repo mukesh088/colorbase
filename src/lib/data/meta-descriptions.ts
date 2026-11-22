@@ -70,6 +70,8 @@ export const META_DESCRIPTIONS: Record<string, string> = {
     "Bukkit and Spigot ChatColor enums with § and & chat codes, MOTD sequences, HEX and RGB values for Minecraft plugin developers, in one searchable table.",
   "/color-codes/roblox":
     "Searchable list of Roblox BrickColor IDs and names with their official RGB values and calculated HEX, HSL and OKLCH codes for scripts and Roblox Studio.",
+  "/colors-that-go-with":
+    "Find colors that go with any color: pick from 122 base colors to see matching shades, neutrals, ready palettes and previews for a website, room and outfit.",
   "/colorize-photo":
     "Tint photos online with sepia, cyanotype and neon duotone washes. Works on black and white or color pictures, and every image stays in your browser.",
   "/complementary-colors":

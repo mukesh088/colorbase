@@ -174,6 +174,12 @@ export default function ComplementaryColorsPage() {
             Color Palette Generator <ArrowRight className="h-3 w-3" />
           </Link>
           <Link
+            href="/colors-that-go-with"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium hover:border-primary/50 hover:text-primary transition-colors"
+          >
+            Colors that go with any color <ArrowRight className="h-3 w-3" />
+          </Link>
+          <Link
             href="/house-color-combinations"
             className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-card px-3 py-1.5 text-xs font-medium hover:border-primary/50 hover:text-primary transition-colors"
           >

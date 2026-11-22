@@ -57,6 +57,7 @@ export const SECTION_SOURCES = {
   ],
   palettes: ["src/lib/data/palette-library.ts", "src/lib/data/studio-palettes.ts", "src/app/palette-library"],
   gradients: ["src/lib/data/gradient-library.ts", "src/lib/data/studio-gradients.ts", "src/app/gradient-library"],
+  combinations: ["src/lib/data/combination-colors.json", "src/lib/colors/combinations.ts", "src/app/colors-that-go-with"],
 };
 
 function git(args) {

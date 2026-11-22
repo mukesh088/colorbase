@@ -17,6 +17,7 @@ import { CODE_FORMATS } from "@/lib/codegen";
 import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
 import { getIndexableHexSlugs, isCuratedLibraryColor } from "@/lib/hex-indexing";
 import { absoluteUrl } from "@/lib/utils";
+import { getCombinationBases } from "@/lib/colors/combinations";
 import { isoToDate as toDate, latestIso as latest, routeLastModified, sectionLastModified } from "@/lib/content-dates";
 import retiredToolSlugs from "../../retired-tools";
 
@@ -29,6 +30,7 @@ export const SITEMAP_IDS = [
   "colors",
   "palettes",
   "gradients",
+  "combinations",
 ] as const;
 export type SitemapId = (typeof SITEMAP_IDS)[number];
 
@@ -133,6 +135,13 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       return [
         ...GRADIENT_CATEGORIES.map((c) => entry(`/gradient-library/category/${c}`, lastModified, 0.7)),
         ...getAllGradients().map((g) => entry(`/gradient-library/${g.slug}`, lastModified, 0.6)),
+      ];
+    }
+    case "combinations": {
+      const lastModified = sectionLastModified("combinations");
+      return [
+        entry("/colors-that-go-with", lastModified, 0.8),
+        ...getCombinationBases().map((b) => entry(`/colors-that-go-with/${b.slug}`, lastModified, 0.7)),
       ];
     }
     default:

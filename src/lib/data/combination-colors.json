@@ -1,0 +1,1045 @@
+[
+  {
+    "slug": "navy-blue",
+    "name": "Navy Blue",
+    "hex": "#000080",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [
+      "Navy"
+    ],
+    "verified": true
+  },
+  {
+    "slug": "sage-green",
+    "name": "Sage Green",
+    "hex": "#87ae73",
+    "source": "https://github.com/meodai/color-names",
+    "sourceName": "Sage",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "maroon",
+    "name": "Maroon",
+    "hex": "#800000",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "maroon",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "beige",
+    "name": "Beige",
+    "hex": "#f5f5dc",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "beige",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "mustard",
+    "name": "Mustard",
+    "hex": "#ceb301",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "teal",
+    "name": "Teal",
+    "hex": "#008080",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "teal",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "burgundy",
+    "name": "Burgundy",
+    "hex": "#900020",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "olive",
+    "name": "Olive",
+    "hex": "#808000",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "olive",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "emerald",
+    "name": "Emerald",
+    "hex": "#028f1e",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "dusty-rose",
+    "name": "Dusty Rose",
+    "hex": "#b56f76",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "lavender",
+    "name": "Lavender",
+    "hex": "#e6e6fa",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "lavender",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "peach",
+    "name": "Peach",
+    "hex": "#ffb07c",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "coral",
+    "name": "Coral",
+    "hex": "#ff7f50",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "coral",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "mint-green",
+    "name": "Mint Green",
+    "hex": "#3eb489",
+    "source": "https://github.com/meodai/color-names",
+    "sourceName": "Mint",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "charcoal",
+    "name": "Charcoal",
+    "hex": "#343837",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "terracotta",
+    "name": "Terracotta",
+    "hex": "#cb6843",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "rust",
+    "name": "Rust",
+    "hex": "#a83c09",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "cream",
+    "name": "Cream",
+    "hex": "#ffffc2",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "ivory",
+    "name": "Ivory",
+    "hex": "#fffff0",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "ivory",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "taupe",
+    "name": "Taupe",
+    "hex": "#b9a281",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "khaki",
+    "name": "Khaki",
+    "hex": "#f0e68c",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "khaki",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "plum",
+    "name": "Plum",
+    "hex": "#dda0dd",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "plum",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "mauve",
+    "name": "Mauve",
+    "hex": "#e0b0ff",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "baby-blue",
+    "name": "Baby Blue",
+    "hex": "#a2cffe",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "royal-blue",
+    "name": "Royal Blue",
+    "hex": "#4169e1",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "royalblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "sky-blue",
+    "name": "Sky Blue",
+    "hex": "#87ceeb",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "skyblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "turquoise",
+    "name": "Turquoise",
+    "hex": "#40e0d0",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "turquoise",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "forest-green",
+    "name": "Forest Green",
+    "hex": "#228b22",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "forestgreen",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "hunter-green",
+    "name": "Hunter Green",
+    "hex": "#0b4008",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "lime-green",
+    "name": "Lime Green",
+    "hex": "#32cd32",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "limegreen",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "blush",
+    "name": "Blush",
+    "hex": "#f29e8e",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "hot-pink",
+    "name": "Hot Pink",
+    "hex": "#ff69b4",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "hotpink",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "pink",
+    "name": "Pink",
+    "hex": "#ffc0cb",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "pink",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "red",
+    "name": "Red",
+    "hex": "#ff0000",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "red",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "crimson",
+    "name": "Crimson",
+    "hex": "#dc143c",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "crimson",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "scarlet",
+    "name": "Scarlet",
+    "hex": "#ff2400",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "orange",
+    "name": "Orange",
+    "hex": "#ffa500",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "orange",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "burnt-orange",
+    "name": "Burnt Orange",
+    "hex": "#cc5500",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "yellow",
+    "name": "Yellow",
+    "hex": "#ffff00",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "yellow",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "gold",
+    "name": "Gold",
+    "hex": "#ffd700",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "gold",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "mustard-yellow",
+    "name": "Mustard Yellow",
+    "hex": "#e1ad01",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "green",
+    "name": "Green",
+    "hex": "#008000",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "green",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "dark-green",
+    "name": "Dark Green",
+    "hex": "#006400",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "darkgreen",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "light-green",
+    "name": "Light Green",
+    "hex": "#90ee90",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "lightgreen",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "blue",
+    "name": "Blue",
+    "hex": "#0000ff",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "blue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "light-blue",
+    "name": "Light Blue",
+    "hex": "#add8e6",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "lightblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "dark-blue",
+    "name": "Dark Blue",
+    "hex": "#00008b",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "darkblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "powder-blue",
+    "name": "Powder Blue",
+    "hex": "#b0e0e6",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "powderblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "steel-blue",
+    "name": "Steel Blue",
+    "hex": "#4682b4",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "steelblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "purple",
+    "name": "Purple",
+    "hex": "#800080",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "purple",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "violet",
+    "name": "Violet",
+    "hex": "#ee82ee",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "violet",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "lilac",
+    "name": "Lilac",
+    "hex": "#cea2fd",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "magenta",
+    "name": "Magenta",
+    "hex": "#ff00ff",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "magenta",
+    "aliases": [
+      "Fuchsia"
+    ],
+    "verified": true
+  },
+  {
+    "slug": "brown",
+    "name": "Brown",
+    "hex": "#a52a2a",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "brown",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "chocolate",
+    "name": "Chocolate",
+    "hex": "#d2691e",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "chocolate",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "tan",
+    "name": "Tan",
+    "hex": "#d2b48c",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "tan",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "camel",
+    "name": "Camel",
+    "hex": "#c69f59",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "gray",
+    "name": "Gray",
+    "hex": "#808080",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "gray",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "light-grey",
+    "name": "Light Grey",
+    "hex": "#d8dcd6",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "dark-grey",
+    "name": "Dark Grey",
+    "hex": "#363737",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "silver",
+    "name": "Silver",
+    "hex": "#c0c0c0",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "silver",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "black",
+    "name": "Black",
+    "hex": "#000000",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "black",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "white",
+    "name": "White",
+    "hex": "#ffffff",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "white",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "off-white",
+    "name": "Off White",
+    "hex": "#ffffe4",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "salmon",
+    "name": "Salmon",
+    "hex": "#fa8072",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "salmon",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "peach-pink",
+    "name": "Peach Pink",
+    "hex": "#ff9a8a",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "rose-gold",
+    "name": "Rose Gold",
+    "hex": "#b76e79",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "wine",
+    "name": "Wine",
+    "hex": "#80013f",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "cherry-red",
+    "name": "Cherry Red",
+    "hex": "#f7022a",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "brick-red",
+    "name": "Brick Red",
+    "hex": "#8f1402",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "tomato",
+    "name": "Tomato",
+    "hex": "#ff6347",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "tomato",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "apricot",
+    "name": "Apricot",
+    "hex": "#ffb16d",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "amber",
+    "name": "Amber",
+    "hex": "#ffbf00",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "ochre",
+    "name": "Ochre",
+    "hex": "#cc7722",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "saffron",
+    "name": "Saffron",
+    "hex": "#f4c430",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "indigo",
+    "name": "Indigo",
+    "hex": "#4b0082",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "indigo",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "aqua",
+    "name": "Aqua",
+    "hex": "#00ffff",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "aqua",
+    "aliases": [
+      "Cyan"
+    ],
+    "verified": true
+  },
+  {
+    "slug": "seafoam-green",
+    "name": "Seafoam Green",
+    "hex": "#99bb88",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "jade",
+    "name": "Jade",
+    "hex": "#00a86b",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "pistachio",
+    "name": "Pistachio",
+    "hex": "#93c572",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "army-green",
+    "name": "Army Green",
+    "hex": "#4b5320",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "khaki-green",
+    "name": "Khaki Green",
+    "hex": "#728639",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "sand",
+    "name": "Sand",
+    "hex": "#e2ca76",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "stone",
+    "name": "Stone",
+    "hex": "#ada587",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "slate-gray",
+    "name": "Slate Gray",
+    "hex": "#708090",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "slategray",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "slate-blue",
+    "name": "Slate Blue",
+    "hex": "#6a5acd",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "slateblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "denim-blue",
+    "name": "Denim Blue",
+    "hex": "#2f6479",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "midnight-blue",
+    "name": "Midnight Blue",
+    "hex": "#191970",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "midnightblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "periwinkle",
+    "name": "Periwinkle",
+    "hex": "#8e82fe",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "eggplant",
+    "name": "Eggplant",
+    "hex": "#430541",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "raspberry",
+    "name": "Raspberry",
+    "hex": "#b00149",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "ruby",
+    "name": "Ruby",
+    "hex": "#ca0147",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "champagne",
+    "name": "Champagne",
+    "hex": "#e9d2ac",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "bronze",
+    "name": "Bronze",
+    "hex": "#a87900",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "copper",
+    "name": "Copper",
+    "hex": "#b87333",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "mahogany",
+    "name": "Mahogany",
+    "hex": "#c04000",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "walnut",
+    "name": "Walnut",
+    "hex": "#773f1a",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "espresso",
+    "name": "Espresso",
+    "hex": "#4e312d",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "chartreuse",
+    "name": "Chartreuse",
+    "hex": "#7fff00",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "chartreuse",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "electric-blue",
+    "name": "Electric Blue",
+    "hex": "#7df9ff",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "pastel-pink",
+    "name": "Pastel Pink",
+    "hex": "#dea5a4",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "pastel-blue",
+    "name": "Pastel Blue",
+    "hex": "#a2bffe",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "pastel-green",
+    "name": "Pastel Green",
+    "hex": "#77dd77",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "pastel-yellow",
+    "name": "Pastel Yellow",
+    "hex": "#fdfd96",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "sea-green",
+    "name": "Sea Green",
+    "hex": "#2e8b57",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "seagreen",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "cornflower-blue",
+    "name": "Cornflower Blue",
+    "hex": "#6495ed",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "cornflowerblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "dusty-blue",
+    "name": "Dusty Blue",
+    "hex": "#8093a4",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "teal-blue",
+    "name": "Teal Blue",
+    "hex": "#01889f",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "aquamarine",
+    "name": "Aquamarine",
+    "hex": "#7fffd4",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "aquamarine",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "orchid",
+    "name": "Orchid",
+    "hex": "#da70d6",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "orchid",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "thistle",
+    "name": "Thistle",
+    "hex": "#d8bfd8",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "thistle",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "wheat",
+    "name": "Wheat",
+    "hex": "#f5deb3",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "wheat",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "linen",
+    "name": "Linen",
+    "hex": "#faf0e6",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "linen",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "antique-white",
+    "name": "Antique White",
+    "hex": "#faebd7",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "antiquewhite",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "cadet-blue",
+    "name": "Cadet Blue",
+    "hex": "#5f9ea0",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "cadetblue",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "rosewood",
+    "name": "Rosewood",
+    "hex": "#65000b",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "oxblood",
+    "name": "Oxblood",
+    "hex": "#800020",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "bottle-green",
+    "name": "Bottle Green",
+    "hex": "#006a4e",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "honeydew",
+    "name": "Honeydew",
+    "hex": "#f0fff0",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "honeydew",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "lemon-chiffon",
+    "name": "Lemon Chiffon",
+    "hex": "#fffacd",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "lemonchiffon",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "cream-white",
+    "name": "Cream White",
+    "hex": "#f2eee2",
+    "source": "https://github.com/meodai/color-names",
+    "aliases": [],
+    "verified": true
+  },
+  {
+    "slug": "lime",
+    "name": "Lime",
+    "hex": "#00ff00",
+    "source": "https://www.w3.org/TR/css-color-4/#named-colors",
+    "cssKeyword": "lime",
+    "aliases": [],
+    "verified": true
+  }
+]
