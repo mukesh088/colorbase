@@ -77,7 +77,7 @@ export default function PaletteLibraryPage() {
                   href={`/palette-library/category/${category}`}
                   className="text-sm font-medium text-primary transition-all duration-300 hover:translate-x-0.5 hover:underline"
                 >
-                  View all
+                  View all<span className="sr-only"> {category} palettes</span>
                 </Link>
               </div>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

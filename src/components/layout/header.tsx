@@ -95,6 +95,7 @@ export function Header() {
                     aria-current={active ? "page" : undefined}
                   >
                     {item.title}
+                    {"srLabel" in item && <span className="sr-only"> {item.srLabel}</span>}
                     <ChevronDown className="h-3 w-3 opacity-70" aria-hidden />
                   </Link>
                   <ul className="border-border/70 bg-popover invisible absolute top-[calc(100%-2px)] left-0 z-50 min-w-[12rem] rounded-xl border p-1.5 opacity-0 shadow-lg transition-opacity group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">

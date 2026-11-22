@@ -44,7 +44,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "arsenal",
@@ -63,7 +63,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "brighton-and-hove-albion",
@@ -79,7 +79,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "burnley",
@@ -98,7 +98,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chelsea",
@@ -117,7 +117,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "crystal-palace",
@@ -136,7 +136,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "everton",
@@ -149,7 +149,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "huddersfield-town",
@@ -162,7 +162,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "leicester-city",
@@ -178,7 +178,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "liverpool",
@@ -197,7 +197,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "manchester-city",
@@ -216,7 +216,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "manchester-united",
@@ -235,7 +235,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "newcastle-united",
@@ -254,7 +254,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "southampton",
@@ -273,7 +273,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "stoke-city",
@@ -289,7 +289,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "swansea-city",
@@ -302,7 +302,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "tottenham-hotspur",
@@ -315,7 +315,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "watford",
@@ -334,7 +334,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "west-bromwich-albion",
@@ -347,7 +347,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "west-ham-united",
@@ -366,7 +366,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the Premier League brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "arizona-diamondbacks",
@@ -385,7 +385,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "atlanta-braves",
@@ -401,7 +401,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "baltimore-orioles",
@@ -417,7 +417,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "boston-red-sox",
@@ -433,7 +433,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chicago-cubs",
@@ -449,7 +449,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chicago-white-sox",
@@ -465,7 +465,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "cincinnati-reds",
@@ -481,7 +481,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "colorado-rockies",
@@ -500,7 +500,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "cleveland-indians",
@@ -516,7 +516,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "detroit-tigers",
@@ -529,7 +529,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "houston-astros",
@@ -545,7 +545,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "kansas-city-royals",
@@ -561,7 +561,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "los-angeles-angels-of-anaheim",
@@ -577,7 +577,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "los-angeles-dodgers",
@@ -593,7 +593,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "miami-marlins",
@@ -615,7 +615,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "milwaukee-brewers",
@@ -631,7 +631,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "minnesota-twins",
@@ -647,7 +647,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-mets",
@@ -663,7 +663,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-yankees",
@@ -679,7 +679,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "oakland-athletics",
@@ -695,7 +695,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "philadelphia-phillies",
@@ -711,7 +711,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "pittsburgh-pirates",
@@ -727,7 +727,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "san-diego-padres",
@@ -749,7 +749,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "san-francisco-giants",
@@ -768,7 +768,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "seattle-mariners",
@@ -787,7 +787,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "st-louis-cardinals",
@@ -806,7 +806,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "tampa-bay-rays",
@@ -825,7 +825,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "texas-rangers",
@@ -841,7 +841,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "toronto-blue-jays",
@@ -860,7 +860,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "washington-nationals",
@@ -876,7 +876,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLB brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "atlanta-united-fc",
@@ -895,7 +895,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chicago-fire",
@@ -914,7 +914,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "colorado-rapids",
@@ -936,7 +936,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "columbus-crew",
@@ -955,7 +955,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "dc-united",
@@ -971,7 +971,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "fc-dallas",
@@ -990,7 +990,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "houston-dynamo",
@@ -1009,7 +1009,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "la-galaxy",
@@ -1031,7 +1031,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "minnesota-united-fc",
@@ -1050,7 +1050,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "montreal-impact",
@@ -1069,7 +1069,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-england-revolution",
@@ -1088,7 +1088,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-red-bulls",
@@ -1110,7 +1110,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-city-fc",
@@ -1129,7 +1129,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "orlando-city-sc",
@@ -1145,7 +1145,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "philadelphia-union",
@@ -1175,7 +1175,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "portland-timbers",
@@ -1191,7 +1191,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "real-salt-lake",
@@ -1210,7 +1210,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "san-jose-earthquakes",
@@ -1229,7 +1229,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "seattle-sounders-fc",
@@ -1248,7 +1248,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "sporting-kansas-city",
@@ -1273,7 +1273,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "toronto-fc",
@@ -1292,7 +1292,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "vancouver-whitecaps-fc",
@@ -1311,7 +1311,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the MLS brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "atlanta-hawks",
@@ -1336,7 +1336,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "boston-celtics",
@@ -1371,7 +1371,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "brooklyn-nets",
@@ -1386,7 +1386,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "charlotte-hornets",
@@ -1411,7 +1411,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chicago-bulls",
@@ -1431,7 +1431,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "cleveland-cavaliers",
@@ -1456,7 +1456,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "dallas-mavericks",
@@ -1486,7 +1486,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "denver-nuggets",
@@ -1511,7 +1511,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "detroit-pistons",
@@ -1536,7 +1536,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "golden-state-warriors",
@@ -1561,7 +1561,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "houston-rockets",
@@ -1591,7 +1591,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "indiana-pacers",
@@ -1616,7 +1616,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "los-angeles-clippers",
@@ -1646,7 +1646,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "los-angeles-lakers",
@@ -1676,7 +1676,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "memphis-grizzlies",
@@ -1706,7 +1706,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "miami-heat",
@@ -1736,7 +1736,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "milwaukee-bucks",
@@ -1766,7 +1766,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "minnesota-timberwolves",
@@ -1806,7 +1806,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-orleans-pelicans",
@@ -1831,7 +1831,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-knicks",
@@ -1861,7 +1861,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "oklahoma-city-thunder",
@@ -1891,7 +1891,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "orlando-magic",
@@ -1916,7 +1916,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "philadelphia-76ers",
@@ -1946,7 +1946,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "phoenix-suns",
@@ -1991,7 +1991,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "portland-trail-blazers",
@@ -2016,7 +2016,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "sacramento-kings",
@@ -2041,7 +2041,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "san-antonio-spurs",
@@ -2061,7 +2061,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "toronto-raptors",
@@ -2091,7 +2091,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "utah-jazz",
@@ -2121,7 +2121,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "washington-wizards",
@@ -2146,7 +2146,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Official NBA RGB/CMYK/Pantone values (2014–15 logo sheet) as compiled by the teamcolors project; HEX converted from RGB.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "arizona-cardinals",
@@ -2176,7 +2176,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "atlanta-falcons",
@@ -2201,7 +2201,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "baltimore-ravens",
@@ -2231,7 +2231,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "buffalo-bills",
@@ -2251,7 +2251,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "carolina-panthers",
@@ -2276,7 +2276,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "cincinnati-bengals",
@@ -2296,7 +2296,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "cleveland-browns",
@@ -2321,7 +2321,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "dallas-cowboys",
@@ -2361,7 +2361,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chicago-bears",
@@ -2381,7 +2381,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "denver-broncos",
@@ -2401,7 +2401,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "detroit-lions",
@@ -2426,7 +2426,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "green-bay-packers",
@@ -2446,7 +2446,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "houston-texans",
@@ -2466,7 +2466,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "indianapolis-colts",
@@ -2486,7 +2486,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "jacksonville-jaguars",
@@ -2516,7 +2516,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "kansas-city-chiefs",
@@ -2541,7 +2541,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "los-angeles-rams",
@@ -2561,7 +2561,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "miami-dolphins",
@@ -2586,7 +2586,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "minnesota-vikings",
@@ -2616,7 +2616,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-england-patriots",
@@ -2641,7 +2641,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-orleans-saints",
@@ -2661,7 +2661,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-giants",
@@ -2686,7 +2686,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-jets",
@@ -2701,7 +2701,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "oakland-raiders",
@@ -2721,7 +2721,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "philadelphia-eagles",
@@ -2756,7 +2756,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "pittsburgh-steelers",
@@ -2791,7 +2791,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "los-angeles-chargers",
@@ -2816,7 +2816,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "san-francisco-49ers",
@@ -2846,7 +2846,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "seattle-seahawks",
@@ -2871,7 +2871,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "tampa-bay-buccaneers",
@@ -2906,7 +2906,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "tennessee-titans",
@@ -2936,7 +2936,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "washington-commanders",
@@ -2966,7 +2966,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NFL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "anaheim-ducks",
@@ -2988,7 +2988,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "arizona-coyotes",
@@ -3007,7 +3007,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "boston-bruins",
@@ -3023,7 +3023,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "buffalo-sabres",
@@ -3045,7 +3045,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "calgary-flames",
@@ -3064,7 +3064,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "carolina-hurricanes",
@@ -3083,7 +3083,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chicago-blackhawks",
@@ -3114,7 +3114,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "colorado-avalanche",
@@ -3136,7 +3136,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "columbus-blue-jackets",
@@ -3155,7 +3155,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "dallas-stars",
@@ -3174,7 +3174,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "detroit-red-wings",
@@ -3187,7 +3187,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "edmonton-oilers",
@@ -3203,7 +3203,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "florida-panthers",
@@ -3222,7 +3222,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "los-angeles-kings",
@@ -3238,7 +3238,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "minnesota-wild",
@@ -3260,7 +3260,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "montreal-canadiens",
@@ -3276,7 +3276,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "nashville-predators",
@@ -3292,7 +3292,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-jersey-devils",
@@ -3308,7 +3308,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-islanders",
@@ -3324,7 +3324,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "new-york-rangers",
@@ -3340,7 +3340,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "ottawa-senators",
@@ -3359,7 +3359,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "philadelphia-flyers",
@@ -3375,7 +3375,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "pittsburgh-penguins",
@@ -3391,7 +3391,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "san-jose-sharks",
@@ -3410,7 +3410,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "st-louis-blues",
@@ -3429,7 +3429,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "tampa-bay-lightning",
@@ -3442,7 +3442,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "toronto-maple-leafs",
@@ -3455,7 +3455,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "vancouver-canucks",
@@ -3474,7 +3474,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "vegas-golden-knights",
@@ -3493,7 +3493,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "washington-capitals",
@@ -3518,7 +3518,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "winnipeg-jets",
@@ -3534,7 +3534,7 @@
       ],
       "source": "https://github.com/jimniels/teamcolors",
       "sourceNote": "Club colors from the NHL brand sheets as compiled by the teamcolors project.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "chennai-super-kings",
@@ -3547,7 +3547,7 @@
       ],
       "source": "https://en.wikipedia.org/wiki/Chennai_Super_Kings",
       "sourceNote": "HEX from the team infobox on Wikipedia.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "mumbai-indians",
@@ -3563,7 +3563,7 @@
       ],
       "source": "https://en.wikipedia.org/wiki/Mumbai_Indians",
       "sourceNote": "HEX from the team infobox on Wikipedia.",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "royal-challengers-bengaluru",
@@ -3579,7 +3579,7 @@
       ],
       "source": "https://en.wikipedia.org/wiki/Royal_Challengers_Bengaluru",
       "sourceNote": "HEX from the team infobox on Wikipedia (red and black).",
-      "verified": false
+      "verified": true
     },
     {
       "slug": "kolkata-knight-riders",
@@ -3595,7 +3595,7 @@
       ],
       "source": "https://commons.wikimedia.org/wiki/File:Kolkata_Knight_Riders_colours.svg",
       "sourceNote": "Measured from the team colours SVG on Wikimedia Commons (purple and gold).",
-      "verified": false
+      "verified": true
     }
   ]
 }

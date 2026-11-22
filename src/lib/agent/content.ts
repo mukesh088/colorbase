@@ -1,6 +1,9 @@
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL, SUPPORT_EMAIL, SUPPORT_PHONE } from "@/lib/site-config";
 import { formatBusinessAddress } from "@/lib/site-config";
 import { TOOLS } from "@/lib/tools-registry";
+import { getAllFlags } from "@/lib/data/flags";
+import { getAllTeams } from "@/lib/data/teams";
+import { getCombinationBases } from "@/lib/colors/combinations";
 
 const KEY_PAGES = [
   { path: "/", title: "Home", summary: "Color picker, palettes, contrast tools, and libraries." },
@@ -83,6 +86,15 @@ export function llmsTxt() {
     "## Tools",
     "",
     ...featured.map((t) => `- [${t.title}](${SITE_URL}/${t.slug}): ${t.description}`),
+    "",
+    "## Data sections",
+    "",
+    `- [Flag colors](${SITE_URL}/flags): HEX, RGB and CMYK codes for ${getAllFlags().length} national and regional flags, with palettes. Example: ${SITE_URL}/flags/india`,
+    `- [Team colors](${SITE_URL}/teams): official colors for ${getAllTeams().length} IPL, NBA, NFL, MLB, NHL, MLS and Premier League teams. Example: ${SITE_URL}/teams/nba/los-angeles-lakers`,
+    `- [Colors that go together](${SITE_URL}/colors-that-go-with): computed matches and palettes for ${getCombinationBases().length} common colors. Example: ${SITE_URL}/colors-that-go-with/navy-blue`,
+    `- [Color names](${SITE_URL}/color-names): CSS keywords and named colors with HEX codes, A–Z.`,
+    `- [Brand colors](${SITE_URL}/brands): logo HEX codes with sources.`,
+    `- [HEX color pages](${SITE_URL}/color/e11d48): any HEX with formats, contrast, color-blindness previews and palettes.`,
     "",
     "## Optional",
     "",

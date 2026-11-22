@@ -81,7 +81,7 @@ export function HomeHero() {
               </p>
             </div>
             <Link prefetch={false} href="/color/635bff" className="home-studio-flagship-link">
-              Open swatch <ArrowRight size={14} />
+              Open swatch<span className="sr-only"> for #635BFF</span> <ArrowRight size={14} />
             </Link>
           </div>
         </div>

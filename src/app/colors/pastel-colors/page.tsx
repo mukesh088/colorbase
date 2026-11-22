@@ -118,7 +118,7 @@ export default function PastelColorsPage() {
                     href={`/color/${c.hex.replace("#", "")}`}
                     className="inline-flex items-center gap-1 font-medium hover:text-primary transition-colors"
                   >
-                    Details <ArrowRight className="h-3 w-3" />
+                    Details<span className="sr-only"> for {c.name}</span> <ArrowRight className="h-3 w-3" />
                   </Link>
                 </div>
               </div>

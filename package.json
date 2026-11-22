@@ -22,6 +22,7 @@
     "seo:check": "node scripts/check-seo.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:dates": "node scripts/generate-content-dates.mjs",
+    "seo:indexnow": "node scripts/indexnow.mjs",
     "keywords:inventory": "node scripts/generate-keyword-inventory.mjs"
   },
   "dependencies": {

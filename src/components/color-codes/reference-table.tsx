@@ -128,7 +128,7 @@ export function ColorReferenceTable({
                       href={rowHref(row, detailBase)}
                       className="inline-flex h-8 items-center rounded-lg border border-border px-2 text-[11px] font-medium hover:bg-muted"
                     >
-                      Open
+                      Open<span className="sr-only"> {String(row.name ?? "")} color page</span>
                     </Link>
                   </div>
                 </td>

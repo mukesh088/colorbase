@@ -119,6 +119,8 @@ export const PRIMARY_NAV = [
   {
     href: "/flags",
     title: "Explore",
+    /** Read by search engines and screen readers after the short visible label. */
+    srLabel: "flag, team and color references",
     children: [
       { href: "/flags", title: "Flag colors (256 countries)" },
       { href: "/teams", title: "Team colors" },

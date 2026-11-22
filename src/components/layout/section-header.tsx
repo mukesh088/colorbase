@@ -7,7 +7,7 @@ export function SectionHeader({
   title,
   description,
   href,
-  actionLabel = "View all",
+  actionLabel,
   className,
 }: {
   kicker?: string;
@@ -28,7 +28,11 @@ export function SectionHeader({
       </div>
       {href ? (
         <Link href={href} className="text-sm font-medium text-primary hover:underline">
-          {actionLabel}
+          {actionLabel ?? (
+            <>
+              View all<span className="sr-only"> {title.toLowerCase()}</span>
+            </>
+          )}
         </Link>
       ) : null}
     </div>

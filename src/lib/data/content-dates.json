@@ -9,6 +9,7 @@
     "palettes": "2026-11-22",
     "gradients": "2026-11-22",
     "flags": "2026-11-22",
+    "teams": "2026-11-22",
     "combinations": "2026-11-22"
   },
   "routes": {
@@ -33,6 +34,7 @@
     "/cmyk-converter": "2026-07-31",
     "/color-atlas": "2026-11-22",
     "/color-blind-simulator": "2026-07-31",
+    "/color-blind-test": "2026-11-22",
     "/color-codes": "2026-11-22",
     "/color-codes/bukkit": "2026-10-28",
     "/color-codes/common": "2026-10-28",
@@ -131,6 +133,7 @@
     "/search": "2026-11-22",
     "/svg-color-editor": "2026-11-11",
     "/tailwind-colors": "2026-07-31",
+    "/teams": "2026-11-22",
     "/terms": "2026-10-06",
     "/text-shadow-generator": "2026-07-31",
     "/theme-builder": "2026-11-11",

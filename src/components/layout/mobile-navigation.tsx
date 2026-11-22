@@ -51,6 +51,7 @@ export function MobileNavigation({
                     )}
                   >
                     {item.title}
+                    {"srLabel" in item && <span className="sr-only"> {item.srLabel}</span>}
                   </Link>
                   {children ? (
                     <ul className="border-border/60 mb-2 ml-3 border-l pl-2">

@@ -424,7 +424,7 @@ function HomeSection({
             href={href}
             className="text-primary inline-flex items-center gap-1.5 rounded-full border border-primary/20 bg-primary/5 px-3 py-1.5 text-sm font-medium transition-colors hover:border-primary/40 hover:bg-primary/10"
           >
-            View all <ArrowRight className="h-3.5 w-3.5" />
+            View all<span className="sr-only"> {title.toLowerCase()}</span> <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
         {children}

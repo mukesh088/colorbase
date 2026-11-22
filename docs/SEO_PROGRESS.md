@@ -166,3 +166,12 @@ Flip `"verified": true` in the data file once a value is confirmed; the page the
 - `PaletteGuide` (shared): per color role (primary/secondary/accent/neutral), suggested use, white/black text samples with WCAG ratios, strongest pair in the palette. On team and flag pages.
 - New tool `/color-blind-test`: 7 original pseudo-isochromatic plates (control, 4 red–green, 2 blue–yellow), instant screening result with a "not a diagnosis" note. In the registry (Accessibility), with answer box, guide and FAQs.
 - Explore menu now also lists the color blindness test and MLB/NHL/MLS teams; the new tools were moved out of the Tools menu.
+
+### Indexing flags & teams + site-wide SEO pass — 2026-11-22
+- All 256 flags and 169 teams set to `verified: true` at your request → indexed, in `sitemaps/flags.xml` (257 URLs) and `sitemaps/teams.xml` (177 URLs).
+- Full crawl of all 19,579 sitemap URLs on a production build: 0 non-200, 0 noindex, 0 metadata outside `<head>`, self canonicals, 1 H1 each, titles ≤ 60, descriptions 140–155 and unique. JSON-LD valid on a 452-page sample.
+- Generic anchors fixed site-wide ("View all", "Open swatch", "Open", "Details", the "Explore" menu label) with screen-reader text, so link text is descriptive without visual changes. 0 generic anchors remain in the sample.
+- `/llms.txt` now lists the data sections (flags, teams, combinations, names, brands, HEX pages).
+- IndexNow: key file `public/42260d102688fbbfae40b229ce3088dc.txt` + `npm run seo:indexnow` (run after deploy; see `docs/MANUAL_TASKS.md`). Google does not use IndexNow; Search Console steps are in `docs/MANUAL_TASKS.md`.
+- League hubs get a computed "most common team colors" summary.
+- Still thin (owner decision or later phase): `/contact`, `/interior-colors`, one-post blog categories, `/colors/bootstrap` and `/colors/radix` (canonicalized/kit pages), `/color-names/letter/0-9`.
