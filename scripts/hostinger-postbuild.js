@@ -6,7 +6,9 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = process.cwd();
-const nextDir = path.join(root, ".next");
+// Same dist dir as next.config.js, so local verification builds
+// (NEXT_DIST_DIR=.next-verify) never touch a running dev server's .next.
+const nextDir = path.join(root, process.env.NEXT_DIST_DIR || ".next");
 const standalone = path.join(nextDir, "standalone");
 
 function rm(target) {
