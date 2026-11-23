@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
-import { colorNameLetters, getNamedColorsByLetter } from "@/lib/data/color-names";
+import { colorNameLetters, getNamedColorsByLetter, MIN_NAMES_FOR_INDEXED_LETTER } from "@/lib/data/color-names";
 import { createPageMetadata, fitDescription } from "@/lib/seo";
 
 export const dynamicParams = false;
@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Ctx): Promise<Metadata> {
       "Open any name for its codes."
     ),
     path: `/color-names/letter/${letter}`,
+    noIndex: colors.length < MIN_NAMES_FOR_INDEXED_LETTER,
   });
 }
 

@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { ToolAnswerSection } from "@/components/content/tool-answer";
+import { LandingFaqs } from "@/components/content/landing-faqs";
 
 export const metadata: Metadata = createPageMetadata({
   title: "AI Color Palette Generator – Palettes from Text",
@@ -58,6 +59,7 @@ export default function Page() {
         </Link>
       </p>
       <ToolAnswerSection slug="ai-color-palette-generator" />
+      <LandingFaqs slug="ai-color-palette-generator" />
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { getColorBySlug, UI_KITS } from "@/lib/data/color-library";
 import { getNamedColor } from "@/lib/data/color-names";
 import { getGradient, GRADIENT_CATEGORIES } from "@/lib/data/gradient-library";
 import { getPalette, PALETTE_CATEGORIES } from "@/lib/data/palette-library";
-import { getPost, BLOG_CATEGORIES } from "@/lib/data/blog";
+import { getPost, blogCategoryPath, getBlogCategoryByName, getBlogCategoryBySlug } from "@/lib/data/blog";
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { DESIGN_SYSTEM_ROUTES } from "@/lib/data/design-systems";
 import { getRobloxById } from "@/lib/data/color-codes/roblox";
@@ -95,8 +95,12 @@ export function catalogRouteDecision(pathname: string): CatalogDecision | null {
         return GRADIENT_CATEGORIES.some((category) => category === detail) ? null : missing;
       if (root === "palette-library")
         return PALETTE_CATEGORIES.some((category) => category === detail) ? null : missing;
-      if (root === "blog")
-        return BLOG_CATEGORIES.some((category) => category === detail) ? null : missing;
+      if (root === "blog") {
+        if (getBlogCategoryBySlug(detail)) return null;
+        // Old display-name URLs ("/blog/category/Color%20Psychology") move to the slug.
+        const legacy = getBlogCategoryByName(detail);
+        return legacy ? { status: 308, pathname: blogCategoryPath(legacy) } : missing;
+      }
     }
     if (root === "color-codes" && slug === "roblox") {
       const color = getRobloxById(Number(detail));

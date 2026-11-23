@@ -33,6 +33,7 @@ export async function generateMetadata({
       "Preview it full size."
     ),
     path: `/gradient-library/${g.slug}`,
+    noIndex: Boolean(g.generated),
     ogImage: `/gradient-library/${g.slug}/opengraph-image`,
     keywords: [g.name, `${g.category} gradient`, "css linear-gradient"],
   });

@@ -38,6 +38,8 @@ export async function generateMetadata({
     title: `${p.name}`,
     description: `${p.name}: ${p.colors.join(", ")}. Compare WCAG text contrast for each color pair, save the palette, and export CSS or Tailwind tokens.`,
     path: `/palette-library/${p.slug}`,
+    // Every library palette is a seeded harmony with a numbered name: usable, not indexable.
+    noIndex: true,
     ogImage: `/palette-library/${p.slug}/opengraph-image`,
     keywords: [p.name, `${p.category} palette`, "color scheme"],
   });

@@ -32,6 +32,8 @@ export interface LibraryGradient {
   scss: string;
   popular?: boolean;
   collection?: "studio";
+  /** Seeded-random stops with a generated name: reachable, but noindex and out of the sitemap. */
+  generated?: boolean;
 }
 
 const CATEGORY_OPTS: Record<
@@ -283,7 +285,7 @@ function buildGradients(): LibraryGradient[] {
         extra += 1;
       }
       taken.add(slug);
-      generated.push(toGradient(name, category, angle, colors));
+      generated.push({ ...toGradient(name, category, angle, colors), generated: true });
       n += 1;
     }
   }

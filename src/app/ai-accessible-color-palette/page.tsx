@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { ToolAnswerSection } from "@/components/content/tool-answer";
+import { LandingFaqs } from "@/components/content/landing-faqs";
 
 export const metadata: Metadata = createPageMetadata({
   title: "AI Accessible Color Palette – WCAG AA & AAA",
@@ -59,6 +60,7 @@ export default function Page() {
         for any two hex values.
       </p>
       <ToolAnswerSection slug="ai-accessible-color-palette" />
+      <LandingFaqs slug="ai-accessible-color-palette" />
     </div>
   );
 }

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { createPageMetadata, breadcrumbJsonLd } from "@/lib/seo";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { JsonLd } from "@/components/seo/json-ld";
-import { BLOG_CATEGORIES, getAllPosts } from "@/lib/data/blog";
+import { BLOG_CATEGORIES, blogCategoryPath, getAllPosts } from "@/lib/data/blog";
 import { formatDate } from "@/lib/utils";
 
 export const metadata: Metadata = createPageMetadata({
@@ -40,7 +40,7 @@ export default function BlogPage() {
         {BLOG_CATEGORIES.map((cat) => (
           <Link
             key={cat}
-            href={`/blog/category/${encodeURIComponent(cat)}`}
+            href={blogCategoryPath(cat)}
             className="shrink-0 whitespace-nowrap rounded-full border border-border/60 bg-card/70 px-3 py-2 text-xs transition-colors hover:border-primary/40 hover:bg-primary/5"
           >
             {cat}

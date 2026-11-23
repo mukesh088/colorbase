@@ -50,6 +50,7 @@ export async function generateMetadata({
       "See tints, shades and contrast."
     ),
     path: `/colors/${color.slug}`,
+    noIndex: !isCuratedLibraryColor(color),
     keywords: [color.name, color.hex, `${color.name} hex`, `${color.family} color`],
   });
 }

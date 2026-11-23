@@ -9,13 +9,13 @@ import {
 import { COLOR_FAMILIES } from "@/lib/data/families";
 import { UI_KITS, getAllLibraryColors } from "@/lib/data/color-library";
 import { DESIGN_SYSTEM_CANONICAL, kitToDesignPath } from "@/lib/data/design-systems";
-import { colorNameLetters, getIndexableNamedColors } from "@/lib/data/color-names";
+import { MIN_NAMES_FOR_INDEXED_LETTER, colorNameLetters, getIndexableNamedColors } from "@/lib/data/color-names";
 import { GRADIENT_CATEGORIES, getAllGradients } from "@/lib/data/gradient-library";
-import { PALETTE_CATEGORIES, getAllPalettes } from "@/lib/data/palette-library";
-import { BLOG_CATEGORIES, getAllPosts } from "@/lib/data/blog";
+import { PALETTE_CATEGORIES } from "@/lib/data/palette-library";
+import { BLOG_CATEGORIES, MIN_POSTS_FOR_INDEXED_CATEGORY, blogCategoryPath, getAllPosts } from "@/lib/data/blog";
 import { CODE_FORMATS } from "@/lib/codegen";
 import { uniqueRobloxColors } from "@/lib/data/color-codes/roblox";
-import { getIndexableHexSlugs } from "@/lib/hex-indexing";
+import { getIndexableHexSlugs, isCuratedLibraryColor } from "@/lib/hex-indexing";
 import { absoluteUrl } from "@/lib/utils";
 import { getCombinationBases } from "@/lib/colors/combinations";
 import { getIndexableFlags } from "@/lib/data/flags";
@@ -86,9 +86,9 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
       const posts = getAllPosts();
       const newestPost = latest(...posts.map((p) => p.updatedAt ?? p.publishedAt));
       return [
-        ...BLOG_CATEGORIES.map((c) =>
+        ...BLOG_CATEGORIES.filter((c) => posts.filter((p) => p.category === c).length >= MIN_POSTS_FOR_INDEXED_CATEGORY).map((c) =>
           entry(
-            `/blog/category/${encodeURIComponent(c)}`,
+            blogCategoryPath(c),
             toDate(latest(...posts.filter((p) => p.category === c).map((p) => p.updatedAt ?? p.publishedAt)) ?? newestPost),
             0.65
           )
@@ -108,7 +108,9 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
     case "color-names": {
       const lastModified = sectionLastModified("color-names");
       return [
-        ...colorNameLetters().map(({ letter }) => entry(`/color-names/letter/${letter}`, lastModified, 0.6)),
+        ...colorNameLetters()
+          .filter(({ count }) => count >= MIN_NAMES_FOR_INDEXED_LETTER)
+          .map(({ letter }) => entry(`/color-names/letter/${letter}`, lastModified, 0.6)),
         ...getIndexableNamedColors().map((c) => entry(`/color-names/${c.slug}`, lastModified, 0.85)),
       ];
     }
@@ -122,6 +124,7 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
         ...[
           ...new Map(
             getAllLibraryColors()
+              .filter(isCuratedLibraryColor)
               .map((c) => [c.slug, c] as const)
           ).values(),
         ].map((c) => entry(`/colors/${c.slug}`, lastModified, 0.65)),
@@ -131,16 +134,16 @@ export function sitemapForId(id: string): MetadataRoute.Sitemap {
     }
     case "palettes": {
       const lastModified = sectionLastModified("palettes");
-      return [
-        ...PALETTE_CATEGORIES.map((c) => entry(`/palette-library/category/${c}`, lastModified, 0.7)),
-        ...getAllPalettes().map((p) => entry(`/palette-library/${p.slug}`, lastModified, 0.6)),
-      ];
+      // Detail pages are seeded, numbered palettes (noindex); only the category hubs are listed.
+      return PALETTE_CATEGORIES.map((c) => entry(`/palette-library/category/${c}`, lastModified, 0.7));
     }
     case "gradients": {
       const lastModified = sectionLastModified("gradients");
       return [
         ...GRADIENT_CATEGORIES.map((c) => entry(`/gradient-library/category/${c}`, lastModified, 0.7)),
-        ...getAllGradients().map((g) => entry(`/gradient-library/${g.slug}`, lastModified, 0.6)),
+        ...getAllGradients()
+          .filter((g) => !g.generated)
+          .map((g) => entry(`/gradient-library/${g.slug}`, lastModified, 0.6)),
       ];
     }
     case "combinations": {

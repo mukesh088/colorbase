@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { catalogRouteDecision } from "@/lib/catalog-routes";
+import { publishedInteriorSlugs } from "@/lib/interior/published-slugs";
+
+/** Same value as `ADMIN_COOKIE` in lib/interior/auth (not imported: that module uses next/headers). */
+const ADMIN_COOKIE = "cb_admin";
 
 /**
  * Hostinger/hCDN caches Next HTML via Cache-Control.
@@ -43,7 +47,22 @@ function withAgentHeaders(response: NextResponse, origin: string) {
   return response;
 }
 
-export function middleware(request: NextRequest) {
+/** Unknown interior slugs 404 here; admins (draft previews) and read errors fall through to the page. */
+async function interiorRouteDecision(request: NextRequest): Promise<{ status: 404 } | null> {
+  const match = /^\/interior-colors\/([^/]+)$/.exec(request.nextUrl.pathname);
+  if (!match || request.cookies.has(ADMIN_COOKIE)) return null;
+  const slugs = await publishedInteriorSlugs();
+  if (!slugs) return null;
+  let slug: string;
+  try {
+    slug = decodeURIComponent(match[1]);
+  } catch {
+    return { status: 404 };
+  }
+  return slugs.has(slug) ? null : { status: 404 };
+}
+
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const origin = siteOrigin(request);
 
@@ -102,7 +121,7 @@ export function middleware(request: NextRequest) {
     return withAgentHeaders(response, origin);
   }
 
-  const decision = catalogRouteDecision(pathname);
+  const decision = catalogRouteDecision(pathname) ?? (await interiorRouteDecision(request));
   if (decision?.status === 308) {
     const destination = request.nextUrl.clone();
     destination.pathname = decision.pathname;
@@ -128,6 +147,8 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // Node.js runtime (stable in Next 15.5) so the interior check can read the catalog file.
+  runtime: "nodejs",
   matcher: [
     "/((?!_next/static|_next/image|.*\\..*).*)",
     "/:catalog(color|colors|brands|color-names|gradient-library|palette-library|blog|developers|color-codes)/:path*",

@@ -4,6 +4,7 @@ import { createPageMetadata } from "@/lib/seo";
 import { ColorCodePageShell, RelatedCodeLinks, AdReserve } from "@/components/color-codes/page-shell";
 import { ColorAtlasClient } from "@/components/color-codes/color-atlas-client";
 import { ToolAnswerSection } from "@/components/content/tool-answer";
+import { LandingFaqs } from "@/components/content/landing-faqs";
 
 export const metadata: Metadata = createPageMetadata({
   title: "Color Atlas – Compare Design System Colors",
@@ -42,6 +43,7 @@ export default function ColorAtlasPage() {
       </Suspense>
       <AdReserve />
       <ToolAnswerSection slug="color-atlas" />
+      <LandingFaqs slug="color-atlas" />
     </ColorCodePageShell>
   );
 }

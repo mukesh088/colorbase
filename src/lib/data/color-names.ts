@@ -196,9 +196,17 @@ export const NAMED_COLOR_CANONICAL: Partial<Record<string, string>> = {
   "white-smoke": "whitesmoke",
 };
 
-/** Every named color page except canonicalized duplicates (catalog names indexed since 2026-11-22). */
+/**
+ * CSS keywords and attributed community names are indexable. Generated
+ * "catalog" names (adjective + noun + seeded HEX) are invented, so they stay
+ * reachable but noindex and out of the sitemap (decision 2026-11-23).
+ */
+export function isIndexableNamedColor(color: Pick<NamedColorEntry, "slug" | "source">) {
+  return color.source !== "catalog" && !NAMED_COLOR_CANONICAL[color.slug];
+}
+
 export function getIndexableNamedColors() {
-  return getAllNamedColors().filter((color) => !NAMED_COLOR_CANONICAL[color.slug]);
+  return getAllNamedColors().filter(isIndexableNamedColor);
 }
 
 /** First character used to group a color name ("0-9" for names starting with a digit). */
@@ -208,6 +216,9 @@ export function colorNameLetter(name: string) {
 }
 
 /** Letters that have at least one indexable color name, with counts. */
+/** Letter hubs listing fewer names than this are noindex and out of the sitemap. */
+export const MIN_NAMES_FOR_INDEXED_LETTER = 10;
+
 export function colorNameLetters() {
   const counts = new Map<string, number>();
   for (const c of getIndexableNamedColors()) {

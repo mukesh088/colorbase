@@ -68,9 +68,9 @@ describe("source-backed catalog expansion", () => {
     }
     for (const record of nameRecords)
       expect(urls.has(`/color-names/${record.slug}`), record.slug).toBe(!NAMED_COLOR_CANONICAL[record.slug]);
-    // Catalog names are indexed (owner decision 2026-11-22), except canonicalized duplicates.
+    // Generated catalog names are invented, so they stay out of the sitemap (owner decision 2026-11-23).
     for (const color of getAllNamedColors().filter((c) => c.source === "catalog"))
-      expect(urls.has(`/color-names/${color.slug}`), color.slug).toBe(!NAMED_COLOR_CANONICAL[color.slug]);
+      expect(urls.has(`/color-names/${color.slug}`), color.slug).toBe(false);
     expect(getIndexableNamedColors().length).toBeGreaterThanOrEqual(1100);
   });
 });

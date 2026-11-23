@@ -50,6 +50,7 @@ export async function generateMetadata({
     ),
     path: `/color-names/${color.slug}`,
     canonicalPath: NAMED_COLOR_CANONICAL[color.slug] ? `/color-names/${NAMED_COLOR_CANONICAL[color.slug]}` : undefined,
+    noIndex: color.source === "catalog",
     keywords: [
       `${label} color`,
       `${label.toLowerCase()} color`,

@@ -16,6 +16,54 @@ export const BLOG_CATEGORIES = [
 
 export type BlogCategory = (typeof BLOG_CATEGORIES)[number];
 
+/** URL segment for a category: "Color Psychology" → "color-psychology". */
+export function blogCategorySlug(category: string) {
+  return category
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function blogCategoryPath(category: string) {
+  return `/blog/category/${blogCategorySlug(category)}`;
+}
+
+export function getBlogCategoryBySlug(slug: string): BlogCategory | undefined {
+  return BLOG_CATEGORIES.find((category) => blogCategorySlug(category) === slug);
+}
+
+/** Old URLs used the display name ("/blog/category/Color%20Psychology"). */
+export function getBlogCategoryByName(name: string): BlogCategory | undefined {
+  return BLOG_CATEGORIES.find((category) => category === name);
+}
+
+/** A category page with one post only repeats that post, so it stays out of the index. */
+export const MIN_POSTS_FOR_INDEXED_CATEGORY = 2;
+
+/** One-paragraph intro shown above each category's post list. */
+export const BLOG_CATEGORY_INTROS: Record<BlogCategory, string> = {
+  "Color Psychology":
+    "How color shapes what people notice, trust and remember. These articles look at the associations of common hues, where they hold across cultures and where they don't, and how to use them in interfaces without relying on color alone.",
+  "Design Inspiration":
+    "Palettes, combinations and visual directions taken from real products, places and materials, with the HEX codes needed to reuse them and notes on when each one works.",
+  "UI Trends":
+    "Current directions in interface color, such as dark themes, soft gradients and muted neutrals, with practical advice on whether each trend suits your product and how to apply it accessibly.",
+  Accessibility:
+    "Guides to readable, inclusive color: WCAG contrast ratios, color-blind safe palettes, focus states and testing workflows. Each article explains the rule, shows the numbers and links to a checker you can use straight away.",
+  Branding:
+    "Choosing, documenting and protecting brand colors: building a primary and accent set, writing HEX, RGB and CMYK specs, and keeping colors consistent across screens and print.",
+  "CSS Tutorials":
+    "Hands-on CSS for color and visual effects: gradients, color functions such as oklch() and color-mix(), custom properties for theming, and shadows. Every tutorial includes code you can copy and a generator to experiment with.",
+  "Tailwind Tutorials":
+    "Working with color in Tailwind CSS: the default palette, custom color scales, theme tokens and dark mode, with configuration snippets you can paste into your project.",
+  "Color Theory":
+    "The fundamentals behind good palettes: hue, saturation and lightness, color harmonies such as complementary and analogous, and why perceptual spaces like OKLCH give more even scales than HSL.",
+  "Web Design":
+    "Applying color to real websites: building palettes for layouts, choosing background and text pairs, extracting colors from images and existing sites, and turning a palette into a usable design system.",
+  "Developer Tips":
+    "Short, practical notes for developers who handle color in code: converting between formats, naming tokens, and automating palette and contrast checks.",
+};
+
 export interface BlogFaq {
   question: string;
   answer: string;

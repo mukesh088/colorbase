@@ -8,15 +8,23 @@
  *   node scripts/indexnow.mjs                 # every sitemap URL
  *   node scripts/indexnow.mjs --since 2026-11-22   # only URLs with lastmod >= date
  *   node scripts/indexnow.mjs --dry-run       # list what would be sent
+ *   node scripts/indexnow.mjs --from http://localhost:3123
+ *       read the sitemap from a local production build (e.g. before the new
+ *       sitemap is deployed); the submitted URLs are still the colorbase.in ones.
  */
 const SITE = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") || "https://colorbase.in";
 const KEY = process.env.INDEXNOW_KEY || "42260d102688fbbfae40b229ce3088dc";
 const args = process.argv.slice(2);
 const since = args.includes("--since") ? args[args.indexOf("--since") + 1] : undefined;
 const dryRun = args.includes("--dry-run");
+const from = args.includes("--from") ? args[args.indexOf("--from") + 1]?.replace(/\/$/, "") : undefined;
+/** Fetch sitemap files from `--from` when given, keeping the public URLs in <loc>. */
+const fetchable = (url) => (from ? url.replace(SITE, from) : url);
 
 async function locs(url) {
-  const xml = await (await fetch(url)).text();
+  const res = await fetch(fetchable(url));
+  if (!res.ok) throw new Error(`${fetchable(url)}: HTTP ${res.status}`);
+  const xml = await res.text();
   return [...xml.matchAll(/<(sitemap|url)>([\s\S]*?)<\/\1>/g)].map((m) => ({
     kind: m[1],
     loc: m[2].match(/<loc>([^<]+)<\/loc>/)?.[1],
@@ -41,5 +49,5 @@ for (let i = 0; i < urls.length; i += 10000) {
     headers: { "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify({ host: new URL(SITE).host, key: KEY, keyLocation: `${SITE}/${KEY}.txt`, urlList: batch }),
   });
-  console.log(`batch ${i / 10000 + 1}: HTTP ${res.status}`);
+  console.log(`batch ${i / 10000 + 1}: HTTP ${res.status} ${res.status >= 400 ? await res.text() : ""}`);
 }
